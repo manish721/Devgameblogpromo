@@ -1,0 +1,199 @@
+html {
+    height: 100%;
+    width: 100%;
+  }
+      body {
+              font-family: Arial, sans-serif;
+              padding: 20px;
+              background-color: lavender;
+          }
+  
+          table {
+              border-collapse: collapse;
+              width: 100%;
+          }
+  
+          th, td {
+              padding: 8px;
+              text-align: left;
+              border-bottom: 1px solid #ddd;
+          }
+  
+          th {
+              background-color: #f2f2f2;
+          }
+  
+          .add-btn {
+              background-color: green;
+              color: white;
+              padding: 10px 15px;
+              border: none;
+              cursor: pointer;
+              margin-bottom: 10px;
+          }
+  
+          .edit-btn, .delete-btn, .schedule-btn, .leave-btn {
+              padding: 5px 10px;
+              border: none;
+              cursor: pointer;
+              margin-right: 5px;
+          }
+  
+          h1, h2 {
+              color: blue;
+              text-align: center;
+          }
+  
+          input[type="text"], input[type="number"], input[type="email"], select, textarea {
+              padding: 5px;
+              border: 1px solid #ddd;
+              border-radius: 3px;
+          }
+  
+          input[type="text"]:focus, input[type="number"]:focus, input[type="email"]:focus, select:focus, textarea:focus {
+              outline: none;
+              border-color: #4CAF50;
+          }
+  
+          .search-container {
+              position: absolute;
+              top: 40%;
+              right: 3%;
+              transform: translate(-50%, -50%);
+          }
+  
+          .search-input {
+              padding: 5px;
+              border: 1px solid #ddd;
+              border-radius: 5px;
+          }
+  
+          .search-btn {
+              background-color: #4CAF50;
+              color: white;
+              padding: 3px 10px;
+              border: none;
+              cursor: pointer;
+          }
+  
+          .success-msg {
+              color: green;
+              font-weight: bold;
+          }
+  
+          .warning-msg {
+              color: red;
+              font-weight: bold;
+          }
+  
+          /* Scroll Buttons */
+          .scroll-btn {
+              position: fixed;
+              bottom: 20px;
+              right: 20px;
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              background-color: darkred;
+              color: white;
+              border: none;
+              cursor: pointer;
+              opacity: 0.7;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+          }
+  
+          .scroll-btn:hover {
+              opacity: 1;
+          }
+  
+          /* Leave List Styling */
+          .leave-list {
+              width: 177px;
+              height: 12.7px;
+              border: 1px solid black;
+              overflow-y: auto;
+          }
+  
+   #timer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 10px;
+        background-color: #f2f2f2;
+        border: 1px solid #ccc;
+        font-size: 16px;
+        font-family: Arial, sans-serif;
+      }
+    }
+      
+      h1, h2 {
+    text-align: center;
+  }
+  
+  .form-container, .list-container {
+    width: 60%;
+    margin: 20px auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .form-container label, .form-container input, .form-container select, .form-container button {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  .form-container input, .form-container select {
+    width: 100%;
+    padding: 5px;
+  }
+  
+  .form-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .form-container button:hover {
+    background-color: #45a049;
+  }
+  
+  .list-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .list-container li {
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+  }
+  
+  .list-container li:last-child {
+    border-bottom: none;
+  }
+
+  /* Add this to your existing CSS or style.css file */
+/* Adjust the breakpoints and styles as needed */
+
+@media screen and (max-width: 768px) {
+  /* Adjust layout for smaller screens */
+  /* For example, change table layout to stack rows */
+  table {
+    display: block;
+  }
+  th, td {
+    display: block;
+    width: 100%;
+  }
+}
+
+/* For screens 769px and above */
+@media (min-width: 769px) {
+  /* Adjust styles for larger screens here */
+}
+
+/* contact */
