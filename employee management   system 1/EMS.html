@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>EMPLOYEE-MANAGEMENT-SYSYTEM</title>
+  <link rel="icon" type="image/x-icon"
+    href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvkURb-UGvvKY2vUkvYFoKPj-VyVfQlgIZtijG0CkltrCYa8at&s">
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  
+
+</head>
+<CENTER>
+<img 
+src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuN-QU-2Ne8VPNlM2kObtB9zwn1CO7V_vb138RMe65UhKvxV4&s"
+  alt="Your Avatar" width="100" height="100" style="border-radius: 40%;"></center>
+<h1>Employee Management System</h1></CENTER>
+
+<body>
+  
+<!-- Employee List -->
+<h2>Employee List</h2>
+<div id="employee-count"></div>
+<!-- Rest of your code -->
+
+<!-- Search Bar -->
+<div class="search-container">
+  <input type="text" id="search-input" placeholder="Search by ID" class="search-input">
+  <button id="search-btn" class="search-btn">Search</button>
+</div>
+<br><br>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Hire Date</th>
+      <th>Last Working Day</th>
+      <th>Experience</th>
+      <th>Age</th>
+      <th>Position</th>
+      <th>Gender</th>
+      <th>Email</th>
+      <th>Contact</th>
+      <th>Salary</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody id="employee-list">
+    <!-- The employee data will be dynamically added here -->
+  </tbody>
+</table>
+
+<!-- Add Employee Form -->
+<h2>Add Employee</h2>
+<form id="add-employee-form">
+  <label for="firstname">First Name:</label>
+  <input type="text" id="firstname" required><br><br>
+
+  <label for="lastname">Last Name:</label>
+  <input type="text" id="lastname" required><br><br>
+
+  <label for="hire-date">Hire Date:</label>
+  <input type="date" id="hire-date" required><br><br>
+
+  <label for="last-working-day">Last Working Day:</label>
+  <input type="date" id="last-working-day" required><br><br>
+
+  <label for="experience">Experience:</label>
+  <input type="number" id="experience" required><br><br>
+
+  <label for="age">Age:</label>
+  <input type="number" id="age" required><br><br>
+
+  <label for="position">Position:</label>
+  <input type="text" id="position" required><br><br>
+
+  <label for="gender">Gender:</label>
+  <select id="gender" required>
+    <option value="">Select</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="Other">Other</option>
+  </select><br><br>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" required><br><br>
+
+  <label for="contact">Contact:</label>
+  <input type="text" id="contact" required><br><br>
+
+  <label for="salary">Salary:</label>
+  <input type="number" id="salary" required><br><br>
+
+  <label for="password">Password:</label>
+  <input type="password" id="password" required><br><br>
+
+  <input type="submit" value="Add Employee" class="add-btn">
+</form>
+
+<!-- Leave Application Form -->
+<h2>Leave Application</h2>
+<form id="leave-application-form">
+  <label for="employee-id">Employee ID:</label>
+  <input type="text" id="employee-id" required><br><br>
+
+  <label for="leave-date">Leave Date:</label>
+  <input type="date" id="leave-date" required><br><br>
+
+  <label for="leave-reason">Leave Reason:</label>
+  <textarea id="leave-reason" required></textarea><br><br>
+
+  <input type="submit" value="Apply Leave" class="leave-btn">
+</form>
+
+<!-- Employee Leave List -->
+<h2>Leave List</h2>
+<div id="leave-count"></div>
+<!-- Rest of your code -->
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Employee ID</th>
+      <th>Leave Date</th>
+      <th>Leave Reason</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody id="leave-list">
+    <!-- The leave application data will be dynamically added here -->
+  </tbody>
+</table>
+
+<!-- Scroll Buttons -->
+<button id="scroll-up-btn" title="Scroll Up" class="scroll-btn">&#x25B2;</button>
+<button id="scroll-down-btn" title="Scroll Down" class="scroll-btn">&#x25BC;</button>
+
+<!-- Performance Reviews and Appraisals -->
+<h2>Performance Reviews and Appraisals</h2>
+<div id="performance-reviews">
+  <!-- The performance review data will be dynamically added here -->
+</div>
+
+<!-- Add Performance Review Form -->
+<h3>Add Performance Review</h3>
+<form id="add-performance-review-form">
+  <label for="employee-id-pr">Employee ID:</label>
+  <input type="text" id="employee-id-pr" required><br><br>
+
+  <label for="review-date">Review Date:</label>
+  <input type="date" id="review-date" required><br><br>
+
+  <label for="review-details">Review Details:</label>
+  <textarea id="review-details" required></textarea><br><br>
+
+  <input type="submit" value="Add Review" class="add-btn">
+</form>
+
+<div class="feedback-container">
+  <h2>Continuous Feedback Form</h2>
+  <div class="feedback-item">
+    <span>Name:</span>
+    <inputtype="text" id="name" />
+  </div>
+  <div class="feedback-item">
+    <span>Feedback:</span>
+    <textareaid="feedback" rows="4"></textareaid=>
+  </div>
+  <div class="feedback-item">
+    <button onclick="submitFeedback()">Submit</button>
+  </div>
+</div>
+<div class="feedback-container">
+  <h2>Feedback Display</h2>
+  <div id="feedbackDisplay"></div>
+</div>
+<div id="timer">Reloading in <span id="countdown">10</span> seconds</div>
+
+<!-- Print Button -->
+<button id="print-btn" class="search-btn" onclick="printEmployeeList()">Print Employee List</button>
+
+<h1>Transport System</h1>
+<label for="Employee ID">Employee ID:</label>
+<input type="number" id="vehicle-name" placeholder="Enter Employee ID ">
+
+<label for="capacity">Capacity:</label>
+<input type="number" id="capacity" placeholder="Enter Capacity">
+
+<label for="fuel-type">Fuel Type:</label>
+<select id="fuel-type">
+  <option value="petrol">Petrol</option>
+  <option value="diesel">Diesel</option>
+  <option value="electric">Electric</option>
+</select>
+
+<button onclick="addTransport()">Add Transport</button>
+</div>
+
+<div id="transport-list" class="list-container">
+  <h2>Transport List</h2>
+  <ul id="vehicle-list"></ul>
+</div>
+<center> <a href="http://127.0.0.1:5500/contact.html"><u>Contact Us</u></a>
+</center>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
+
+

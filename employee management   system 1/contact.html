@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact-Info</title>
+    <header>
+        <h1><center>Contact-Info</center></h1>
+    </header>
+  <style>
+    /* Style the container */
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #0000;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgb(214, 29, 8);
+    }
+
+    /* Style the form */
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Style the labels */
+    label {
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    /* Style the input fields */
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    /* Style the submit button */
+    button[type="submit"] {
+      background-color: #007bffb6;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    /* Style the submit button on hover */
+    button[type="submit"]:hover {
+      background-color: #1119221f;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="contact-info">
+      <form action="https://formspree.io/f/maygeoln" method="POST">
+        <label for="email">Your email:</label>
+        <input type="email" name="email" id="email" required>
+
+        <label for="message">Your message:</label>
+        <textarea name="message" id="message" rows="4" required></textarea>
+
+        <!-- your other form fields go here -->
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
