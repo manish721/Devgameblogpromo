@@ -26,9 +26,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
+  height: 100vh;
+  overflow: hidden;
 }
 
 nav {
@@ -52,14 +51,14 @@ nav {
 }
 
 .grid {
-  width: 100%;
+  position: absolute;
+  height: 100%;
+  weight: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   align-self: center;
   z-index: -1;
-  position: relative;
-  min-height: 100vh;
 }
 
 .grid-svg {
@@ -77,7 +76,6 @@ nav {
   border-radius: 100px;
   z-index: 0;
   position: absolute;
-  animation: blurPulse 4s infinite alternate;
 }
 
 .title {
@@ -86,13 +84,11 @@ nav {
   letter-spacing: -0.8rem;
   display: flex;
   flex-direction: column;
+  position: absolute;
   justify-content: center;
   align-self: center;
-  min-height: 100vh;
-  text-align: center;
-  position: relative;
-  opacity: 0;
-  animation: fadeIn 1s forwards;
+  height: 100%;
+  z-index: 1000;
 }
 
 .title > p {
@@ -101,16 +97,16 @@ nav {
   width: auto;
 }
 
-.title > p:nth-child(1) {
+.title > p:nth-child(1){
   align-self: flex-start;
 }
 
-.title > p:nth-child(2) {
+.title > p:nth-child(2){
   color: var(--primary);
   align-self: flex-end;
 }
 
-.title > p:nth-child(3) {
+.title > p:nth-child(3){
   align-self: flex-end;
 }
 
@@ -118,6 +114,8 @@ nav {
   display: none;
   fill: var(--text);
 }
+
+
 
 .button {
   display: flex;
@@ -145,6 +143,7 @@ button {
   font-family: "Manrope";
   font-size: 1rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -165,7 +164,6 @@ span {
 
 .button:hover > span {
   opacity: 60%;
-  transform: translateY(-5px);
 }
 
 .button:hover > button {
@@ -207,6 +205,7 @@ span {
   background-color: var(--secondaryHi);
 }
 
+
 .top-right {
   position: absolute;
   top: 0;
@@ -223,9 +222,13 @@ span {
   opacity: 50%;
 }
 
+
+
+
 @media screen and (max-width: 1000px) {
   .title {
     font-size: 4rem;
+    line-height: 
   }
 
   .title > p {
@@ -245,6 +248,26 @@ span {
     display: flex;
     align-items: center;
   }
+
+}
+
+.button > button,
+.button > span {
+  transition: transform 0.3s ease;
+}
+
+.button:hover > button {
+  transform: translateY(5px);
+}
+
+.button:hover > span {
+  opacity: 60%;
+  transform: translateY(-5px);
+}
+
+.title {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
 }
 
 @keyframes fadeIn {
@@ -254,6 +277,9 @@ span {
   to {
     opacity: 1;
   }
+}
+.blur {
+  animation: blurPulse 4s infinite alternate;
 }
 
 @keyframes blurPulse {
