@@ -322,7 +322,7 @@ span {
 
 /* Style the original "ABOUT ME" button */
 .button.first {
-  padding: 40px 40px;
+  padding: 10px 20px;
   background-color: #008CBA; /* Adjust the color as per your design */
   color: white;
   border: none;
