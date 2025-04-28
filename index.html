@@ -93,3 +93,186 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 </head>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Gallery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>🚀 Video Platform</h1>
+    <nav>
+    </nav>
+  </header>
+
+  <main class="gallery" id="videoGallery">
+    <!-- Video cards will be dynamically injected here -->
+  </main>
+
+  <!-- Pagination -->
+  <div id="pagination" style="text-align: center;">
+    <button id="prevBtn" onclick="changePage(-1)">Previous</button>
+    <button id="nextBtn" onclick="changePage(1)">Next</button>
+  </div>
+
+  <script>
+    // Mock Video Data (Replace with an API call to fetch actual video data or a large JSON file)
+    const videoData = [
+      {
+        "title": "Video 1",
+        "url": "https://www.loom.com/share/video1"
+      },
+      {
+        "title": "Video 2",
+        "url": "https://www.loom.com/share/video2"
+      },
+      {
+        "title": "Video 3",
+        "url": "https://www.loom.com/share/video3"
+      },
+      {
+        "title": "Video 4",
+        "url": "https://www.loom.com/share/video4"
+      },
+      // Add all your video data here (up to 1000 or more)...
+    ];
+
+    // Pagination variables
+    const itemsPerPage = 10; // Number of videos per page
+    let currentPage = 1;
+
+    // Function to generate video cards dynamically
+    function generateVideoCards(page) {
+      const startIndex = (page - 1) * itemsPerPage;
+      const endIndex = page * itemsPerPage;
+
+      // Get the sliced array of videos for the current page
+      const videosToDisplay = videoData.slice(startIndex, endIndex);
+
+      const videoGallery = document.getElementById('videoGallery');
+      videoGallery.innerHTML = ''; // Clear current video gallery
+
+      videosToDisplay.forEach(video => {
+        const videoCard = document.createElement('div');
+        videoCard.classList.add('video-card');
+        videoCard.onclick = function() {
+          window.open(video.url, '_blank'); // Open video in a new tab
+        };
+
+        videoCard.innerHTML = `
+          <h2>${video.title}</h2>
+        `;
+
+        videoGallery.appendChild(videoCard);
+      });
+
+      // Update pagination buttons visibility
+      document.getElementById('prevBtn').style.display = page > 1 ? 'inline-block' : 'none';
+      document.getElementById('nextBtn').style.display = page < Math.ceil(videoData.length / itemsPerPage) ? 'inline-block' : 'none';
+    }
+
+    // Function to handle pagination
+    function changePage(direction) {
+      currentPage += direction;
+      generateVideoCards(currentPage);
+    }
+
+    // Initial call to generate video cards for the first page
+    generateVideoCards(currentPage);
+  </script>
+
+</body>
+</html>
+
+<STYLE>
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f5f5f5;
+  color: #333;
+}
+
+header {
+  background: #222;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+header nav {
+  margin-top: 10px;
+}
+
+header nav a {
+  color: #00f7ff;
+  margin: 0 15px;
+  text-decoration: none;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 2rem;
+  justify-content: center;
+}
+
+.video-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  width: 300px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  padding: 10px;
+}
+
+.video-card:hover {
+  transform: scale(1.05);
+}
+
+.video-card h2 {
+  font-size: 18px;
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* Pagination Styles */
+#pagination {
+  margin: 20px;
+}
+
+#pagination button {
+  background-color: #00f7ff;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0 5px;
+  border-radius: 5px;
+}
+
+#pagination button:hover {
+  background-color: #008c8c;
+}
+
+
+</STYLE>
