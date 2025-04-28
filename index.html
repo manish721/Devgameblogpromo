@@ -73,7 +73,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <a href="https://discord.gg/HdvgYfGw6s" target="_blank" class="button third"><button>Connect</button><span></span></a>
 
-
+<a href="https://discord.gg/HdvgYfGw6s" target="_blank" class="button third"><button>Connect</button><span></span></a>
 
 <svg class="top-right" width="219" height="147" viewBox="0 0 219 147" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect opacity="0.18" x="10.4252" y="75.8326" width="7.50168" height="7.50168" transform="rotate(110.283 10.4252 75.8326)" fill="#686868" stroke="white" stroke-width="1.22683" />
@@ -99,99 +99,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Video Gallery</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
 
-  <header>
-    <h1>🚀 Video Platform</h1>
-    <nav>
-    </nav>
-  </header>
-
-  <main class="gallery" id="videoGallery">
-    <!-- Video cards will be dynamically injected here -->
-  </main>
-
-  <!-- Pagination -->
-  <div id="pagination" style="text-align: center;">
-    <button id="prevBtn" onclick="changePage(-1)">Previous</button>
-    <button id="nextBtn" onclick="changePage(1)">Next</button>
-  </div>
-
-  <script>
-    // Mock Video Data (Replace with an API call to fetch actual video data or a large JSON file)
-    const videoData = [
-      {
-        "title": "Video 1",
-        "url": "https://www.loom.com/share/video1"
-      },
-      {
-        "title": "Video 2",
-        "url": "https://www.loom.com/share/video2"
-      },
-      {
-        "title": "Video 3",
-        "url": "https://www.loom.com/share/video3"
-      },
-      {
-        "title": "Video 4",
-        "url": "https://www.loom.com/share/video4"
-      },
-      // Add all your video data here (up to 1000 or more)...
-    ];
-
-    // Pagination variables
-    const itemsPerPage = 10; // Number of videos per page
-    let currentPage = 1;
-
-    // Function to generate video cards dynamically
-    function generateVideoCards(page) {
-      const startIndex = (page - 1) * itemsPerPage;
-      const endIndex = page * itemsPerPage;
-
-      // Get the sliced array of videos for the current page
-      const videosToDisplay = videoData.slice(startIndex, endIndex);
-
-      const videoGallery = document.getElementById('videoGallery');
-      videoGallery.innerHTML = ''; // Clear current video gallery
-
-      videosToDisplay.forEach(video => {
-        const videoCard = document.createElement('div');
-        videoCard.classList.add('video-card');
-        videoCard.onclick = function() {
-          window.open(video.url, '_blank'); // Open video in a new tab
-        };
-
-        videoCard.innerHTML = `
-          <h2>${video.title}</h2>
-        `;
-
-        videoGallery.appendChild(videoCard);
-      });
-
-      // Update pagination buttons visibility
-      document.getElementById('prevBtn').style.display = page > 1 ? 'inline-block' : 'none';
-      document.getElementById('nextBtn').style.display = page < Math.ceil(videoData.length / itemsPerPage) ? 'inline-block' : 'none';
-    }
-
-    // Function to handle pagination
-    function changePage(direction) {
-      currentPage += direction;
-      generateVideoCards(currentPage);
-    }
-
-    // Initial call to generate video cards for the first page
-    generateVideoCards(currentPage);
-  </script>
-
-</body>
-</html>
 
 
