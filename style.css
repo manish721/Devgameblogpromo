@@ -310,3 +310,30 @@ span {
 .privacy-button:hover {
   background-color: #f0f0f0;
 }
+
+
+
+
+.button.fourth > span {
+  background-color: var(--secondaryHi);
+}
+
+
+.top-left {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  opacity: 50%;
+}
+
+.bottom-left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 50%;
+}
+
+
+
