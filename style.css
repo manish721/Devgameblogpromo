@@ -312,3 +312,60 @@ span {
 }
 
 
+
+/* Add some styling to the navigation */
+nav {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: flex-start; /* Align content to the left */
+  gap: 10px; /* Add space between elements */
+}
+
+/* Site Name Styling */
+.sitename {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px; /* Add space below the site name */
+}
+
+/* Container for buttons */
+.button-container {
+  display: flex;
+  flex-direction: column; /* Stack the buttons vertically */
+  align-items: flex-start; /* Align buttons to the left */
+  gap: 15px; /* Adjust space between buttons */
+}
+
+/* Style the original "ABOUT ME" button */
+.button.first {
+  padding: 10px 20px;
+  background-color: #008CBA; /* Adjust the color as per your design */
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.button.first button {
+  background-color: inherit;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Style the new button */
+.button.newButton {
+  padding: 10px 20px;
+  background-color: #4CAF50; /* Green background for the new button */
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.button.newButton button {
+  background-color: inherit;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
