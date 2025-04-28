@@ -313,6 +313,46 @@ span {
 
 
 
+/* Container for buttons */
+.button-container {
+  display: flex;
+  justify-content: flex-start; /* Align the buttons to the left */
+  gap: 20px; /* Adjust the space between buttons */
+}
+
+/* Style the original "ABOUT ME" button */
+.button.first {
+  padding: 10px 20px;
+  background-color: #008CBA; /* Adjust the color as per your design */
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.button.first button {
+  background-color: inherit;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Style the new button */
+.button.newButton {
+  padding: 10px 20px;
+  background-color: #4CAF50; /* Green background for the new button */
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.button.newButton button {
+  background-color: inherit;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
 
 
 
