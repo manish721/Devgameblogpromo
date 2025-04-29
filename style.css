@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Manrope:700|Manrope:400');
+@import url('https://fonts.googleapis.com/css?family=Manrope:400,700');
 
 :root {
   --text: hsl(0, 0%, 99%);
@@ -17,8 +17,9 @@
   --accentHi: hsla(155, 100%, 100%, 25%);
 }
 
+/* === Base Styles === */
 body {
-  font-family: 'Manrope';
+  font-family: 'Manrope', sans-serif;
   font-weight: 400;
   background-color: var(--background);
   color: var(--text);
@@ -30,15 +31,16 @@ body {
   overflow: hidden;
 }
 
+/* === Navigation === */
 nav {
   display: flex;
-  flex-direction: row;
   align-items: center;
   gap: 2rem;
   color: var(--textDim);
   width: 100%;
   box-sizing: border-box;
   z-index: 9999;
+  justify-content: space-between;
 }
 
 .menu:hover {
@@ -50,14 +52,53 @@ nav {
   font-weight: bold;
 }
 
+.material-icons {
+  display: none;
+  fill: var(--text);
+}
+
+/* === Title Section === */
+.title {
+  font-size: 10rem;
+  font-weight: 700;
+  letter-spacing: -0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  height: 100%;
+  position: absolute;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+  z-index: 1000;
+}
+
+.title > p {
+  margin: 0;
+  line-height: 10rem;
+}
+
+.title > p:nth-child(1) {
+  align-self: flex-start;
+}
+
+.title > p:nth-child(2),
+.title > p:nth-child(3) {
+  align-self: flex-end;
+}
+
+.title > p:nth-child(2) {
+  color: var(--primary);
+}
+
+/* === Grid Background === */
 .grid {
   position: absolute;
   height: 100%;
-  weight: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  align-self: center;
   z-index: -1;
 }
 
@@ -65,93 +106,69 @@ nav {
   height: 80%;
   width: 80%;
   position: relative;
-  z-index: 1;
 }
 
+/* === Blurs === */
 .blur {
   height: 12rem;
   width: 12rem;
   background-color: var(--primary);
   filter: blur(100px);
   border-radius: 100px;
+  position: absolute;
   z-index: 0;
+  animation: blurPulse 4s infinite alternate;
+}
+
+.top-right {
   position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  opacity: 50%;
 }
 
-.title {
-  font-size: 10rem;
-  font-weight: 700;
-  letter-spacing: -0.8rem;
-  display: flex;
-  flex-direction: column;
+.bottom-left {
   position: absolute;
-  justify-content: center;
-  align-self: center;
-  height: 100%;
-  z-index: 1000;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 50%;
 }
 
-.title > p {
-  margin: 0;
-  line-height: 10rem;
-  width: auto;
-}
-
-.title > p:nth-child(1){
-  align-self: flex-start;
-}
-
-.title > p:nth-child(2){
-  color: var(--primary);
-  align-self: flex-end;
-}
-
-.title > p:nth-child(3){
-  align-self: flex-end;
-}
-
-.material-icons {
-  display: none;
-  fill: var(--text);
-}
-
-
-
+/* === Buttons === */
 .button {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   position: absolute;
+  height: 50px;
+  width: 160px;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
-  height: 50px;
-  width: 160px;
   z-index: 9999;
 }
 
-button {
+.button > button {
   height: 50px;
   width: 160px;
-  clip-path: path("M 0 25 C 0 -5, -5 0, 80 0 S 160 -5, 160 25, 165 50 80 50, 0 55, 0 25");
   border: none;
   border-radius: 13px;
   background-color: var(--primaryBg);
   box-shadow: 0px -3px 15px 0px var(--primaryHi) inset;
   color: var(--primaryFg);
-  font-family: "Manrope";
   font-size: 1rem;
+  font-family: 'Manrope';
+  clip-path: path("M 0 25 C 0 -5, -5 0, 80 0 S 160 -5, 160 25, 165 50 80 50, 0 55, 0 25");
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  position: absolute;
-  transform: translateY(0px);
-  transition: all 0.2s ease;
+  justify-content: center;
+  transition: transform 0.3s ease;
 }
 
-span {
+.button > span {
   width: 100px;
   height: 60px;
   background-color: var(--primaryHi);
@@ -159,17 +176,19 @@ span {
   filter: blur(20px);
   position: absolute;
   bottom: -50%;
-  transition: all 0.2s ease;
-}
-
-.button:hover > span {
-  opacity: 60%;
+  transition: transform 0.3s ease, opacity 0.2s ease;
 }
 
 .button:hover > button {
   transform: translateY(5px);
 }
 
+.button:hover > span {
+  opacity: 60%;
+  transform: translateY(-5px);
+}
+
+/* Button Positioning */
 .button.first {
   top: 12%;
   right: 20%;
@@ -183,7 +202,7 @@ span {
 .button.sec > button {
   background-color: var(--accentBg);
   box-shadow: 0px -3px 15px 0px var(--accentHi) inset;
-  color: var(--accentFg);
+  color: var(--accent);
 }
 
 .button.sec > span {
@@ -205,30 +224,41 @@ span {
   background-color: var(--secondaryHi);
 }
 
-
-.top-right {
+/* === Privacy Button === */
+.privacy-button {
   position: absolute;
-  top: 0;
-  right: 0;
-  z-index: -1;
-  opacity: 50%;
+  top: 20px;
+  left: 20px;
+  background-color: #fff;
+  color: #000;
+  padding: 8px 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  z-index: 1000;
 }
 
-.bottom-left {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: -1;
-  opacity: 50%;
+.privacy-button:hover {
+  background-color: #f0f0f0;
 }
 
+/* === Animations === */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
+@keyframes blurPulse {
+  from { filter: blur(50px); }
+  to { filter: blur(100px); }
+}
 
-
+/* === Responsive === */
 @media screen and (max-width: 1000px) {
   .title {
     font-size: 4rem;
-    line-height: 
   }
 
   .title > p {
@@ -240,74 +270,8 @@ span {
     display: none;
   }
 
-  nav {
-    justify-content: space-between;
-  }
-
   .material-icons {
     display: flex;
     align-items: center;
   }
-
 }
-
-.button > button,
-.button > span {
-  transition: transform 0.3s ease;
-}
-
-.button:hover > button {
-  transform: translateY(5px);
-}
-
-.button:hover > span {
-  opacity: 60%;
-  transform: translateY(-5px);
-}
-
-.title {
-  opacity: 0;
-  animation: fadeIn 1s forwards;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-.blur {
-  animation: blurPulse 4s infinite alternate;
-}
-
-@keyframes blurPulse {
-  from {
-    filter: blur(50px);
-  }
-  to {
-    filter: blur(100px);
-  }
-}
-
-
-.privacy-button {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  background-color: #fff;
-  color: #000;
-  padding: 8px 14px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
-  z-index: 1000;
-}
-
-.privacy-button:hover {
-  background-color: #f0f0f0;
-}
-
