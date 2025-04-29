@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Video Channel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Manrope', sans-serif;
+      background-color: #0a0a0a;
+      color: #f3f3f3;
+    }
+    header {
+      padding: 1.5rem 10%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #121212;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo {
+      font-size: 1.5rem;
+      color: #00ffc3;
+      font-weight: 700;
+    }
+    .hero {
+      text-align: center;
+      padding: 4rem 10%;
+      background: linear-gradient(135deg, #0a0a0a, #1e1e1e);
+    }
+    .hero h1 {
+      font-size: 3rem;
+      color: #00ffc3;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      color: #9e9e9e;
+      font-size: 1.2rem;
+    }
+    .video-section {
+      padding: 2rem 10%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    iframe {
+      width: 100%;
+      height: 200px;
+      border: none;
+      border-radius: 12px;
+    }
+    footer {
+      padding: 2rem 10%;
+      text-align: center;
+      background: #0a0a0a;
+      color: #9e9e9e;
+      border-top: 1px solid #222;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">DevGameBlogPromo</div>
+  </header>
+
+  <section class="hero">
+    <h1>Welcome to My Video Space</h1>
+    <p>I post videos that matter to me — tutorials, stories, projects, and more. and stay inspired!</p>
+  </section>
+
+  <section class="video-section" id="videos">
+    <!-- Embed YouTube videos -->
+    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID1" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID2" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID2" allowfullscreen></iframe>
+    
+  </section>
+
+  <footer>
+    &copy; 2025 DevGameBlogPromo| Created by Manish
+  </footer>
+
+</body>
+</html>
