@@ -215,6 +215,34 @@
   }
 }
 
+    .menu-toggle {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    background-color: var(--bg);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 1rem 10%;
+  }
+
+  nav.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
   </style>
 </head>
 
@@ -231,6 +259,8 @@
       <a href="youtube .page.html">Youtube Page </a>
       
     </nav>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
   </header>
   
 <section class="hero">
@@ -308,6 +338,25 @@
 📬 <p>Contact Us</p>
     <a href="https://www.instagram.com/devgameblogpromo/" class="button">Follow on Instagram</a>
   </section>
+  
+<script>
+  function toggleMenu() {
+    const nav = document.querySelector('nav');
+    nav.classList.toggle('active');
+  }
+
+
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('nav').classList.remove('active');
+  });
+});
+</script>
+
+
+
+
+
 
   <footer>
     &copy; 2025 DevGameBlogPromo™ | All Rights Reserved
