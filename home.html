@@ -360,7 +360,44 @@ document.querySelectorAll('nav a').forEach(link => {
   });
 });
 </script>
+  
+<section class="section" id="testimonials">
+  <h2>What Our Community Says</h2>
+  <div class="card-grid">
+    <div class="card">
+      <p>“Being a part of DevGameBlogPromo has boosted my confidence as a developer. The mentorship and support are unmatched!”</p>
+      <p style="color: var(--accent); font-weight: 700;">– Aanya, Frontend Developer</p>
+    </div>
+    <div class="card">
+      <p>Manish KakarlA, founder of DevGameBlogPromo, is an extraordinary educator and innovator in the tech and gaming world. With expertise in programming, AI, and Machine Learning, he makes even the most complex topics accessible and engaging. I had the privilege of being in a cohort of 25 U.S.-based students, and his teaching style stood out for its structure, simplicity, and impact. Beyond technical knowledge, Manish instills values and discipline, nurturing not just skilled developers, but responsible individuals.</p>
+      <p style="color: var(--accent); font-weight: 700;">– G.Sandhya , Business</p>
+    </div>
+    <div class="card">
+      <p> I still remember the first day of class with Manish KakarlA. We were 25 students from across the U.S., excited but unsure about diving into AI and programming. Within minutes, his calm confidence and simple explanations put us at ease. His sessions weren’t just lessons—they were stories, philosophies, and life skills rolled into one. He taught us to code, but also to lead, behave, and dream big. That’s the Manish effect. </p>
+      <p style="color: var(--accent); font-weight: 700;">–  Arian Matthews , Junior Game Developer</p>
+    </div>
+  </div>
+</section>
+<style>
+  .card p:first-child {
+  font-style: italic;
+  position: relative;
+  padding-left: 1.5rem;
+}
 
+.card p:first-child::before {
+  content: "“";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+</style>
+
+  
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11298822058">
 </script>
