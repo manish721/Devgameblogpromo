@@ -507,7 +507,62 @@ document.querySelectorAll('nav a').forEach(link => {
   gtag('config', 'AW-11298822058');
 </script>
 
+<section class="impact-section" id="impact">
+  <h2 class="impact-heading">📊 Our Impact So Far</h2>
+  <div class="impact-stats-grid">
+    <div class="impact-stat">
+      <h3 class="count" data-target="257">0</h3>
+      <p>Projects Completed</p>
+    </div>
+    <div class="impact-stat">
+      <h3 class="count" data-target="65">0</h3>
+      <p>Companies Served</p>
+    </div>
+    <div class="impact-stat">
+      <h3 class="count" data-target="5">0</h3>
+      <p>Years of Innovation</p>
+    </div>
+    <div class="impact-stat">
+      <h3 class="count" data-target="2">0</h3>
+      <p>Platforms Launched</p>
+    </div>
+  </div>
+</section>
+<script>
+  const counters = document.querySelectorAll('[data-target]');
 
+  const speed = 200; // speed of counting
+
+  counters.forEach(counter => {
+    const updateCount = () => {
+      const target = +counter.getAttribute('data-target');
+      const count = +counter.innerText;
+
+      const inc = Math.ceil(target / speed);
+
+      if (count < target) {
+        counter.innerText = count + inc;
+        setTimeout(updateCount, 10);
+      } else {
+        counter.innerText = target;
+      }
+    };
+
+    // Trigger animation on scroll into view
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          updateCount();
+          observer.unobserve(counter); // Animate once
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+
+    observer.observe(counter);
+  });
+</script>
 
   
 <footer>
@@ -558,28 +613,3 @@ document.querySelectorAll('nav a').forEach(link => {
   }
 </style>
 
-  <section class="impact-section" id="impact">
-  <h2 class="impact-heading">📊 Our Impact So Far</h2>
-  <div class="impact-stats-grid">
-    <div class="impact-stat">
-      <h3 class="count" data-target="257">17</h3>
-      <p>Projects Completed</p>
-    </div>
-    <div class="impact-stat">
-      <h3 class="count" data-target="65">1</h3>
-      <p>Companies Served</p>
-    </div>
-    <div class="impact-stat">
-      <h3 class="count" data-target="5">5+</h3>
-      <p>Years of Innovation</p>
-    </div>
-    <div class="impact-stat">
-      <h3 class="count" data-target="2">1</h3>
-      <p>Platforms Launched</p>
-    </div>
-  </div>
-</section>
-
-</body>
-
-</html>
