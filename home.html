@@ -382,6 +382,93 @@
   </p>
 </section>
 
+<section class="impact-section" id="impact">
+  <h2 class="impact-heading">📊 Our Impact So Far</h2>
+  <div class="impact-stats-grid">
+    <div class="impact-stat">
+      <h3 class="count" data-target="257">18</h3>
+      <p>Projects Completed</p>
+    </div>
+    <div class="impact-stat">
+      <h3 class="count" data-target="65">1</h3>
+      <p>Companies Served</p>
+    </div>
+    <div class="impact-stat">
+      <h3 class="count" data-target="5">5+</h3>
+      <p>Years of Innovation</p>
+    </div>
+    <div class="impact-stat">
+      <h3 class="count" data-target="2">2</h3>
+      <p>Platforms Launched</p>
+    </div>
+  </div>
+</section>
+<Style>.impact-section {
+  padding: 60px 20px;
+  background: #f9f9f9;
+  text-align: center;
+}
+.impact-heading {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+.impact-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 30px;
+  justify-items: center;
+}
+.impact-stat h3 {
+  font-size: 3rem;
+  color: #0e76a8;
+  margin: 0;
+}
+.impact-stat p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-top: 10px;
+}
+<style/>
+  <script><script>
+  const counters = document.querySelectorAll('.count');
+  let started = false;
+
+  function runCounters() {
+    if (started) return;
+    started = true;
+
+    counters.forEach(counter => {
+      const target = +counter.getAttribute('data-target');
+      const speed = 200; // Lower = faster
+
+      const updateCount = () => {
+        const current = +counter.innerText;
+        const increment = Math.ceil(target / speed);
+
+        if (current < target) {
+          counter.innerText = current + increment;
+          setTimeout(updateCount, 10);
+        } else {
+          counter.innerText = target + "+";
+        }
+      };
+
+      updateCount();
+    });
+  }
+
+  // Trigger when in viewport
+  window.addEventListener('scroll', () => {
+    const section = document.querySelector('#impact');
+    const sectionTop = section.getBoundingClientRect().top;
+    if (sectionTop < window.innerHeight - 100) {
+      runCounters();
+    }
+  });
+</script>
+<script/>
+  
+
   <section class="section" id="careers">
     <h2>Careers</h2>
 <p></p> we believe in the power of ideas and the people who bring them to life. We are constantly seeking curious minds, creative thinkers, and technically skilled individuals who are eager to make a difference.
