@@ -505,18 +505,55 @@ document.querySelectorAll('nav a').forEach(link => {
 </script>
 
 
-  <footer>
-    &copy; 2025 DevGameBlogPromo™ | All Rights Reserved
-  </footer>
-  
 
+  
 <footer>
   <div class="footer-content">
-    <p>D-U-N-S® Verified Business</p>
-    <p>D-U-N-S® Number: 772660415</p>
+    <p>© 2025 DEVGAMEBLOGPROMO™ | All rights reserved.</p>
+    <div class="duns-badge">
+      ✅ <strong>D‑U‑N‑S® Verified</strong><br>
+      D‑U‑N‑S® Number: <strong>772660415</strong>
+    </div>
   </div>
 </footer>
 
+<style>
+  footer {
+    background-color: #101010;
+    color: #ffffff;
+    padding: 20px;
+    font-family: 'Segoe UI', sans-serif;
+    position: relative;
+  }
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .duns-badge {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    font-size: 0.9rem;
+    background: #0b76d1;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+    text-align: right;
+  }
+
+  @media (max-width: 600px) {
+    .duns-badge {
+      position: static;
+      margin-top: 10px;
+      text-align: center;
+      display: block;
+    }
+  }
+</style>
 </body>
 
 </html>
