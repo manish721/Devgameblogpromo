@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>More | DevGameBlogPromo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0a0a0a;
+      color: #00ffc3;
+      padding: 0;
+    }
+
+    /* App Bar */
+    .app-bar {
+      background-color: #030303;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #00ffc2;
+      box-shadow: 0 2px 10px rgba(0, 255, 194, 0.2);
+    }
+
+    /* Net Worth Card */
+    .net-worth {
+      background-color: #0a0a0a;
+      border: 2px solid #00ffc2;
+      border-radius: 15px;
+      padding: 30px;
+      margin: 40px auto 20px;
+      width: 80%;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 0 20px #00ffc2;
+    }
+
+    .net-worth h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #00ffc3;
+    }
+
+    .net-worth p {
+      font-size: 22px;
+      color: #fcfbf8;
+    }
+
+    /* Specialties Banner */
+    .specialties-banner {
+      background: linear-gradient(to bottom right, #0a0a0a, #00ffc2);
+      padding: 40px 20px;
+      margin: 20px auto;
+      width: 90%;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #00ffc2;
+    }
+
+    .specialties-banner h2 {
+      font-size: 26px;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #fcfbf8;
+    }
+
+    .specialties-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .specialty {
+      background-color: #030303;
+      padding: 15px 25px;
+      border-radius: 10px;
+      color: #00ffc2;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(0, 255, 194, 0.4);
+    }
+
+    /* Impact Section */
+    .impact-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    .impact-card {
+      background: #1a1a1a;
+      border: 2px solid #00ffc2;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 255, 194, 0.3);
+      color: #fcfbf8;
+      text-align: center;
+    }
+
+    .impact-card h4 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #00ffc2;
+    }
+
+    .impact-card p {
+      font-size: 16px;
+    }
+
+    /* Sidebar Banner */
+    .banner-container {
+      position: fixed;
+      top: 0;
+      right: -200px;
+      width: 200px;
+      height: 100%;
+      background: linear-gradient(to bottom right, #0a0a0a, #00ffc2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: right 0.5s ease;
+      z-index: 999;
+      cursor: pointer;
+    }
+
+    .banner-container.show {
+      right: 0;
+    }
+
+    .letter {
+      font-size: 40px;
+      font-weight: bold;
+      color: #00ffc3;
+      margin: 4px 0;
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .letter:hover {
+      transform: scale(1.2);
+      color: #fcfbf8;
+    }
+
+    .show-btn {
+      position: fixed;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      background-color: #030303;
+      color: rgb(15, 233, 233);
+      border: none;
+      padding: 12px 6px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1000;
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+
+    .show-btn:hover {
+      background-color: #3b82f6;
+    }
+
+    .hide-btn {
+      display: none;
+    }
+
+    .card {
+      background: #0a0a0a;
+      border: 2px solid #00ffc2;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 255, 194, 0.3);
+      padding: 20px;
+      margin: 30px auto;
+      width: 90%;
+      max-width: 600px;
+      color: #fcfbf8;
+    }
+
+    .card h3 {
+      color: #00ffc3;
+    }
+
+    @media (max-width: 600px) {
+      .net-worth, .specialties-banner, .card {
+        width: 90%;
+      }
+
+      .specialty {
+        padding: 10px 15px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-bar">DevGameBlogPromo - More About Us</div>
+
+  <div class="net-worth">
+    <h2>Our Net Worth</h2>
+    <p>"Valued at ₹25,00,000 — powered by purpose, passion, and people."</p>
+  </div>
+
+  <div class="specialties-banner">
+    <h2>Our Specialties</h2>
+    <div class="specialties-list">
+      <div class="specialty">Web Development</div>
+      <div class="specialty">Game Design</div>
+      <div class="specialty">UI/UX Strategy</div>
+      <div class="specialty">Creative Branding</div>
+      <div class="specialty">Community Building</div>
+    </div>
+  </div>
+
+  <div class="impact-stats">
+    <div class="impact-card">
+      <h4>5000+ Users</h4>
+      <p>Our platforms are loved by thousands across India.</p>
+    </div>
+    <div class="impact-card">
+      <h4>30+ Projects</h4>
+      <p>From web apps to games — we build it all.</p>
+    </div>
+    <div class="impact-card">
+      <h4>25 Team Members</h4>
+      <p>Innovating together with passion and purpose.</p>
+    </div>
+    <div class="impact-card">
+      <h4>Global Reach</h4>
+      <p>Collaborating with devs from 10+ countries.</p>
+    </div>
+  </div>
+
+  <!-- Show Button -->
+  <button id="showButton" class="show-btn" onclick="toggleBanner(true)">Show</button>
+
+  <!-- Sidebar Banner -->
+  <div class="banner-container" id="welcomeBanner" onclick="toggleBanner(false)">
+    <div class="letter">W</div>
+    <div class="letter">E</div>
+    <div class="letter">L</div>
+    <div class="letter">C</div>
+    <div class="letter">O</div>
+    <div class="letter">M</div>
+    <div class="letter">E</div>
+  </div>
+
+  <script>
+    function toggleBanner(show) {
+      const banner = document.getElementById("welcomeBanner");
+      const button = document.getElementById("showButton");
+
+      if (show) {
+        banner.classList.add("show");
+        button.classList.add("hide-btn");
+      } else {
+        banner.classList.remove("show");
+        button.classList.remove("hide-btn");
+      }
+    }
+  </script>
+
+  <div class="card">
+    <h3>From the Founder</h3>
+    <p>DevGameBlogPromo began with a simple goal — to empower developers like me to learn, build, and grow together. This valuation is not just a number, it's a reflection of every line of code, every late-night idea, and every person who believed in the journey.</p>
+    <p><strong>— Manish, Founder</strong></p>
+  </div>
+
+</body>
+</html>
