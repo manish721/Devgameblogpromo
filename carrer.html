@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join Our Labs - DevGameBlogPromo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: #f3f4f6;
+      color: #1f2937;
+      line-height: 1.6;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      background: #ffffff;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+
+    .container p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      color: #374151;
+    }
+
+    .lab {
+      margin-bottom: 1rem;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      transition: 0.3s ease;
+    }
+
+    .toggle-button {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      background: #1f2937;
+      color: white;
+      font-weight: 600;
+      text-align: left;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    .toggle-button:hover {
+      background: #374151;
+    }
+
+    .lab-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      background: #ffffff;
+      padding: 0 1.5rem;
+    }
+
+    .lab-content.open {
+      padding: 1rem 1.5rem;
+      max-height: 1000px;
+    }
+
+    ul {
+      list-style: none;
+      margin-bottom: 1rem;
+    }
+
+    li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    li:last-child {
+      border-bottom: none;
+    }
+
+    strong {
+      color: #111827;
+    }
+
+    .service-btn {
+      display: inline-block;
+      margin-top: 0.5rem;
+      background: #10b981;
+      color: white;
+      padding: 0.5rem 1.25rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+
+    .service-btn:hover {
+      background: #059669;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 1.2rem;
+      }
+
+      .toggle-button {
+        font-size: 0.95rem;
+        padding: 0.8rem 1rem;
+      }
+
+      .lab-content {
+        padding: 0 1rem;
+      }
+
+      .lab-content.open {
+        padding: 0.8rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <p>
+    🌟 At <strong>DevGameBlogPromo</strong>, we're on a mission to empower future creators. We invite passionate learners and creative thinkers to join our growing community. These are unpaid, skill-building roles designed to give you hands-on experience while making real impact. Explore our open labs below and click "Get Started" to apply!
+  </p>
+
+  
+  <div class="lab">
+    <button class="toggle-button" onclick="toggleLabContent(this)">1. Research Lab</button>
+    <div class="lab-content">
+      <ul>
+        <li><strong>Research Analyst:</strong> Conducts market and technological research for insights.</li>
+        <li><strong>Innovation Strategist:</strong> Identifies emerging trends for product innovation.</li>
+        <li><strong>Data Scientist:</strong> Analyzes data for future predictions and recommendations.</li>
+      </ul>
+      <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+    </div>
+  </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">2. Software Developer Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Lead Developer:</strong> Oversees the development team and sets coding standards.</li>
+                <li><strong>Front-end Developer:</strong> Focuses on building user interfaces.</li>
+                <li><strong>Back-end Developer:</strong> Manages server-side logic and databases.</li>
+                <li><strong>Full Stack Developer:</strong> Handles both front-end and back-end development.</li>
+                <li><strong>Quality Assurance (QA) Tester:</strong> Tests and ensures the software works as expected.</li>
+            </ul>
+          <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">3. Software Planner Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Project Planner:</strong> Defines the scope and timeline of software development projects.</li>
+                <li><strong>Technical Architect:</strong> Designs the system architecture.</li>
+                <li><strong>Business Analyst:</strong> Gathers and documents functional requirements.</li>
+            </ul>
+          <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">4. Meeting Schedule Updates Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Scheduler:</strong> Coordinates and manages the meeting calendar.</li>
+                <li><strong>Meeting Facilitator:</strong> Organizes and leads meetings.</li>
+                <li><strong>Documenter:</strong> Takes notes and updates meeting minutes.</li>
+            </ul>
+          <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">5. Strategies Builder Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Strategy Analyst:</strong> Formulates strategies based on market analysis.</li>
+                <li><strong>Business Planner:</strong> Develops strategic roadmaps for growth.</li>
+                <li><strong>Product Strategist:</strong> Focuses on product positioning and market entry strategies.</li>
+            </ul>
+           <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">6. Marketing Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Marketing Specialist:</strong> Develops and executes marketing campaigns.</li>
+                <li><strong>Social Media Manager:</strong> Manages online presence across social platforms.</li>
+                <li><strong>Content Creator:</strong> Writes copy for marketing materials, blogs, and social media posts.</li>
+            </ul>
+         <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">7. Branding Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Brand Manager:</strong> Oversees the consistency of the company’s branding.</li>
+                <li><strong>Graphic Designer:</strong> Creates visual content aligned with the brand’s image.</li>
+                <li><strong>Brand Strategist:</strong> Develops and implements brand strategy.</li>
+            </ul>
+           <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">8. Advertisement Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Ad Campaign Manager:</strong> Creates and oversees ad campaigns.</li>
+                <li><strong>SEO/SEM Specialist:</strong> Optimizes content for search engines.</li>
+                <li><strong>PPC Specialist:</strong> Manages pay-per-click advertising campaigns.</li>
+            </ul>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">9. Game Developer Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Game Designer:</strong> Develops the game concept and mechanics.</li>
+                <li><strong>Game Developer:</strong> Codes and builds the game.</li>
+                <li><strong>Level Designer:</strong> Designs levels and challenges in the game.</li>
+                <li><strong>3D Artist:</strong> Creates 3D models and animations for games.</li>
+            </ul>
+            <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">10. Game Planner Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Game Concept Developer:</strong> Brainstorms new game ideas and concepts.</li>
+                <li><strong>Narrative Designer:</strong> Focuses on the storytelling aspects of the game.</li>
+                <li><strong>Game Tester:</strong> Tests the game to identify bugs and ensure gameplay quality.</li>
+            </ul>
+           <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">11. Project Manager Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Project Manager:</strong> Manages projects from start to finish.</li>
+                <li><strong>Scrum Master:</strong> Ensures agile processes are followed.</li>
+                <li><strong>Resource Manager:</strong> Manages team resources and allocation.</li>
+            </ul>
+           <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">12. Global Development Network Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Network Coordinator:</strong> Builds and maintains global partnerships.</li>
+                <li><strong>International Business Developer:</strong> Identifies international market opportunities.</li>
+                <li><strong>Cross-Cultural Consultant:</strong> Advises on cultural considerations in global business.</li>
+            </ul>
+          <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">13. Career Development Center Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Career Advisor:</strong> Provides guidance on career paths and opportunities.</li>
+                <li><strong>Resume Coach:</strong> Assists with resume writing and interview preparation.</li>
+                <li><strong>Internship Coordinator:</strong> Connects students with internship opportunities.</li>
+            </ul>
+           <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">14. Training and Development Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Training Specialist:</strong> Develops training programs for team members.</li>
+                <li><strong>Workshop Facilitator:</strong> Conducts hands-on workshops.</li>
+                <li><strong>Content Developer:</strong> Creates training materials and resources.</li>
+            </ul>
+           <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">15. Developer Tool Marketplace Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Marketplace Manager:</strong> Oversees the operation of the developer tools marketplace.</li>
+                <li><strong>Vendor Relations Specialist:</strong> Manages relationships with tool vendors.</li>
+                <li><strong>User Experience Designer:</strong> Enhances the marketplace experience for users.</li>
+            </ul>
+           <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">16. Innovation Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Innovation Lead:</strong> Drives innovation initiatives and projects.</li>
+                <li><strong>Prototype Developer:</strong> Builds prototypes for new ideas.</li>
+                <li><strong>Market Tester:</strong> Tests new ideas with potential users.</li>
+            </ul>
+            <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">17. Customer Support Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Support Representative:</strong> Assists customers with inquiries and issues.</li>
+                <li><strong>Feedback Specialist:</strong> Collects and analyzes customer feedback.</li>
+                <li><strong>Helpdesk Coordinator:</strong> Manages helpdesk operations.</li>
+            </ul>
+            <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">18. Data Analysis Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Data Analyst:</strong> Analyzes data sets to provide insights.</li>
+                <li><strong>Statistician:</strong> Applies statistical methods to data analysis.</li>
+                <li><strong>Business Intelligence Analyst:</strong> Develops strategies based on data trends.</li>
+            </ul>
+        <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">19. Product Management Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Product Manager:</strong> Oversees product development from ideation to launch.</li>
+                <li><strong>Market Researcher:</strong> Conducts research to inform product decisions.</li>
+                <li><strong>User Experience Researcher:</strong> Studies user behavior to improve products.</li>
+            </ul>
+           <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">20. Cybersecurity Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Security Analyst:</strong> Monitors systems for security threats.</li>
+                <li><strong>Penetration Tester:</strong> Tests systems for vulnerabilities.</li>
+                <li><strong>Compliance Officer:</strong> Ensures adherence to security regulations.</li>
+            </ul>
+           <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">21. Content Creation Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Content Writer:</strong> Produces written content for blogs, articles, and more.</li>
+                <li><strong>Video Editor:</strong> Edits video content for marketing and educational purposes.</li>
+                <li><strong>Graphic Designer:</strong> Creates graphics for various content types.</li>
+            </ul>
+          <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">22. Financial Management Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Financial Analyst:</strong> Analyzes financial data to inform business decisions.</li>
+                <li><strong>Budget Manager:</strong> Oversees budgeting processes and financial planning.</li>
+                <li><strong>Investment Analyst:</strong> Researches investment opportunities and risks.</li>
+            </ul>
+            <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">23. User Experience (UX) Design Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>UX Researcher:</strong> Conducts user research to inform design decisions.</li>
+                <li><strong>UI Designer:</strong> Designs user interfaces that are intuitive and engaging.</li>
+                <li><strong>Usability Tester:</strong> Tests designs with real users for feedback.</li>
+            </ul>
+     <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">24. Quality Assurance (QA) Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>QA Engineer:</strong> Ensures the product meets quality standards.</li>
+                <li><strong>Test Analyst:</strong> Creates and executes test plans.</li>
+                <li><strong>Automation Tester:</strong> Develops automated tests for software.</li>
+            </ul>
+       <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">25. Documentation Team Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Technical Writer:</strong> Creates documentation for software and processes.</li>
+                <li><strong>Content Editor:</strong> Edits and reviews written content for clarity.</li>
+                <li><strong>Training Material Developer:</strong> Develops materials for training purposes.</li>
+            </ul>
+           <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">26. Workshop Creator Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Workshop Coordinator:</strong> Plans and organizes workshops for skill development.</li>
+                <li><strong>Facilitator:</strong> Leads workshops and training sessions.</li>
+                <li><strong>Resource Developer:</strong> Creates resources for workshops.</li>
+            </ul>
+       <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">27. Audit Team Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Internal Auditor:</strong> Evaluates internal controls and processes.</li>
+                <li><strong>Compliance Auditor:</strong> Assesses compliance with regulations and standards.</li>
+                <li><strong>Risk Assessor:</strong> Identifies and evaluates risks within the organization.</li>
+            </ul>
+          <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+
+    <div class="lab">
+        <button class="toggle-button" onclick="toggleLabContent(this)">28. Legal and Compliance Lab</button>
+        <div class="lab-content">
+            <ul>
+                <li><strong>Legal Advisor:</strong> Provides legal guidance on business matters.</li>
+                <li><strong>Compliance Officer:</strong> Ensures adherence to laws and regulations.</li>
+                <li><strong>Contract Manager:</strong> Manages contracts and agreements.</li>
+            </ul>
+      <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+        </div>
+    </div>
+</div>
+
+ 
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-10VRSCCMCH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-10VRSCCMCH');
+</script>
+
+</div>
+
+<script>
+  function toggleLabContent(button) {
+    const content = button.nextElementSibling;
+    content.classList.toggle("open");
+  }
+</script>
+
+</body>
+</html>
