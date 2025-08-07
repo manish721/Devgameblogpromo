@@ -240,19 +240,84 @@
     </div>
   </div>
 
-  <div class="impact-stats">
-    <div class="impact-card">
-      <h4>5000+ Users</h4>
-      <p>Our platforms are loved by thousands across India.</p>
-    </div>
-    <div class="impact-card">
-      <h4>30+ Projects</h4>
-      <p>From web apps to games — we build it all.</p>
-    </div>
-    <div class="impact-card">
-      <h4>2100 Team Members</h4>
-      <p>Innovating together with passion and purpose.</p>
-    </div>
+
+
+<style>
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide {
+  opacity: 0;
+  animation: slideUp 0.8s ease forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.3s;
+}
+
+.delay-2 {
+  animation-delay: 0.6s;
+}
+
+.stat-card {
+  will-change: transform, opacity;
+}
+
+
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stat-card {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.stat-card.animate {
+  animation: slideUp 0.8s ease forwards;
+}
+
+.stat-card.delay-1.animate {
+  animation-delay: 0.2s;
+}
+
+.stat-card.delay-2.animate {
+  animation-delay: 0.4s;
+}
+
+</style>
+
+
+<div class="impact-card stat-card animate-slide">
+  <h4>5000+ Users</h4>
+  <p>Our platforms are loved by thousands across India.</p>
+</div>
+<div class="impact-card stat-card animate-slide delay-1">
+  <h4>30+ Projects</h4>
+  <p>From web apps to games — we build it all.</p>
+</div>
+<div class="impact-card stat-card animate-slide delay-2">
+  <h4>2100 Team Members</h4>
+  <p>Innovating together with passion and purpose.</p>
+</div>
+
    <div class="impact-card">
   <h4>Global Reach</h4>
   <p>
@@ -297,8 +362,35 @@
         button.classList.remove("hide-btn");
       }
     }
-  </script>
 
+
+    document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll(".stat-card");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate");
+          observer.unobserve(entry.target); // Animate only once
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  cards.forEach(card => observer.observe(card));
+});
+
+  </script>
+<script>
+  // Animate stat cards on page load
+  window.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".animate-slide").forEach(card => {
+      card.style.opacity = 1;
+    });
+  });
+</script>
   <div class="card">
     <h3>From the Founder</h3>
     <p>DevGameBlogPromo began with a simple goal — to empower developers like me to learn, build, and grow together. This valuation is not just a number, it's a reflection of every line of code, every late-night idea, and every person who believed in the journey.</p>
@@ -312,6 +404,10 @@
   gtag('js', new Date());
 
   gtag('config', 'G-10VRSCCMCH');
+
+
+  
+
 </script>
 </body>
 </html>
