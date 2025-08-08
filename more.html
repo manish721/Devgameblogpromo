@@ -1,414 +1,444 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>More | DevGameBlogPromo</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DevGameBlogPromo — Journey</title>
   <style>
     :root {
       --primary-color: #00ffc2;
       --bg-dark: #0a0a0a;
-      --text-light: #fcfbf8;
+      --card-bg: #0b1220;
+      --text-light: #e6eef6;
+      --muted: #6f8a86;
+      --glass: rgba(0, 255, 194, 0.1);
+      --glass-2: rgba(0, 255, 194, 0.05);
+      --accent-shadow: rgba(0, 255, 194, 0.4);
     }
-
+    * {
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--primary-color);
-    }
-
-    .app-bar {
-      background-color: #030303;
-      padding: 1.2rem;
-      text-align: center;
-      font-size: clamp(1.5rem, 2vw, 2rem);
-      font-weight: bold;
-      color: var(--primary-color);
-      box-shadow: 0 2px 10px rgba(0, 255, 194, 0.2);
-    }
-
-    .net-worth {
-      background-color: var(--bg-dark);
-      border: 2px solid var(--primary-color);
-      border-radius: 15px;
-      padding: 2rem;
-      margin: 2rem auto;
-      width: 90%;
-      max-width: 600px;
-      text-align: center;
-      box-shadow: 0 0 20px var(--primary-color);
-    }
-
-    .net-worth h2 {
-      font-size: clamp(1.6rem, 2vw, 2rem);
-      margin-bottom: 0.5rem;
-    }
-
-    .net-worth p {
-      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(180deg, #071023 0%, #071827 60%);
       color: var(--text-light);
+      line-height: 1.5;
     }
 
-    .specialties-banner {
-      background: linear-gradient(to bottom right, var(--bg-dark), var(--primary-color));
-      padding: 2rem 1rem;
-      margin: 2rem auto;
-      width: 90%;
-      border-radius: 20px;
-      box-shadow: 0 0 20px var(--primary-color);
-    }
-
-    .specialties-banner h2 {
-      text-align: center;
-      font-size: clamp(1.3rem, 2vw, 1.8rem);
-      margin-bottom: 1.5rem;
-      color: var(--text-light);
-    }
-
-    .specialties-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    .specialty {
-      background-color: #030303;
-      padding: 0.8rem 1.5rem;
-      border-radius: 10px;
-      font-weight: bold;
-      color: var(--primary-color);
-      font-size: clamp(0.9rem, 2vw, 1rem);
-      box-shadow: 0 0 10px rgba(0, 255, 194, 0.4);
-    }
-
-    .impact-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      padding: 1rem;
-      width: 90%;
-      margin: 0 auto;
-    }
-
-    .impact-card {
-      background: #1a1a1a;
-      border: 2px solid var(--primary-color);
-      border-radius: 10px;
-      padding: 1.5rem;
-      text-align: center;
-      color: var(--text-light);
-      box-shadow: 0 2px 10px rgba(0, 255, 194, 0.3);
-    }
-
-    .impact-card h4 {
-      font-size: clamp(1.1rem, 2vw, 1.3rem);
-      color: var(--primary-color);
-      margin-bottom: 0.5rem;
-    }
-
-    .impact-card p {
-      font-size: clamp(0.9rem, 1.5vw, 1rem);
-    }
-
-    .banner-container {
-      position: fixed;
+    /* Header / Nav */
+    .site-header {
+      position: sticky;
       top: 0;
-      right: -200px;
-      width: 200px;
-      height: 100%;
-      background: linear-gradient(to bottom right, var(--bg-dark), var(--primary-color));
+      z-index: 40;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(4,10,18,0.8), rgba(4,10,18,0.6));
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--glass-2);
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      transition: right 0.5s ease;
-      z-index: 999;
-      cursor: pointer;
+      gap: 18px;
     }
-
-    .banner-container.show {
-      right: 0;
-    }
-
-    .letter {
-      font-size: clamp(2rem, 3vw, 3rem);
-      font-weight: bold;
+    .brand {
+      display: flex;
+      gap: 14px;
+      align-items: center;
       color: var(--primary-color);
-      margin: 4px 0;
-      transition: transform 0.3s, color 0.3s;
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+    .brand .logo {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      background: var(--primary-color);
+      border-radius: 10px;
+      color: #071827;
+      font-weight: 700;
+      box-shadow: 0 6px 20px var(--accent-shadow);
+      font-size: 1.5rem;
+      user-select: none;
+    }
+    nav {
+      margin-left: auto;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .nav-link:hover {
+      background: var(--glass);
+      color: var(--primary-color);
     }
 
-    .letter:hover {
-      transform: scale(1.2);
-      color: var(--text-light);
+    /* Main container */
+    main {
+      max-width: 1100px;
+      margin: 40px auto 60px;
+      padding: 0 20px;
     }
 
-    .show-btn {
-      position: fixed;
-      top: 50%;
-      right: 0;
-      transform: translateY(-50%);
-      background-color: #030303;
-      color: rgb(15, 233, 233);
-      border: none;
-      padding: 0.8rem 0.4rem;
-      font-weight: bold;
-      cursor: pointer;
-      z-index: 1000;
-      writing-mode: vertical-rl;
-      text-orientation: upright;
-      border-top-left-radius: 8px;
-      border-bottom-left-radius: 8px;
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(180deg, rgba(0,255,194,0.08), rgba(0,255,194,0.03));
+      border-radius: 14px;
+      padding: 28px 24px;
+      box-shadow: 0 10px 40px rgba(0,255,194,0.2);
+      border: 1px solid var(--glass-2);
+      margin-bottom: 48px;
+      text-align: center;
+    }
+    .hero h2 {
+      margin: 0 0 12px 0;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: var(--primary-color);
+    }
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .cta {
+      margin-top: 20px;
+      display: inline-flex;
+      gap: 14px;
+    }
+    .btn {
+      background: var(--primary-color);
+      color: #071827;
+      padding: 12px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      box-shadow: 0 6px 20px var(--accent-shadow);
+      transition: background-color 0.3s;
+    }
+    .btn:hover {
+      background: #00d9ad;
+    }
+    .btn-ghost {
+      border: 1.5px solid var(--primary-color);
+      color: var(--primary-color);
+      padding: 12px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .btn-ghost:hover {
+      background: var(--primary-color);
+      color: #071827;
     }
 
-    .show-btn:hover {
-      background-color: #3b82f6;
+    /* Content Section: split into two columns on wider screens */
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 40px;
+      align-items: start;
+    }
+    @media (max-width: 860px) {
+      .content {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .hide-btn {
-      display: none;
+    /* Rules Cards Grid */
+    .card-grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     }
 
     .card {
-      background: var(--bg-dark);
-      border: 2px solid var(--primary-color);
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 255, 194, 0.3);
-      padding: 2rem;
-      margin: 2rem auto;
-      width: 90%;
-      max-width: 600px;
+      background: var(--card-bg);
+      padding: 20px 24px;
+      border-radius: 14px;
+      border: 1px solid var(--glass-2);
+      box-shadow: 0 0 12px var(--accent-shadow);
       color: var(--text-light);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 130px;
+      transition: box-shadow 0.3s;
     }
-
+    .card:hover {
+      box-shadow: 0 0 20px var(--primary-color);
+    }
+    .card .emoji {
+      font-size: 28px;
+      line-height: 1;
+    }
     .card h3 {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 700;
       color: var(--primary-color);
-      font-size: clamp(1.3rem, 2vw, 1.7rem);
-      margin-bottom: 1rem;
     }
-
     .card p {
-      font-size: clamp(1rem, 2vw, 1.1rem);
-      line-height: 1.6;
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.4;
+      flex-grow: 1;
     }
 
-    @media (max-width: 480px) {
-      .specialty {
-        padding: 0.6rem 1rem;
-      }
+    /* Vision Section */
+    aside .vision {
+      background: linear-gradient(90deg, rgba(0,255,194,0.12), rgba(0,255,194,0.04));
+      border-radius: 14px;
+      padding: 24px 28px;
+      border: 1px solid rgba(0,255,194,0.12);
+      box-shadow: 0 0 15px rgba(0,255,194,0.2);
+      color: #f0faf9;
+      margin-bottom: 30px;
+    }
+    .big-quote {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin: 0 0 16px 0;
+      line-height: 1.4;
+      font-style: italic;
+      color: var(--primary-color);
+    }
+    .founder {
+      font-size: 1rem;
+      color: var(--muted);
+      margin: 0 0 20px 0;
+      font-weight: 600;
+      font-style: normal;
+    }
+    aside h4 {
+      margin: 0 0 8px 0;
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+    aside p, aside ul {
+      margin: 0 0 14px 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+    aside ul {
+      padding-left: 20px;
+    }
+    aside ul li {
+      margin-bottom: 6px;
+    }
+    aside .btn, aside .btn-ghost {
+      font-size: 0.9rem;
+      padding: 10px 16px;
+    }
 
-      .banner-container {
-        width: 160px;
-      }
+    /* Philosophy Card */
+    aside > .card {
+      background: var(--card-bg);
+      border: 1px solid var(--glass-2);
+      box-shadow: 0 0 10px var(--accent-shadow);
+      padding: 20px 24px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.3;
+      user-select: none;
+    }
+    aside > .card h3 {
+      color: var(--primary-color);
+      margin-bottom: 8px;
+    }
 
-      .letter {
-        font-size: 2rem;
-      }
-
-      .impact-card {
-        padding: 1rem;
-      }
+    /* Footer */
+    footer {
+      max-width: 1100px;
+      margin: 40px auto 60px;
+      padding: 0 20px;
+      color: var(--muted);
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
     }
   </style>
 </head>
 <body>
 
-  <div class="app-bar">DevGameBlogPromo - More About Us</div>
+  <header class="site-header" role="banner">
+    <div class="brand" aria-label="DevGameBlogPromo brand logo and name">
+      <div class="logo.png" aria-hidden="true">DGBP</div>
+      DevGameBlogPromo™
+    </div>
 
-  <div class="net-worth">
-    <h2>Our Net Worth</h2>
-    <p>"Valued at ₹25,00,000 — powered by purpose, passion, and people."</p>
-  </div>
-  
-  <div class="card">
-    <h3>From the Founder</h3>
-    <p>Your career is not about proving yourself, but improving yourself. Each step we take should be fueled not by the need to compete, but by the desire to create, contribute, and grow into the best version of ourselves.</p>
-    <p>When you focus on becoming better—not just successful—your journey becomes limitless, and your success, uniquely yours.</p>
-    <p><strong>— Manish, Founder of DevGameBlogPromo</strong></p>
-  </div>
-  
-  <div class="specialties-banner">
-    <h2>Our Specialties</h2>
-    <div class="specialties-list">
-      <div class="specialty">Web Development</div>
-      <div class="specialty">Game Design</div>
-      <div class="specialty">UI/UX Strategy</div>
-      <div class="specialty">Creative Branding</div>
-      <div class="specialty">Community Building</div>
+    <nav role="navigation" aria-label="Primary navigation">
+      <a class="nav-link" href="#rules">Rules</a>
+      <a class="nav-link" href="#vision">Vision</a>
+      <a class="nav-link" href="#join">Join</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="Introduction to DevGameBlogPromo Journey">
+      <h2>“A Company That Builds. An Agency That Delivers.”</h2>
+      <p>From labs and launches to campaigns and consulting — DevGameBlogPromo is where creators turn ideas into income. <strong>D-U-N-S® Verified • D-U-N-S® #: 772660415</strong></p>
+      <div class="cta">
+        <a class="btn" href="carrer.html">Join Labs Now</a>
+        <a class="btn-ghost" href="#journey">View Journey</a>
+      </div>
+    </section>
+
+    <section class="content" id="journey" aria-label="Journey Content">
+      <div>
+        <h3 id="rules" tabindex="-1">Contributor Rules</h3>
+        <p style="color: var(--muted); margin-bottom: 20px;">Quick, clear, and fair — these cards explain how contributions work at DevGameBlogPromo.</p>
+        <div class="card-grid" role="list">
+          <article class="card" role="listitem" aria-labelledby="c1">
+            <div class="emoji" aria-hidden="true">🔒</div>
+            <h3 id="c1">Ownership</h3>
+            <p>All code, art, audio, and project assets created under DevGameBlogPromo are owned by the Founder. Contributors grant full rights to use, modify, and publish their work so projects remain active and maintained.</p>
+          </article>
+          <article class="card" role="listitem" aria-labelledby="c2">
+            <div class="emoji" aria-hidden="true">🌟</div>
+            <h3 id="c2">Credits</h3>
+            <p>Every contributor is credited by name and role on the DevGameBlogPromo “Journey” page — permanently. Your contribution stays visible as part of the project’s public record.</p>
+          </article>
+          <article class="card" role="listitem" aria-labelledby="c3">
+            <div class="emoji" aria-hidden="true">📣</div>
+            <h3 id="c3">Marketing Usage</h3>
+            <p>DevGameBlogPromo may showcase projects on social media and our blog for promotion. By joining, you allow us to share your work for visibility — no extra permission needed.</p>
+          </article>
+          <article class="card" role="listitem" aria-labelledby="c4">
+            <div class="emoji" aria-hidden="true">🗂️</div>
+            <h3 id="c4">Portfolio Use</h3>
+            <p>You can include your contributions in personal portfolios if you credit DevGameBlogPromo as the project owner. Original files must not be sold or redistributed without permission.</p>
+          </article>
+          <article class="card" role="listitem" aria-labelledby="c5">
+            <div class="emoji" aria-hidden="true">🤝</div>
+            <h3 id="c5">You’re Working for Yourself</h3>
+            <p>You’re building your career, not just working for the Founder. Every contribution is an investment in your skills, portfolio, and future. We grow when you grow.</p>
+          </article>
+          <article class="card" role="listitem" aria-labelledby="c6">
+            <div class="emoji" aria-hidden="true">🚀</div>
+            <h3 id="c6">Growth Over Titles</h3>
+            <p>Results matter more than roles. Start as a contributor, grow to leader or mentor through skill, consistency, and impact. Titles are earned, not given.</p>
+          </article>
+          <article class="card" role="listitem" aria-labelledby="c7">
+            <div class="emoji" aria-hidden="true">🌍</div>
+            <h3 id="c7">Community First</h3>
+            <p>We rise by lifting others. Share knowledge, give feedback, and support peers. Building together creates trust, creativity, and opportunity for all.</p>
+          </article>
+        </div>
+      </div>
+
+      <aside>
+        <section class="vision" id="vision" tabindex="-1" aria-label="Founder Vision and Philosophy">
+          <p class="big-quote">"Your career is not about proving yourself, but improving yourself. Each step should be fueled by the desire to create, contribute, and grow."</p>
+          <p class="founder">— Manish, Founder</p>
+
+          <h4>Why we do this</h4>
+          <p>DevGameBlogPromo exists to turn learning into real work, and work into recognized achievement. We protect projects so contributors’ efforts have lasting impact.</p>
+
+          <h4>How you benefit</h4>
+          <ul>
+            <li>Real project experience to showcase in your portfolio</li>
+            <li>Permanent public credit for your work</li>
+            <li>Opportunities to level up to leadership and mentorship</li>
+          </ul>
+
+          <div style="display:flex; gap:12px; margin-top:12px;">
+            <a class="btn" href="mentorship.html">Apply to WorkShop / Mentorship</a>
+            <a class="btn-ghost" href="#rules">Read Rules</a>
+          </div>
+        </section>
+
+        <div class="card" aria-hidden="true" tabindex="-1">
+          <h3>Philosophy of Code 8392</h3>
+          <p>8 = limitless growth • 3 = stable foundation • 9 = challenge • 2 = harmony of vision & execution. Code 8392 is our belief: code is language, art, and purpose.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="join" aria-label="Join DevGameBlogPromo Call to Action" style="margin-top: 40px;">
+      <div class="card" style="max-width: 700px; margin: 0 auto; text-align:center;">
+        <h3 style="margin-top:0">Join DevGameBlogPromo — Start Your Journey</h3>
+        <p style="color: var(--muted); margin-bottom: 20px;">
+          Internships, freelance projects, and volunteer opportunities are available across Labs: Game Dev, Frontend, Design, Marketing, Research, and more.
+        </p>
+        <div style="display:flex; justify-content:center; gap:16px;">
+          <a class="btn" href="https://forms.gle/LNDC32NR6YsCmeZY8">Apply Now </a>
+       
+        </div>
+      </div>
+    </section>
+  </main>
+<section aria-label="DevGameBlogPromo Stats and Global Reach" style="max-width:1100px; margin: 0 auto 48px; padding: 0 20px;">
+  <div style="display: flex; flex-wrap: wrap; gap: 32px; justify-content: center; color: var(--text-light);">
+    <div style="flex: 1 1 180px; min-width: 180px; text-align: center;">
+      <div style="font-size: 2.6rem; font-weight: 700; color: var(--primary-color);">5000+</div>
+      <div style="font-weight: 600; font-size: 1.1rem; margin-top: 4px;">Users</div>
+      <p style="color: var(--muted); font-size: 0.9rem; margin-top: 6px;">Our platforms are loved by thousands across India.</p>
+    </div>
+
+    <div style="flex: 1 1 180px; min-width: 180px; text-align: center;">
+      <div style="font-size: 2.6rem; font-weight: 700; color: var(--primary-color);">30+</div>
+      <div style="font-weight: 600; font-size: 1.1rem; margin-top: 4px;">Projects</div>
+      <p style="color: var(--muted); font-size: 0.9rem; margin-top: 6px;">From web apps to games — we build it all.</p>
+    </div>
+
+    <div style="flex: 1 1 180px; min-width: 180px; text-align: center;">
+      <div style="font-size: 2.6rem; font-weight: 700; color: var(--primary-color);">2100</div>
+      <div style="font-weight: 600; font-size: 1.1rem; margin-top: 4px;">Team Members</div>
+      <p style="color: var(--muted); font-size: 0.9rem; margin-top: 6px;">Innovating together with passion and purpose.</p>
     </div>
   </div>
 
+<article role="note" aria-label="Global Reach and countries served" style="margin-top: 36px; max-width: 900px; margin-left: auto; margin-right: auto; color: var(--muted); font-size: 1rem; line-height: 1.5; text-align: center;">
+  <strong>Global Reach</strong><br />
+  We initially focused on reaching audiences in the <span class="highlight">United States</span>, but what we didn’t expect was the global impact.<br /><br />
+  Today, DevGameBlogPromo connects with users in over 15 countries — including:
+  <ul style="list-style:none; padding:0; margin: 8px 0; display: inline;">
+    <li style="display: inline; margin-right: 8px;"><span class="highlight">India</span>,</li>
+    <li style="display: inline; margin-right: 8px;"><span class="highlight">the United States</span>,</li>
+    <li style="display: inline; margin-right: 8px;"><span class="highlight">Ireland</span>,</li>
+    <li style="display: inline; margin-right: 8px;"><span class="highlight">Spain</span>,</li>
+    <li style="display: inline; margin-right: 8px;"><span class="highlight">Sweden</span>,</li>
+    <li style="display: inline; margin-right: 8px;"><span class="highlight">Austria</span>,</li>
+    <li style="display: inline; margin-right: 8px;"><span class="highlight">Brazil</span>,</li>
+    <li style="display: inline; margin-right: 8px;"><span class="highlight">Germany</span>,</li>
+    <li style="display: inline;"><span class="highlight">Indonesia</span></li>
+  </ul>
+  — proving that when you build with purpose, your reach goes beyond borders.
+</article>
 
-
-<style>
-@keyframes slideUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+<style>.highlight {
+  background-color: var(--primary-color);
+  color: #071827;
+  border-radius: 6px;
+  padding: 2px 6px;
 }
-
-.animate-slide {
-  opacity: 0;
-  animation: slideUp 0.8s ease forwards;
-}
-
-.delay-1 {
-  animation-delay: 0.3s;
-}
-
-.delay-2 {
-  animation-delay: 0.6s;
-}
-
-.stat-card {
-  will-change: transform, opacity;
-}
-
-
-
-@keyframes slideUp {
-  0% {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.stat-card {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.stat-card.animate {
-  animation: slideUp 0.8s ease forwards;
-}
-
-.stat-card.delay-1.animate {
-  animation-delay: 0.2s;
-}
-
-.stat-card.delay-2.animate {
-  animation-delay: 0.4s;
-}
-
 </style>
 
 
-<div class="impact-card stat-card animate-slide">
-  <h4>5000+ Users</h4>
-  <p>Our platforms are loved by thousands across India.</p>
-</div>
-<div class="impact-card stat-card animate-slide delay-1">
-  <h4>30+ Projects</h4>
-  <p>From web apps to games — we build it all.</p>
-</div>
-<div class="impact-card stat-card animate-slide delay-2">
-  <h4>2100 Team Members</h4>
-  <p>Innovating together with passion and purpose.</p>
-</div>
+</section>
+  <footer role="contentinfo">
+    <div>© 2025 DEVGAMEBLOGPROMO™ • D-U-N-S® Verified • 772660415</div>
+    <div style="color: var(--muted)">Made with ❤️ by Manish</div>
+  </footer>
 
-   <div class="impact-card">
-  <h4>Global Reach</h4>
-  <p>
-    We initially focused on reaching audiences in the United States, but what we didn’t expect was the global impact.<br><br>
-    Today, DevGameBlogPromo connects with users in over 15 countries — including 
-    <span style="color: #00ffc2; font-weight: bold;">India</span>, 
-    <span style="color: #00ffc2; font-weight: bold;">the United States</span>, 
-    <span style="color: #00ffc2; font-weight: bold;">Ireland</span>, 
-    <span style="color: #00ffc2; font-weight: bold;">Spain</span>, 
-    <span style="color: #00ffc2; font-weight: bold;">Sweden</span>, 
-    <span style="color: #00ffc2; font-weight: bold;">Austria</span>, 
-    <span style="color: #00ffc2; font-weight: bold;">Brazil</span>, 
-    <span style="color: #00ffc2; font-weight: bold;">Germany</span>, and 
-    <span style="color: #00ffc2; font-weight: bold;">Indonesia</span> — proving that when you build with purpose, your reach goes beyond borders.
-  </p>
-</div>
-
-
-  <button id="showButton" class="show-btn" onclick="toggleBanner(true)">Show</button>
-
-  <div class="banner-container" id="welcomeBanner" onclick="toggleBanner(false)">
-    <div class="letter">T</div>
-    <div class="letter">E</div>
-    <div class="letter">C</div>
-     <div class="letter">H</div>
-    <div class="letter">TRIVIA</div>
-    <div class="letter">Challenge</div>
-    <div class="letter">DAY</div>
-
-  </div>
-
-  <script>
-    function toggleBanner(show) {
-      const banner = document.getElementById("welcomeBanner");
-      const button = document.getElementById("showButton");
-
-      if (show) {
-        banner.classList.add("show");
-        button.classList.add("hide-btn");
-      } else {
-        banner.classList.remove("show");
-        button.classList.remove("hide-btn");
-      }
-    }
-
-
-    document.addEventListener("DOMContentLoaded", () => {
-  const cards = document.querySelectorAll(".stat-card");
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate");
-          observer.unobserve(entry.target); // Animate only once
-        }
-      });
-    },
-    { threshold: 0.3 }
-  );
-
-  cards.forEach(card => observer.observe(card));
-});
-
-  </script>
-<script>
-  // Animate stat cards on page load
-  window.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".animate-slide").forEach(card => {
-      card.style.opacity = 1;
-    });
-  });
-</script>
-  <div class="card">
-    <h3>From the Founder</h3>
-    <p>DevGameBlogPromo began with a simple goal — to empower developers like me to learn, build, and grow together. This valuation is not just a number, it's a reflection of every line of code, every late-night idea, and every person who believed in the journey.</p>
-    <p><strong>— Manish, Founder</strong></p>
-  </div>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-10VRSCCMCH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-10VRSCCMCH');
-
-
-  
-
-</script>
 </body>
 </html>
-
