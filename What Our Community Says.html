@@ -1,4 +1,274 @@
 <style>
+   /* Fade-in & slide-up animation */
+  @keyframes fadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Apply animation to cards */
+  .testimonial-card {
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+  }
+
+  /* Hover effect */
+  .testimonial-card:hover {
+    transform: scale(1.03);
+  }
+
+  /* Grid layout */
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  /* Stagger animation delay for each card */
+  .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
+  .testimonial-card:nth-child(2) { animation-delay: 0.2s; }
+  .testimonial-card:nth-child(3) { animation-delay: 0.3s; }
+  .testimonial-card:nth-child(4) { animation-delay: 0.4s; }
+  .testimonial-card:nth-child(5) { animation-delay: 0.5s; }
+  .testimonial-card:nth-child(6) { animation-delay: 0.6s; }
+  .testimonial-card:nth-child(7) { animation-delay: 0.7s; }
+  .testimonial-card:nth-child(8) { animation-delay: 0.8s; }
+  .testimonial-card:nth-child(9) { animation-delay: 0.9s; }
+  .testimonial-card:nth-child(10) { animation-delay: 1s; }
+  .testimonial-card:nth-child(11) { animation-delay: 1.1s; }
+  .testimonial-card:nth-child(12) { animation-delay: 1.2s; }
+  .testimonial-card:nth-child(13) { animation-delay: 1.3s; }
+  .testimonial-card:nth-child(14) { animation-delay: 1.4s; }
+  .testimonial-card:nth-child(15) { animation-delay: 1.5s; }
+</style>
+
+<section id="testimonials" style="margin-top: 60px; padding: 40px 20px; max-width: 1000px; margin-left: auto; margin-right: auto;">
+  <h2 style="text-align: center; font-size: 2rem; color: var(--primary); margin-bottom: 10px;">
+    What Our Community Says
+  </h2>
+  <p style="text-align: center; color: var(--muted); font-size: 1.1rem; margin-bottom: 40px;">
+    Real stories from students and team members who’ve worked with DevGameBlogPromo
+  </p>
+
+  <!-- Students Testimonials -->
+  <div class="testimonial-grid">
+    <div class="testimonial-card">
+      "Before joining Manish KakarlA’s mentorship, I had zero confidence in coding. Within weeks, he made me believe I could build anything from scratch. His patience, kindness, and clear teaching style completely changed my approach to learning."
+      <p style="font-weight: bold; color: var(--primary); margin-top: 10px;">– Aarav Sharma</p>
+      <p style="font-size: 0.9rem; color: var(--muted);">Student</p>
+    </div>
+
+    <div class="testimonial-card">
+      "Manish sir’s classes were never boring—every session felt like a step toward my dream. He not only taught us programming and AI but also how to work hard and stay disciplined. Those lessons will stay with me forever."
+      <p style="font-weight: bold; color: var(--primary); margin-top: 10px;">– Emily Foster</p>
+      <p style="font-size: 0.9rem; color: var(--muted);">Student</p>
+    </div>
+
+    <div class="testimonial-card">
+      "As a high school student, I thought coding was too complicated for me. But Manish KakarlA made it feel simple and exciting. Now I’m working on my first game project, something I never imagined I could do."
+      <p style="font-weight: bold; color: var(--primary); margin-top: 10px;">– Rahul Verma</p>
+      <p style="font-size: 0.9rem; color: var(--muted);">Student</p>
+    </div>
+
+    <div class="testimonial-card">
+      "Manish sir teaches with so much passion that you can’t help but get inspired. He treats his students like family—always ready to guide us, correct us, and cheer for our success."
+      <p style="font-weight: bold; color: var(--primary); margin-top: 10px;">– Zara Khan</p>
+      <p style="font-size: 0.9rem; color: var(--muted);">Student</p>
+    </div>
+
+    <div class="testimonial-card">
+      "Being one of the 25 students mentored by Manish KakarlA was a turning point in my life. He showed me that technology is not just about coding—it’s about solving problems and making an impact."
+      <p style="font-weight: bold; color: var(--primary); margin-top: 10px;">– Jacob Miller</p>
+      <p style="font-size: 0.9rem; color: var(--muted);">Student</p>
+    </div>
+  </div>
+
+  <!-- Team Members Testimonials -->
+  <h3 style="text-align: center; font-size: 1.8rem; color: var(--primary); margin-top: 50px;">Team Members Speak</h3>
+  <div class="testimonial-grid" style="margin-top: 30px;">
+    <div class="testimonial-card">
+      "Manish KakarlA’s mentorship redefined my understanding of technology. I joined as a curious beginner, unsure of my direction, but left as a confident programmer with a purpose."
+      <p style="font-weight: bold; color: var(--primary); margin-top: 10px;">– Amelia Rodriguez</p>
+      <p style="font-size: 0.9rem; color: var(--muted);">Business</p>
+    </div>
+
+    <div class="testimonial-card">
+      "Working with Manish KakarlA was like having a map to success drawn right in front of you. His teaching in AI and programming was meticulous, but I valued most his reminder to remain humble and disciplined."
+      <p style="font-weight: bold; color: var(--primary); margin-top: 10px;">– James Wilson</p>
+      <p style="font-size: 0.9rem; color: var(--muted);">Business</p>
+    </div>
+
+    <div class="testimonial-card">
+      "Before Manish’s classes, I saw coding as a challenge. Now, I see it as a language to create and innovate. His ability to make the toughest topics feel simple is a gift."
+      <p style="font-weight: bold; color: var(--primary); margin-top: 10px;">– Maya Patel</p>
+      <p style="font-size: 0.9rem; color: var(--muted);">Business</p>
+    </div>
+
+    <div class="testimonial-card">
+      "Manish KakarlA’s sessions are not just about learning—they’re about transformation. His lessons on leadership and discipline are as impactful as his coding tutorials."
+      <p style="font-weight: bold; color: var(--primary); margin-top: 10px;">– Lucas Bennett</p>
+      <p style="font-size: 0.9rem; color: var(--muted);">Business</p>
+    </div>
+
+    <div class="testimonial-card">
+      "The Manish effect is real. As one of his students, my creativity, confidence, and coding skills soared."
+      <p style="font-weight: bold; color: var(--primary); margin-top: 10px;">– Isabella Green</p>
+      <p style="font-size: 0.9rem; color: var(--muted);">Business</p>
+    </div>
+
+    <div class="testimonial-card">
+      "In every class, Manish delivered more than knowledge—he gave us vision. I learned coding is a tool to shape the future."
+      <p style="font-weight: bold; color: var(--primary); margin-top: 10px;">– Noah Kim</p>
+      <p style="font-size: 0.9rem; color: var(--muted);">Business</p>
+    </div>
+
+    <div class="testimonial-card">
+      "Manish doesn’t just open doors to technology—he teaches you how to build them yourself."
+      <p style="font-weight: bold; color: var(--primary); margin-top: 10px;">– Sophia Li</p>
+      <p style="font-size: 0.9rem; color: var(--muted);">Business</p>
+    </div>
+
+    <div class="testimonial-card">
+      "The discipline, clarity, and encouragement I received from Manish completely changed how I approach both work and life."
+      <p style="font-weight: bold; color: var(--primary); margin-top: 10px;">– Daniel Harris</p>
+      <p style="font-size: 0.9rem; color: var(--muted);">Business</p>
+    </div>
+
+    <div class="testimonial-card">
+      "With Manish, learning is never passive. His influence shapes character beyond the classroom."
+      <p style="font-weight: bold; color: var(--primary); margin-top: 10px;">– Ava Thompson</p>
+      <p style="font-size: 0.9rem; color: var(--muted);">Business</p>
+    </div>
+
+    <div class="testimonial-card">
+      "Manish challenges you to think bigger while giving you the tools to make it happen."
+      <p style="font-weight: bold; color: var(--primary); margin-top: 10px;">– Ethan White</p>
+      <p style="font-size: 0.9rem; color: var(--muted);">Business</p>
+    </div>
+  </div>
+</section>
+<style>
+  /* Number counter animation */
+  @keyframes fadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .stats-section {
+    background: var(--card-bg);
+    padding: 50px 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin-top: 60px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+
+  .stats-title {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+  }
+
+  .stat-card {
+    background: var(--bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    animation: fadeUp 0.8s ease forwards;
+    opacity: 0;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary);
+  }
+
+  .stat-text {
+    font-size: 1rem;
+    color: var(--muted);
+    margin-top: 5px;
+  }
+
+  /* Stagger animation delays */
+  .stat-card:nth-child(1) { animation-delay: 0.1s; }
+  .stat-card:nth-child(2) { animation-delay: 0.2s; }
+  .stat-card:nth-child(3) { animation-delay: 0.3s; }
+  .stat-card:nth-child(4) { animation-delay: 0.4s; }
+  .stat-card:nth-child(5) { animation-delay: 0.5s; }
+</style>
+
+<section class="stats-section">
+  <h2 class="stats-title">The Manish Effect — By the Numbers 🚀</h2>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-number" data-count="25">0</div>
+      <div class="stat-text">Students Mentored across multiple countries</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" data-count="100">0</div>
+      <div class="stat-text">Project Completion Rate in all training cohorts</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" data-count="5">0</div>
+      <div class="stat-text">Tech Domains Covered — AI, Programming, Game Development, Web Dev, ML</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" data-count="3">0</div>
+      <div class="stat-text">Years of Mentorship Experience</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number" data-count="75">Global</div>
+      <div class="stat-text">Students from the U.S., India, and beyond</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Counter animation
+  document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll('.stat-number');
+    counters.forEach(counter => {
+      const updateCount = () => {
+        const target = +counter.getAttribute('data-count');
+        if (!isNaN(target)) {
+          const count = +counter.innerText;
+          const increment = target / 60; // speed
+          if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(updateCount, 20);
+          } else {
+            counter.innerText = target + (target === 100 ? "%" : "+");
+          }
+        }
+      };
+      updateCount();
+    });
+  });
  /* Container padding adjustments for small screens */
 #testimonials {
   padding: 40px 20px;
