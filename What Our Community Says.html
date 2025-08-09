@@ -1,28 +1,6 @@
 <style>
 
-/* Container with horizontal scroll */
-.testimonial-grid, .stats-grid {
-  display: flex;          /* Use flexbox for horizontal layout */
-  overflow-x: auto;       /* Enable horizontal scrolling */
-  gap: 20px;              /* Space between cards */
-  padding-bottom: 10px;   /* Space below for scroll bar */
-  scroll-behavior: smooth; /* Smooth scrolling */
-}
 
-/* Cards fixed width for horizontal layout */
-.testimonial-card, .stat-card {
-  flex: 0 0 280px;        /* Fixed width, no shrinking */
-}
-
-/* Optional: Hide scrollbar on WebKit browsers */
-.testimonial-grid::-webkit-scrollbar, .stats-grid::-webkit-scrollbar {
-  display: none;
-}
-
-/* Optional: For Firefox */
-.testimonial-grid, .stats-grid {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
 }
    /* Fade-in & slide-up animation */
   @keyframes fadeUp {
