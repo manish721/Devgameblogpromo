@@ -750,6 +750,25 @@ document.querySelectorAll('nav a').forEach(link => {
 
   gtag('config', 'G-10VRSCCMCH');
 </script>
+
+  <script>
+const menuToggle = document.getElementById('menu-toggle');
+const navMenu = document.getElementById('nav-menu');
+
+// Show/hide nav menu
+menuToggle.addEventListener('click', () => {
+  navMenu.classList.toggle('active');
+});
+
+// Dropdown toggle for mobile
+document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+  toggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    toggle.parentElement.classList.toggle('show');
+  });
+});
+</script>
+
 </head>
 <body>
 
