@@ -9,9 +9,20 @@
     <link rel="icon" href="logo.png " type="image/x-icon">
 
   <style>
+    :root {
+      --bg: #0a0a0a;
+      --text: #f3f3f3;
+      --accent: #00ffc3;
+      --dim: #9e9e9e;
+      --card-bg: #161616;
+    }
 
-    
-   
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Manrope', sans-serif;
       background-color: var(--bg);
@@ -279,16 +290,15 @@
       <a href=" carrer.html">Labs</a>
       <a href="mentorship .html">WorkShop</a>
       <a href="https://pixelpromoinsights.blogspot.com/">Blog</a>
+      <a href="https://sites.google.com/view/pixelcraftfest/home">PCF</a>
       <a href="announcement page.html">Announcements </a>
        <a href="youtube .page.html">Youtube Page</a>
-     <a href="What Our Community says.html">Our Community Says</a>
-<a href="more.html"> Journey</a>
-       <a href="https://sites.google.com/view/pixelcraftfest/home">PCF</a>
-    </div>
-      </div>
-  </div>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+          <a href="more.html"> Journey</a>
+     
+      
     </nav>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
   </header>
   
 <section class="hero">
@@ -659,62 +669,11 @@ document.querySelectorAll('nav a').forEach(link => {
 
   gtag('config', 'G-10VRSCCMCH');
 </script>
-
- <Style>
-   .menu-toggle {
-  display: none;             /* hide by default */
-  font-size: 2rem;
-  cursor: pointer;
-  color: var(--accent);      /* bright accent color */
-  user-select: none;
-  z-index: 1100;             /* ensure it's on top */
-  padding: 0 10px;
-  background: transparent;
-}
-
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;          /* show on small screens */
-  }
-
-  nav {
-    display: none;           /* hide nav by default on small screens */
-    flex-direction: column;
-    background-color: var(--bg);
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    padding: 1rem 10%;
-  }
-
-  nav.active {
-    display: flex;           /* show nav when active */
-  }
-}
-</style>
-<script>
-  function toggleMenu() {
-  document.querySelector('nav').classList.toggle('active');
-}
-
-</script>
-  
 </head>
 <body>
 
 
   
-
-
-
-
-
-
-
-
-
-
 
 
 
