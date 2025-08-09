@@ -747,13 +747,52 @@ document.querySelectorAll('nav a').forEach(link => {
   gtag('config', 'G-10VRSCCMCH');
 </script>
 
- 
+ <Style>
+   .menu-toggle {
+  display: none;             /* hide by default */
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--accent);      /* bright accent color */
+  user-select: none;
+  z-index: 1100;             /* ensure it's on top */
+  padding: 0 10px;
+  background: transparent;
+}
 
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;          /* show on small screens */
+  }
+
+  nav {
+    display: none;           /* hide nav by default on small screens */
+    flex-direction: column;
+    background-color: var(--bg);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 1rem 10%;
+  }
+
+  nav.active {
+    display: flex;           /* show nav when active */
+  }
+}
+</style>
+<script>
+  function toggleMenu() {
+  document.querySelector('nav').classList.toggle('active');
+}
+
+</script>
+  
 </head>
 <body>
 
 
   
+
 
 
 
