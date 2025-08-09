@@ -9,85 +9,7 @@
     <link rel="icon" href="logo.png " type="image/x-icon">
 
   <style>
-:root {
-  --bg: #0a0a0a;
-  --text: #f3f3f3;
-  --accent: #00ffc3;
-  --dim: #9e9e9e;
-}
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-}
-
-/* Header */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 5%;
-  background: var(--bg);
-  border-bottom: 1px solid #222;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.logo {
-  font-weight: 700;
-  font-size: clamp(1.25rem, 3vw, 1.5rem);
-  color: var(--accent);
-}
-
-nav {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-nav a {
-  color: var(--dim);
-  text-decoration: none;
-  font-size: clamp(0.9rem, 2vw, 1rem);
-  transition: color 0.3s;
-}
-nav a:hover {
-  color: var(--accent);
-}
-
-.menu-toggle {
-  display: none;
-  font-size: 1.8rem;
-  cursor: pointer;
-  color: var(--accent);
-}
-
-/* Dropdown */
-.dropdown {
-  position: relative;
-}
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background: #161616;
-  top: 100%;
-  left: 0;
-  min-width: 160px;
-}
-.dropdown-content a {
-  padding: 10px;
-  display: block;
-  color: var(--text);
-}
-.dropdown-content a:hover {
-  background: #000;
-}
-.dropdown.show .dropdown-content {
-  display: block;
-}
 
 /* Mobile menu */
 @media (max-width: 768px) {
@@ -859,6 +781,7 @@ document.querySelectorAll('nav a').forEach(link => {
 
 
   
+
 
 
 
