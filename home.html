@@ -721,6 +721,39 @@ document.querySelectorAll('nav a').forEach(link => {
       bottom: 10px;
     }
   }
+
+
+  @media (max-width: 480px) {
+  #chatbot {
+    width: 95vw;
+    max-height: 70vh;
+    right: 2.5vw;
+    bottom: 10px;
+    font-size: 16px; /* bigger font */
+  }
+
+  #chatbot #chat {
+    padding: 15px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  #chatbot input[type="text"] {
+    font-size: 16px;
+    padding: 12px 16px;
+  }
+
+  #chatbot button {
+    font-size: 18px;
+    padding: 0 22px;
+  }
+
+  .message {
+    padding: 14px 18px;
+    max-width: 90%;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -909,6 +942,7 @@ function getBotResponse(input) {
 
 
   
+
 
 
 
