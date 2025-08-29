@@ -691,11 +691,30 @@ document.querySelectorAll('nav a').forEach(link => {
 
   gtag('config', 'G-10VRSCCMCH');
 </script>
+
+
+  <!-- Preload Google Fonts for faster load -->
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" as="style">
+
+<!-- Lazy load logo -->
+<img src="logo.png" alt="DevGameBlogPromo Logo" loading="lazy">
+
+<style>
+html {
+  scroll-behavior: smooth;
+}
+.button:hover {
+  background-color: #00e0b0;
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+</style>
+
 </head>
-<body>
 
 
   
+
 
 
 
