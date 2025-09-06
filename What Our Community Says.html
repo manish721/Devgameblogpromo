@@ -519,75 +519,251 @@
     color: #1e90ff;
   }
 
-  /* Responsive Design */
-  @media (max-width: 1024px) {
-    .case-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 25px;
-    }
-  }
 
-  @media (max-width: 768px) {
-    .case-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      padding: 0 10px;
-    }
+  :root {
+  --primary: #1e90ff;
+  --muted: #666666;
+  --bg: #ffffff;
+  --card-bg: #f9f9f9;
+}
 
-    .case-card {
-      flex: 0 0 auto;
-    }
-  }
+/* Base styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Manrope', sans-serif;
+  background: var(--bg);
+  color: #333;
+}
 
-  @media (max-width: 480px) {
-    #case-studies h2 {
-      font-size: 1.8rem;
-    }
+/* Testimonials Section */
+#testimonials {
+  padding: 50px 20px;
+  max-width: 1000px;
+  margin: 60px auto;
+  box-sizing: border-box;
+}
 
-    #case-studies p.intro {
-      font-size: 1rem;
-      margin-bottom: 30px;
-    }
+#testimonials h2 {
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 10px;
+}
 
-    .case-card h3 {
-      font-size: 1.3rem;
-    }
+#testimonials p.intro {
+  text-align: center;
+  color: var(--muted);
+  font-size: clamp(1rem, 3vw, 1.1rem);
+  margin-bottom: 40px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
 
-    .case-card p {
-      font-size: 0.95rem;
-    }
+/* Testimonials grid */
+.testimonial-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
 
-    .case-card .hook {
-      font-size: 0.95rem;
-    }
-  }
+.testimonial-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  max-width: 320px;
+  width: 100%;
+  flex: 1 1 280px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.testimonial-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
 
-  /* Optional: Custom scrollbars for better UX */
+.testimonial-card > :first-child {
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.testimonial-name {
+  margin-top: 20px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.testimonial-role {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Stats Section */
+.stats-section {
+  background: var(--card-bg);
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: 80px auto 60px auto;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+.stats-title {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--primary);
+  margin-bottom: 25px;
+}
+
+.stats-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.stat-card {
+  background: var(--bg);
+  border-radius: 14px;
+  padding: 25px 15px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  max-width: 220px;
+  width: 100%;
+  flex: 1 1 180px;
+}
+
+.stat-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.stat-number {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+.stat-text {
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
+  color: var(--muted);
+}
+
+/* Case Studies Section */
+#case-studies {
+  padding: 50px 20px;
+  max-width: 1000px;
+  margin: 60px auto;
+}
+
+#case-studies h2 {
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+#case-studies p.intro {
+  text-align: center;
+  color: var(--muted);
+  font-size: clamp(1rem, 3vw, 1.1rem);
+  margin-bottom: 40px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
+
+.case-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.case-card {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+  max-width: 320px;
+  width: 100%;
+  flex: 1 1 280px;
+  transition: transform 0.3s ease;
+}
+
+.case-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+.case-card h3 {
+  color: var(--primary);
+  margin-bottom: 12px;
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
+}
+
+.case-card p {
+  margin-bottom: 10px;
+  color: #333;
+  line-height: 1.4;
+  font-size: clamp(0.9rem, 3vw, 1rem);
+}
+
+.case-card .hook {
+  margin-top: 12px;
+  font-style: italic;
+  color: var(--primary);
+  font-size: clamp(0.9rem, 3vw, 1rem);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar styling */
 .testimonial-grid::-webkit-scrollbar,
+.stats-grid::-webkit-scrollbar,
 .case-grid::-webkit-scrollbar {
+  width: 8px;
   height: 8px;
 }
 
 .testimonial-grid::-webkit-scrollbar-thumb,
+.stats-grid::-webkit-scrollbar-thumb,
 .case-grid::-webkit-scrollbar-thumb {
-  background: var(--primary);
+  background-color: var(--primary);
   border-radius: 4px;
 }
 
-/* Ensure images scale */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
+/* Media adjustments for very small phones */
+@media (max-width: 360px) {
+  #testimonials h2,
+  #case-studies h2,
+  .stats-title {
+    font-size: 1.5rem;
+  }
 
-/* Accessibility focus outlines */
-.testimonial-card:focus-within,
-.case-card:focus-within {
-  outline: 2px solid var(--primary);
-  outline-offset: 4px;
+  .testimonial-card,
+  .case-card,
+  .stat-card {
+    padding: 15px;
+  }
+
+  .testimonial-name,
+  .stat-text {
+    font-size: 0.85rem;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
 }
 </style>
 
