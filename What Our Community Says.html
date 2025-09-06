@@ -562,5 +562,32 @@
       font-size: 0.95rem;
     }
   }
+
+
+  /* Optional: Custom scrollbars for better UX */
+.testimonial-grid::-webkit-scrollbar,
+.case-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.testimonial-grid::-webkit-scrollbar-thumb,
+.case-grid::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+/* Ensure images scale */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Accessibility focus outlines */
+.testimonial-card:focus-within,
+.case-card:focus-within {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+}
 </style>
 
