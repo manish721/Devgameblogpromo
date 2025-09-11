@@ -633,6 +633,50 @@ document.querySelectorAll('nav a').forEach(link => {
   gtag('config', 'AW-11298822058');
 </script>
 
+<!-- Feedback Box -->
+<div class="feedback-box">
+  <div class="feedback-icon">📢 Bok Bok</div>
+  <div class="feedback-text">
+    We value your voice! Facing any issues, suggestions, or ideas to make our platform better? Be honest, be transparent, and <a href="https://docs.google.com/forms/d/e/1FAIpQLSeUmrhIOgSuevvG_JDJedbMVMoenKu1qpWCBItjeLcaNXb04A/viewform?usp=sharing&ouid=110241627081033321030">share your feedback here</a>. Your insights help us grow together. 
+  </div>
+</div>
+
+<style>
+.feedback-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f0f4f8; /* soft light background matching your site */
+  border-left: 5px solid #1e90ff; /* primary color accent */
+  padding: 18px 24px;
+  margin: 25px 0;
+  border-radius: 12px; /* like your cards */
+  font-family: 'Manrope', sans-serif;
+  color: #333;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feedback-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.feedback-icon {
+  font-size: 22px;
+  font-weight: bold;
+  margin-right: 18px;
+}
+
+.feedback-text a {
+  color: #1e90ff; /* primary blue */
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.feedback-text a:hover {
+  text-decoration: underline;
+}
+</style>
 
   
 <footer>
@@ -993,6 +1037,7 @@ footer .duns-badge {
 }
 </style>
 </head>
+
 
 
 
