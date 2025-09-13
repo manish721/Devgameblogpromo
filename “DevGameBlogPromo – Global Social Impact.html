@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevGameBlogPromo - Social Impact</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+        line-height: 1.6;
+    }
+    header {
+        background-color: #1e90ff;
+        color: white;
+        padding: 20px 30px;
+        text-align: center;
+    }
+    header h1 {
+        margin: 0;
+        font-size: 2rem;
+    }
+    .container {
+        max-width: 1000px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+    h2 {
+        color: #1e90ff;
+        margin-bottom: 20px;
+    }
+    .people-list, .section-card {
+        background-color: white;
+        padding: 20px;
+        margin-bottom: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .people-list ul {
+        list-style: disc inside;
+    }
+    .section-card h3 {
+        margin-bottom: 15px;
+        color: #1e90ff;
+    }
+    .btn {
+        display: inline-block;
+        background-color: #1e90ff;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+    .btn:hover {
+        background-color: #0073e6;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 15px;
+    }
+    form input, form textarea {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        width: 100%;
+        font-size: 1rem;
+    }
+    form button {
+        background-color: #1e90ff;
+        color: white;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    form button:hover {
+        background-color: #0073e6;
+    }
+    footer {
+        text-align: center;
+        background-color: #1e90ff;
+        color: white;
+        padding: 20px;
+        margin-top: 40px;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>DevGameBlogPromo Social Impact</h1>
+</header>
+
+<div class="container">
+
+    <!-- Section 1: People & Ideas -->
+    <div class="people-list">
+        <h2>Innovators & Their Ideas</h2>
+        <ul>
+            <li> Name– N/A</li>
+            <li> Name– N/A</li>
+            <li>Name– N/A</li>
+            <li>Name– N/A</li>
+            <li>Other contributors – [Add more names & ideas]</li>
+        </ul>
+    </div>
+
+
+
+    <section id="global-volunteer-network" class="section">
+    <div class="hero" style="background: linear-gradient(135deg, #00bfff, #1e90ff); color: white; text-align: center; padding: 50px 20px; border-radius: 10px;">
+        <h1>Global Volunteer Network</h1>
+        <p>Become a valued member of our Global Volunteer Network and stay at the forefront of technology and innovation. Receive exclusive updates on new tech, company initiatives, and upcoming projects. Contribute your skills, collaborate globally, and help shape impactful solutions.</p>
+    </div>
+
+    <div class="info-section" style="max-width: 900px; margin: 30px auto; padding: 20px; background-color: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+        <h2>Upcoming Events</h2>
+        <ul style="list-style: disc inside; color: #333; font-size: 1.1rem; margin-bottom: 20px;">
+            <li>Paid Workshop: </li>
+            <li>Free Webinar:</li>
+            <li>Paid Summit:</li>
+            <li>Free Meetup: </li>
+               <a href="https://example.com/alumni-apply" target="_blank" class="btn">Apply Now</a>
+
+        </ul>
+
+    <!-- Section 2: Global Ambassador & Volunteer -->
+    <div class="section-card">
+        <h3>Global Ambassador Program</h3>
+        <p>Free training session for aspiring global ambassadors. Lead initiatives, inspire peers, and grow as a professional.</p>
+        <a href="https://example.com/ambassador-apply" target="_blank" class="btn">Apply Now</a>
+         <a href="https://www.meetup.com/join-global-alumni" target="_blank" class="btn" style="margin-left: 10px;">Join Meetup</a>
+    </div>
+
+    <div class="section-card">
+        <h3>Global Volunteer Network</h3>
+        <p>Become a valued member of our Global Volunteer Network and stay at the forefront of technology and innovation. Receive exclusive updates on new tech, company initiatives, and upcoming projects. Contribute your skills, collaborate with a global community, and help shape impactful solutions while growing your professional network.</p>
+        <form id="volunteerForm" onsubmit="submitForm(event)">
+               <a href="https://example.com/alumni-apply" target="_blank" class="btn">Apply Now</a>
+             
+        </form>
+    </div>
+
+    <!-- Section 3: Global Alumni Network -->
+    <div class="section-card">
+        <h3>Global Alumni Network</h3>
+        <p>Join a thriving community of innovators, creators, and change-makers. Our alumni engage in roundtable discussions, exclusive conferences, dynamic webinars, interactive workshops, and global summits—sharing insights, collaborating on projects, and expanding their professional network worldwide. Connect, learn, and grow with peers who are shaping the future.</p>
+        <a href="https://example.com/alumni-apply" target="_blank" class="btn">Apply Now</a>
+        <a href="https://www.meetup.com/join-global-alumni" target="_blank" class="btn" style="margin-left: 10px;">Join Meetup</a>
+    </div>
+
+</div>
+
+<footer>
+    &copy; 2025 DevGameBlogPromo™ | Empowering Global Careers
+</footer>
+
+<script>
+    function submitForm(event) {
+        event.preventDefault();
+        const name = document.getElementById('volunteerName').value;
+        const email = document.getElementById('volunteerEmail').value;
+        const message = document.getElementById('volunteerMessage').value;
+        alert(`Thank you, ${name}! Your application to the Global Volunteer Network has been received.\nWe will contact you at ${email}.`);
+        document.getElementById('volunteerForm').reset();
+    }
+</script>
+
+</body>
+</html>
