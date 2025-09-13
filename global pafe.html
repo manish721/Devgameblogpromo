@@ -71,7 +71,72 @@
         }
         .social-links a:hover {
             text-decoration: underline;
+
+   
+    }
+    .navbar .logo {
+        font-size: 1.6rem;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+        margin: 0;
+        padding: 0;
+    }
+    .nav-links li {
+        position: relative;
+    }
+    .nav-links a {
+        color: rgb(221, 15, 15);
+        text-decoration: none;
+        font-weight: 500;
+        padding: 8px 12px;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .nav-links a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #000000;
+    }
+    .nav-links a.active {
+        background-color: rgba(255, 255, 255, 0.3);
+        color: #000000;
+    }
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+    }
+    .hamburger div {
+        width: 28px;
+        height: 3px;
+        background-color: white;
+        margin: 5px 0;
+        border-radius: 2px;
+        transition: transform 0.3s ease;
+    }
+    @media (max-width: 768px) {
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background: linear-gradient(180deg, #1e90ff, #0073e6);
+            position: absolute;
+            top: 60px;
+            left: 0;
+            border-radius: 0 0 10px 10px;
         }
+        .nav-links.active {
+            display: flex;
+        }
+        .hamburger {
+            display: flex;
+        }
+    }
+           
     </style>
 </head>
 <body>
@@ -79,6 +144,17 @@
 <header>
     <h1>DevGameBlogPromo Global</h1>
 </header>
+
+  
+    
+    <ul class="nav-links" id="navLinks">
+            <li><a href="#"> global Website </a></li>
+            <li><a href="marketplace.html">Marketplace</a></li>
+            <li><a href="“DevGameBlogPromo – Global Social Impact.html">Scoial Impact</a></li>
+           
+            
+        </ul>
+
 
 <div class="container">
     <h2>Welcome to Our Global Community</h2>
@@ -103,8 +179,8 @@
     <p>Follow us on social media to stay updated with events, courses, and community discussions.</p>
     <div class="social-links">
         
-        <a href="https://linkedin.com/yourprofile" target="_blank">LinkedIn</a>
-        <a href="https://discord.gg/yourserver" target="_blank">Discord</a>
+        <a href="https://www.linkedin.com/company/devgameblogpromo/?viewAsMember=true" target="_blank">LinkedIn</a>
+       
     </div>
 </div>
 
@@ -114,3 +190,4 @@
 
 </body>
 </html>
+
