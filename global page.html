@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>DevGameBlogPromo Global</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -11,185 +13,149 @@
             margin: 0;
             padding: 0;
             color: #333;
-        }
-        header {
-            background-color: #1e90ff;
-            color: white;
-            padding: 15px 30px;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 1.8rem;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 40px auto;
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px 30px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        h2 {
-            color: #1e90ff;
-            margin-top: 30px;
-            font-size: 1.5rem;
-        }
-        p {
-            font-size: 1.1rem;
             line-height: 1.6;
         }
-        ul {
-            list-style: disc inside;
-            margin-left: 20px;
+        a { text-decoration: none; }
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #1e90ff, #0073e6);
+            padding: 15px 30px;
+            position: relative;
         }
-        .btn {
-            background-color: #1e90ff;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
+        .navbar .logo {
+            font-size: 1.8rem;
             font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .btn:hover {
-            background-color: #0073e6;
-        }
-        footer {
-            text-align: center;
-            background-color: #1e90ff;
             color: white;
-            padding: 15px;
-            margin-top: 40px;
         }
-        .social-links a {
-            color: #1e90ff;
-            text-decoration: none;
-            margin-right: 15px;
+        .nav-links { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; }
+        .nav-links li a { color: white; font-weight: 500; padding: 8px 12px; border-radius: 5px; transition: background-color 0.3s; }
+        .nav-links li a:hover, .nav-links li a.active { background-color: rgba(255,255,255,0.3); color:#000; }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; }
+        .hamburger div { width:28px; height:3px; background:white; margin:5px 0; border-radius:2px; }
+        @media(max-width:768px){ 
+            .nav-links { display:none; flex-direction:column; width:100%; background:linear-gradient(180deg,#1e90ff,#0073e6); position:absolute; top:60px; left:0; border-radius:0 0 10px 10px; padding:15px 0; }
+            .nav-links.active{ display:flex; }
+            .hamburger{ display:flex; }
         }
-        .social-links a:hover {
-            text-decoration: underline;
 
-   
-    }
-    .navbar .logo {
-        font-size: 1.6rem;
-        font-weight: bold;
-        letter-spacing: 1px;
-    }
-    .nav-links {
-        list-style: none;
-        display: flex;
-        gap: 25px;
-        margin: 0;
-        padding: 0;
-    }
-    .nav-links li {
-        position: relative;
-    }
-    .nav-links a {
-        color: rgb(221, 15, 15);
-        text-decoration: none;
-        font-weight: 500;
-        padding: 8px 12px;
-        border-radius: 5px;
-        transition: background-color 0.3s, color 0.3s;
-    }
-    .nav-links a:hover {
-        background-color: rgba(255, 255, 255, 0.2);
-        color: #000000;
-    }
-    .nav-links a.active {
-        background-color: rgba(255, 255, 255, 0.3);
-        color: #000000;
-    }
-    .hamburger {
-        display: none;
-        flex-direction: column;
-        cursor: pointer;
-    }
-    .hamburger div {
-        width: 28px;
-        height: 3px;
-        background-color: white;
-        margin: 5px 0;
-        border-radius: 2px;
-        transition: transform 0.3s ease;
-    }
-    @media (max-width: 768px) {
-        .nav-links {
-            display: none;
-            flex-direction: column;
-            width: 100%;
-            background: linear-gradient(180deg, #1e90ff, #0073e6);
-            position: absolute;
-            top: 60px;
-            left: 0;
-            border-radius: 0 0 10px 10px;
-        }
-        .nav-links.active {
-            display: flex;
-        }
-        .hamburger {
-            display: flex;
-        }
-    }
-           
+        /* Hero Section */
+        .hero { background: linear-gradient(135deg,#00bfff,#1e90ff); color:white; text-align:center; padding:80px 20px; }
+        .hero h1 { font-size:2.5rem; margin-bottom:20px; }
+        .hero p { font-size:1.2rem; max-width:800px; margin:0 auto 30px; }
+        .hero .btn { font-size:1.1rem; }
+
+        /* Container / Sections */
+        .container { max-width:1000px; margin:40px auto; padding:20px 30px; }
+        h2 { color:#1e90ff; margin-top:30px; font-size:1.8rem; }
+        p, li { font-size:1.1rem; }
+        ul { list-style: disc inside; margin-left:20px; }
+        .btn { background-color:#1e90ff; color:white; padding:12px 25px; border:none; border-radius:5px; font-weight:bold; cursor:pointer; transition: background-color 0.3s; }
+        .btn:hover{ background-color:#0073e6; }
+        .section-card { background:white; padding:25px; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1); margin-bottom:30px; }
+        .section-card h3 { color:#1e90ff; margin-bottom:15px; }
+
+        /* Video Embed */
+        .video-container { text-align:center; margin:40px 0; }
+        .video-container iframe { width:100%; max-width:800px; height:480px; border:none; border-radius:10px; }
+
+        /* Social Links */
+        .social-links a { color:#1e90ff; margin-right:15px; font-weight:bold; }
+        .social-links a:hover { text-decoration:underline; }
+
+        footer { text-align:center; background-color:#1e90ff; color:white; padding:20px; margin-top:40px; }
+
+        @media(max-width:768px){ .container{ margin:20px; padding:15px; } }
+
     </style>
 </head>
 <body>
 
-<header>
-    <h1>DevGameBlogPromo Global</h1>
-</header>
-
-  
-    
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">DevGameBlogPromo</div>
     <ul class="nav-links" id="navLinks">
-            <li><a href="#"> global Website </a></li>
-            <li><a href="marketplace.html">Marketplace</a></li>
-            <li><a href="“DevGameBlogPromo – Global Social Impact.html">Scoial Impact</a></li>
-           
-            
-        </ul>
+        <li><a href="#" class="active">Global Website</a></li>
+        <li><a href="marketplace.html">Marketplace</a></li>
+        <li><a href="DevGameBlogPromo-Global-Social-Impact.html">Social Impact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger"><div></div><div></div><div></div></div>
+</nav>
 
+<!-- Hero Section -->
+<section class="hero">
+    <h1>Welcome to DevGameBlogPromo Global</h1>
+    <p>Connecting learners, creators, and innovators worldwide. Join a global network of mentorship, resources, workshops, and events to grow your skills and career.</p>
+    <a href="https://devgameblogpromo.netlify.app/" target="_blank" class="btn">Visit Main Website</a>
+</section>
 
 <div class="container">
-    <h2>Welcome to Our Global Community</h2>
-    <p>We are building a network of learners, creators, and innovators from around the world. Whether you're a student, a professional, or someone passionate about technology and growth, DevGameBlogPromo connects you to opportunities, resources, and mentorship to build your future.</p>
 
+    <!-- Mission -->
     <h2>Our Mission</h2>
-    <p>We aim to provide access to high-quality learning experiences, career guidance, workshops, and networking events that empower individuals globally. Learning knows no boundaries, and neither should your potential.</p>
+    <p>We provide access to high-quality learning, career guidance, workshops, and networking events globally. Learning knows no boundaries, and neither should your potential.</p>
 
+    <!-- What We Offer -->
     <h2>What We Offer</h2>
-    <ul>
-        <li><strong>Interactive Courses:</strong> Learn with projects and mentorship support.</li>
-        <li><strong>Global Networking:</strong> Meet peers from across the world and collaborate.</li>
-        <li><strong>Workshops & Events:</strong> Participate in webinars, hackathons, and training sessions.</li>
-        <li><strong>Career Support:</strong> Resume reviews, interview prep, and personalized guidance.</li>
-    </ul>
+    <div class="section-card">
+        <h3><i class="fas fa-laptop-code"></i> Interactive Courses</h3>
+        <p>Learn with projects and mentorship support to apply knowledge effectively.</p>
+    </div>
+    <div class="section-card">
+        <h3><i class="fas fa-globe"></i> Global Networking</h3>
+        <p>Meet peers from across the world and collaborate on meaningful projects.</p>
+    </div>
+    <div class="section-card">
+        <h3><i class="fas fa-chalkboard-teacher"></i> Workshops & Events</h3>
+        <p>Participate in webinars, hackathons, training sessions, and summits.</p>
+    </div>
+    <div class="section-card">
+        <h3><i class="fas fa-briefcase"></i> Career Support</h3>
+        <p>Get resume reviews, interview prep, and personalized guidance from experts.</p>
+    </div>
 
-    <h2>Get Started Today</h2>
-    <p>Join our global platform and be part of a community that supports your ambitions. Whether you're looking to learn, teach, or lead, there's a space for you here.</p>
-    <a href="" target="_blank" class="btn">Visit Main Website</a>
+    <!-- Global Volunteer -->
+    <h2>Global Volunteer Network</h2>
+    <div class="section-card">
+        <p>Become a member of our Global Volunteer Network to receive exclusive updates on tech, projects, and company initiatives. Collaborate globally and make an impact!</p>
+        <a href="https://forms.gle/fVqJACVJk9G9XZCB9" target="_blank" class="btn">Apply Now</a>
+    </div>
 
+    <!-- Global Alumni -->
+    <h2>Global Alumni Network</h2>
+    <div class="section-card">
+        <p>Join a community of innovators and change-makers. Participate in roundtables, webinars, workshops, and global summits. Connect, learn, and grow with peers worldwide.</p>
+        <a href="https://forms.gle/fVqJACVJk9G9XZCB9" target="_blank" class="btn">Join Alumni</a>
+    </div>
+
+  
+    <!-- Social -->
     <h2>Stay Connected</h2>
     <p>Follow us on social media to stay updated with events, courses, and community discussions.</p>
     <div class="social-links">
-        
-        <a href="https://www.linkedin.com/company/devgameblogpromo/?viewAsMember=true" target="_blank">LinkedIn</a>
-       
+        <a href="https://www.linkedin.com/company/devgameblogpromo/?viewAsMember=true" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
     </div>
+
 </div>
 
 <footer>
     &copy; 2025 DevGameBlogPromo™ | Empowering Global Careers
 </footer>
 
+<script>
+    // Hamburger toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+</script>
+
 </body>
 </html>
+
 
 
 
