@@ -1070,47 +1070,9 @@ footer .duns-badge {
 }
 </style>
 
-  <script>
-    // ========================
-// DevGameBlogPromo JS Optimizer
-// ========================
 
-document.addEventListener("DOMContentLoaded", () => {
-  // 1️⃣ Lazy-load all non-LCP images
-  const images = document.querySelectorAll("img");
-  images.forEach(img => {
-    if (!img.id || img.id !== "lcp-image") {
-      img.loading = "lazy"; // Lazy-load offscreen images
-    } else {
-      // High priority for LCP image
-      img.decoding = "async";
-      if ('fetchPriority' in img) img.fetchPriority = "high";
-    }
-  });
-
-  // 2️⃣ Defer heavy CPU tasks
-  function heavyComputation() {
-    for (let i = 0; i < 1000000; i++) Math.sqrt(i); // Example CPU-heavy loop
-  }
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(heavyComputation);
-  } else {
-    setTimeout(heavyComputation, 2000);
-  }
-
-  // 3️⃣ Batch UI updates for smoother rendering
-  function updateUIBatch(updates) {
-    window.requestAnimationFrame(() => {
-      updates.forEach(update => update());
-    });
-  }
-  updateUIBatch([
-    () => document.body.style.backgroundColor = "#fefefe",
-    () => console.log("UI updates applied efficiently")
-  ]);
-});
-  </script>
 </head>
+
 
 
 
