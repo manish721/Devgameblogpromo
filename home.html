@@ -1094,8 +1094,85 @@ document.addEventListener("DOMContentLoaded", () => {
     () => console.log("UI updates applied efficiently")
   ]);
 });
+
+
+  // Lazy-load iframes and images
+document.addEventListener("DOMContentLoaded", () => {
+  const lazyIframes = document.querySelectorAll("iframe[data-src]");
+  lazyIframes.forEach(iframe => {
+    iframe.src = iframe.dataset.src;
+  });
+
+  const lazyImages = document.querySelectorAll("img[data-src]");
+  lazyImages.forEach(img => {
+    img.src = img.dataset.src;
+  });
+});
+
+// Throttle scroll events (improves TBT and LCP)
+let ticking = false;
+window.addEventListener("scroll", () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      // Fade-in sections
+      document.querySelectorAll(".section").forEach(section => {
+        if (section.getBoundingClientRect().top < window.innerHeight * 0.8) {
+          section.classList.add("visible");
+        }
+      });
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
+// Back-to-top button
+const backToTop = document.querySelector('.back-to-top');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) backToTop.style.display = 'block';
+  else backToTop.style.display = 'none';
+});
+backToTop.addEventListener('click', e => {
+  e.preventDefault();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+  // Select the neon green text and the button
+const neonText = document.querySelector('.neon-text');
+const button = document.querySelector('.cta-button');
+
+// Increase glow effect on neon text by ~20%
+const currentTextShadow = getComputedStyle(neonText).textShadow;
+neonText.style.textShadow = currentTextShadow + ', 0 0 12px limegreen';
+
+// Increase button size by 20%
+const currentWidth = button.offsetWidth;
+const currentHeight = button.offsetHeight;
+button.style.width = currentWidth * 1.2 + 'px';
+button.style.height = currentHeight * 1.2 + 'px';
+
+// Add subtle pulsing animation and 2px white glow
+button.style.boxShadow = '0 0 2px white';
+button.style.transition = 'transform 0.6s ease-in-out, box-shadow 0.6s ease-in-out';
+
+// Create pulsing effect
+let scaleUp = true;
+setInterval(() => {
+    if(scaleUp){
+        button.style.transform = 'scale(1.05)';
+        button.style.boxShadow = '0 0 8px white';
+    } else {
+        button.style.transform = 'scale(1)';
+        button.style.boxShadow = '0 0 2px white';
+    }
+    scaleUp = !scaleUp;
+}, 600);
+
+
+
 </script>
 </head>
+
 
 
 
