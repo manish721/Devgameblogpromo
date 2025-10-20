@@ -1,320 +1,155 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DevGameBlogPromo</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap">
-    <link rel="icon" href="logo.png " type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevGameBlogPromo</title>
 
-  <style>
-    :root {
-      --bg: #0a0a0a;
-      --text: #f3f3f3;
-      --accent: #00ffc3;
-      --dim: #9e9e9e;
-      --card-bg: #161616;
-    }
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" rel="stylesheet">
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
+:root {
+  --bg: #0a0a0a;
+  --card-bg: #161616;
+  --text: #f3f3f3;
+  --dim: #9e9e9e;
+  --accent: #00ffc3;
+  --accent-hover: #00e0b0;
+  --transition-speed: 0.3s;
+}
 
-    body {
-      font-family: 'Manrope', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
+/* Center all buttons */
+.button, .btn {
+  display: inline-block;       /* ensures the button behaves correctly in the container */
+  margin: 10px auto;           /* centers horizontally with some spacing */
+}
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 2rem 10%;
-      background: var(--bg);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+/* If buttons are inside a container, make sure the container centers them */
+.button-container, .button-wrapper {
+  text-align: center;          /* centers all inline-block buttons inside */
+  margin: 20px 0;              /* spacing above/below */
+}
 
-    .logo {
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: var(--accent);
-    }
+/* Optional: professional style tweak */
+.button, .btn {
+  background-color: #0078d7;   /* clean, professional blue */
+  color: #fff;
+  padding: 0.85rem 2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 120, 215, 0.3);
+  transition: all 0.3s ease;
+}
 
-    nav a {
-      margin-left: 2rem;
-      color: var(--dim);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
+.button:hover, .btn:hover {
+  background-color: #005ea3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 94, 163, 0.4);
+}
 
-    nav a:hover {
-      color: var(--accent);
-    }
-
-    .hero {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 10%;
-      background: linear-gradient(135deg, #0a0a0a, #121212);
-    }
-
-    .hero h1 {
-      font-size: 4rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
-
-    .hero p {
-      font-size: 1.25rem;
-      color: var(--dim);
-      max-width: 600px;
-      margin-bottom: 2rem;
-    }
-
-    .hero .buttons {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .button {
-      background-color: var(--accent);
-      color: #000;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      font-weight: 700;
-      border-radius: 0.5rem;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .section {
-      padding: 5rem 10%;
-      background: var(--bg);
-    }
-
-    .section h2 {
-      font-size: 2.5rem;
-      color: var(--accent);
-      margin-bottom: 2rem;
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-
-    .card {
-      background: var(--card-bg);
-      padding: 2rem;
-      border-radius: 1rem;
-      transition: transform 0.3s ease;
-      position: relative;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-    }
-
-    .card a {
-      display: inline-block;
-      margin-top: 1rem;
-      font-size: 0.875rem;
-      color: var(--accent);
-      text-decoration: underline;
-    }
-
-    footer {
-      background: #0a0a0a;
-      color: var(--dim);
-      text-align: center;
-      padding: 2rem 10%;
-      border-top: 1px solid #222;
-    }
-
-    @media (max-width: 1024px) {
-  .hero h1 {
-    font-size: 3rem;
-  }
-
-  .hero p {
-    font-size: 1.1rem;
-  }
-
-  nav a {
-    margin-left: 1rem;
-    font-size: 0.95rem;
+/* Responsive tweak for mobile */
+@media(max-width:768px){
+  .button, .btn {
+    width: auto;   /* keeps button size proper */
   }
 }
 
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
 
-  nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
 
-  .hero h1 {
-    font-size: 2.25rem;
-  }
+/* Reset */
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Manrope', sans-serif; }
 
-  .hero p {
-    font-size: 1rem;
-  }
+body { background-color: var(--bg); color: var(--text); line-height:1.6; }
 
-  .section {
-    padding: 3rem 5%;
-  }
+/* Navbar/Header */
+header, nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 5%; background:var(--bg); position:sticky; top:0; z-index:1000; box-shadow:0 2px 10px rgba(0,255,194,0.1); }
+.brand { display:flex; flex-direction:column; align-items:flex-start; color:var(--accent); font-weight:700; }
+.brand span { font-size:0.9rem; color:var(--dim); margin-top:4px; }
+.scroll-text { color:#ff6600; font-weight:bold; font-size:1.2rem; margin-top:2px; height:1.5rem; overflow:hidden; }
+.scroll-text div { opacity:0; position:absolute; width:100%; transition:opacity 1s; }
+.scroll-text div.active { opacity:1; }
+nav a { margin-left:1.5rem; color:var(--dim); text-decoration:none; font-weight:500; transition: color var(--transition-speed); }
+nav a:hover, nav a:focus { color: var(--accent-hover); outline:none; }
+.menu-toggle { display:none; cursor:pointer; font-size:1.5rem; color:var(--accent); }
 
-  .button {
-    width: 100%;
-    text-align: center;
-  }
-}
+/* Hero Section */
+.hero { height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:0 5%; background:linear-gradient(135deg,#0a0a0a,#121212); background-size:400% 400%; animation: gradientShift 15s ease infinite; }
+@keyframes gradientShift { 0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;} }
+.hero h1 { font-size:3rem; font-weight:700; color:var(--accent); margin-bottom:1rem; text-shadow:0 0 10px rgba(0,255,195,0.3); animation:glow 2s infinite alternate; }
+.hero p { font-size:1.25rem; color:var(--dim); max-width:700px; margin-bottom:1rem; }
+@keyframes glow { 0%{ text-shadow:0 0 5px rgba(0,255,195,0.3);}100%{ text-shadow:0 0 20px rgba(0,255,195,0.7); } }
+.button, .btn { background-color:var(--accent); color:#000; border:none; padding:0.75rem 1.5rem; font-weight:700; border-radius:0.5rem; cursor:pointer; text-decoration:none; transition:all var(--transition-speed) ease; box-shadow:0 4px 15px rgba(0,255,195,0.2);}
+.button:hover, .btn:hover { background-color:var(--accent-hover); transform:translateY(-3px); box-shadow:0 6px 20px rgba(0,255,195,0.4); }
 
-@media (max-width: 480px) {
-  .hero {
-    padding: 2rem 5%;
-  }
+/* Sections */
+.section { padding:4rem 5%; max-width:1200px; margin:0 auto; opacity:0; transform:translateY(30px); transition:all 0.8s ease; }
+.section.visible { opacity:1; transform:translateY(0); }
+.section h2 { font-size:2.25rem; margin-bottom:1rem; color:var(--accent); text-align:center; }
+.section p { text-align:center; color:var(--dim); margin-bottom:2rem; }
 
-  .hero h1 {
-    font-size: 1.8rem;
-  }
+.impact-section { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:2rem; }
+.impact-stat h3 { font-size:3rem; color:var(--accent); margin:0; transition:transform var(--transition-speed);}
+.impact-stat h3:hover{ transform:scale(1.2); }
+.impact-stat p{ text-align:center; color:var(--dim); margin-top:0.5rem; }
 
-  .hero p {
-    font-size: 0.95rem;
-  }
+/* Feedback Box */
+.feedback-box { display:flex; align-items:center; justify-content:space-between; background-color:#f0f4f8; border-left:5px solid #1e90ff; padding:18px 24px; margin:25px 0; border-radius:12px; color:#333; transition:transform 0.2s ease, box-shadow 0.2s ease; }
+.feedback-box:hover { transform:translateY(-2px); box-shadow:0 6px 15px rgba(0,0,0,0.1);}
+.feedback-icon{ font-size:22px; margin-right:18px; } 
+.feedback-text a{ color:#1e90ff; text-decoration:none; font-weight:600; } 
+.feedback-text a:hover{ text-decoration:underline; }
 
-  .logo {
-    font-size: 1.25rem;
-  }
+/* Footer */
+footer { background-color:#101010; color:var(--dim); padding:20px 5%; text-align:center; border-top:1px solid #222;}
+footer .duns-badge{ display:inline-block; font-size:0.9rem; background:#0b76d1; color:white; padding:10px 14px; border-radius:8px; box-shadow:0 0 8px rgba(0,0,0,0.3); margin-top:10px;}
 
-  nav {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+/* Back-to-Top */
+.back-to-top { position:fixed; bottom:30px; right:30px; background:var(--accent); color:#000; padding:0.75rem 1rem; border-radius:50%; font-size:1.2rem; display:none; cursor:pointer; z-index:1000; }
+.back-to-top:hover{ background-color:var(--accent-hover); transform:translateY(-2px); }
 
-  nav a {
-    margin: 0.5rem 0;
-  }
-}
-
-    .menu-toggle {
-  display: none;
-  font-size: 2rem;
-  cursor: pointer;
-  color: var(--accent);
-}
-
-@media (max-width: 768px) {
-  nav {
-    display: none;
-    flex-direction: column;
-    background-color: var(--bg);
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    padding: 1rem 10%;
-  }
-
-  nav.active {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-}
-
-.impact-section {
-  padding: 60px 20px;
-  background: var(--bg);
-  text-align: center;
-  color: var(--text);
-}
-
-.impact-heading {
-  font-size: 2rem;
-  margin-bottom: 30px;
-  color: var(--accent);
-}
-
-.impact-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 30px;
-  justify-items: center;
-}
-
-.impact-stat h3 {
-  font-size: 3rem;
-  color: var(--accent);
-  margin: 0;
-}
-
-.impact-stat p {
-  font-size: 1.1rem;
-  color: var(--dim);
-  margin-top: 10px;
-}
-
-    
-  </style>
+/* Responsive */
+@media(max-width:768px){ .hero h1{ font-size:2.25rem;} .hero p{ font-size:1rem;} nav a{ margin-left:1rem; font-size:0.95rem;} .menu-toggle{ display:block;} nav{ display:none; flex-direction:column; gap:10px;} nav.active{ display:flex; } }
+</style>
 </head>
-
 <body>
-  <header>
-    <div class="logo">DevGameBlogPromo <sup>™</sup> <br>  University </div> 
+
+<header>
+  <div class="brand">
+    DevGameBlogPromo
+    <span>School of Development and Gaming</span>
+    <div class="scroll-text">
+      <div class="active">Big Deal Entrepreneurship</div>
+      <div>Innovative Mind Ahead</div>
+      <div>Power Code Future</div>
+    </div>
   </div>
-</div>
-    <nav>
-      <a href=" carrer.html">Labs🚀</a>
-      <a href="mentorship .html">WorkShop🎓</a>
+  <nav>
+   <a href=" carrer.html">Labs🚀</a>
+      
       <a href="https://pixelpromoinsights.blogspot.com/">Blog📝</a>
       <a href="announcement page.html">Announcements 📢</a>
-       <a href="global page.html"> Global Impact Network📈</a>
+      
       <a href="What Our Community Says.html">Community Says💬</a>
      <a href="LAUNCH.HTML">Launch🛫</a>
        <a href="https://sites.google.com/view/pixelcraftfest/home">PCF🎨</a>
           <a href="more.html"> Journey🛤️</a>
      
       
-    </nav>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  </nav>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+</header>
 
-  </header>
-  
 <section class="hero">
-<h1>"Transform Your Skills Into Income: Create, Contribute, and Grow"
-</h1>
-  <p class="hero-subtitle">— Manish, Founder & Developer Success Coach</p>
-    <p>"We help creators and developers transform skills into profitable services through expert consulting, targeted campaigns, and proven launch strategies."</p>
-    <div class="buttons">
-      <a href="https://discord.gg/HdvgYfGw6s" class="button">Start Now</a>
-    </div>
-  </section>
+  <h1>"Transform Your Skills Into Income: Create, Contribute, and Grow"</h1>
+  <p>— Manish, Founder & Developer Success Coach</p>
+  <p>"We help creators and developers transform skills into profitable services through expert consulting, targeted campaigns, and proven launch strategies."</p>
+  <a href="https://discord.gg/HdvgYfGw6s" class="button">Start Now</a>
+</section>
 
 
- 
+
     <div style="margin-top: 20px; padding: 25px; background-color: #f9f9f9; border-left: 6px solid #ff6600; border-radius: 10px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.7; color: #333;">
     <p style="font-weight: bold; font-size: 1.1em;">Important Notice for Aspiring Learners:</p>
     <p>
@@ -457,146 +292,55 @@
     run — but speaks. Because Code <strong>8392</strong> isn't just ours. It's yours now too.
   </p>
 </section>
+  
+
+  <section class="section" id="courses">
+    <h2>Courses</h2>
+    <p>Join our curated courses to level up your skills in coding, gaming, and entrepreneurship.</p>
+  <center> <a href="mentorship.html" class="button">Join Mentorship</a></center>
+  </section>
+
+
+  <section class="section" id="events">
+    <h2>Events</h2>
+    <p>Attend workshops, webinars, and mentorship sessions to accelerate your growth.</p>
+   <center><a href="global page.html" class="button"> Global Impact Network📈</a></center>
+
+  </section>
 
 <section class="impact-section" id="impact">
-  <h2 class="impact-heading">📊 Our Impact So Far</h2>
+  <h2 class="impact-heading"><center>📊 Our Impact So Far</center></h2>
   <div class="impact-stats-grid">
     <div class="impact-stat">
-      <h3 class="count" data-target="2100">2100</h3>
+      <center><h3 class="count" data-target="2100">2104</h3></center>
       <p>Team & Community</p>
       <subtile> “A dynamic team united by passion and purpose — building solutions that matter.”</subtile>
     </div>
     <div class="impact-stat">
-      <h3 class="count" data-target="1">1</h3>
+     <center> <h3 class="count" data-target="1">3</h3></center>
       <p>Companies Served</p>
       <subtile> “By the end of this year, we aim to serve at least 8 companies — expanding our reach and making a bigger impact.”</subtile>
     </div>
     <div class="impact-stat">
-      <h3 class="count" data-target="5">5</h3>
+      <center><h3 class="count" data-target="5">5</h3></center>
       <p>Years of Innovation</p>
       <subtile> “Over 5 years of relentless innovation — turning ideas into impactful solutions.”</subtile>
     </div>
     <div class="impact-stat">
-      <h3 class="count" data-target="2">2</h3>
+      <center><h3 class="count" data-target="2">4</h3></center>
       <p>Platforms Launched</p>
       <subtile> “Aiming to launch at least 10 platforms by the end of this year — expanding our impact and empowering more users.”</subtile>
     </div>
-  
-  </div>
-</section>
-<script>
-  const counters = document.querySelectorAll('[data-target]');
-
-  const speed = 200; // speed of counting
-
-  counters.forEach(counter => {
-    const updateCount = () => {
-      const target = +counter.getAttribute('data-target');
-      const count = +counter.innerText;
-
-      const inc = Math.ceil(target / speed);
-
-      if (count < target) {
-        counter.innerText = count + inc;
-        setTimeout(updateCount, 10);
-      } else {
-        counter.innerText = target;
-      }
-    };
-
-    // Trigger animation on scroll into view
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          updateCount();
-          observer.unobserve(counter); // Animate once
-        }
-      });
-    }, {
-      threshold: 0.5
-    });
-
-    observer.observe(counter);
-  });
-</script>
 
   
-
-  <section class="section" id="careers">
-    <h2>28 Labs</h2>
-<p></p> we believe in the power of ideas and the people who bring them to life. We are constantly seeking curious minds, creative thinkers, and technically skilled individuals who are eager to make a difference.
-
-<p>Whether you're a student looking for experience, a freelancer wanting to contribute, or an aspiring entrepreneur, we offer a space where innovation meets purpose.</p>
-<p>✨ Internships, freelance projects, and volunteer positions are available in various departments — from frontend development and game design to marketing, research, and UX design.</p>
-
-<p>🔹 Gain real-world experience</p>
-<p>🔹 Work with a dynamic, youth-led team</p>
-<p>🔹 Get featured on our platforms for your work</p>
-<p>🔹 Flexible, remote-first opportunities</p>
-
-<p>👉 Apply Now to start your journey with us!</P>
-
-    <a href="carrer.html" class="button"> Join Labs Now</a>
-  </section>
-
-  <section class="section" id="mentorship">
-    <h2>Mentorship Program Curriculum</h2>
-    <p>Mentorship Program is crafted to support and guide young minds through their creative and technical journey. We connect learners with experts, offer structured guidance, and provide real-world challenges to sharpen their skills.
-</p>
-<p>🌐 What We Offer:</p>
-<p>Workshops in Frontend Web Development, Game Development, and UI/UX</p>
-
-<p>Live sessions, team projects, and code reviews</p>
-
-<p>Mini hackathons and milestone challenges</p>
-
-<p>Feedback from professionals and guest mentors</p>
-
-<p>Certificates for active participation</p>
-
-<p>📅 Upcoming Sessions: October, December, February, March</p>
-
-<p>Whether you're a beginner or looking to level up, this program is your chance to create, collaborate, and grow with peers and mentors.</p>
-
-🎓 Join Mentorship</p>
-    <a href="mentorship.html" class="button">Join Mentorship</a>
-  </section>
-
-  <section class="section" id="pcf">
-    <h2>PCF Program</h2>
-    <p>Pixel Creator Fellowship (PCF) is designed to nurture creative minds who want to lead and innovate. Get certified, lead teams, and be featured on our hall of fame. Apply and get recognized for your passion!</p>
-    <a href="https://sites.google.com/view/pixelcraftfest/home" class="button">Apply for PCF</a>
   </section>
 
   <section class="section" id="contact">
     <h2>Contact Us</h2>
-    <p>Want to connect, collaborate, or just say hello? Reach out via email or follow us on social media.</p>
-    <p> Follow us on Instagram, YouTube, LinkedIn, and more</p>
-🤝 <p>Let’s build something incredible together.</p>
-
-📬 <p>Contact Us</p>
-    <a href="https://www.instagram.com/devgameblogpromo/" class="button">Follow on Instagram</a>
+    <p>Reach out for collaborations, mentorship, or general inquiries.</p>
+    
+     <a href="https://www.instagram.com/devgameblogpromo/" class="button">Follow on Instagram</a>
      <a href="FAQ.html" class="button">FAQ</a>
-  </section>
-  
-<script>
-  function toggleMenu() {
-    const nav = document.querySelector('nav');
-    nav.classList.toggle('active');
-  }
-
-
-document.querySelectorAll('nav a').forEach(link => {
-  link.addEventListener('click', () => {
-    document.querySelector('nav').classList.remove('active');
-  });
-});
-</script>
-  
-  
-  
-
-
   
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11298822058">
@@ -616,449 +360,42 @@ document.querySelectorAll('nav a').forEach(link => {
     We value your voice! Facing any issues, suggestions, or ideas to make our platform better? Be honest, be transparent, and <a href="https://docs.google.com/forms/d/e/1FAIpQLSeUmrhIOgSuevvG_JDJedbMVMoenKu1qpWCBItjeLcaNXb04A/viewform?usp=sharing&ouid=110241627081033321030">share your feedback here</a>. Your insights help us grow together. 
   </div>
 </div>
+  </section>
+</main>
 
-<style>
-.feedback-box {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #f0f4f8; /* soft light background matching your site */
-  border-left: 5px solid #1e90ff; /* primary color accent */
-  padding: 18px 24px;
-  margin: 25px 0;
-  border-radius: 12px; /* like your cards */
-  font-family: 'Manrope', sans-serif;
-  color: #333;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.feedback-box:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-}
-
-.feedback-icon {
-  font-size: 22px;
-  font-weight: bold;
-  margin-right: 18px;
-}
-
-.feedback-text a {
-  color: #1e90ff; /* primary blue */
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.feedback-text a:hover {
-  text-decoration: underline;
-}
-</style>
-
-  
 <footer>
-  <div class="footer-content">
-    <p>© 2025 DEVGAMEBLOGPROMO™ | All rights reserved.</p>
-    <div class="duns-badge">
-      ✅ <strong>D‑U‑N‑S® Verified</strong><br>
+  © 2023 DevGameBlogPromo
+✅ <strong>D‑U‑N‑S® Verified</strong><br>
       D‑U‑N‑S® Number: <strong>772660415</strong>
-    </div>
-  </div>
 </footer>
 
-<style>
-  footer {
-    background-color: #101010;
-    color: #ffffff;
-    padding: 20px;
-    font-family: 'Segoe UI', sans-serif;
-    position: relative;
-  }
-
-  .footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .duns-badge {
-    position: absolute;
-    bottom: 10px;
-    right: 20px;
-    font-size: 0.9rem;
-    background: #0b76d1;
-    color: white;
-    padding: 10px 14px;
-    border-radius: 8px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.3);
-    text-align: right;
-  }
-
-  @media (max-width: 600px) {
-    .duns-badge {
-      position: static;
-      margin-top: 10px;
-      text-align: center;
-      display: block;
-    }
-  }
-</style>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-10VRSCCMCH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-10VRSCCMCH');
-</script>
-
-
-  <!-- Preload Google Fonts for faster load -->
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" as="style">
-
-<!-- Lazy load logo -->
-
-
-<style>
-html {
-  scroll-behavior: smooth;
-}
-.button:hover {
-  background-color: #00e0b0;
-  transform: translateY(-2px);
-  transition: all 0.3s ease;
-}
-</style>
-
-
-  <!-- Back-to-Top Button -->
 <a href="#top" class="back-to-top">↑</a>
 
-<style>
-/* Hero animated gradient */
-.hero {
-  background: linear-gradient(135deg, #0a0a0a, #121212, #0a0a0a, #121212);
-  background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
-}
-
-@keyframes gradientShift {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
-}
-
-/* Neon headings */
-h1, h2 {
-  text-shadow: 0 0 10px #00ffc3, 0 0 20px #00ffc3;
-}
-
-/* Card hover glow */
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 20px rgba(0, 255, 195, 0.3);
-}
-
-/* Accent underline on links */
-nav a::after {
-  content: '';
-  display: block;
-  width: 0;
-  height: 2px;
-  background: var(--accent);
-  transition: width 0.3s;
-}
-nav a:hover::after {
-  width: 100%;
-}
-
-/* Scroll-trigger fade-in */
-.section {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease;
-}
-.section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Back-to-top button */
-.back-to-top {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background: var(--accent);
-  color: #000;
-  padding: 0.75rem 1rem;
-  border-radius: 50%;
-  font-size: 1.2rem;
-  display: none;
-  cursor: pointer;
-  z-index: 1000;
-}
-.back-to-top:hover {
-  background-color: #00e0b0;
-  transform: translateY(-2px);
-  transition: all 0.3s ease;
-}
-
-/* Smooth scroll behavior */
-html {
-  scroll-behavior: smooth;
-}
-</style>
-
 <script>
-// Back-to-top show/hide
-const backToTop = document.querySelector('.back-to-top');
-window.addEventListener('scroll', () => {
-  if(window.scrollY > 300){
-    backToTop.classList.add('show');
-  } else {
-    backToTop.classList.remove('show');
-  }
-});
+const scrollTexts = document.querySelectorAll('.scroll-text div');
+let idx = 0;
+setInterval(() => {
+  scrollTexts[idx].classList.remove('active');
+  idx = (idx+1) % scrollTexts.length;
+  scrollTexts[idx].classList.add('active');
+},6000);
 
-// Fade-in sections on scroll
-const sections = document.querySelectorAll('.section');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-},{ threshold: 0.3 });
+function toggleMenu(){ document.querySelector('nav').classList.toggle('active'); }
 
-sections.forEach(section => observer.observe(section));
+// Back-to-top
+const backToTop=document.querySelector('.back-to-top');
+window.addEventListener('scroll',()=>{ if(window.scrollY>300){ backToTop.style.display='block'; } else{ backToTop.style.display='none'; } });
 
-<!-- Improved UX & Visuals for DevGameBlogPromo -->
+// Fade-in sections
+const sections=document.querySelectorAll('.section');
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+},{threshold:0.3});
+sections.forEach(sec=>observer.observe(sec));
 </script>
 
-<style>
-html {
-  scroll-behavior: smooth; /* Smooth scrolling */
-}
-
-:root {
-  --bg: #0a0a0a;
-  --card-bg: #161616;
-  --text: #f3f3f3;
-  --dim: #9e9e9e;
-  --accent: #00ffc3;
-  --accent-hover: #00e0b0;
-  --transition-speed: 0.3s;
-}
-
-html {
-  scroll-behavior: smooth; /* Smooth scrolling */
-}
-
-body {
-  font-family: 'Manrope', sans-serif;
-  background-color: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-}
-
-/* Header Navigation */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 10%;
-  background: var(--bg);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0,255,194,0.1);
-}
-
-nav a {
-  margin-left: 2rem;
-  color: var(--dim);
-  text-decoration: none;
-  font-weight: 500;
-  transition: color var(--transition-speed);
-}
-
-nav a:hover, nav a:focus {
-  color: var(--accent-hover);
-  outline: none;
-}
-
-/* Hero Section */
-.hero {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 0 10%;
-  background: linear-gradient(135deg, #0a0a0a, #121212);
-}
-
-.hero h1 {
-  font-size: 4rem;
-  font-weight: 700;
-  color: var(--accent);
-  margin-bottom: 1rem;
-  text-shadow: 0 0 10px rgba(0,255,195,0.3);
-  animation: glow 2s infinite alternate;
-}
-
-.hero p {
-  font-size: 1.25rem;
-  color: var(--dim);
-  max-width: 600px;
-  margin-bottom: 2rem;
-}
-
-/* Button styles */
-.button, .btn {
-  background-color: var(--accent);
-  color: #000;
-  border: none;
-  padding: 0.75rem 1.5rem;
-  font-weight: 700;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all var(--transition-speed) ease;
-  box-shadow: 0 4px 15px rgba(0,255,195,0.2);
-}
-
-.button:hover, .btn:hover {
-  background-color: var(--accent-hover);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0,255,195,0.4);
-}
-
-/* Card Styles */
-.card {
-  background: var(--card-bg);
-  padding: 2rem;
-  border-radius: 1rem;
-  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-  position: relative;
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 25px rgba(0,255,195,0.3);
-}
-
-/* Impact Stats */
-.impact-stat h3 {
-  font-size: 3rem;
-  color: var(--accent);
-  margin: 0;
-  transition: transform var(--transition-speed);
-}
-
-.impact-stat h3:hover {
-  transform: scale(1.2);
-}
-
-/* Footer Improvements */
-footer {
-  background-color: #101010;
-  color: var(--dim);
-  padding: 20px 10%;
-  text-align: center;
-  border-top: 1px solid #222;
-}
-
-footer .duns-badge {
-  display: inline-block;
-  font-size: 0.9rem;
-  background: #0b76d1;
-  color: white;
-  padding: 10px 14px;
-  border-radius: 8px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.3);
-  margin-top: 10px;
-}
-
-/* Card Quote Styling */
-.card p:first-child {
-  font-style: italic;
-  position: relative;
-  padding-left: 1.5rem;
-}
-
-.card p:first-child::before {
-  content: "“";
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: var(--accent);
-  font-size: 2rem;
-  line-height: 1;
-}
-
-/* Glow animation */
-@keyframes glow {
-  0% { text-shadow: 0 0 5px rgba(0,255,195,0.3); }
-  100% { text-shadow: 0 0 20px rgba(0,255,195,0.7); }
-}
-
-/* Responsive improvements */
-@media (max-width: 768px) {
-  .hero h1 { font-size: 2.25rem; }
-  .hero p { font-size: 1rem; }
-  nav a { margin-left: 1rem; font-size: 0.95rem; }
-}
-
-
-  /* Mobile Responsiveness */
-@media (max-width: 600px) {
-  .testimonials {
-    padding: 1rem;
-    margin: 0.5rem;
-  }
-  .testimonials h2 {
-    font-size: 1.3rem;
-  }
-  .testimonials .intro {
-    font-size: 0.9rem;
-  }
-  .testimonial {
-    padding: 0.8rem 1rem;
-  }
-  .testimonial p {
-    font-size: 0.9rem;
-  }
-  .testimonial .author {
-    font-size: 0.85rem;
-  }
-}
-</style>
-
-</head>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</body>
+</html>
 
 
 
