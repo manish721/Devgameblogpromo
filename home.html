@@ -417,9 +417,66 @@ sections.forEach(sec=>observer.observe(sec));
 
   gtag('config', 'G-10VRSCCMCH');
 </script>
-</script>
+<style>
+.notice-box {
+  margin: 2% auto;
+  padding: 2em;
+  background-color: #f9f9f9;
+  border-left: 0.5em solid #ff6600;
+  border-radius: 1em;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.7;
+  color: #333;
+  max-width: 900px;
+  box-sizing: border-box;
+}
+
+.notice-title {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.notice-footer {
+  font-style: italic;
+  color: #555;
+  margin-top: 1.5em;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .notice-box {
+    padding: 1.5em;
+    border-left-width: 0.4em;
+    margin: 1% auto;
+  }
+
+  .notice-title {
+    font-size: 1.1em;
+  }
+}
+
+/* Extra small screens (phones) */
+@media (max-width: 480px) {
+  .notice-box {
+    padding: 1em;
+    border-left-width: 0.3em;
+    border-radius: 0.8em;
+  }
+
+  .notice-title {
+    font-size: 1em;
+  }
+
+  .notice-footer {
+    font-size: 0.9em;
+  }
+}
+</style>
 </body>
 </html>
+
 
 
 
