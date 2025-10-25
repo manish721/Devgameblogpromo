@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DGBP Policy Portal</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    body { background-color: #f4f4f9; color: #333; }
+
+    /* Navbar */
+    nav {
+      background-color: #1b1b2f;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav h1 { color: #fff; font-size: 1.5rem; }
+    nav ul { display: flex; gap: 1.5rem; list-style: none; }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+    nav ul li a:hover { background-color: #4a4a6a; }
+
+    /* Page content */
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    h2 { margin-bottom: 0.5rem; }
+    p { margin-bottom: 1rem; }
+    .document-link {
+      display: block;
+      padding: 1rem 1.5rem;
+      margin: 1rem 0;
+      background-color: #1b1b2f;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .document-link:hover { background-color: #4a4a6a; }
+
+    footer { text-align: center; margin: 2rem 0; color: #777; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <h1>DGBP Policy Portal</h1>
+    <ul>
+      <li><a href="https://docs.google.com/document/d/1wP5J00Eqt9GSIXA-h5WHwOCb87RrVTtke_W0x-UDFj0/edit?usp=sharing">DGBP Portal</a></li>
+      <li><a href="https://docs.google.com/document/d/1gETthRKk1luYCx-xBH4Yzr7HD_H3S5cHmPIbZ_I-0iY/edit?usp=sharing">DSA-VIC</a></li>
+      <li><a href="https://docs.google.com/document/d/1aLTz7SR8olXxaS6pWhLGYepjyq0_4Q-DmbzODZG4f1M/edit?usp=sharing">Pilot Checklist</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page content -->
+  <div class="container">
+    <h2 id="portal">DGBP Portal</h2>
+    <p>The central hub for all DGBP resources, labs, and policy updates.</p>
+    <a href="https://docs.google.com/document/d/1wP5J00Eqt9GSIXA-h5WHwOCb87RrVTtke_W0x-UDFj0/edit?usp=sharing" class="document-link" target="_blank">Open DGBP Portal</a>
+
+    <h2 id="dsavic">🇮🇳 DSA-VIC Policy Document</h2>
+    <p>National Digital Skill Acceleration & Vocational Integration Charter.</p>
+    <a href="https://docs.google.com/document/d/1gETthRKk1luYCx-xBH4Yzr7HD_H3S5cHmPIbZ_I-0iY/edit?usp=sharing" class="document-link" target="_blank">Open DSA-VIC</a>
+
+    <h2 id="checklist">📝 DGBP Pilot Implementation Checklist: Phase I (Years 1-2)</h2>
+    <p>Operational checklist for DGBP Pilot Program rollout (Phase I).</p>
+    <a href="https://docs.google.com/document/d/1aLTz7SR8olXxaS6pWhLGYepjyq0_4Q-DmbzODZG4f1M/edit?usp=sharing" class="document-link" target="_blank">Open Pilot Checklist</a>
+  </div>
+
+  <footer>
+    &copy; 2025 DevGameBlogPromo. All Rights Reserved.
+  </footer>
+
+  <script>
+    // Smooth scroll
+    document.querySelectorAll('nav ul li a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(link.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
