@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevGameBlogPromo Labs</title>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f6f8;
+    color: #333;
+  }
+
+  section {
+    padding: 50px 20px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+
+  p.subtitle {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 40px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .labs-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-items: center;
+  }
+
+  .lab-card {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    padding: 25px 20px;
+    width: 280px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+
+  .lab-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+  }
+
+  .lab-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #111;
+  }
+
+  .lab-card p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 15px;
+  }
+
+  .get-started-btn {
+    display: inline-block;
+    padding: 10px 22px;
+    background: #0073e6;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+
+  .get-started-btn:hover {
+    background: #005bb5;
+  }
+
+  .flagship-section { background: #e0f0ff; padding-top: 60px; padding-bottom: 60px; }
+  .unique-section { background: #fdf5e6; padding-top: 60px; padding-bottom: 60px; }
+  .new-labs-section { background: #e8f7f3; padding-top: 60px; padding-bottom: 60px; }
+</style>
+</head>
+<body>
+
+<!-- Top 4 Flagship Labs -->
+<section class="flagship-section">
+  <h1>Top 4 Flagship Labs</h1>
+  <p class="subtitle">These labs are the heart of DevGameBlogPromo, giving you hands-on experience and shaping future creators.</p>
+  <div class="labs-container" id="flagship-labs"></div>
+</section>
+
+<!-- Unique High-Impact Labs -->
+<section class="unique-section">
+  <h1>Unique High-Impact Labs</h1>
+  <p class="subtitle">Labs designed to give maximum learning impact, leadership, and innovation opportunities.</p>
+  <div class="labs-container" id="unique-labs"></div>
+</section>
+
+<!-- New Forward-Thinking Labs -->
+<section class="new-labs-section">
+  <h1>New Forward-Thinking Labs</h1>
+  <p class="subtitle">Explore cutting-edge areas and future skills that set DevGameBlogPromo apart.</p>
+  <div class="labs-container" id="new-labs"></div>
+</section>
+
+<script>
+const flagshipLabs = [
+  {name: "Production Lab", description: "Turn ideas into real projects, apps, and games. Hands-on creation and portfolio-building.", formLink: "https://forms.gle/ProductionLab"},
+  {name: "Mentorship Lab", description: "Guide learners, share expertise, and develop leadership skills.", formLink: "https://forms.gle/MentorshipLab"},
+  {name: "Future Market Lab", description: "Research emerging trends, forecast technology & business opportunities.", formLink: "https://forms.gle/FutureMarketLab"},
+  {name: "Analytics & Intelligence Lab", description: "Analyze data, extract insights, and make informed decisions for real projects.", formLink: "https://forms.gle/AnalyticsLab"}
+];
+
+const uniqueLabs = [
+  {name: "Innovation & Prototyping Lab", description: "Turn ideas into working prototypes and experiment with new tech.", formLink: "https://forms.gle/InnovationLab"},
+  {name: "Tech Entrepreneurship Lab", description: "Learn to start and manage technology-driven ventures.", formLink: "https://forms.gle/TechEntrepreneurLab"},
+  {name: "UX & Human-Centered Design Lab", description: "Build products focused on real user needs and experience.", formLink: "https://forms.gle/UXLab"},
+  {name: "Digital Ethics & Cyber Lab", description: "Study cybersecurity, privacy, and ethical tech practices.", formLink: "https://forms.gle/CyberLab"},
+  {name: "Future Skills Lab", description: "Explore emerging skills like blockchain, quantum computing, and AR/VR.", formLink: "https://forms.gle/FutureSkillsLab"},
+  {name: "Leadership & Strategy Lab", description: "Focus on team leadership, strategic thinking, and project planning.", formLink: "https://forms.gle/LeadershipLab"},
+  {name: "Collaboration & Networking Lab", description: "Team-based projects and international networking opportunities.", formLink: "https://forms.gle/CollaborationLab"},
+  {name: "Impact Projects Lab", description: "Work on projects that solve real-world problems or social challenges.", formLink: "https://forms.gle/ImpactLab"}
+];
+
+const newLabs = [
+  {name: "Quantum Computing Lab", description: "Learn the fundamentals of quantum computing and future computing paradigms.", formLink: "https://forms.gle/QuantumLab"},
+  {name: "Blockchain & Web3 Lab", description: "Explore blockchain, decentralized apps, NFTs, and Web3 technologies.", formLink: "https://forms.gle/BlockchainLab"},
+  {name: "AR/VR & Immersive Experiences Lab", description: "Build augmented and virtual reality applications and games.", formLink: "https://forms.gle/ARVRLab"},
+  {name: "Sustainable Tech Lab", description: "Focus on eco-friendly software, green computing, and sustainable solutions.", formLink: "https://forms.gle/SustainableLab"},
+  {name: "Robotics & Automation Lab", description: "Build robotics systems and automation solutions integrated with AI.", formLink: "https://forms.gle/RoboticsLab"},
+  {name: "Creative Media Lab", description: "Combine design, animation, music, and interactive media projects.", formLink: "https://forms.gle/CreativeMediaLab"},
+  {name: "Innovation Challenges Lab", description: "Solve real-world problems with hackathons and time-bound innovation projects.", formLink: "https://forms.gle/InnovationChallengesLab"},
+  {name: "Entrepreneurship Incubator Lab", description: "Guide students to create startups, validate ideas, and pitch to investors.", formLink: "https://forms.gle/EntrepreneurshipLab"},
+  {name: "AI & Machine Learning Lab", description: "Build intelligent applications using deep learning, NLP, and predictive models.", formLink: "https://forms.gle/AILab"},
+  {name: "Global Collaboration Lab", description: "Work on cross-border projects, virtual teams, and international networking.", formLink: "https://forms.gle/GlobalCollabLab"}
+];
+
+function generateLabs(labsArray, containerId) {
+  const container = document.getElementById(containerId);
+  labsArray.forEach(lab => {
+    const card = document.createElement('div');
+    card.classList.add('lab-card');
+    card.innerHTML = `
+      <h3>${lab.name}</h3>
+      <p>${lab.description}</p>
+      <a href="${lab.formLink}" class="get-started-btn" target="_blank">Get Started</a>
+    `;
+    container.appendChild(card);
+  });
+}
+
+generateLabs(flagshipLabs, "flagship-labs");
+generateLabs(uniqueLabs, "unique-labs");
+generateLabs(newLabs, "new-labs");
+</script>
+
+</body>
+</html>
