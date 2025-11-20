@@ -334,6 +334,140 @@ footer .duns-badge{ display:inline-block; font-size:0.9rem; background:#0b76d1; 
   <center> <a href="mentorship .html" class="button">Join Mentorship</a></center>
   </section>
 
+ <section class="company-row-section">
+    <h2 class="company-title">Companies in Our DevGameBlogPromo Network</h2>
+
+    <div class="company-slider">
+        <div class="company-track">
+            <span>StrideWorks </span>
+            <span>PixelPlay Studios </span>
+            <span>BrightLeaf Digital </span>
+            <span>CodeNova Systems</span>
+            <span>VectorHive Media</span>
+           
+
+            <!-- DUPLICATE (required for looping) -->
+              <span>StrideWorks </span>
+            <span>PixelPlay Studios </span>
+            <span>BrightLeaf Digital </span>
+            <span>CodeNova Systems</span>
+            <span>VectorHive Media</span>
+        </div>
+    </div>
+</section>
+
+<style>
+
+
+/* Container for 4 quotes */
+.leaders-quote-section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding: 60px 5%;
+    background: #0a0a0a;
+    font-family: Arial, sans-serif;
+}
+
+/* Single card */
+.leader-quote-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(0,234,255,0.2);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 25px rgba(0,234,255,0.2);
+    transition: 0.4s;
+}
+
+.leader-quote-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 40px rgba(0,234,255,0.4);
+}
+
+/* Quote text */
+.quote-text {
+    font-size: 20px;
+    color: #00eaff;
+    text-shadow: 0 0 8px #00eaff;
+    margin-bottom: 20px;
+}
+
+/* Person Name */
+.leader-name {
+    font-size: 22px;
+    color: #9b00ff;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+/* Subtitle */
+.leader-subtitle {
+    font-size: 14px;
+    color: #cccccc;
+}
+
+/* Responsive for mobile */
+@media (max-width: 900px) {
+    .leaders-quote-section {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .leaders-quote-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+.company-row-section {
+    width: 100%;
+    padding: 60px 0;
+    background: #0a0a0a;
+    color: #00ffc3;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.company-title {
+    font-size: 32px;
+    margin-bottom: 35px;
+    font-weight: 700;
+}
+
+/* Outer wrapping container */
+.company-slider {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+}
+
+/* Track that loops */
+.company-track {
+    display: inline-flex;
+    gap: 60px;
+    font-size: 26px;
+    font-weight: 600;
+    animation: loopScroll 15s linear infinite;
+}
+
+/* Infinite scrolling animation */
+@keyframes loopScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* Company item styling */
+.company-track span {
+    display: inline-block;
+    padding: 10px 0;
+}
+</style>
+
+
 
   <section class="section" id="events">
     <h2>Lead the Change</h2>
@@ -676,6 +810,7 @@ sections.forEach(sec=>observer.observe(sec));
 </style>
 </body>
 </html>
+
 
 
 
