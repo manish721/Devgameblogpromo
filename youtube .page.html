@@ -1,145 +1,124 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DevGameBlogPromo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DevGameBlogPromo — Channel Mockup</title>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Manrope', sans-serif;
-      background-color: #0a0a0a;
-      color: #f3f3f3;
+    :root{
+      --bg:#0f1724; --card:#111827; --muted:#94a3b8; --accent:#06b6d4; --accent-2:#7c3aed; --glass: rgba(255,255,255,0.04); --radius:14px;
+      --max-width:1100px; --gap:18px;
+      font-family: Inter, ui-sans-serif, system-ui;
     }
-    header {
-      padding: 1.5rem 10%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #121212;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    .logo {
-      font-size: 1.5rem;
-      color: #00ffc3;
-      font-weight: 700;
-    }
-    .hero {
-      text-align: center;
-      padding: 4rem 10%;
-      background: linear-gradient(135deg, #0a0a0a, #1e1e1e);
-    }
-    .hero h1 {
-      font-size: 3rem;
-      color: #00ffc3;
-      margin-bottom: 1rem;
-    }
-    .hero p {
-      color: #9e9e9e;
-      font-size: 1.2rem;
-    }
-    .video-section {
-      padding: 2rem 10%;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-    iframe {
-      width: 100%;
-      height: 200px;
-      border: none;
-      border-radius: 12px;
-    }
-    footer {
-      padding: 2rem 10%;
-      text-align: center;
-      background: #0a0a0a;
-      color: #9e9e9e;
-      border-top: 1px solid #222;
-    }
-    /* Sexy Button Style */
-    .button {
-      display: inline-block;
-      padding: 1rem 2.5rem;
-      background: linear-gradient(135deg, #00ffc3, #00b894);
-      color: #121212;
-      text-decoration: none;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 1.2rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      box-shadow: 0 10px 20px rgba(0, 255, 195, 0.2);
-      transition: all 0.3s ease-in-out;
-    }
-    .button:hover {
-      background: linear-gradient(135deg, #00b894, #00ffc3);
-      transform: translateY(-5px);
-      box-shadow: 0 15px 25px rgba(0, 255, 195, 0.4);
-    }
-    .button:active {
-      transform: translateY(0);
-      box-shadow: 0 5px 10px rgba(0, 255, 195, 0.2);
-    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#071022 0%, #071428 60%);color:#e6eef6;display:flex;justify-content:center;padding:32px}
+    .wrap{width:100%;max-width:var(--max-width)}
+    header.channel{display:flex;gap:16px;align-items:center;padding:18px;background:linear-gradient(90deg,rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:16px}
+    .avatar{width:120px;height:120px;border-radius:16px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:26px}
+    .meta{flex:1}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.05);font-size:12px;color:var(--muted)}
+    nav.tabs{display:flex;gap:8px;margin:18px 0}
+    nav.tabs button{background:transparent;border:1px solid rgba(255,255,255,0.03);padding:10px 12px;border-radius:12px;color:var(--muted);cursor:pointer}
+    nav.tabs button.active{background:var(--glass);color:#fff}
+
+    .content{display:grid;grid-template-columns:1fr 340px;gap:24px}
+    .video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+    .video-card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border-radius:12px;padding:10px}
+    .thumb{width:100%;height:130px;border-radius:10px;background:#0b1220;overflow:hidden}
+    .thumb img{width:100%;height:100%;object-fit:cover;border-radius:10px}
+    .vtitle{margin:8px 0 0;font-weight:600}
+    .meta-row{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-top:4px}
+
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:14px;border-radius:12px}
+
+    @media(max-width:900px){.content{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
+  <div class="wrap" id="app">
 
-  <header>
-    <div class="logo">DevGameBlogPromo</div>
-  </header>
+    <header class="channel">
+      <div class="avatar">DG</div>
+      <div class="meta">
+        <h1>DevGameBlogPromo <span class="pill">IDEATOR</span></h1>
+        <p style="color:var(--muted)">We build games, share tutorials, and launch projects weekly.</p>
+        <div style="margin-top:10px">
+          <span id="subCount" style="color:var(--muted);font-size:13px">1201 Active Users</span>
+        </div>
+      </div>
+      <button id="subscribeBtn" class="pill" style="background:linear-gradient(90deg,var(--accent),#06b6a4);color:#000;font-weight:700;border:none">Subscribe</button>
+    </header>
 
-  <section class="hero">
-    <h1>Welcome to My Video Space</h1>
-    <p>I post videos that matter to me — tutorials, stories, projects, and more. Stay inspired!</p>
-    <p>📥 Download the videos directly</p>
-    <!-- Video download buttons -->
-    <div class="video-section">
-      <a href="introduction.mkv" class="button">Introduction</a>
-      <a href="https://docs.google.com/document/d/1HlQbnRjqwhV7yMydwxKPh9ut1RWnJc-SMv8nunVnBDU/edit?usp=sharing" class="button">📜Copyright Protection Policy(CPP)</a>
-      <a href="" class="button">coming soon</a>
-      <!-- Add more video links as needed -->
+    <nav class="tabs">
+      <button class="active" data-tab="home">Home</button>
+    </nav>
+
+    <div class="content">
+      <main>
+        <section class="card">
+          <h2>Featured</h2>
+          <div style="margin-top:12px">
+            <div class="thumb" style="height:240px">
+              <iframe width="100%" height="100%" style="border-radius:10px;border:none" src="https://www.youtube.com/embed/KKGjFfC21aA" allowfullscreen></iframe>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3 style="margin:6px 0 12px">Uploads</h3>
+          <div class="video-grid">
+
+            <div class="video-card">
+              <div class="thumb">
+                <img src="https://img.youtube.com/vi/KKGjFfC21aA/maxresdefault.jpg" />
+              </div>
+              <div class="vtitle">New Video — DevGameBlogPromo</div>
+              <div class="meta-row"><span>Now</span><span>Just Uploaded</span></div>
+              <a href="https://www.youtube.com/watch?v=KKGjFfC21aA" target="_blank" style="color:var(--accent);font-size:13px;display:block;margin-top:8px">Watch →</a>
+            </div>
+
+          </div>
+        </section>
+      </main>
+
+      <aside>
+        <div class="card">
+          <h4>About DevGameBlogPromo</h4>
+          <p style="color:var(--muted);font-size:14px">Creator-led channel for frontend dev, indie game dev, and developer tools.</p>
+        </div>
+      </aside>
     </div>
-  </section>
-<div class="contact-message">
-<center>  <p>If you're unable to view any video, feel free to <a href="mailto:m81434409@gmail.com">email me</a>.</p> </center>
-</div>
-<center>  <p>mailto:m81434409@gmail.com</P> </center>
-<!-- Add this CSS to style the contact section -->
-<style>
-  .contact-message {
-    margin-top: 2rem;
-    color: #f3f3f3;
-    font-size: 1.2rem;
+  </div>
+
+  <script>
+   
+  const subBtn = document.getElementById('subscribeBtn');
+  const subCount = document.getElementById('subCount');
+
+  // Load saved state from localStorage
+  let sub = localStorage.getItem("dgb_isSubscribed") === "true";
+
+  // Apply saved state when page loads
+  if (sub) {
+    subBtn.textContent = "Subscribed";
+    subCount.textContent = "1,201 subscribers"; 
   }
-  .contact-message a {
-    color: #00ffc3;
-    text-decoration: none;
-  }
 
-  .video-section {
-  padding: 2rem 10%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  justify-content: center;
-}
+  // When button is clicked
+  subBtn.onclick = () => {
+    sub = !sub;
 
-</style>
-  <footer>
-    &copy; 2025 DevGameBlogPromo | Created by Manish
-  </footer>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-10VRSCCMCH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-10VRSCCMCH');
+    if (sub) {
+      subBtn.textContent = "Subscribed";
+      subCount.textContent = "1,24,569 subscribers";
+      localStorage.setItem("dgb_isSubscribed", "true");  
+    } else {
+      subBtn.textContent = "Subscribe";
+      subCount.textContent = "1,24,568 subscribers";
+      localStorage.setItem("dgb_isSubscribed", "false");
+    }
+  };
 </script>
+
 </body>
 </html>
