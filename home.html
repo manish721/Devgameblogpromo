@@ -1,811 +1,451 @@
- <!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DevGameBlogPromo</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DevGameBlogPromo — School of Development & Gaming</title>
+  <meta name="description" content="DevGameBlogPromo — Mentorship + 28 Labs. Learn, build real projects, and get job-ready." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0a0a0a;
+      --card:#0f1112;
+      --muted:#9aa0a6;
+      --text:#e9f9f6;
+      --accent:#00ffc3; /* neon aqua */
+      --accent-2:#00e6b0;
+      --glow-purple:#9b00ff;
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+      --maxw:1200px;
+      --ease: 0.18s;
+      --shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+    /* Base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:'Manrope',system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      -webkit-touch-callout:none;
+    }
+    a{color:inherit}
+    img{max-width:100%;height:auto;display:block}
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" rel="stylesheet">
+    /* Skip link */
+    .skip-link{
+      position: absolute;
+      left: -999px;
+      top: auto;
+      width:1px;height:1px;overflow:hidden;
+    }
+    .skip-link:focus{
+      left:1rem;top:1rem;width:auto;height:auto;padding:.5rem .75rem;background:#fff;color:#000;border-radius:6px;z-index:10000;
+    }
 
-<style>
-:root {
-  --bg: #0a0a0a;
-  --card-bg: #161616;
-  --text: #f3f3f3;
-  --dim: #9e9e9e;
-  --accent: #00ffc3;
-  --accent-hover: #00e0b0;
-  --transition-speed: 0.3s;
-}
+    /* Header */
+    header{
+      position:sticky;top:0;z-index:60;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(10,10,10,0.85), rgba(10,10,10,0.6));
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    .nav-wrap{
+      max-width:var(--maxw);margin:0 auto;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+    }
+    .brand{
+      display:flex;flex-direction:column;line-height:1;
+    }
+    .brand h1{
+      margin:0;font-size:1.05rem;color:var(--accent);letter-spacing:0.6px;font-weight:800;
+    }
+    .brand p{margin:0;color:var(--muted);font-size:0.8rem}
 
-/* Center all buttons */
-.button, .btn {
-  display: inline-block;       /* ensures the button behaves correctly in the container */
-  margin: 10px auto;           /* centers horizontally with some spacing */
-}
+    nav.primary{display:flex;gap:14px;align-items:center}
+    nav.primary a{color:var(--muted);text-decoration:none;font-weight:600;font-size:0.95rem;padding:6px 8px;border-radius:8px;transition:all var(--ease)}
+    nav.primary a:hover, nav.primary a:focus{color:var(--accent);outline:none;transform:translateY(-1px)}
+    .menu-toggle{display:none;color:var(--accent);font-weight:700;background:transparent;border:none;font-size:1.1rem}
 
-/* If buttons are inside a container, make sure the container centers them */
-.button-container, .button-wrapper {
-  text-align: center;          /* centers all inline-block buttons inside */
-  margin: 20px 0;              /* spacing above/below */
-}
+    /* Hero */
+    .hero{
+      min-height:70vh;
+      display:flex;align-items:center;justify-content:center;text-align:center;
+      padding:64px 20px 48px;
+      background: radial-gradient(1200px 400px at 10% 10%, rgba(0,255,195,0.03), transparent 6%),
+                  radial-gradient(800px 300px at 90% 90%, rgba(155,0,255,0.02), transparent 6%);
+    }
+    .hero-inner{max-width:980px;}
+    .hero h2{margin:0;font-size:2rem;color:var(--accent);text-shadow:0 6px 28px rgba(0,255,195,0.06);font-weight:800}
+    .hero p.lead{color:var(--muted);margin:14px 0 24px;font-size:1.05rem}
+    .hero .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;
+      background:linear-gradient(180deg,var(--accent),var(--accent-2));
+      color:#00201a;padding:12px 18px;border-radius:12px;font-weight:800;text-decoration:none;box-shadow:0 12px 28px rgba(0,255,195,0.08);
+      border:none;cursor:pointer;transition:transform .12s ease,box-shadow .12s ease,opacity .12s ease;
+    }
+    .btn.secondary{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,0.06);box-shadow:none;font-weight:700}
+    .btn:hover{transform:translateY(-3px);box-shadow:0 20px 45px rgba(0,255,195,0.07)}
+    .cta-small{font-size:0.95rem;padding:10px 16px;border-radius:10px}
 
-/* Optional: professional style tweak */
-.button, .btn {
-  background-color: #0078d7;   /* clean, professional blue */
-  color: #fff;
-  padding: 0.85rem 2rem;
-  font-weight: 600;
-  font-size: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 120, 215, 0.3);
-  transition: all 0.3s ease;
-}
+    /* small marquee texts inside header brand */
+    .scroll-text{position:relative;height:20px;margin-top:6px;overflow:hidden;display:block}
+    .scroll-text div{position:absolute;left:0;right:0;opacity:0;transform:translateY(6px);transition:all .45s ease}
+    .scroll-text div.active{opacity:1;transform:translateY(0)}
 
-.button:hover, .btn:hover {
-  background-color: #005ea3;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0, 94, 163, 0.4);
-}
+    /* Sections */
+    main{max-width:var(--maxw);margin:0 auto;padding:24px}
+    .section{padding:48px 0;border-bottom:1px solid rgba(255,255,255,0.02)}
+    .section h3{margin:0 0 12px;font-size:1.6rem;color:var(--accent);text-align:center}
+    .section p{margin:0 auto;color:var(--muted);max-width:900px;text-align:center}
 
-/* Responsive tweak for mobile */
-@media(max-width:768px){
-  .button, .btn {
-    width: auto;   /* keeps button size proper */
-  }
-}
+    /* card styles */
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:22px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.03);box-shadow:var(--shadow);transition:transform .18s ease}
+    .card:hover{transform:translateY(-8px);border-color:rgba(0,255,195,0.08)}
+    .card h4{margin:0 0 8px;color:var(--text);font-size:1.05rem}
+    .card p{margin:0;color:var(--muted);font-size:0.95rem}
 
+    /* Notice / Important */
+    .notice{background:#f7fafb;color:#0f1720;border-left:6px solid #ff6600;padding:22px;border-radius:10px;margin:18px auto;max-width:1100px}
+    .notice h4{margin:0 0 8px;color:#111}
+    .notice p{color:#333}
 
+    /* Impact / stats */
+    .impact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:18px;margin-top:18px}
+    .impact{background: linear-gradient(180deg, rgba(0,255,195,0.03), transparent); padding:18px;border-radius:10px;text-align:center;border:1px solid rgba(255,255,255,0.02)}
+    .impact .num{font-size:2.15rem;color:var(--accent);font-weight:800}
+    .impact p{margin:8px 0 0;color:var(--muted)}
 
-/* Reset */
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Manrope', sans-serif; }
+    /* leader quotes */
+    .leader-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:18px}
+    .quote-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:22px;border-radius:12px;border:1px solid rgba(0,255,195,0.06);box-shadow: 0 8px 40px rgba(0,255,195,0.03);transition:transform .18s ease}
+    .quote-card:hover{transform:translateY(-10px)}
+    .quote-card .q{color:var(--accent-2);font-weight:700;margin-bottom:12px}
+    .quote-card h5{margin:0;color:var(--glow-purple);font-weight:800}
+    .quote-card p.meta{color:var(--muted);margin-top:6px;font-size:0.95rem}
 
-body { background-color: var(--bg); color: var(--text); line-height:1.6; }
+    /* companies marquee */
+    .companies{overflow:hidden;padding:18px 0}
+    .companies .track{display:inline-flex;gap:40px;white-space:nowrap;animation:marquee 18s linear infinite}
+    @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    .companies span{color:var(--muted);font-weight:700}
 
-/* Navbar/Header */
-header, nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 5%; background:var(--bg); position:sticky; top:0; z-index:1000; box-shadow:0 2px 10px rgba(0,255,194,0.1); }
-.brand { display:flex; flex-direction:column; align-items:flex-start; color:var(--accent); font-weight:700; }
-.brand span { font-size:0.9rem; color:var(--dim); margin-top:4px; }
-.scroll-text { color:#ff6600; font-weight:bold; font-size:1.2rem; margin-top:2px; height:1.5rem; overflow:hidden; }
-.scroll-text div { opacity:0; position:absolute; width:100%; transition:opacity 1s; }
-.scroll-text div.active { opacity:1; }
-nav a { margin-left:1.5rem; color:var(--dim); text-decoration:none; font-weight:500; transition: color var(--transition-speed); }
-nav a:hover, nav a:focus { color: var(--accent-hover); outline:none; }
-.menu-toggle { display:none; cursor:pointer; font-size:1.5rem; color:var(--accent); }
+    /* consultation board */
+    .consult-card{max-width:680px;margin:18px auto;padding:20px;border-radius:12px;background:linear-gradient(180deg,rgba(0,0,0,0.5),rgba(0,0,0,0.45));border:1px solid rgba(255,255,255,0.03);text-align:center}
+    .consult-card h4{color:var(--accent);margin:0 0 10px}
 
-/* Hero Section */
-.hero { height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:0 5%; background:linear-gradient(135deg,#0a0a0a,#121212); background-size:400% 400%; animation: gradientShift 15s ease infinite; }
-@keyframes gradientShift { 0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;} }
-.hero h1 { font-size:3rem; font-weight:700; color:var(--accent); margin-bottom:1rem; text-shadow:0 0 10px rgba(0,255,195,0.3); animation:glow 2s infinite alternate; }
-.hero p { font-size:1.25rem; color:var(--dim); max-width:700px; margin-bottom:1rem; }
-@keyframes glow { 0%{ text-shadow:0 0 5px rgba(0,255,195,0.3);}100%{ text-shadow:0 0 20px rgba(0,255,195,0.7); } }
-.button, .btn { background-color:var(--accent); color:#000; border:none; padding:0.75rem 1.5rem; font-weight:700; border-radius:0.5rem; cursor:pointer; text-decoration:none; transition:all var(--transition-speed) ease; box-shadow:0 4px 15px rgba(0,255,195,0.2);}
-.button:hover, .btn:hover { background-color:var(--accent-hover); transform:translateY(-3px); box-shadow:0 6px 20px rgba(0,255,195,0.4); }
+    /* footer */
+    footer{padding:30px 20px;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,0.02);margin-top:28px}
+    footer .duns{display:inline-block;background:linear-gradient(90deg,#0066ff,#4f46e5);color:white;padding:8px 12px;border-radius:8px;font-weight:700;margin-top:10px}
 
-/* Sections */
-.section { padding:4rem 5%; max-width:1200px; margin:0 auto; opacity:0; transform:translateY(30px); transition:all 0.8s ease; }
-.section.visible { opacity:1; transform:translateY(0); }
-.section h2 { font-size:2.25rem; margin-bottom:1rem; color:var(--accent); text-align:center; }
-.section p { text-align:center; color:var(--dim); margin-bottom:2rem; }
+    /* back to top */
+    .back-top{position:fixed;right:22px;bottom:22px;background:var(--accent);color:#00201a;padding:10px;border-radius:50%;display:none;box-shadow:0 8px 30px rgba(0,255,195,0.08);cursor:pointer;border:none}
 
-.impact-section { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:2rem; }
-.impact-stat h3 { font-size:3rem; color:var(--accent); margin:0; transition:transform var(--transition-speed);}
-.impact-stat h3:hover{ transform:scale(1.2); }
-.impact-stat p{ text-align:center; color:var(--dim); margin-top:0.5rem; }
-
-/* Feedback Box */
-.feedback-box { display:flex; align-items:center; justify-content:space-between; background-color:#f0f4f8; border-left:5px solid #1e90ff; padding:18px 24px; margin:25px 0; border-radius:12px; color:#333; transition:transform 0.2s ease, box-shadow 0.2s ease; }
-.feedback-box:hover { transform:translateY(-2px); box-shadow:0 6px 15px rgba(0,0,0,0.1);}
-.feedback-icon{ font-size:22px; margin-right:18px; } 
-.feedback-text a{ color:#1e90ff; text-decoration:none; font-weight:600; } 
-.feedback-text a:hover{ text-decoration:underline; }
-
-/* Footer */
-footer { background-color:#101010; color:var(--dim); padding:20px 5%; text-align:center; border-top:1px solid #222;}
-footer .duns-badge{ display:inline-block; font-size:0.9rem; background:#0b76d1; color:white; padding:10px 14px; border-radius:8px; box-shadow:0 0 8px rgba(0,0,0,0.3); margin-top:10px;}
-
-/* Back-to-Top */
-.back-to-top { position:fixed; bottom:30px; right:30px; background:var(--accent); color:#000; padding:0.75rem 1rem; border-radius:50%; font-size:1.2rem; display:none; cursor:pointer; z-index:1000; }
-.back-to-top:hover{ background-color:var(--accent-hover); transform:translateY(-2px); }
-
-/* Responsive */
-@media(max-width:768px){ .hero h1{ font-size:2.25rem;} .hero p{ font-size:1rem;} nav a{ margin-left:1rem; font-size:0.95rem;} .menu-toggle{ display:block;} nav{ display:none; flex-direction:column; gap:10px;} nav.active{ display:flex; } }
-</style>
+    /* responsive */
+    @media (max-width:1024px){
+      .leader-grid{grid-template-columns:repeat(2,1fr)}
+      .brand h1{font-size:1rem}
+    }
+    @media (max-width:700px){
+      nav.primary{display:none}
+      .menu-toggle{display:block}
+      .leader-grid{grid-template-columns:1fr}
+      .impact-grid{grid-template-columns:repeat(2,1fr)}
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <div class="brand">
-    DevGameBlogPromo
-    <span>School of Development and Gaming</span>
-    <div class="scroll-text">
-      <div class="active">Big Deal Entrepreneurship</div>
-      <div>Innovative Mind Ahead</div>
-      <div>Power Code Future</div>
-    </div>
-  </div>
-  <nav>
-   <a href=" carrer.html">Labs🚀</a>
-      
-      <a href="https://pixelpromoinsights.blogspot.com/">Blog📝</a>
-      <a href="announcement page.html">Announcements 📢</a>
-      
-      <a href="What Our Community Says.html">Community Says💬</a>
-    <a href="youtube .page.html">  DevStream <i class="fa-brands fa-youtube"></i>  </a>
-  
-       <a href="https://sites.google.com/view/pixelcraftfest/home">PCF🎨</a>
-          <a href="more.html"> Journey🛤️</a>
-   <a href="DGBP India Policy Portal.html">  Policy Hub <i class="hgi hgi-stroke hgi-document-attachment"></i> </a>
-     
-      
-  </nav>
-  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-</header>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<section class="hero">
-  <h1>"Transform Your Skills Into Income: Create, Contribute, and Grow"</h1>
-  <p>— Manish, Founder & Developer Success Coach</p>
-  <p>"We help creators and developers transform skills into profitable services through expert consulting, targeted campaigns, and proven launch strategies."</p>
-  <a href="https://discord.gg/HdvgYfGw6s" class="button">Join Labs — Start Now</a>
-  <a href=" core team.html"  class="button">Core Team</a>
-</section>
-
-<script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
- 
-    <div style="margin-top: 20px; padding: 25px; background-color: #f9f9f9; border-left: 6px solid #ff6600; border-radius: 10px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.7; color: #333;">
-    <p style="font-weight: bold; font-size: 1.1em;">Important Notice for Aspiring Learners:</p>
-    <p>
-        Many courses out there make big claims but fail to deliver true value. <strong>We operate differently.</strong> 
-        Before you follow us on Instagram, YouTube, LinkedIn, or any other platform, we strongly recommend you <strong>complete our courses first</strong>. 
-        This ensures you experience the authentic methodology and real-world business strategies that drive success.
-    </p>
-    <p>
-        Unlike others who focus on flashy promotions, our approach is rooted in practical learning. 
-        Within our courses, you’ll gain skills that matter, insights that create real impact, and knowledge that translates into results. 
-        Only after completing the course should you engage with our social media pages to fully appreciate and leverage what you’ve learned.
-    </p>
- <p style="font-weight: bold; font-size: 1.1em;">The Reality of Mentorship and Project Success:</p>
-    <p>At DGBP, we don’t chase investors or unnecessary validation. Our focus is simple: empowering developers, students, and creators.</p>
-  <p>Everything we show here—testimonials, case studies, projects, mentorship outcomes, and numbers—is real.</p>
-  <p>We provide proofs on demand. If you are genuinely interested in understanding our results, we will share them. Otherwise, we respect your time and ours.</p>
-  <p>We work with people ready to engage and learn, not those seeking shortcuts or unnecessary approval.</p>
-    
-  <p>Bottom line: If you’re serious about coding, mentorship, and building projects—welcome. If not, we respect your choice to move on.</p>
-    <p style="font-style: italic; color: #555;">Focus on learning first. Results follow naturally.</p>
-  </div>
-</section>
-  
-
-
-  
-
-  <section class="section" id="about">
-    <h2>About Us</h2>
-   
-  <h2>Our Mission</h2>
-  <p>We empower creators, developers, and entrepreneurs to build real solutions, not just ideas. Innovation should be accessible, actionable, and inspiring—and that’s what we stand for.</p>
-
-  <h2>Our Vision</h2>
-  <p>To be the global platform where technology meets creativity, and every learner finds the support they need to thrive.</p>
-
-  <h2>What We Do</h2>
-  <ul>
-    <li>🚀 28 innovation labs across tech, design, AI, and marketing</li>
-    <li>🎓 Expert-led mentorship & real-world projects</li>
-    <li>🌐 Pre-built tools and resources for startups and creators</li>
-    <li>🎙️ Podcasts and music that inspire growth and connection</li>
-  </ul>
-
-  <h2>Why Choose Us?</h2>
-  <ul>
-    <li>✅ DUNS verified and globally trusted</li>
-    <li>✅ Human-first learning experience</li>
-    <li>✅ Focused on long-term impact, not just quick wins</li>
-    <li>✅ Community-driven, creator-supported</li>
-  </ul>
-
-  <p>
-    We’re not here to chase fame or fortune — we’re building a **legacy**. We believe in empowering creators to become leaders, learners to become innovators, and coders to become entrepreneurs.
-  </p>
-
-  <p>
-    If you're looking for a platform to grow, create, and transform — you've found it. Join us and help shape the future of innovation.
-  </p>
-
-  <p><strong>#ThinkCodeLiveCreate — Dev Pixel Studio | DevGameBlogPromo</strong></p>
-  </section>
-
-<section style="margin: 60px auto; max-width: 900px; text-align: center; padding: 28px; background: var(--card-bg); border-radius: 14px; box-shadow: 0 0 20px rgba(0,255,194,0.2);">
-  <h2 style="color: var(--primary-color); margin-bottom: 16px;">What You Really Get Here</h2>
-  <p style="color: var(--muted); font-size: 1.05rem; margin-bottom: 20px;">
-    Most visitors ask the same question: <strong>“What do I really get if I join?”</strong>  
-    Here’s the honest answer:
-  </p>
-  <ul style="list-style: none; padding: 0; color: var(--text-light); text-align: left; max-width: 700px; margin: 0 auto;">
-    <li>✅ <strong> Crystal-Clear Roadmap</strong> — No confusion, no guessing. Follow the proven path: learner → builder → leader and unlock your full potential.</li>
-    <li>✅ <strong>No Hype, Just Results</strong> — Forget “earn lakhs fast” schemes. We tell it like it is: growth takes time, discipline is rare — but if you stay committed, success is inevitable.</li>
-    <li>✅ <strong>Mentorship That’s Future-Ready</strong> — In 2025–2027, AI will flood the market with fake mentors.As AI-driven scams rise, we’re staying real. Human-first support, hands-on projects, and guidance that actually helps you build, not just talk..</li>
-    <li>✅ <strong>Trust You Can Count On</strong> — Even if you don’t join today, you’ll remember us because we’re honest, clear, and consistent — no fake promises.</li>
-    <li>✅ <strong>Right People, Right Community</strong> —We attract serious players, not time-passers. When you hear “6–12 months of effort,” those ready to grind stay — and that’s how legends are made.</li>
-  </ul>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="btn" style="margin-top: 20px;">Join Serious Learners →</a>
-</section>
-
- <section class="leaders-quote-section">
-   <div class="leader-quote-card">
-        <p class="quote-text">"Helping people reach their highest potential through honest work — step by step, not by risky shortcuts."</p>
-        <h3 class="leader-name">Dhunti Pranay Kumar Goud</h3>
-        <p class="leader-subtitle">He taught me the things I should never do, and even when I made those mistakes, I learned because of him — the first person who guided me since 6th class.</p>
-    </div>
-
-
-
-    <div class="leader-quote-card">
-        <p class="quote-text">“Be it hunger or thirst — keep our company first.”</p>
-        <h3 class="leader-name">Upadhyayula Girish</h3>
-        <p class="leader-subtitle">In every tough moment, he’s been the silent strength I could rely on — that means more than anything.</p>
-    </div>
-
- 
-    <div class="leader-quote-card">
-        <p class="quote-text">“Quality will always matter more than quantity.”"</p>
-        <h3 class="leader-name">Ravi Teja</h3>
-        <p class="leader-subtitle">The one who reminds us that meaningful work comes from precision, not pressure.</p>
-    </div>
-
-     <div class="leader-quote-card">
-        <p class="quote-text">“Money has value only when it is earned with effort — never give it away simply.”</p>
-        <h3 class="leader-name">Vinay</h3>
-        <p class="leader-subtitle">A person who understands the true value of money and teaches others to respect it.</p>
-    </div>
-</section>
-
-
- <style>
-/* Container for 4 quotes */
-.leaders-quote-section {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-    padding: 60px 5%;
-    background: #0a0a0a;
-    font-family: Arial, sans-serif;
-}
-
-/* Single card */
-.leader-quote-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(0,234,255,0.2);
-    border-radius: 15px;
-    padding: 30px;
-    text-align: center;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 25px rgba(0,234,255,0.2);
-    transition: 0.4s;
-}
-
-.leader-quote-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 40px rgba(0,234,255,0.4);
-}
-
-/* Quote text */
-.quote-text {
-    font-size: 20px;
-    color: #00eaff;
-    text-shadow: 0 0 8px #00eaff;
-    margin-bottom: 20px;
-}
-
-/* Person Name */
-.leader-name {
-    font-size: 22px;
-    color: #9b00ff;
-    font-weight: 700;
-    margin-bottom: 5px;
-}
-
-/* Subtitle */
-.leader-subtitle {
-    font-size: 14px;
-    color: #cccccc;
-}
-
-/* Responsive for mobile */
-@media (max-width: 900px) {
-    .leaders-quote-section {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    .leaders-quote-section {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
- 
-<section class="section" id="philosophy">
-  <h2>Philosophy of Code 8392</h2>
-
-  <p>
-    In the vast expanse of the digital universe, there exists a secret code, whispered only among the initiated: <strong>8392</strong>.
-    This enigmatic sequence of numbers holds within it the essence of our company's philosophy — a mystery pulsating with life.
-  </p>
-
-  <p>
-    Imagine, if you will, a journey through the labyrinth of code, where each line is a thread weaving the fabric of our reality.
-    In this narrative, <strong>8392</strong> is not merely a sequence of digits; it is a key to unlock the door to a realm where logic
-    and creativity dance in an eternal embrace.
-  </p>
-
-  <p>
-    At <strong>DevGameBlogPromo</strong>, we see code as more than just logic — it's language, it's art, it's power. Code 8392 is our belief that development isn't just syntax and structure, but the spark of purpose behind every keystroke.
-  </p>
-
-  <p><strong>What Does 8392 Mean?</strong></p>
-  <ul>
-    <li><strong>8</strong> – Infinity turned upright: Limitless potential and eternal growth.</li>
-    <li><strong>3</strong> – The Triangle: A stable foundation of logic, innovation, and design.</li>
-    <li><strong>9</strong> – Challenge: The drive to go beyond boundaries and break limits.</li>
-    <li><strong>2</strong> – Duality: The harmony of vision & execution, creativity & discipline.</li>
-  </ul>
-
-  <p>
-    But how does one decipher the cryptic language of 8392? The answer lies not in conventional wisdom, but in the willingness to
-    embrace the unknown. Like a traveler venturing into uncharted territory, one must relinquish preconceived notions and embrace
-    the chaos of possibility.
-  </p>
-
-  <p>
-    Many have tried to define it — a binary symphony, a dreamscape woven by thought. Yet none have truly captured it, because 8392
-    is not meant to be understood. It is meant to be experienced.
-  </p>
-
-  <p><strong>The Table Teaches Us:</strong></p>
-  <ul>
-    <li><strong>Empty Cells:</strong> Mystery and possibility. What could be? What hasn't yet been discovered?</li>
-    <li><strong>Question Mark (?):</strong> The center cell — our curiosity, our drive to question, our refusal to accept limits.</li>
-  </ul>
-
-  <div style="overflow-x:auto; margin: 2em 0;">
-    <table border="1" cellpadding="10" cellspacing="0" style="margin:auto; text-align:center;">
-      <tr><td></td><td></td><td></td></tr>
-      <tr><td></td><td><strong>?</strong></td><td></td></tr>
-      <tr><td></td><td></td><td></td></tr>
-    </table>
-  </div>
-
-  <p>
-    Each cell is a fragment, a whisper of potential, a door waiting to be opened. As you look into it, you may see a reflection of your own journey — the
-    endless road of discovery.
-  </p>
-
-  <p>
-    So, fellow builder of dreams, we invite you to walk with us. Let us embrace the unknown, question the obvious, and write code that doesn't just
-    run — but speaks. Because Code <strong>8392</strong> isn't just ours. It's yours now too.
-  </p>
-</section>
-  
-
-  <section class="section" id="courses">
-    <h2>Courses</h2>
-    <p>Join our curated courses to level up your skills in coding, gaming, and entrepreneurship.</p>
-  <center> <a href="mentorship .html" class="button">Join Mentorship</a></center>
-  </section>
-
- <section class="company-row-section">
-    <h2 class="company-title">Companies in Our DevGameBlogPromo Network</h2>
-
-    <div class="company-slider">
-        <div class="company-track">
-            <span>StrideWorks </span>
-            <span>PixelPlay Studios </span>
-            <span>BrightLeaf Digital </span>
-            <span>CodeNova Systems</span>
-            <span>VectorHive Media</span>
-           
-
-            <!-- DUPLICATE (required for looping) -->
-              <span>StrideWorks </span>
-            <span>PixelPlay Studios </span>
-            <span>BrightLeaf Digital </span>
-            <span>CodeNova Systems</span>
-            <span>VectorHive Media</span>
+  <header role="banner" aria-label="Primary">
+    <div class="nav-wrap" role="navigation" aria-label="Main navigation">
+      <div class="brand" aria-hidden="false">
+        <h1>DevGameBlogPromo</h1>
+        <p>School of Development &amp; Gaming</p>
+        <div class="scroll-text" aria-hidden="true">
+          <div class="active">Big Deal Entrepreneurship</div>
+          <div>Innovative Mind Ahead</div>
+          <div>Power Code Future</div>
         </div>
+      </div>
+
+      <nav class="primary" aria-label="Top links">
+        <a href="carrer.html">Labs🚀</a>
+        <a href="https://pixelpromoinsights.blogspot.com/">Blog📝</a>
+        <a href="announcement page.html">Announcements 📢</a>
+        <a href="What Our Community Says.html">Community Says💬</a>
+        <a href="youtube .page.html">DevStream</a>
+        <a href="https://sites.google.com/view/pixelcraftfest/home">PCF🎨</a>
+        <a href="more.html">Journey🛤️</a>
+        <a href="DGBP India Policy Portal.html">Policy Hub</a>
+      </nav>
+
+      <button class="menu-toggle" aria-expanded="false" aria-controls="primary-menu" onclick="toggleMenu()">☰</button>
     </div>
-</section>
+  </header>
 
-<style>
-.company-row-section {
-    width: 100%;
-    padding: 60px 0;
-    background: #0a0a0a;
-    color: #00ffc3;
-    text-align: center;
-    font-family: Arial, sans-serif;
-}
+  <main id="main" role="main">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <h2 id="hero-title">"Transform Your Skills Into Income: Create, Contribute, and Grow"</h2>
+        <p class="lead">— Manish, Founder &amp; Developer Success Coach</p>
+        <p class="lead" style="margin-top:6px;max-width:760px;">"We help creators and developers transform skills into profitable services through expert consulting, targeted campaigns, and proven launch strategies."</p>
+        <div class="cta-row" style="margin-top:20px">
+          <a class="btn" href="https://discord.gg/HdvgYfGw6s" aria-label="Join Labs — Start Now">Join Labs — Start Now</a>
+          <a class="btn secondary cta-small" href=" core team.html" aria-label="Core team">Core Team</a>
+        </div>
+      </div>
+    </section>
 
-.company-title {
-    font-size: 32px;
-    margin-bottom: 35px;
-    font-weight: 700;
-}
-
-/* Outer wrapping container */
-.company-slider {
-    overflow: hidden;
-    white-space: nowrap;
-    position: relative;
-}
-
-/* Track that loops */
-.company-track {
-    display: inline-flex;
-    gap: 60px;
-    font-size: 26px;
-    font-weight: 600;
-    animation: loopScroll 15s linear infinite;
-}
-
-/* Infinite scrolling animation */
-@keyframes loopScroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-}
-
-/* Company item styling */
-.company-track span {
-    display: inline-block;
-    padding: 10px 0;
-}
-</style>
-
-
-
-  <section class="section" id="events">
-    <h2>Lead the Change</h2>
-    <p>Step up as a global ambassador, spark inspiration, and shape the future with your leadership.</p>
-   <center><a href="global page.html" class="button"> Global Impact Network📈</a></center>
-
-  </section>
-
- <section aria-labelledby="dgbp-labs-notice" class="dgbp-notice" role="status">
-  <h2 id="dgbp-labs-notice">Important Notice — 28 Labs Are Not Just Learning</h2>
-  <p>
-    The <strong>28 Labs</strong> of <strong>DevGameBlogPromo™</strong> are not just for learning. They are a
-    <strong>career-building ecosystem</strong> where members get real experience, professional growth, leadership
-    opportunities, and the chance to earn through projects.
-  </p>
-  <ul>
-    <li>Work on real software, design, business & AI projects</li>
-    <li>Build portfolio + get experience letter + certification</li>
-    <li>Earn from client-based projects & internal roles</li>
-    <li>Career growth path: Member → Team Lead → Lab Leader → Core Team</li>
-  </ul>
-  <p class="dgbp-note-cta">
-    🔥 This is not a normal course — it’s a career launch platform. Your work decides your growth & earnings.
-  
-  </p>
-</section>
-
-<style>
-  .dgbp-notice {
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 20px 22px;
-    border-left: 6px solid #0f172a;
-    background: #f8fafc;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.06);
-    border-radius: 10px;
-    font-family: "Segoe UI", Roboto, sans-serif;
-    color: #0f172a;
-  }
-
-  .dgbp-notice h2 {
-    margin: 0 0 10px;
-    font-size: 1.4rem;
-    line-height: 1.3;
-    font-weight: 700;
-  }
-
-  .dgbp-notice p {
-    margin: 10px 0;
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-
-  .dgbp-notice ul {
-    margin: 12px 0 16px 18px;
-    padding: 0;
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-
-  .dgbp-note-cta {
-    margin-top: 8px;
-    font-weight: 600;
-  }
-
-  .dgbp-cta {
-    display: inline-block;
-    margin-left: 5px;
-    padding: 8px 14px;
-    text-decoration: none;
-    background: #0f172a;
-    color: white;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: 0.2s;
-  }
-
-  .dgbp-cta:hover {
-    background: #1e293b;
-  }
-
-  /* ✅ Full Responsive Styling */
-  @media (max-width: 1024px) {
-    .dgbp-notice { padding: 18px; }
-  }
-
-  @media (max-width: 768px) {
-    .dgbp-notice {
-      padding: 16px;
-      margin: 16px;
-    }
-    .dgbp-notice h2 { font-size: 1.2rem; }
-    .dgbp-notice p,
-    .dgbp-notice ul { font-size: 0.95rem; }
-  }
-
-  @media (max-width: 480px) {
-    .dgbp-notice {
-      padding: 14px;
-      border-left-width: 4px;
-    }
-    .dgbp-notice h2 { font-size: 1.05rem; }
-    .dgbp-cta { width: 100%; text-align: center; margin-top: 8px; }
-  }
-</style>
-
-<section class="impact-section" id="impact">
-  <h2 class="impact-heading"><center>📊 Our Impact So Far</center></h2>
-  <div class="impact-stats-grid">
-    <div class="impact-stat">
-      <center><h3 class="count" data-target="2100">2104</h3></center>
-      <p>Team & Community</p>
-      <subtile> “A dynamic team united by passion and purpose — building solutions that matter.”</subtile>
-    </div>
-    <div class="impact-stat">
-     <center> <h3 class="count" data-target="1">3</h3></center>
-      <p>Companies Served</p>
-      <subtile> “By the end of this year, we aim to serve at least 8 companies — expanding our reach and making a bigger impact.”</subtile>
-    </div>
-    <div class="impact-stat">
-      <center><h3 class="count" data-target="5">5</h3></center>
-      <p>Years of Innovation</p>
-      <subtile> “Over 5 years of relentless innovation — turning ideas into impactful solutions.”</subtile>
-    </div>
-    <div class="impact-stat">
-      <center><h3 class="count" data-target="2">4</h3></center>
-      <p>Platforms Launched</p>
-      <subtile> “Aiming to launch at least 10 platforms by the end of this year — expanding our impact and empowering more users.”</subtile>
+    <!-- Important Notice (kept, styled) -->
+    <div class="notice" role="note" aria-live="polite">
+      <h4>Important Notice for Aspiring Learners:</h4>
+      <p>Many courses out there make big claims but fail to deliver true value. <strong>We operate differently.</strong> Before you follow us on social channels, we strongly recommend you complete our courses first so you can fully appreciate our methodology and business strategies.</p>
+      <p><strong>The Reality of Mentorship and Project Success:</strong> At DGBP, we don't chase investors or unnecessary validation. Our focus is simple: empowering developers, students, and creators. Everything shown here—testimonials, case studies, projects, mentorship outcomes, and numbers—is real. Proof is available on request.</p>
+      <p style="font-style:italic;color:#444">Focus on learning first. Results follow naturally.</p>
     </div>
 
-  
-  </section>
+    <!-- ABOUT / MISSION -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <h3 id="about-title">About &amp; Mission</h3>
+      <p>We empower creators, developers, and entrepreneurs to build real solutions, not just ideas. Innovation should be accessible, actionable, and inspiring—and that’s what we stand for.</p>
 
- <style>
- /* Custom Board Enhancements */
-    .consultation-board {
-      background: #000000;
-      border-radius: 20px;
-      padding: 40px 30px;
-      max-width: 500px;
-      text-align: center;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-      border: 1px solid #e4e7ec;
-      transition: all 0.3s ease-in-out;
+      <div class="cards" style="margin-top:22px">
+        <div class="card">
+          <h4>Our Vision</h4>
+          <p>To be the global platform where technology meets creativity, and every learner finds support to thrive.</p>
+        </div>
+        <div class="card">
+          <h4>What We Do</h4>
+          <p>🚀 28 innovation labs across tech, design, AI and marketing. 🎓 Expert-led mentorship & real-world projects. 🌐 Tools for startups & creators. 🎙️ Podcasts & creative media.</p>
+        </div>
+        <div class="card">
+          <h4>Why Choose Us</h4>
+          <p>✅ DUNS verified. ✅ Human-first learning. ✅ Long-term impact. ✅ Community-driven, creator-supported.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- What You Get -->
+    <section class="section" id="value" aria-labelledby="value-title">
+      <h3 id="value-title">What You Really Get Here</h3>
+      <p>Most visitors ask: “What do I get if I join?” Here’s the honest answer.</p>
+      <div class="cards" style="margin-top:20px">
+        <div class="card"><h4>Crystal-Clear Roadmap</h4><p>Clear path: learner → builder → leader. No confusion.</p></div>
+        <div class="card"><h4>No Hype, Just Results</h4><p>We don't promise get-rich-quick; we build real skills that lead to opportunities.</p></div>
+        <div class="card"><h4>Future-Ready Mentorship</h4><p>Human-first support and hands-on projects that outlast AI fads.</p></div>
+        <div class="card"><h4>Right People, Right Community</h4><p>Serious learners who are ready to commit 6–12 months to grow.</p></div>
+      </div>
+      <div style="text-align:center;margin-top:18px">
+        <a class="btn cta-small" href="https://forms.gle/LNDC32NR6YsCmeZY8">Join Serious Learners →</a>
+      </div>
+    </section>
+
+    <!-- Leader Quotes -->
+    <section class="section" id="leaders" aria-labelledby="leaders-title">
+      <h3 id="leaders-title">Community Says</h3>
+      <div class="leader-grid" role="list">
+        <div class="quote-card" role="listitem">
+          <div class="q">"Helping people reach their highest potential through honest work — step by step, not by risky shortcuts."</div>
+          <h5>Dhunti Pranay Kumar Goud</h5>
+          <p class="meta">He taught me the things I should never do, and even when I made those mistakes, I learned because of him — the first person who guided me since 6th class.</p>
+        </div>
+        <div class="quote-card" role="listitem">
+          <div class="q">“Be it hunger or thirst — keep our company first.”</div>
+          <h5>Upadhyayula Girish</h5>
+          <p class="meta">In every tough moment, he’s been the silent strength I could rely on — that means more than anything.</p>
+        </div>
+        <div class="quote-card" role="listitem">
+          <div class="q">“Quality will always matter more than quantity.”</div>
+          <h5>Ravi Teja</h5>
+          <p class="meta">The one who reminds us that meaningful work comes from precision, not pressure.</p>
+        </div>
+        <div class="quote-card" role="listitem">
+          <div class="q">“Money has value only when it is earned with effort — never give it away simply.”</div>
+          <h5>Vinay</h5>
+          <p class="meta">A person who understands the true value of money and teaches others to respect it.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Philosophy 8392 (kept) -->
+    <section class="section" id="philosophy" aria-labelledby="philosophy-title">
+      <h3 id="philosophy-title">Philosophy of Code 8392</h3>
+      <p style="max-width:920px;margin:12px auto">In the vast expanse of the digital universe, there exists a secret code, whispered only among the initiated: <strong>8392</strong>. This sequence holds our philosophy — a belief that development is language, art, and purpose.</p>
+      <div style="max-width:900px;margin:18px auto;color:var(--muted);line-height:1.6">
+        <ul>
+          <li><strong>8</strong> – Infinity upright: Limitless potential and growth.</li>
+          <li><strong>3</strong> – Triangle: Foundation of logic, innovation & design.</li>
+          <li><strong>9</strong> – Challenge: Drive to go beyond boundaries.</li>
+          <li><strong>2</strong> – Duality: Harmony of vision & execution.</li>
+        </ul>
+      </div>
+      <div style="overflow-x:auto;margin:14px 0">
+        <table aria-hidden="true" style="margin:auto;border-collapse:collapse;color:var(--muted)">
+          <tr><td style="padding:12px;border:1px solid rgba(255,255,255,0.03)"></td><td style="padding:12px;border:1px solid rgba(255,255,255,0.03)"></td><td style="padding:12px;border:1px solid rgba(255,255,255,0.03)"></td></tr>
+          <tr><td style="padding:12px;border:1px solid rgba(255,255,255,0.03)"></td><td style="padding:12px;border:1px solid rgba(255,255,255,0.03);font-weight:700">?</td><td style="padding:12px;border:1px solid rgba(255,255,255,0.03)"></td></tr>
+          <tr><td style="padding:12px;border:1px solid rgba(255,255,255,0.03)"></td><td style="padding:12px;border:1px solid rgba(255,255,255,0.03)"></td><td style="padding:12px;border:1px solid rgba(255,255,255,0.03)"></td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- Courses -->
+    <section class="section" id="courses" aria-labelledby="courses-title">
+      <h3 id="courses-title">Courses & Mentorship</h3>
+      <p>Join curated courses to level up in coding, game dev, and entrepreneurship.</p>
+      <div style="text-align:center;margin-top:18px">
+        <a class="btn" href="mentorship .html">Join Mentorship</a>
+      </div>
+    </section>
+
+    <!-- Companies marquee -->
+    <section class="section" aria-labelledby="partners-title">
+      <h3 id="partners-title" style="text-align:center">Companies in Our DevGameBlogPromo Network</h3>
+      <div class="companies" aria-hidden="true">
+        <div class="track">
+          <span>StrideWorks</span><span>PixelPlay Studios</span><span>BrightLeaf Digital</span><span>CodeNova Systems</span><span>VectorHive Media</span>
+          <!-- duplicate for infinite loop -->
+          <span>StrideWorks</span><span>PixelPlay Studios</span><span>BrightLeaf Digital</span><span>CodeNova Systems</span><span>VectorHive Media</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lead the change -->
+    <section class="section" id="impact-cta">
+      <h3>Lead the Change</h3>
+      <p>Step up as a global ambassador, spark inspiration, and shape the future with leadership.</p>
+      <div style="text-align:center;margin-top:12px"><a class="btn secondary" href="global page.html">Global Impact Network 📈</a></div>
+    </section>
+
+    <!-- Labs Notice -->
+    <section class="section" id="labs-notice" aria-labelledby="labs-title">
+      <h3 id="labs-title">Important Notice — 28 Labs Are Not Just Learning</h3>
+      <p class="lead" style="max-width:900px;margin:8px auto">The 28 Labs of DevGameBlogPromo™ are a career-building ecosystem where members get real experience, leadership opportunities, and chances to earn.</p>
+      <div class="cards" style="margin-top:16px">
+        <div class="card"><h4>Real Projects</h4><p>Work on software, design, business & AI projects.</p></div>
+        <div class="card"><h4>Career Growth</h4><p>Member → Team Lead → Lab Leader → Core Team.</p></div>
+        <div class="card"><h4>Earn & Certify</h4><p>Portfolio + experience letter + certification + paid projects.</p></div>
+      </div>
+    </section>
+
+    <!-- Impact Stats -->
+    <section class="section" id="impact" aria-labelledby="impact-title">
+      <h3 id="impact-title">📊 Our Impact So Far</h3>
+      <div class="impact-grid" style="margin-top:18px">
+        <div class="impact"><div class="num count" data-target="2104">2104</div><p>Team & Community</p></div>
+        <div class="impact"><div class="num count" data-target="3">3</div><p>Companies Served</p></div>
+        <div class="impact"><div class="num count" data-target="5">5</div><p>Years of Innovation</p></div>
+        <div class="impact"><div class="num count" data-target="4">4</div><p>Platforms Launched</p></div>
+      </div>
+    </section>
+
+    <!-- Consultation -->
+    <section class="section" id="consult" aria-labelledby="consult-title">
+      <div class="consult-card">
+        <h4 id="consult-title">Business Consultation Request</h4>
+        <p style="color:var(--muted)">Need guidance for your business idea or project? Connect with DevGameBlogPromo for expert insights, strategies, and personalized advice.</p>
+        <div style="margin-top:12px"><a class="btn" href="https://forms.gle/WPdaFb59krdk26Qs9">Request Consultation</a></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <h3 id="contact-title">Contact & Follow</h3>
+      <p>Reach out for collaborations, mentorship, or general inquiries.</p>
+      <div style="text-align:center;margin-top:12px">
+        <a class="btn secondary" href="https://www.instagram.com/devgameblogpromo/">Follow on Instagram</a>
+        <a class="btn secondary" href="FAQ.html">FAQ</a>
+      </div>
+
+      <div style="margin-top:18px" class="notice" aria-hidden="false">
+        <strong>We value your voice:</strong> Facing issues, suggestions, or ideas? Share feedback <a href="https://docs.google.com/forms/d/e/1FAIpQLSeUmrhIOgSuevvG_JDJedbMVMoenKu1qpWCBItjeLcaNXb04A/viewform?usp=sharing&ouid=110241627081033321030" style="color:var(--accent);font-weight:700">here</a>.
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div style="max-width:var(--maxw);margin:0 auto;padding:8px 18px">
+      <div style="margin-bottom:12px">© <strong>DevGameBlogPromo</strong> • Built with purpose</div>
+      <div><a class="duns" href="https://www.dnb.com" target="_blank" rel="noopener">D-U-N-S® Verified</a></div>
+      <div style="margin-top:8px;color:var(--muted)">D-U-N-S® Number: <strong style="color:var(--text)">772660415</strong></div>
+      <div style="margin-top:12px"><a href="https://docs.google.com/document/d/1cfpmmcymNQnB-PoD-KiwY2WQFhvRzblkiv8mFrHEcRY/edit?usp=sharing" style="color:var(--muted)">Terms & Policy</a></div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button class="back-top" aria-label="Back to top" id="backTop">↑</button>
+
+  <!-- Scripts -->
+  <script>
+    // header scroll-text
+    (function(){
+      const elems = document.querySelectorAll('.scroll-text div');
+      let i = 0;
+      setInterval(()=>{ elems.forEach(e=>e.classList.remove('active')); i=(i+1)%elems.length; elems[i].classList.add('active'); }, 5000);
+    })();
+
+    // menu toggle
+    function toggleMenu(){
+      const nav = document.querySelector('nav.primary');
+      const btn = document.querySelector('.menu-toggle');
+      if(nav.style.display==='flex'){ nav.style.display='none'; btn.setAttribute('aria-expanded','false'); }
+      else{ nav.style.display='flex'; nav.style.flexDirection='column'; btn.setAttribute('aria-expanded','true'); }
     }
 
-    .consultation-board:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-    }
+    // back to top
+    const back = document.getElementById('backTop');
+    window.addEventListener('scroll', ()=> { if(window.scrollY>300) back.style.display='block'; else back.style.display='none'; });
+    back.addEventListener('click', ()=> window.scrollTo({top:0,behavior:'smooth'}));
 
-    /* Title Styling */
-    .consultation-board h1 {
-      font-size: 1.9rem;
-      color: #0d0de2;
-      margin-bottom: 15px;
-      font-weight: 700;
-    }
+    // section reveal
+    const sections = document.querySelectorAll('.section');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(en => { if(en.isIntersecting) { en.target.style.opacity = 1; en.target.style.transform='none'; io.unobserve(en.target); }});
+    },{threshold:0.18});
+    sections.forEach(s=>{ s.style.opacity=0; s.style.transform='translateY(18px)'; io.observe(s); });
 
-    /* Button Animation */
-    .consult-btn {
-      display: inline-block;
-      background-color: #5b21b6;
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      padding: 12px 28px;
-      border-radius: 10px;
-      transition: 0.3s;
-      box-shadow: 0 4px 12px rgba(91, 33, 182, 0.3);
-    }
-
-    .consult-btn:hover {
-      background-color: #4c1d95;
-      transform: scale(1.05);
-      box-shadow: 0 6px 18px rgba(91, 33, 182, 0.4);
-    }
-
-    footer {
-      font-size: 0.8rem;
-      color: #aaa;
-      margin-top: 25px;
-    }
-  </style>
-
-<center><body class="bg-gray-50 min-h-screen flex items-center justify-center p-6">
-
-  <div class="consultation-board">
-    <h1>Business Consultation Request</h1>
-
-    <p class="text-gray-600 mb-6">
-      Need guidance for your business idea or project?<br>
-      Connect with <span class="font-semibold text-indigo-600">DevGameBlogPromo</span> 
-      to get expert insights, strategies, and personalized advice.
-    </p>
-
-    <a href="https://forms.gle/WPdaFb59krdk26Qs9" class="consult-btn">
-      Request Consultation
-    </a></center>
- 
-  <section class="section" id="contact">
-    <h2>Contact Us</h2>
-    <p>Reach out for collaborations, mentorship, or general inquiries.</p>
-    
-     <a href="https://www.instagram.com/devgameblogpromo/" class="button">Follow on Instagram</a>
-     <a href="FAQ.html" class="button">FAQ</a>
-  
-  
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11298822058">
-</script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-11298822058');
-</script>
-
-<!-- Feedback Box -->
-<div class="feedback-box">
-  <div class="feedback-icon">📢</div>
-  <div class="feedback-text">
-    We value your voice! Facing any issues, suggestions, or ideas to make our platform better? Be honest, be transparent, and <a href="https://docs.google.com/forms/d/e/1FAIpQLSeUmrhIOgSuevvG_JDJedbMVMoenKu1qpWCBItjeLcaNXb04A/viewform?usp=sharing&ouid=110241627081033321030">share your feedback here</a>. Your insights help us grow together. 
-  </div>
-</div>
-  </section>
-</main>
-
-<footer>
-  © 2023 DevGameBlogPromo
- <a href="https://docs.google.com/document/d/1cfpmmcymNQnB-PoD-KiwY2WQFhvRzblkiv8mFrHEcRY/edit?usp=sharing" class="link">Terms & Policy content here</a>
-✅ <strong>D‑U‑N‑S® Verified</strong><br>
-      D‑U‑N‑S® Number: <strong>772660415</strong>
-</footer>
-
-<a href="#top" class="back-to-top">↑</a>
-
-<script>
-const scrollTexts = document.querySelectorAll('.scroll-text div');
-let idx = 0;
-setInterval(() => {
-  scrollTexts[idx].classList.remove('active');
-  idx = (idx+1) % scrollTexts.length;
-  scrollTexts[idx].classList.add('active');
-},6000);
-
-function toggleMenu(){ document.querySelector('nav').classList.toggle('active'); }
-
-// Back-to-top
-const backToTop=document.querySelector('.back-to-top');
-window.addEventListener('scroll',()=>{ if(window.scrollY>300){ backToTop.style.display='block'; } else{ backToTop.style.display='none'; } });
-
-// Fade-in sections
-const sections=document.querySelectorAll('.section');
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
-},{threshold:0.3});
-sections.forEach(sec=>observer.observe(sec));
-</script>
- 
-<script async type="application/javascript"
-        src="https://news.google.com/swg/js/v1/swg-basic.js"></script>
-<script>
-  (self.SWG_BASIC = self.SWG_BASIC || []).push( basicSubscriptions => {
-    basicSubscriptions.init({
-      type: "NewsArticle",
-      isPartOfType: ["Product"],
-      isPartOfProductId: "CAowjoWvDA:openaccess",
-      clientOptions: { theme: "light", lang: "en" },
+    // counters
+    const counters = document.querySelectorAll('.count');
+    counters.forEach(c=>{
+      const target = +c.getAttribute('data-target') || 0;
+      let val = 0;
+      const step = Math.max(1, Math.round(target / 80));
+      const id = setInterval(()=> {
+        val += step;
+        if(val >= target){ c.textContent = target; clearInterval(id); } else { c.textContent = val; }
+      }, 18);
     });
-  });
+
+    // accessibility: ensure main h1 exists - if not, focus hero
+    document.addEventListener('DOMContentLoaded', ()=>{ const h = document.querySelector('h1'); if(!h){ document.getElementById('hero-title').setAttribute('tabindex','-1'); }});
+  
 
 
- <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-10VRSCCMCH"></script>
-<script>
+
+  </script>
+    <!-- Google tag (gtag.js) -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-10VRSCCMCH">
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-10VRSCCMCH');
-</script>
-<style>
-.notice-box {
-  margin: 2% auto;
-  padding: 2em;
-  background-color: #f9f9f9;
-  border-left: 0.5em solid #ff6600;
-  border-radius: 1em;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.7;
-  color: #333;
-  max-width: 900px;
-  box-sizing: border-box;
-}
+   </script>
 
-.notice-title {
-  font-weight: bold;
-  font-size: 1.2em;
-  margin-top: 1em;
-  margin-bottom: 0.5em;
-}
-
-.notice-footer {
-  font-style: italic;
-  color: #555;
-  margin-top: 1.5em;
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-  .notice-box {
-    padding: 1.5em;
-    border-left-width: 0.4em;
-    margin: 1% auto;
-  }
-
-  .notice-title {
-    font-size: 1.1em;
-  }
-}
-
-/* Extra small screens (phones) */
-@media (max-width: 480px) {
-  .notice-box {
-    padding: 1em;
-    border-left-width: 0.3em;
-    border-radius: 0.8em;
-  }
-
-  .notice-title {
-    font-size: 1em;
-  }
-
-  .notice-footer {
-    font-size: 0.9em;
-  }
-}
-</style>
 </body>
 </html>
-
 
 
 
