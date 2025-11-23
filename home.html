@@ -527,8 +527,63 @@
   gtag('config', 'G-10VRSCCMCH');
    </script>
 
+  <body>
+
+<!-- Panel -->
+<div id="assistant-panel">
+  <div id="response-text">Click an option to explore our startup, labs, programs, rules, or current work!</div>
+  <div id="buttons-container">
+    <button class="option-btn" data-key="business overview">Business Overview</button>
+    <button class="option-btn" data-key="community testimonials">Community Testimonials</button>
+    <button class="option-btn" data-key="labs & roles">Labs & Roles</button>
+    <button class="option-btn" data-key="services & programs">Services & Programs</button>
+    <button class="option-btn" data-key="pixel craft fest">Pixel Craft Fest</button>
+    <button class="option-btn" data-key="contact email">Contact Email</button>
+    <button class="option-btn" data-key="current work">What We’re Working On</button>
+    <button class="option-btn" data-key="rules & contributors">Rules & Contributor Guidelines</button>
+  </div>
+</div>
+
+<!-- Floating circle -->
+<div id="assistant-circle">🇦🇮</div>
+
+<script>
+const knowledgeBase = {
+  "business overview":["DevGameBlogPromo is where ideas meet action 🚀.\nPhilosophy of Code 8392: 8-Infinity, 3-Logic, 9-Challenge, 2-Duality."],
+  "community testimonials":["💬 'Manish KakarlA’s mentorship changed my coding journey!'","💬 'Every session feels like a step toward your dream.'"],
+  "labs & roles":["Explore 28 Labs: Software Dev, Game Dev, Marketing, QA, UX, Data Analysis, Customer Support, and more 🔥."],
+  "services & programs":["Frontend Mentorship, AI/ML Courses, Pixel Craft Fest, Domain Services, Interview Mentorship, Leadership Programs 🚀."],
+  "pixel craft fest":["Pixel Craft Fest (PCF) is an exclusive program for developers and creators 🏆."],
+  "contact email":["📧 Email us at <b>m81434409@gmail.com</b>."],
+  "current work":["📝 DGBP Pilot Implementation Phase I\nWorking with schools, state govt, NDSC. Launching labs, digital skill platforms, and open-source resources."],
+  "rules & contributors":["📌 Important Notices & Rules\n- Complete courses first\n- Focus on learning first\n- Reality of mentorship & project success\n\n🌟 Contributor Rules\nOwnership, Credits, Portfolio Use, Growth Over Titles, Community First"]
+};
+
+const panel = document.getElementById("assistant-panel");
+const circle = document.getElementById("assistant-circle");
+const responseText = document.getElementById("response-text");
+const buttons = document.querySelectorAll(".option-btn");
+
+// Toggle panel
+circle.addEventListener("click", ()=>{
+  panel.style.display = panel.style.display === "none" ? "flex" : "none";
+});
+
+// Show response on button click
+buttons.forEach(btn => {
+  btn.addEventListener("click", ()=>{
+    const key = btn.dataset.key;
+    const responses = knowledgeBase[key];
+    const reply = responses[Math.floor(Math.random()*responses.length)];
+    responseText.innerHTML = '<span style="color:#aaa;font-style:italic;">Loading...</span>';
+    setTimeout(()=>{responseText.innerHTML = reply;},300+Math.random()*500);
+  });
+});
+</script>
+
 </body>
 </html>
+
 
 
 
