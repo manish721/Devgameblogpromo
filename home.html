@@ -528,7 +528,82 @@
    </script>
 
   <body>
+<style>
+  body { 
+    font-family: 'Segoe UI', sans-serif; 
+    background:#121212; 
+    color:#eee; 
+    margin:0; 
+    padding:0; 
+  }
 
+  /* Panel */
+  #assistant-panel {
+    position: fixed;
+    bottom: 100px;
+    left: 20px; /* panel on left side */
+    width: 300px;
+    max-height: 400px;
+    background: #1e1e1e;
+    border: 2px solid #cf1d1d;
+    border-radius: 15px;
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    z-index: 9999;
+  }
+
+  #response-text { 
+    margin-bottom:10px; 
+    line-height:1.4; 
+    white-space: pre-wrap; 
+  }
+
+  #buttons-container { 
+    display:flex; 
+    flex-wrap:wrap; 
+    gap:5px; 
+  }
+
+  .option-btn {
+    flex:1 1 48%;
+    background:#000000;
+    color:#d31212;
+    border:none;
+    padding:6px;
+    border-radius:8px;
+    font-size:0.8rem;
+    cursor:pointer;
+  }
+  .option-btn:hover { 
+    background:#303130; 
+  }
+
+  /* Floating circle emoji on left */
+  #assistant-circle {
+    position: fixed;
+    bottom: 20px;
+    left: 10px;   /* changed from right */
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(45deg, #ebe8e8, #000000);
+    border-radius: 50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:32px;
+    color:#fff;
+    cursor:pointer;
+    box-shadow:0 5px 15px #ffffff;
+    z-index: 10000;
+    transition: 0.2s;
+  }
+  #assistant-circle:hover { 
+    transform: scale(1.1); 
+  }
+</style>
 <!-- Panel -->
 <div id="assistant-panel">
   <div id="response-text">Click an option to explore our startup, labs, programs, rules, or current work!</div>
@@ -583,6 +658,7 @@ buttons.forEach(btn => {
 
 </body>
 </html>
+
 
 
 
