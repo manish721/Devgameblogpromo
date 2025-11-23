@@ -529,66 +529,51 @@
 
   <body>
 <style>
-  body { 
-    font-family: 'Segoe UI', sans-serif; 
-    background:#121212; 
-    color:#eee; 
-    margin:0; 
-    padding:0; 
-  }
-
   /* Panel */
   #assistant-panel {
     position: fixed;
     bottom: 100px;
-    left: 20px; /* panel on left side */
+    left: 20px;
     width: 300px;
     max-height: 400px;
     background: #1e1e1e;
     border: 2px solid #cf1d1d;
     border-radius: 15px;
     overflow: hidden;
-    display: none;
+    display: flex;
     flex-direction: column;
     padding: 10px;
     box-shadow: 0 0 15px rgba(0,0,0,0.5);
     z-index: 9999;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-out;
   }
+  #assistant-panel.open { transform: translateY(0); }
 
-  #response-text { 
-    margin-bottom:10px; 
-    line-height:1.4; 
-    white-space: pre-wrap; 
-  }
+  #response-text { margin-bottom:10px; line-height:1.4; white-space: pre-wrap; }
 
-  #buttons-container { 
-    display:flex; 
-    flex-wrap:wrap; 
-    gap:5px; 
-  }
+  #buttons-container { display:flex; flex-wrap:wrap; gap:5px; }
 
   .option-btn {
     flex:1 1 48%;
     background:#000000;
-    color:#d31212;
+    color:#cf1d1d;
     border:none;
     padding:6px;
     border-radius:8px;
     font-size:0.8rem;
     cursor:pointer;
   }
-  .option-btn:hover { 
-    background:#303130; 
-  }
+  .option-btn:hover { background:#303130; }
 
-  /* Floating circle emoji on left */
+  /* Floating circle emoji */
   #assistant-circle {
     position: fixed;
     bottom: 20px;
-    left: 10px;   /* changed from right */
+    left: 20px;
     width: 70px;
     height: 70px;
-    background: linear-gradient(45deg, #ebe8e8, #000000);
+    background: linear-gradient(45deg, #cf1d1d, #000000);
     border-radius: 50%;
     display:flex;
     align-items:center;
@@ -600,11 +585,14 @@
     z-index: 10000;
     transition: 0.2s;
   }
-  #assistant-circle:hover { 
-    transform: scale(1.1); 
+  #assistant-circle:hover { transform: scale(1.1); }
+
+  @media (max-width: 600px) {
+    #assistant-circle { width:50px; height:50px; font-size:24px; bottom:15px; left:15px; }
+    #assistant-panel { width:250px; left:15px; bottom:70px; } 
   }
 </style>
-<!-- Panel -->
+
 <div id="assistant-panel">
   <div id="response-text">Click an option to explore our startup, labs, programs, rules, or current work!</div>
   <div id="buttons-container">
@@ -614,12 +602,11 @@
     <button class="option-btn" data-key="services & programs">Services & Programs</button>
     <button class="option-btn" data-key="pixel craft fest">Pixel Craft Fest</button>
     <button class="option-btn" data-key="contact email">Contact Email</button>
-    <button class="option-btn" data-key="current work">What We’re Working On</button>
-    <button class="option-btn" data-key="rules & contributors">Rules & Contributor Guidelines</button>
+    <button class="option-btn" data-key="current work">Current Work</button>
+    <button class="option-btn" data-key="rules & contributors">Rules & Guidelines</button>
   </div>
 </div>
 
-<!-- Floating circle -->
 <div id="assistant-circle">🇦🇮</div>
 
 <script>
@@ -641,7 +628,7 @@ const buttons = document.querySelectorAll(".option-btn");
 
 // Toggle panel
 circle.addEventListener("click", ()=>{
-  panel.style.display = panel.style.display === "none" ? "flex" : "none";
+  panel.classList.toggle("open");
 });
 
 // Show response on button click
@@ -658,6 +645,7 @@ buttons.forEach(btn => {
 
 </body>
 </html>
+
 
 
 
