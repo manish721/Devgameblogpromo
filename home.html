@@ -250,59 +250,97 @@
       </div>
     </section>
 
-    <!-- Leader Quotes -->
-    <section class="section" id="leaders" aria-labelledby="leaders-title">
-      <h3 id="leaders-title">“Ideas. Passion. Impact. Meet the Visionaries and Doers Driving Tomorrow.”</h3>
+ section class="section" id="leaders" aria-labelledby="leaders-title">
+  <h3 id="leaders-title">“Ideas. Passion. Impact. Meet the Visionaries and Doers Driving Tomorrow.”</h3>
 
-      <div class="leader-grid" role="list">
-        <div class="quote-card" role="listitem">
-          <div class="q">"Helping people reach their highest potential through honest work — step by step, not by risky shortcuts."</div>
-          <h5>Dhunti Pranay Kumar Goud</h5>
-          <p class="meta">He taught me the things I should never do, and even when I made those mistakes, I learned because of him — the first person who guided me since 6th class.</p>
-        </div>
-        
-        <section class="quotes" role="list">
-        <div class="quote-card" role="listitem">
-          <div class="q">“Be it hunger or thirst — keep our company first.”</div>
-          <h5>Upadhyayula Girish</h5>
-          <p class="meta">In every tough moment, he’s been the silent strength I could rely on — that means more than anything.</p>
-        </div>
-        
-        
-<section class="quotes" role="list">
-  <div class="quote-card" role="listitem">
-    <div class="q">“Greatness isn’t measured by what you give, but by what you teach others to achieve on their own.”</div>
-    <h5>Founder Insight</h5>
-    <p class="meta">A reminder that true leadership empowers minds, not just provides resources.</p>
+  <div class="leader-grid" role="list">
+    <div class="quote-card" role="listitem">
+      <div class="q">"Helping people reach their highest potential through honest work — step by step, not by risky shortcuts."</div>
+      <h5>Dhunti Pranay Kumar Goud</h5>
+      <p class="meta">He taught me the things I should never do, and even when I made those mistakes, I learned because of him — the first person who guided me since 6th class.</p>
+    </div>
+
+    <div class="quote-card" role="listitem">
+      <div class="q">“Be it hunger or thirst — keep our company first.”</div>
+      <h5>Upadhyayula Girish</h5>
+      <p class="meta">In every tough moment, he’s been the silent strength I could rely on — that means more than anything.</p>
+    </div>
+
+    <div class="quote-card" role="listitem">
+      <div class="q">“Greatness isn’t measured by what you give, but by what you teach others to achieve on their own.”</div>
+      <h5>Founder Insight</h5>
+      <p class="meta">A reminder that true leadership empowers minds, not just provides resources.</p>
+    </div>
+
+    <div class="quote-card" role="listitem">
+      <div class="q">“Providing food, education, or shelter is easy; creating vision, resilience, and independence is what makes a true leader.”</div>
+      <h5>Founder Insight</h5>
+      <p class="meta">Leadership is about shaping people’s potential, not only meeting their needs.</p>
+    </div>
+
+    <div class="quote-card" role="listitem">
+      <div class="q">“A child who only receives without learning to think, create, or act independently hasn’t truly been empowered.”</div>
+      <h5>Founder Insight</h5>
+      <p class="meta">Empowerment comes from teaching skills and mindset, not just giving support.</p>
+    </div>
+
+    <div class="quote-card" role="listitem">
+      <div class="q">“Real mentorship doesn’t hand over success—it builds the ability to earn it.”</div>
+      <h5>Founder Insight</h5>
+      <p class="meta">True guidance equips people to create their own success.</p>
+    </div>
+
+    <div class="quote-card" role="listitem">
+      <div class="q">“True impact isn’t about doing for others, but teaching them how to do for themselves.”</div>
+      <h5>Founder Insight</h5>
+      <p class="meta">Sustainable greatness comes from knowledge and action, not handouts.</p>
+    </div>
   </div>
+</section>
 
-  <div class="quote-card" role="listitem">
-    <div class="q">“Providing food, education, or shelter is easy; creating vision, resilience, and independence is what makes a true leader.”</div>
-    <h5>Founder Insight</h5>
-    <p class="meta">Leadership is about shaping people’s potential, not only meeting their needs.</p>
-  </div>
+<!-- CSS for mobile responsiveness -->
+<style>
+  .leader-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
 
-  <div class="quote-card" role="listitem">
-    <div class="q">“A child who only receives without learning to think, create, or act independently hasn’t truly been empowered.”</div>
-    <h5>Founder Insight</h5>
-    <p class="meta">Empowerment comes from teaching skills and mindset, not just giving support.</p>
-  </div>
+  .quote-card {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  }
 
-  <div class="quote-card" role="listitem">
-    <div class="q">“Real mentorship doesn’t hand over success—it builds the ability to earn it.”</div>
-    <h5>Founder Insight</h5>
-    <p class="meta">True guidance equips people to create their own success.</p>
-  </div>
+  .q {
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
 
-  <div class="quote-card" role="listitem">
-    <div class="q">“True impact isn’t about doing for others, but teaching them how to do for themselves.”</div>
-    <h5>Founder Insight</h5>
-    <p class="meta">Sustainable greatness comes from knowledge and action, not handouts.</p>
-  </div>
+  h5 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
 
-        </div>
-       
-    </section>
+  .meta {
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+  @media (max-width: 600px) {
+    .q {
+      font-size: 1rem;
+    }
+
+    h5 {
+      font-size: 0.95rem;
+    }
+  }
+</style>
 
     <!-- Philosophy 8392 (kept) -->
     <section class="section" id="philosophy" aria-labelledby="philosophy-title">
@@ -672,6 +710,7 @@ buttons.forEach(btn => {
 
 </body>
 </html>
+
 
 
 
