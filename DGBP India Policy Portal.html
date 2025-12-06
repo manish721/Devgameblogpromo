@@ -1,130 +1,425 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The DSA-VIC Charter: Policy Framework</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght=400;700&family=Montserrat:wght=600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1f3f66; /* Deep Official Blue */
+            --secondary-color: #007bff; /* Standard Blue Accent */
+            --dark-color: #343a40;
+            --light-color: #f8f9fa;
+            --section-bg: #ffffff;
+            --font-family-header: 'Montserrat', sans-serif;
+            --font-family-body: 'Roboto', sans-serif;
+        }
 
-  <script>
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KL3VQD6S');</script>
-<!-- End Google Tag Manager -->
+        body {
+            font-family: var(--font-family-body);
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.7;
+        }
 
-  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KL3VQD6S"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-  </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DGBP Policy Portal</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-    body { background-color: #f4f4f9; color: #333; }
+        .header-bar {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 25px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
 
-    /* Navbar */
-    nav {
-      background-color: #1b1b2f;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    nav h1 { color: #fff; font-size: 1.5rem; }
-    nav ul { display: flex; gap: 1.5rem; list-style: none; }
-    nav ul li a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      transition: 0.3s;
-    }
-    nav ul li a:hover { background-color: #4a4a6a; }
+        .header-bar h1 {
+            font-family: var(--font-family-header);
+            font-size: 2.5em;
+            margin: 0;
+        }
 
-    /* Page content */
-    .container {
-      max-width: 1000px;
-      margin: 2rem auto;
-      padding: 1rem;
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    h2 { margin-bottom: 0.5rem; }
-    p { margin-bottom: 1rem; }
-    .document-link {
-      display: block;
-      padding: 1rem 1.5rem;
-      margin: 1rem 0;
-      background-color: #1b1b2f;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-    .document-link:hover { background-color: #4a4a6a; }
+        .header-bar p {
+            font-size: 1.1em;
+            opacity: 0.8;
+        }
 
-    footer { text-align: center; margin: 2rem 0; color: #777; font-size: 0.9rem; }
-  </style>
+        .content-layout {
+            display: flex;
+            max-width: 1400px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* --- Navigation Sidebar (Table of Contents) --- */
+        .sidebar {
+            flex: 0 0 280px;
+            padding-right: 30px;
+            position: sticky;
+            top: 30px;
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            font-family: var(--font-family-header);
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            padding: 8px 0;
+            text-decoration: none;
+            color: var(--dark-color);
+            transition: color 0.2s, padding-left 0.2s;
+            font-size: 0.95em;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar ul li a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        .sidebar ul li.sub-item a {
+            padding-left: 20px;
+            font-size: 0.9em;
+            opacity: 0.85;
+        }
+
+        /* --- Main Policy Content Area --- */
+        .policy-content {
+            flex-grow: 1;
+            background-color: var(--section-bg);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .policy-content h2, .policy-content h3 {
+            font-family: var(--font-family-header);
+            color: var(--primary-color);
+            margin-top: 40px;
+            padding-bottom: 5px;
+        }
+
+        .policy-content h2 {
+            font-size: 2em;
+            border-bottom: 2px solid var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .policy-content h3 {
+            font-size: 1.4em;
+            color: var(--dark-color);
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 10px;
+        }
+
+        /* Core Directive Styling */
+        .directive {
+            background-color: #e6f0ff; /* Light blue background */
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #cce5ff;
+            margin-bottom: 25px;
+        }
+        
+        .directive strong {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Table Styling (RACI, KPIs) */
+        .policy-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+
+        .policy-content th, .policy-content td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .policy-content th {
+            background-color: #f1f1f1;
+            font-weight: 700;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+            font-size: 0.9em;
+        }
+
+        /* Responsive Layout for Mobile */
+        @media (max-width: 992px) {
+            .content-layout {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                position: static;
+                flex: auto;
+                padding-right: 0;
+                margin-bottom: 20px;
+            }
+
+            .sidebar h3 {
+                cursor: pointer;
+                background-color: #eee;
+                padding: 15px;
+                border-radius: 5px;
+                border: none;
+            }
+            
+            /* Hide TOC by default on mobile */
+            .sidebar ul {
+                display: none; 
+                padding: 10px 0;
+                border: 1px solid #ddd;
+                border-top: none;
+                background-color: white;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="header-bar">
+        <h1>🇮🇳 DSA-VIC: The National Talent Reboot</h1>
+        <p>A Policy Framework for the Future-Ready Citizen | Published by DevGameBlogPromo</p>
+    </div>
 
-  <!-- Navbar -->
-  <nav>
-    <h1>DGBP Policy Portal</h1>
-    <ul>
-      <li><a href="https://docs.google.com/document/d/1wP5J00Eqt9GSIXA-h5WHwOCb87RrVTtke_W0x-UDFj0/edit?usp=sharing">DGBP Portal</a></li>
-      <li><a href="https://docs.google.com/document/d/1gETthRKk1luYCx-xBH4Yzr7HD_H3S5cHmPIbZ_I-0iY/edit?usp=sharing">DSA-VIC</a></li>
-      <li><a href="https://docs.google.com/document/d/1aLTz7SR8olXxaS6pWhLGYepjyq0_4Q-DmbzODZG4f1M/edit?usp=sharing">Pilot Checklist</a></li>
-    </ul>
-  </nav>
+    <div class="content-layout">
+        <div class="sidebar">
+            <h3>Table of Contents</h3>
+            <ul id="toc-list">
+                <li><a href="#preamble">Preamble & Mission</a></li>
+                <li><a href="#cd1">CORE DIRECTIVE 1: No Hard Separation</a></li>
+                <li><a href="#cd2">CORE DIRECTIVE 2: Digital Initiation</a></li>
+                <li><a href="#cd3">CORE DIRECTIVE 3: Future-Proofing Syllabus</a></li>
+                <li><a href="#cd4">CORE DIRECTIVE 4: 50% Digital Pledge</a></li>
+                <li><a href="#ch3">CHAPTER 3: Implementation Framework</a>
+                    <ul class="sub-list">
+                        <li class="sub-item"><a href="#ch3.1">3.1 NDSC Establishment</a></li>
+                        <li class="sub-item"><a href="#ch3.2">3.2 Phased Rollout Schedule</a></li>
+                        <li class="sub-item"><a href="#ch3.4">3.4 Family Engagement Protocol</a></li>
+                        <li class="sub-item"><a href="#ch3.5">3.5 RACI Protocol</a></li>
+                        <li class="sub-item"><a href="#ch3.6">3.6 DGBP Integration Protocol</a></li>
+                    </ul>
+                </li>
+                <li><a href="#ch4">CHAPTER 4: Funding & PPP</a>
+                    <ul class="sub-list">
+                        <li class="sub-item"><a href="#ch4.1">4.1 NDSIF Fund</a></li>
+                        <li class="sub-item"><a href="#ch4.2">4.2 Industry Incentivization</a></li>
+                    </ul>
+                </li>
+                <li><a href="#ch5">CHAPTER 5: Governance & M&E</a>
+                    <ul class="sub-list">
+                        <li class="sub-item"><a href="#ch5.1">5.1 Digital Skill Index (DSI)</a></li>
+                        <li class="sub-item"><a href="#ch5.3">5.3 Grievance Redressal</a></li>
+                    </ul>
+                </li>
+                <li><a href="#ch6">CHAPTER 6: Equity & Access</a></li>
+            </ul>
+        </div>
+        <div class="policy-content">
+            <h2 id="preamble">Preamble & Mission</h2>
+            <p>WHEREAS, the Digital Age demands a fundamental shift in how skills are acquired, valued, and applied; and WHEREAS, the existing barriers between academic excellence and vocational mastery must be dissolved to unlock the creative potential of our youth; and WHEREAS, the global Game Development, AI, and Creator Economies represent the vanguard of future employment and innovation;</p>
+            <p>This Charter, rooted in the foundational spirit of the National Education Policy 2020, hereby outlines the mandatory directives to forge a Skill-First, Future-Ready Nation capable of leading the world in digital innovation. This is not merely an educational reform; it is a **National Talent Reboot**.</p>
+            
+            <h3 id="mission">🎯 MISSION 2030: FROM ROTE TO CODE</h3>
+            <p>Our mission is to equip every citizen with a future-proof Digital Skill-Stack, eliminating the archaic social stigma attached to vocational learning and recognizing practical expertise as the highest form of intellectual achievement.</p>
 
-  <!-- Page content -->
-  <div class="container">
-    <h2 id="portal">DGBP Portal</h2>
-    <p>The central hub for all DGBP resources, labs, and policy updates.</p>
-    <a href="https://docs.google.com/document/d/1wP5J00Eqt9GSIXA-h5WHwOCb87RrVTtke_W0x-UDFj0/edit?usp=sharing" class="document-link" target="_blank">Open DGBP Portal</a>
+            <h2 id="cd1">CORE DIRECTIVE 1: THE "NO HARD SEPARATION" PROTOCOL (The Viral Principle)</h2>
+            <div class="directive">
+                <p><strong>MANDATE:</strong> Effective immediately, all educational institutions (School to Higher Education) shall enforce a zero-tolerance policy against the separation of streams. A student excelling in Theoretical Physics shall be encouraged to simultaneously master 3D Asset Modeling (Vocational), and a student pursuing Game Design (Vocational) shall be required to study Data Ethics (Academic).</p>
+                <p><strong>The Skill-Stacking Requirement:</strong> Every student must graduate with an official transcript detailing not just academic grades, but a verified Vocational Skill-Stack (e.g., C++ Proficiency, UX/UI Certification, Project Management).</p>
+                <p><strong>The Equal-Value Pledge:</strong> Certifications, Diplomas, and Degrees in vocational/technical streams (e.g., game programming, VFX, cloud computing) shall hold equal weight and value to traditional Degrees for all government and corporate recruitments.</p>
+            </div>
 
-    <h2 id="dsavic">🇮🇳 DSA-VIC Policy Document</h2>
-    <p>National Digital Skill Acceleration & Vocational Integration Charter.</p>
-    <a href="https://docs.google.com/document/d/1gETthRKk1luYCx-xBH4Yzr7HD_H3S5cHmPIbZ_I-0iY/edit?usp=sharing" class="document-link" target="_blank">Open DSA-VIC</a>
+            <h2 id="cd2">CORE DIRECTIVE 2: THE GRADE 6 DIGITAL INITIATION (The Hands-On Shockwave)</h2>
+            <div class="directive">
+                <p>To ensure foundational literacy and cultivate financial self-sufficiency (the ability to "live on their own life their money") from an early age, skill development must begin at the formative stage of middle schooling, typically around the age of 11.</p>
+                <p><strong>Mandatory Digital Crafting:</strong> From Grade 6, every learner must be introduced to at least one foundational digital vocational craft, including, but not limited to:</p>
+                <ul>
+                    <li>Logic & Algorithm Basics (Code Foundations)</li>
+                    <li>Digital Art & Animation (2D/3D Asset Creation)</li>
+                    <li>Basic Electronic Troubleshooting (Hardware Skills)</li>
+                </ul>
+                <p><strong>The 10-Day Tech Immersion (The 'Bagless' Mandate):</strong> The traditional 10-day bagless internship period (Grades 6-8) is hereby rededicated to Digital Tech Immersion. Students must intern with local tech startups, digital marketing firms, or small game studios.</p>
+                <p><strong>Goal:</strong> Expose them to real-world deployment, not classroom theory, establishing the core link between SKILL and EARNING POTENTIAL. **Viral Hook: Learning by Shipping.**</p>
+            </div>
+            
+            <h2 id="cd3">CORE DIRECTIVE 3: THE FUTURE-PROOFING SYLLABUS (The AI/ML Upgrade)</h2>
+            <div class="directive">
+                <p>The curriculum must look 5 years ahead, not 5 years back.</p>
+                <p><strong>Priority Fields:</strong> Technical and vocational institutions must immediately prioritize and resource programs in the following National Priority Skill Domains:</p>
+                <ul>
+                    <li>Artificial Intelligence (AI) & Machine Learning (ML): Specifically for Procedural Generation and Dynamic Game Balancing.</li>
+                    <li>Extended Reality (XR): Focus on VR/AR content creation and spatial computing.</li>
+                    <li>Data Science & Analytics: The backbone of all modern, data-driven applications and games.</li>
+                    <li>Cyber Security & Digital Ethics: Mandatory inclusion across all tech curricula.</li>
+                </ul>
+                <p><strong>Industry Partnership Mandate:</strong> Every higher education institution (HEI) must secure formalized, active curriculum consulting from a minimum of three (3) relevant industry partners (e.g., a Game Studio, an IT major, a Fintech firm) annually.</p>
+            </div>
 
-    <h2 id="checklist">📝 DGBP Pilot Implementation Checklist: Phase I (Years 1-2)</h2>
-    <p>Operational checklist for DGBP Pilot Program rollout (Phase I).</p>
-    <a href="https://docs.google.com/document/d/1aLTz7SR8olXxaS6pWhLGYepjyq0_4Q-DmbzODZG4f1M/edit?usp=sharing" class="document-link" target="_blank">Open Pilot Checklist</a>
-  </div>
+            <h2 id="cd4">CORE DIRECTIVE 4: THE 50% DIGITAL PLEDGE AND RESOURCE MOBILIZATION</h2>
+            <div class="directive">
+                <p>To achieve the national target of 50% vocational exposure by 2025, aggressive resource pooling is mandatory.</p>
+                <p><strong>Hub-and-Spoke Model:</strong> School complexes will serve as Community Digital Skill Hubs, utilizing advanced labs (e.g., Robotics, VR stations) after regular hours for both vocational students and adult learners seeking upskilling.</p>
+                <p><strong>Talent Exchange:</strong> A National Registry shall be created to allow certified industry professionals (including freelance Game Developers, Animators, and UI/UX Experts) to register as vocational instructors for short-term, project-based teaching modules. Their industry experience shall be recognized as equivalent to formal teaching qualifications for these modules.</p>
+                <p><strong>Lifelong Digital Literacy:</strong> Vocational streams must be fully integrated into Adult Education programs, focusing on digital job-readiness skills and reskilling for the post-pandemic economy.</p>
+            </div>
 
-  <footer>
-    &copy; 2025 DevGameBlogPromo. All Rights Reserved.
-  </footer>
+            <h2 id="ch3">💻 CHAPTER 3: IMPLEMENTATION FRAMEWORK AND INSTITUTIONAL MANDATES</h2>
 
-  <script>
-    // Smooth scroll
-    document.querySelectorAll('nav ul li a').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        document.querySelector(link.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
+            <h3 id="ch3.1">3.1 Establishing the National Digital Skilling Council (NDSC)</h3>
+            <p>A high-powered National Digital Skilling Council (NDSC) shall be constituted to function as the apex body overseeing the convergence of the Ministry of Education (MoE) and the Ministry of Skill Development and Entrepreneurship (MSDE) for this Charter.</p>
+            <p>3.1.1. **Council Authority:** The NDSC will be the sole authority for standardizing the Vocational Skill-Stack definitions and ensuring their currency against global industry benchmarks (e.g., GDC standards, W3C specifications).</p>
+            <p>3.1.2. **The 'Skill-to-Credit' Protocol:** The NDSC will establish a clear framework for assigning academic credit for vocational certifications earned outside the formal degree structure, thus ensuring full academic mobility.</p>
+
+            <h3 id="ch3.2">3.2 Phased Rollout Schedule (The 5-Year Acceleration Plan)</h3>
+            <p>The implementation shall be executed in three rapid phases:</p>
+            <p><strong>Phase I (Year 1-2): Foundational Infrastructure & Teacher Training:</strong></p>
+            <ul>
+                <li>Mandate: 100% of all secondary school teachers involved in vocational streams must complete the Digital Pedagogy Certification (DPC) program.</li>
+                <li>Target: Pilot the 10-Day Tech Immersion (Core Directive 2) in 25% of all national districts.</li>
+            </ul>
+            <p><strong>Phase II (Year 3-4): Full Integration and Expansion:</strong></p>
+            <ul>
+                <li>Mandate: Achieve 75% coverage of the Grade 6 Digital Initiation (Core Directive 2).</li>
+                <li>Target: Fully implement the "No Hard Separation" Protocol (Core Directive 1) in all Central and State Higher Education Institutions.</li>
+            </ul>
+            <p><strong>Phase III (Year 5): Universal Compliance and Audit:</strong></p>
+            <ul>
+                <li>Mandate: 100% national compliance with all Core Directives.</li>
+                <li>Target: Launch the National Talent Exchange (Core Directive 4) with a registry of over 10,000 certified industry mentors.</li>
+            </ul>
+            
+            <h3 id="ch3.3">3.3 State and Regional Action Plans (The Localized Skill Strategy)</h3>
+            <p>Every State and Union Territory (UT) shall immediately formulate a State Digital Skill Action Plan (SDSAP) aligned with local economic needs, cultural craft heritage, and the specific demands of the nearest major Digital Industry Hub (e.g., Bengaluru for Game Development, Hyderabad for VFX/Animation).</p>
+            <p>Mandate: SDSAPs must include specific plans for establishing specialized labs (e.g., Dedicated Game Testing Labs, Green Screen Studios) within their Community Digital Skill Hubs.</p>
+
+            <h3 id="ch3.4">3.4 The Family and Community Engagement Protocol (The Mindset Mandate)</h3>
+            <p>Recognizing that the success of the DSA-VIC hinges on social acceptance and home-level encouragement, dedicated mechanisms must be established to engage parents and community leaders.</p>
+            <p>3.4.1. **Parental Mindset Building:** Schools must conduct mandatory quarterly "Future of Work" orientation sessions for parents of students in Grades 6-8. These sessions will focus on de-stigmatizing vocational careers and promoting the long-term financial stability and entrepreneurial opportunities inherent in digital skills (Game Development, Coding, etc.).</p>
+            <p>3.4.3. **Financial Literacy Integration:** Vocational curricula across all levels must integrate modules on basic financial literacy, personal budgeting, and the economics of earning (including the value of digital assets and the structure of freelance payment) to directly support the goal of early financial independence and self-reliance for every young citizen.</p>
+
+            <h3 id="ch3.5">3.5 Responsibility Assignment Matrix (RACI Protocol)</h3>
+            <p>To ensure clear ownership, the following RACI (Responsible, Accountable, Consulted, Informed) matrix defines the roles for key policy elements:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Directive Element</th>
+                        <th>NDSC (National)</th>
+                        <th>State Govts. / UTs</th>
+                        <th>Schools / HEIs</th>
+                        <th>Industry Partners</th>
+                        <th>DGBP (as Pilot)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Skill-Stack Standardization</td><td>A (Accountable)</td><td>I (Informed)</td><td>R (Responsible)</td><td>C (Consulted)</td><td>I (Informed)</td></tr>
+                    <tr><td>10-Day Immersion Execution</td><td>C (Consulted)</td><td>R (Responsible)</td><td>R (Responsible)</td><td>R (Responsible)</td><td>A (Accountable)</td></tr>
+                    <tr><td>Curriculum Updating (Future-Proofing)</td><td>A (Accountable)</td><td>I (Informed)</td><td>C (Consulted)</td><td>R (Responsible)</td><td>C (Consulted)</td></tr>
+                    <tr><td>Community Digital Skill Hubs</td><td>C (Consulted)</td><td>A (Accountable)</td><td>R (Responsible)</td><td>I (Informed)</td><td>I (Informed)</td></tr>
+                    <tr><td>Mindset Building Sessions (Parental)</td><td>I (Informed)</td><td>C (Consulted)</td><td>A (Accountable)</td><td>I (Informed)</td><td>I (Informed)</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="ch3.6">3.6 The DevGameBlogPromo Industry Integration Protocol (DGBP-IIP)</h3>
+            <p>As a key partner in driving the digital transformation, DevGameBlogPromo shall implement the following strategic assets to support the DSA-VIC:</p>
+            <ul>
+                <li>**DGBP AI Lab Curriculum:** DGBP will provide standardized, open-source training modules focused on AI/ML for Procedural Content Generation (PCG) and Dynamic Difficulty Adjustment (DDA) for all participating Community Digital Skill Hubs.</li>
+                <li>**DGBP Game Dev Lab Certification:** DGBP shall certify school complexes that meet infrastructure standards for running advanced game development software (Unity/Unreal), granting them the official "DSA-VIC Game Development Hub" designation.</li>
+                <li>**DGBP Mentorship Pool:** The company will commit its senior developers, artists, and production managers to the National Talent Exchange (Core Directive 4) to act as mentors for students in Phase I pilot districts, guaranteeing a minimum of 100 mentorship hours annually per district.</li>
+            </ul>
+            
+            <h2 id="ch4">💰 CHAPTER 4: FUNDING, PPP, AND INVESTMENT MECHANISMS</h2>
+            <p>The Charter recognizes that national skill development requires dynamic, market-driven financial mechanisms and robust Public-Private Partnerships (PPP).</p>
+
+            <h3 id="ch4.1">4.1 The National Digital Skill Innovation Fund (NDSIF)</h3>
+            <p>A dedicated, non-lapsable fund, the NDSIF, shall be established to finance the strategic objectives of this Charter.</p>
+            <p>4.1.1. **Funding Streams:** The fund will be generated through a combination of Central and State budgetary allocations, contributions from Corporate Social Responsibility (CSR) mandates focused on technology and education, and international aid specific to digital up-skilling.</p>
+            <p>4.1.2. **Accelerator Grants:** The NDSIF will issue highly competitive Accelerator Grants to HEIs and private entities proposing innovative, scalable models for delivering the Future-Proofing Syllabus (Core Directive 3) in high-demand areas like XR and AI.</p>
+
+            <h3 id="ch4.2">4.2 Industry Incentivization and Tax Protocol</h3>
+            <p>The private sector is mandated to be an active partner. Incentives shall be provided to ensure full compliance and participation.</p>
+            <p>4.2.1. **Skill Tax Credit (STC):** Companies offering the 10-Day Tech Immersion (Core Directive 2) internships shall be eligible for a substantial Skill Tax Credit (STC) equivalent to 150% of the operational costs and mentor stipends incurred.</p>
+            <p>4.2.2. **Digital Equipment Donation Protocol:** Corporations donating digital equipment (e.g., high-spec GPUs for game development, servers for cloud training) to Community Digital Skill Hubs shall receive accelerated depreciation benefits, subject to NDSC certification.</p>
+
+            <h2 id="ch5">📈 CHAPTER 5: GOVERNANCE, MONITORING, AND EVALUATION (M&E)</h2>
+            <p>Robust governance and transparent, data-driven evaluation are non-negotiable for the success and accountability of the DSA-VIC.</p>
+
+            <h3 id="ch5.1">5.1 The National Digital Skill Index (DSI)</h3>
+            <p>The NDSC shall launch and perpetually maintain the Digital Skill Index (DSI), a real-time, public dashboard to track the progress of the Charter.</p>
+            <p>5.1.3 **Key Performance Indicators (KPIs) Dashboard Reference**</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Core Directive</th>
+                        <th>KPI Metric</th>
+                        <th>Target Value (by Phase III)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>CD 1 (Integration)</td><td>Percentage of students enrolled in concurrent Vocational + Academic courses (Grades 9-12).</td><td>95%</td></tr>
+                    <tr><td>CD 2 (Initiation)</td><td>Percentage of students completing at least one digital craft course by the end of Grade 8.</td><td>100%</td></tr>
+                    <tr><td>CD 2 (Immersion)</td><td>Number of 10-Day Tech Immersion industry partners registered per 1,000 students.</td><td>5:1000</td></tr>
+                    <tr><td>CD 3 (Future-Proofing)</td><td>Percentage of vocational syllabus content updated within the last 18 months.</td><td>85%</td></tr>
+                    <tr><td>Placement Rate</td><td>Percentage of vocational graduates placed in relevant industry jobs within 6 months.</td><td>70%</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="ch5.3">5.3 Grievance and Feedback Redressal System</h3>
+            <p>The Skill-Stream Grievance Portal: A centralized, 24/7 online portal shall be established to allow students, parents, and industry partners to report non-compliance, curriculum deficiencies, or issues related to the Equal-Value Pledge. Timely resolution is mandated.</p>
+
+            <h2 id="ch6">✨ CHAPTER 6: EQUITY, INCLUSIVITY, AND ACCESS</h2>
+            <p>The DSA-VIC commits to achieving complete equity and ensuring that digital skill opportunities are accessible to every citizen, regardless of background, geography, or ability.</p>
+            
+            <h3 id="ch6.1">6.1 Digital Inclusion and Last-Mile Access</h3>
+            <p>Rural Infrastructure Mandate: The NDSIF (Chapter 4) shall prioritize funding for the establishment of Community Digital Skill Hubs in Socio-Economically Disadvantaged Group (SEDG) regions, guaranteeing high-speed internet connectivity and access to necessary hardware (high-spec PCs, VR equipment).</p>
+            
+            <h3 id="ch6.2">6.2 Gender Parity and Underrepresented Groups</h3>
+            <p>Accessibility Audit: All DGBP-certified labs and Community Digital Skill Hubs must undergo an annual Accessibility Audit to ensure full compliance with the Rights of Persons with Disabilities (RPWD) Act, including specialized vocational training modules for differently-abled learners.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>***The National Digital Skill Acceleration and Vocational Integration Charter (DSA-VIC)***</p>
+        <p>Policy Document | Authored by the  DevGameBlogPromo | Confidential Draft</p>
+    </footer>
+    
+    <script>
+        // Simple JavaScript to toggle the TOC visibility on mobile
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebarHeader = document.querySelector('.sidebar h3');
+            const tocList = document.getElementById('toc-list');
+            
+            if (window.innerWidth <= 992) {
+                sidebarHeader.addEventListener('click', () => {
+                    tocList.style.display = tocList.style.display === 'block' ? 'none' : 'block';
+                });
+            }
         });
-      });
-    });
-
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YKK1S2KEPM"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-YKK1S2KEPM');
-</script>
-  </script>
-
+    </script>
 </body>
 </html>
