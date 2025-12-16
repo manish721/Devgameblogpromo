@@ -141,9 +141,7 @@
     .consult-card{max-width:680px;margin:18px auto;padding:20px;border-radius:12px;background:linear-gradient(180deg,rgba(0,0,0,0.5),rgba(0,0,0,0.45));border:1px solid rgba(255,255,255,0.03);text-align:center}
     .consult-card h4{color:var(--accent);margin:0 0 10px}
 
-    /* footer */
-    footer{padding:30px 20px;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,0.02);margin-top:28px}
-    footer .duns{display:inline-block;background:linear-gradient(90deg,#0066ff,#4f46e5);color:white;padding:8px 12px;border-radius:8px;font-weight:700;margin-top:10px}
+   
 
     /* back to top */
     .back-top{position:fixed;right:22px;bottom:22px;background:var(--accent);color:#00201a;padding:10px;border-radius:50%;display:none;box-shadow:0 8px 30px rgba(0,255,195,0.08);cursor:pointer;border:none}
@@ -506,15 +504,96 @@
 
   </main>
 
-  <!-- Footer -->
-  <footer role="contentinfo">
-    <div style="max-width:var(--maxw);margin:0 auto;padding:8px 18px">
-      <div style="margin-bottom:12px">© <strong>DevGameBlogPromo</strong> • Built with purpose</div>
-      <div><a class="duns" href="https://www.dnb.com" target="_blank" rel="noopener">D-U-N-S® Verified</a></div>
-      <div style="margin-top:8px;color:var(--muted)">D-U-N-S® Number: <strong style="color:var(--text)">772660415</strong></div>
-      <div style="margin-top:12px"><a href="https://docs.google.com/document/d/1cfpmmcymNQnB-PoD-KiwY2WQFhvRzblkiv8mFrHEcRY/edit?usp=sharing" style="color:var(--muted)">Terms & Policy</a></div>
+<div class="site-footer">
+    <div class="footer-content-wrapper container">
+        
+        <div class="newsletter">
+            <h2>Join our weekly newsletter with roundups, video resources and upcoming event.</h2>
+            <p>Be part of a 5000+ growth community</p>
+            <div class="mentors-avatars">
+                
+            </div>
+            <div class="subscribe-form">
+                <input type="email" placeholder="Enter your email to subscribe..." id="email-input-separate">
+                <button id="subscribe-btn-separate">Subscribe</button>
+            </div>
+        </div>
+
+        <div class="footer-links-container">
+            
+            <div class="footer-column">
+                <h3>GET STARTED</h3>
+                <ul>
+                   
+                    <li><a href="https://devgameblogpromo.netlify.app/carrer">For Teams</a></li>
+                    <li><a href="https://forms.gle/txjcBbfddLYJoQW37">Appointment Booking Form</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>PLATFORM</h3>
+                <ul>
+                    <li><a href="#"></a></li>
+                    
+                    <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeUmrhIOgSuevvG_JDJedbMVMoenKu1qpWCBItjeLcaNXb04A/viewform">Help Requests</a></li>
+                   
+                    
+                    
+                </ul>
+            </div>
+            
+            <div class="footer-column company-resources">
+                <div>
+                    <h3>COMPANY</h3>
+                    <ul>
+                         <li><a href="https://forms.gle/hJCAokddqGyGdVRx9">Feedback and Suggestions</a></li>
+                        <li><a href="https://devgameblogpromo.netlify.app/what%20our%20community%20says">Customer Stories</a></li>
+                      
+                    </ul>
+                </div>
+                <div>
+                    <h3>RESOURCES</h3>
+                    <ul>
+                       
+                        <li><a href="https://forms.gle/4bxquubz4LaPXiiC9">Partner Form</a></li>
+                        <li><a href="https://devgameblogpromo.netlify.app/dgbp%20india%20policy%20portal">A Policy Framework for the Future-Ready Citizen</a></li>
+                    </ul>
+                </div>
+            </div>
+
+           
+
+        </div>
     </div>
-  </footer>
+
+    <div class="footer-bottom-bar">
+        <div class="footer-bottom-content container">
+            <div class="footer-logo-bottom">
+                <span class="logo-icon"></span>
+            </div>
+            
+            <div class="footer-legal">
+                <a href="https://docs.google.com/document/d/1cfpmmcymNQnB-PoD-KiwY2WQFhvRzblkiv8mFrHEcRY/edit?tab=t.0#heading=h.x1wiq064arp6">Terms of Service</a>
+              
+            </div>
+
+            <div class="footer-copyright">
+                • Built <span class="heart">❤</span> with purpose
+                <span>© 2025 DevGameBlogPromo. All rights reserved.</span>
+            </div>
+
+            <div class="footer-social">
+                <span title="X/Twitter">X</span>
+                <span title="Instagram">🗂️</span>
+                <span title="LinkedIn">in</span>
+                <span title="YouTube">▶️</span>
+                <span title="Facebook">f</span>
+            </div>
+
+        </div>
+        <p class="final-message">Connecting founders and marketers with battle-hardened mentors that genuinely enjoy helping people.</p>
+    </div>
+</div>
 
   <!-- Back to top -->
   <button class="back-top" aria-label="Back to top" id="backTop">↑</button>
@@ -695,6 +774,253 @@ buttons.forEach(btn => {
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+:root {
+    /* Define colors for the footer only */
+    --color-footer-bg: #0a0a0a; 
+    --color-footer-text-light: #f0f0f0;
+    --color-gaming-accent: #6C5CE7; /* Game Pulse Purple for accents */
+    --max-width: 1200px;
+}
+
+/* Base style for the footer wrapper */
+.site-footer {
+    background-color: var(--color-footer-bg); 
+    padding: 60px 0 0; 
+    color: var(--color-footer-text-light); 
+    font-family: 'Inter', sans-serif; /* Ensure font is defined if not inherited */
+}
+
+/* General container to center content */
+.site-footer .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Newsletter Section */
+.newsletter {
+    width: 30%;
+    min-width: 300px;
+    margin-right: 40px;
+    margin-bottom: 40px;
+}
+
+.newsletter h2 {
+    font-size: 1.8em;
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--color-footer-text-light);
+}
+
+.newsletter p {
+    color: #888; 
+    margin-bottom: 20px;
+}
+
+.mentors-avatars {
+    height: 40px;
+    margin-bottom: 30px;
+    color: #888;
+    display: flex;
+    align-items: center;
+}
+
+.subscribe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.subscribe-form input {
+    padding: 15px;
+    background: #1a1a1a; 
+    border: 1px solid #333;
+    border-radius: 6px;
+    color: var(--color-footer-text-light);
+    font-size: 1em;
+}
+
+.subscribe-form input::placeholder {
+    color: #666;
+}
+
+.subscribe-form button {
+    background-color: #007BFF; /* Innovation Blue */
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1em;
+    transition: background-color 0.2s;
+}
+
+.subscribe-form button:hover {
+    background-color: var(--color-gaming-accent); 
+}
+
+/* Links Columns */
+.footer-links-container {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 150px;
+    margin-bottom: 40px;
+}
+
+.footer-column h3 {
+    color: #888; 
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column li {
+    margin-bottom: 12px;
+}
+
+.footer-column a {
+    color: var(--color-footer-text-light);
+    font-size: 0.95em;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-column a:hover {
+    color: var(--color-gaming-accent);
+}
+
+.company-resources {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* Footer Bottom Bar */
+.footer-bottom-bar {
+    background-color: var(--color-footer-bg); 
+    border-top: 1px solid #1a1a1a;
+    padding: 20px 0;
+    color: #888;
+    font-size: 0.85em;
+}
+
+.footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-logo-bottom {
+    font-size: 1.1em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.footer-logo-bottom span {
+    color: var(--color-gaming-accent);
+    font-size: 1.5em; 
+    margin-right: 5px;
+}
+
+.footer-legal a,
+.footer-copyright span {
+    margin-right: 20px;
+    color: #888;
+}
+
+.footer-legal a:hover {
+    color: var(--color-footer-text-light);
+}
+
+.footer-social span {
+    font-size: 1.2em;
+    margin-left: 15px;
+    cursor: pointer;
+    color: var(--color-footer-text-light);
+}
+
+.heart {
+    color: red;
+    margin: 0 5px;
+}
+
+.final-message {
+    text-align: center; 
+    margin: 20px auto 0; 
+    color: var(--color-footer-text-light);
+    max-width: var(--max-width);
+    padding: 0 20px 20px;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 1000px) {
+    .newsletter {
+        width: 100%;
+        min-width: unset;
+        margin-right: 0;
+    }
+    .footer-links-container {
+        justify-content: flex-start;
+        gap: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-links-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-legal a,
+    .footer-copyright span {
+        margin: 0 10px;
+    }
+}
+</style>
 
 
 
