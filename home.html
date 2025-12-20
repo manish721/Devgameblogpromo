@@ -196,7 +196,7 @@
       <div class="hero-inner">
         <h2 id="hero-title">"Transform Your Skills Into Income: Create, Contribute, and Grow"</h2>
         <p class="lead">— Manish, Founder &amp; Developer Success Coach</p>
-        <p class="lead" style="margin-top:6px;max-width:760px;">"We help creators and developers transform skills into profitable services through expert consulting, targeted campaigns, and proven launch strategies."</p>
+      <center> <p class="lead" style="margin-top:6px;max-width:760px;">"We help creators and developers transform skills into profitable services through expert consulting, targeted campaigns, and proven launch strategies."</p></center> 
         <div class="cta-row" style="margin-top:20px">
           <a class="btn" href="https://discord.gg/HdvgYfGw6s" aria-label="Join Labs — Start Now">Join Labs — Start Now</a>
           <a class="btn secondary cta-small" href=" core team.html" aria-label="Core team">Core Team</a>
@@ -1960,6 +1960,132 @@ svg {
       </div>
     </section>
 
+
+    
+  <h2 style="text-align:center;">Programs</h2>
+
+  <!-- SLIDESHOW WRAPPER -->
+  <div class="slideshow">
+
+    <div class="service-card">
+      <h3>Frontend, JS, Git, Design Thinking</h3>
+      <p>Foundation for builders</p>
+      <p><strong>₹499</strong></p>
+      <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+    </div>
+
+    <div class="service-card">
+      <h3>AI, ML, Python, Prompt Engineering</h3>
+      <p>Start early in AI</p>
+      <p><strong>₹799</strong></p>
+      <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+    </div>
+
+    <div class="service-card">
+      <h3>Cloud + DevOps Fundamentals</h3>
+      <p>AWS & Azure basics</p>
+      <p><strong>₹999</strong></p>
+      <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+    </div>
+
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="slider-controls">
+    <button id="prevBtn">◀ Prev</button>
+    <button id="nextBtn">Next ▶</button>
+  </div>
+
+</div>
+<style>
+.slideshow {
+  max-width: 700px;
+  margin: 40px auto;
+}
+
+.slideshow .service-card {
+  display: none;
+}
+
+.slideshow .service-card.active {
+  display: block;
+}
+
+.slider-controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.slider-controls button {
+  padding: 10px 20px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+</style>
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const slides = document.querySelectorAll(".slideshow .service-card");
+  let index = 0;
+  let autoSlideInterval;
+
+  function showSlide(i) {
+    slides.forEach(slide => slide.classList.remove("active"));
+    slides[i].classList.add("active");
+  }
+
+  function nextSlide() {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+  }
+
+  function prevSlide() {
+    index = (index - 1 + slides.length) % slides.length;
+    showSlide(index);
+  }
+
+  function startAutoSlide() {
+    autoSlideInterval = setInterval(nextSlide, 4000); // 4 seconds
+  }
+
+  function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+  }
+
+  document.getElementById("nextBtn").addEventListener("click", () => {
+    stopAutoSlide();
+    nextSlide();
+    startAutoSlide();
+  });
+
+  document.getElementById("prevBtn").addEventListener("click", () => {
+    stopAutoSlide();
+    prevSlide();
+    startAutoSlide();
+  });
+
+  // Pause on hover
+  document.querySelector(".slideshow").addEventListener("mouseenter", stopAutoSlide);
+  document.querySelector(".slideshow").addEventListener("mouseleave", startAutoSlide);
+
+  // INIT
+  if (slides.length > 0) {
+    showSlide(index);
+    startAutoSlide();
+  }
+
+});
+</script>
+
+
+
+
     <!-- Impact Stats -->
     <section class="section" id="impact" aria-labelledby="impact-title">
       <h3 id="impact-title">📊 Our Impact So Far</h3>
@@ -2513,6 +2639,96 @@ buttons.forEach(btn => {
     }
 }
 </style>
+
+
+<style>
+body {
+  margin: 0;
+  background: #050807;
+  color: white;
+  font-family: Arial, sans-serif;
+  padding: 60px;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.hidden {
+  display: none;
+}
+
+.promo-box {
+  background: #0b0f0e;
+  border: 1px solid #1aff64;
+  border-radius: 14px;
+  width: 90%;
+  max-width: 420px;
+  padding: 24px;
+  text-align: center;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  cursor: pointer;
+  color: #aaa;
+}
+
+.promo-tag {
+  font-size: 11px;
+  color: #1aff64;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.promo-btn {
+  display: inline-block;
+  margin-top: 16px;
+  background: #1aff64;
+  color: #000;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+}
+</style>
+
+
+<!-- Sponsorship Modal -->
+<div id="promoOverlay" class="overlay">
+  <div class="promo-box">
+    <span class="close-btn" onclick="closePromo()">✕</span>
+
+    <span class="promo-tag">SPONSORSHIP</span>
+    <h2>Sponsored by:
+VectorHive Media · StrideWorks · PixelPlay Studios · BrightLeaf Digital · CodeNova Systems</h2>
+    <p>According to our partners — VectorHive Media, StrideWorks, PixelPlay Studios, BrightLeaf Digital, and CodeNova Systems —
+      <p>"We endorse DevGameBlogPromo’s mentorship programs and labs. They provide accessible learning and practical resources for future-ready developers."</p>
+    </p>
+
+    <a href="mentorship .html" class="promo-btn" target="_blank">
+      Visit Sponsor
+    </a>
+  </div>
+</div>
+
+<script>
+function closePromo() {
+  document.getElementById("promoOverlay").classList.add("hidden");
+}
+</script>
+
 
 
 
