@@ -201,7 +201,20 @@
     height: 64px;
   }
 }
+.logo-circle {
+  position: relative;
+  box-shadow:
+    0 0 0 2px rgba(0,255,195,0.15),
+    0 0 18px rgba(0,255,195,0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.logo-circle:hover {
+  transform: scale(1.06) rotate(2deg);
+  box-shadow:
+    0 0 0 2px rgba(0,255,195,0.35),
+    0 0 30px rgba(0,255,195,0.55);
+}
   </style>
 </head>
 <body>
@@ -2771,6 +2784,7 @@ function closePromo() {
   document.getElementById("promoOverlay").style.display = "none";
 }
 </script>
+
 
 
 
