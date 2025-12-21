@@ -2643,6 +2643,89 @@ buttons.forEach(btn => {
 
 
 
+	 
+
+	 <div id="promoOverlay" style="
+  display:flex;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(6px);
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+">
+
+  <div style="
+    background:#0b0f0e;
+    border:1px solid #1aff64;
+    border-radius:14px;
+    width:420px;
+    padding:24px;
+    text-align:center;
+    position:relative;
+    color:white;
+    font-family:Arial,sans-serif;
+  ">
+
+    <span onclick="closePromo()" style="
+      position:absolute;
+      top:12px;
+      right:16px;
+      cursor:pointer;
+      color:#aaa;
+      font-size:16px;
+    ">✕</span>
+
+    <span style="
+      font-size:11px;
+      color:#1aff64;
+      letter-spacing:1px;
+      display:block;
+      margin-bottom:6px;
+    ">SPONSORSHIP</span>
+
+    <h2 style="font-size:18px; line-height:1.4;">
+      Sponsored by:<br>
+      VectorHive Media · StrideWorks · PixelPlay Studios · BrightLeaf Digital · CodeNova Systems
+    </h2>
+
+    <p style="font-size:14px;">
+      According to our partners:
+    </p>
+
+    <p style="font-size:14px;">
+      <em>
+        “We endorse DevGameBlogPromo’s mentorship programs and labs.
+        They provide accessible learning and practical resources for future-ready developers.”
+      </em>
+    </p>
+
+    <a href="mentorship.html" target="_blank" style="
+      display:inline-block;
+      margin-top:16px;
+      background:#1aff64;
+      color:#000;
+      padding:10px 18px;
+      border-radius:8px;
+      font-weight:bold;
+      text-decoration:none;
+    ">
+      Visit Sponsor
+    </a>
+
+  </div>
+</div>
+
+<script>
+function closePromo() {
+  document.getElementById("promoOverlay").style.display = "none";
+}
+</script>
+
+
+
+
 
 
 
