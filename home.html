@@ -1918,6 +1918,171 @@ svg {
   }
 </style>
 
+
+<section class="section" id="leaders" aria-labelledby="leaders-title">
+  <h3 id="leaders-title">“Global Execution Footprint”</h3>
+<div class="map-container">
+    <img 
+      src="https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg"
+      alt="World Map"
+      class="world-map"
+    />
+
+    <!-- Markers -->
+    <span class="marker usa" data-name="United States"></span>
+    <span class="marker germany" data-name="Germany"></span>
+    <span class="marker finland" data-name="Finland"></span>
+    <span class="marker japan" data-name="Japan"></span>
+    <span class="marker philippines" data-name="Philippines"></span>
+    <span class="marker indonesia" data-name="Indonesia"></span>
+    <span class="marker australia" data-name="Australia"></span>
+    <span class="marker brazil" data-name="Brazil"></span>
+    <span class="marker nigeria" data-name="Nigeria"></span>
+  </div>
+
+ 
+</section>
+
+
+<style>
+  /* ===== Global Presence Section ===== */
+
+#global-presence {
+  padding: 64px 24px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+#global-presence h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: 0.2px;
+}
+
+#global-presence .sub {
+  color: #9aa4b2;
+  font-size: 15px;
+  max-width: 720px;
+  margin-bottom: 32px;
+}
+
+/* ===== Map Container ===== */
+
+.map-container {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px;
+  background: linear-gradient(
+    180deg,
+    rgba(18, 24, 38, 0.9),
+    rgba(11, 15, 20, 0.9)
+  );
+  border-radius: 16px;
+  border: 1px solid #1f2937;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.world-map {
+  width: 100%;
+  opacity: 0.85;
+  filter: grayscale(100%) contrast(1.05);
+  border-radius: 12px;
+}
+
+/* ===== Markers ===== */
+
+.marker {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #4f8cff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow:
+    0 0 0 0 rgba(79, 140, 255, 0.7),
+    0 0 10px rgba(79, 140, 255, 0.9);
+  animation: pulse 2.5s infinite;
+}
+
+/* Tooltip */
+.marker::after {
+  content: attr(data-name);
+  position: absolute;
+  top: -34px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0f172a;
+  color: #e6e8ee;
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  border: 1px solid #1f2937;
+}
+
+.marker:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+/* ===== Pulse Animation ===== */
+
+@keyframes pulse {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(79, 140, 255, 0.6),
+      0 0 10px rgba(79, 140, 255, 0.8);
+  }
+  70% {
+    box-shadow:
+      0 0 0 10px rgba(79, 140, 255, 0),
+      0 0 14px rgba(79, 140, 255, 0.4);
+  }
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(79, 140, 255, 0),
+      0 0 10px rgba(79, 140, 255, 0.8);
+  }
+}
+
+/* ===== Marker Positions (Fine-Tuned) ===== */
+
+.usa { top: 38%; left: 23%; }
+.germany { top: 31%; left: 48%; }
+.finland { top: 24%; left: 50%; }
+.japan { top: 34%; left: 71%; }
+.philippines { top: 46%; left: 74%; }
+.indonesia { top: 53%; left: 72%; }
+.australia { top: 71%; left: 78%; }
+.brazil { top: 59%; left: 33%; }
+.nigeria { top: 48%; left: 46%; }
+
+/* ===== Responsive ===== */
+
+@media (max-width: 768px) {
+  #global-presence {
+    padding: 48px 16px;
+  }
+
+  .map-container {
+    padding: 16px;
+  }
+
+  #global-presence h2 {
+    font-size: 22px;
+  }
+}
+
+</style>
+
+
+	 
+
     <!-- Philosophy 8392 (kept) -->
     <section class="section" id="philosophy" aria-labelledby="philosophy-title">
       <h3 id="philosophy-title">Philosophy of Code 8392</h3>
@@ -2823,6 +2988,7 @@ function closePromo() {
   document.getElementById("promoOverlay").style.display = "none";
 }
 </script>
+
 
 
 
