@@ -387,6 +387,173 @@
  <section class="section" id="leaders" aria-labelledby="leaders-title">
   <h3 id="leaders-title">“Ideas. Passion. Impact. Meet the Visionaries and Doers Driving Tomorrow.”</h3>
 
+	 <div class="slider">
+  <div class="slide-track">
+
+    <!-- Board / Directors -->
+    <div class="leader-card board">
+      <h4>Manish Kakarla</h4>
+      <p>Chairperson of the Board</p>
+    </div>
+
+    <div class="leader-card board">
+      <h4>Rhea Sharma</h4>
+      <p>Board Member / Director</p>
+    </div>
+
+    <div class="leader-card board">
+      <h4>Arjun Verma</h4>
+      <p>Independent Director</p>
+    </div>
+
+    <div class="leader-card board">
+      <h4>Priya Nair</h4>
+      <p>Lead Director</p>
+    </div>
+
+    <div class="leader-card board">
+      <h4>Sameer Gupta</h4>
+      <p>Non-Executive Director</p>
+    </div>
+
+    <!-- C-Level Executives -->
+    <div class="leader-card clevel">
+      <h4>Kavya Menon</h4>
+      <p>Chief Executive Officer</p>
+    </div>
+
+    <div class="leader-card clevel">
+      <h4>Rohan Desai</h4>
+      <p>Chief Operating Officer</p>
+    </div>
+
+    <div class="leader-card clevel">
+      <h4>Akilesh / Ananya Iyer</h4>
+      <p>Chief Financial Officer</p>
+    </div>
+
+    <div class="leader-card clevel">
+      <h4>Vedant Rao</h4>
+      <p>Chief Technology Officer</p>
+    </div>
+
+    <div class="leader-card clevel">
+      <h4>Ishita Bhat</h4>
+      <p>Chief Information Officer</p>
+    </div>
+
+    <div class="leader-card clevel">
+      <h4>Tanmay Kulkarni</h4>
+      <p>Chief Marketing Officer</p>
+    </div>
+
+    <div class="leader-card clevel">
+      <h4>Meera Sethi</h4>
+      <p>Chief Human Resources Officer / Chief People Officer</p>
+    </div>
+
+    <div class="leader-card clevel">
+      <h4>Arnav Choudhary</h4>
+      <p>Chief Legal Officer</p>
+    </div>
+
+    <div class="leader-card clevel">
+      <h4>Nisha Kapoor</h4>
+      <p>Chief Strategy Officer</p>
+    </div>
+
+    <div class="leader-card clevel">
+      <h4>Devansh Malik</h4>
+      <p>Chief Revenue Officer / Chief Risk Officer</p>
+    </div>
+
+    <div class="leader-card clevel">
+      <h4>Aanya Joshi</h4>
+      <p>Chief Information Security Officer</p>
+    </div>
+
+    <div class="leader-card clevel">
+      <h4>Siddharth Rao</h4>
+      <p>Chief Customer Officer</p>
+    </div>
+
+    <div class="leader-card clevel">
+      <h4>Kiara Mehta</h4>
+      <p>Chief Data Officer / Chief Diversity Officer</p>
+    </div>
+
+    <div class="leader-card clevel">
+      <h4>Yash Verma</h4>
+      <p>Chief Product Officer</p>
+    </div>
+
+    <div class="leader-card clevel">
+      <h4>Anika Singh</h4>
+      <p>Chief Innovation Officer</p>
+    </div>
+
+    <div class="leader-card clevel">
+      <h4>Aarav Bhatt</h4>
+      <p>Chief Administrative Officer</p>
+    </div>
+
+  </div>
+</div>
+<style>
+    /* Slider container */
+.slider {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  background: #0a0a0a; /* matches your site background */
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+
+/* Slide track: duplicated for seamless scroll */
+.slide-track {
+  display: flex;
+  animation: scroll-left 40s linear infinite;
+}
+
+/* Individual leader cards */
+.leader-card {
+  flex: 0 0 auto;
+  width: 220px;
+  margin: 0 10px;
+  padding: 15px;
+  border-radius: 12px;
+  color: #ffffff; /* text color for contrast */
+  font-family: sans-serif;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Hover effect */
+.leader-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Role-based colors */
+.leader-card.board { background-color: #1e3a8a; }      /* Dark blue */
+.leader-card.clevel { background-color: #047857; }     /* Dark green */
+.leader-card.support { background-color: #b45309; }    /* Warm amber */
+
+/* Continuous scrolling animation */
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* scroll half track to loop */
+}
+
+/* Optional: duplicate slide track for seamless loop */
+.slide-track::after {
+  content: '';
+  display: block;
+}
+
+</style>
  
 <div class="quote-card" role="listitem">
       <div class="q">"Helping people reach their highest potential through honest work — step by step, not by risky shortcuts."</div>
@@ -1579,6 +1746,7 @@ function closePromo() {
   document.getElementById("promoOverlay").style.display = "none";
 }
 </script>
+
 
 
 
