@@ -7,101 +7,190 @@
 <title>DevGameBlogPromo Courses</title>
 
 <style>
-  :root {
-    --primary-color: #007bff;
-    --secondary-color: #6c757d;
-    --accent-color: #ff4081;
-    --background-color: #f5f5f5;
-    --text-color: #333;
-    --card-background: #ffffff;
-    --border-color: #e0e0e0;
-    --shadow-color: rgba(0, 0, 0, 0.2);
-    --border-radius: 5px;
-  }
+/* ===== GLOBAL RESET ===== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+/* ===== ROOT LEVEL ===== */
+html {
+  width: 100%;
+  height: 100%;
+  background-color: #eee9e9;
+}
 
-  body {
-    background-color: var(--background-color);
-    color: var(--text-color);
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-  }
+/* ===== BODY ===== */
+body {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #0a0a0a;
+  color: #ffffff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  overflow-x: hidden;
+}
 
-  header {
-    background-color: var(--primary-color);
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 10px var(--shadow-color);
-  }
-  header::after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 5px;
-    background: var(--accent-color);
-  }
+/* ===== FORCE ALL SECTIONS TRANSPARENT ===== */
+header,
+main,
+section,
+article,
+aside,
+footer,
+div {
+  background-color: transparent;
+}
 
-  h1 { font-size: 2.5rem; margin-bottom: 10px; }
-  h2 { font-size: 1.75rem; margin: 20px 0; color: var(--secondary-color); }
-  p { font-size: 1rem; margin-bottom: 15px; }
+/* ===== REMOVE WHITE FROM FORMS & INPUTS ===== */
+input,
+textarea,
+select,
+button {
+  background-color: #111;
+  color: #fff;
+  border: 1px solid #333;
+}
 
-  .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+/* ===== SCROLLBAR (OPTIONAL DARK) ===== */
+::-webkit-scrollbar {
+  width: 10px;
+}
 
-  .service-card {
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    padding: 20px;
-    margin: 20px 0;
-    background-color: var(--card-background);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
-    position: relative;
-  }
-  .service-card:hover { transform: scale(1.02); }
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
 
-  .service-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: var(--primary-color);
-    color: #fff;
-    text-decoration: none;
-    border-radius: var(--border-radius);
-    transition: background-color 0.3s;
-  }
-  .service-btn:hover { background-color: #0056b3; }
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 6px;
+}
 
-  .seat-bar {
-    width: 100%;
-    background: #eee;
-    border-radius: 10px;
-    overflow: hidden;
-    height: 15px;
-    margin: 10px 0;
-  }
-  .seat-progress {
-    height: 100%;
-    background: #28a745;
-    transition: width 0.5s ease;
-  }
+::-webkit-scrollbar-thumb:hover {
+  background: #333;
+}
 
-  footer {
-    background-color: var(--primary-color);
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 40px;
-  }
+/* ===== HEADER ===== */
+header {
+  background: linear-gradient(
+    135deg,
+    var(--brand-secondary),
+    var(--brand-primary)
+  );
+  color: var(--text-inverse);
+  padding: 64px 20px;
+  text-align: center;
+}
 
-  @media (max-width: 768px) {
-    h1 { font-size: 2rem; }
-    .service-btn { width: 100%; text-align: center; }
-  }
+header h1 {
+  font-size: 2.4rem;
+  margin-bottom: 12px;
+}
 
-  @media (max-width: 480px) {
-    h1 { font-size: 1.5rem; }
-  }
+header p {
+  max-width: 900px;
+  margin: 0 auto;
+  color: #1550c7;
+}
+
+/* ===== LAYOUT ===== */
+.container {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+/* ===== SERVICE CARD ===== */
+.service-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-smooth),
+              box-shadow var(--transition-smooth);
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+.service-card h3 {
+  font-size: 1.2rem;
+  color: var(--brand-secondary);
+  margin-bottom: 10px;
+}
+
+.service-card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+/* ===== SEAT BAR ===== */
+.seat-bar {
+  background: var(--bg-elevated);
+  height: 8px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 12px 0;
+}
+
+.seat-progress {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--brand-accent),
+    var(--brand-primary)
+  );
+  width: 0%;
+  transition: width 0.5s ease;
+}
+
+.seats-remaining {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+/* ===== BUTTON ===== */
+.service-btn {
+  margin-top: auto;
+  text-align: center;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text-inverse);
+  background: linear-gradient(
+    135deg,
+    var(--brand-primary),
+    var(--brand-accent)
+  );
+  transition: transform var(--transition-fast),
+              box-shadow var(--transition-fast);
+}
+
+.service-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 18px rgba(0, 229, 255, 0.35);
+}
+footer {
+  background: var(--brand-secondary);
+  color: #cbd5f5;
+  text-align: center;
+  padding: 30px 20px;
+  margin-top: 80px;
+}
+ 
 </style>
 </head>
 <body>
@@ -111,7 +200,162 @@
   <p>Upgrade your skills. Transform your future. Limited seats available for each program.</p>
   <p> 🎨 Professional Services Tailored to Your Vision Design, Illustration, and Creative Solutions That Speak for You Buy Now</p>
 </header>
+<section class="dgbp-offer">
+  <div class="offer-container">
+    <span class="offer-badge">LIMITED-TIME OFFER</span>
 
+    <h2>Build Skills. Build Authority. Build the Future.</h2>
+<subtitle> Stop Delaying Your Skill Growth.</subtitle>
+
+    <p class="offer-desc">
+  Every month you wait, the gap between where you are and where the industry is
+  gets wider. DevGameBlogPromo programs are built for those who don’t want
+  surface-level learning — but real authority, clarity, and momentum.
+</p>
+
+<ul class="offer-points">
+  <li>✔ Not hobby courses — structured, career-grade programs</li>
+  <li>✔ Skills designed for the next 3–5 years, not last year</li>
+  <li>✔ Limited seats to protect quality and mentorship access</li>
+  <li>✔ Miss this window and pricing & access will not remain the same</li>
+</ul>
+
+<div class="offer-meta">
+  <span>⚠️ Seats strictly limited (250 max)</span>
+  <span>⏳ Next intake pricing will increase</span>
+</div>
+
+    <div class="offer-actions">
+      <a href="" class="btn-primary">Apply Now</a>
+      <a class="btn-secondary">Scroll Down View Programs</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ===== OFFER SECTION ===== */
+.dgbp-offer {
+  background-color: #0a0a0a;
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.offer-container {
+  max-width: 900px;
+  width: 100%;
+  background: linear-gradient(145deg, #0f0f0f, #151515);
+  border: 1px solid #222;
+  border-radius: 14px;
+  padding: 50px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* Badge */
+.offer-badge {
+  display: inline-block;
+  background: linear-gradient(90deg, #ff4081, #ff6a00);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 999px;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+/* Heading */
+.offer-container h2 {
+  font-size: 32px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+
+/* Description */
+.offer-desc {
+  color: #bdbdbd;
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+/* Points */
+.offer-points {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px;
+}
+
+.offer-points li {
+  color: #e0e0e0;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+/* Meta */
+.offer-meta {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  color: #9e9e9e;
+  font-size: 14px;
+  margin-bottom: 35px;
+}
+
+/* Buttons */
+.offer-actions {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #ff4081, #ff6a00);
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 64, 129, 0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #ffffff;
+  padding: 14px 28px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #1a1a1a;
+  border-color: #444;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .offer-container {
+    padding: 35px 25px;
+  }
+
+  .offer-container h2 {
+    font-size: 26px;
+  }
+}
+
+</style>
 <div class="container">
 
 <!-- List of all courses -->
