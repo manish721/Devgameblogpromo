@@ -93,9 +93,12 @@
 <div class="doc-dropdown">
   <button id="dropdownBtn">📄 Select Document</button>
 
+<div class="doc-dropdown">
+  <button id="dropdownBtn">📄 Select Document</button>
+
   <div id="dropdownMenu" class="dropdown-menu">
     <div 
-      class="dropdown-item" 
+      class="dropdown-item"
       data-link="https://docs.google.com/document/d/1HlQbnRjqwhV7yMydwxKPh9ut1RWnJc-SMv8nunVnBDU/preview">
       DevGameBlogPromo™ Copyright Protection Policy
     </div>
@@ -130,9 +133,8 @@
     
   </section>
 <script>
- const btn = document.getElementById("dropdownBtn");
+const btn = document.getElementById("dropdownBtn");
   const menu = document.getElementById("dropdownMenu");
-  const viewer = document.getElementById("docViewer");
 
   btn.addEventListener("click", () => {
     menu.style.display = menu.style.display === "block" ? "none" : "block";
@@ -140,12 +142,11 @@
 
   document.querySelectorAll(".dropdown-item").forEach(item => {
     item.addEventListener("click", () => {
-      viewer.src = item.dataset.link;
+      window.open(item.dataset.link, "_blank"); // NEW TAB
       menu.style.display = "none";
     });
   });
 
-  // Close dropdown when clicking outside
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".doc-dropdown")) {
       menu.style.display = "none";
