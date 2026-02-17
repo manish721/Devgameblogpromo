@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DevGameBlogPromo – Full Curriculum</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:system-ui;
+  background:#0b0f1a;
+  color:#e5e7eb
+}
+header{
+  background:#020617;
+  padding:40px;
+  text-align:center
+}
+h1{color:#5eead4}
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:20px
+}
+select,input{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  background:#11162a;
+  color:#fff;
+  border:none;
+  margin-bottom:12px
+}
+.card{
+  background:#11162a;
+  padding:24px;
+  border-radius:16px;
+  margin-top:20px
+}
+h2,h3{color:#5eead4}
+.section{margin-top:20px}
+ul{line-height:1.9}
+.badge{
+  background:#5eead4;
+  color:#000;
+  padding:5px 10px;
+  border-radius:6px;
+  font-size:12px;
+  display:inline-block;
+  margin-bottom:10px
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>DevGameBlogPromo – Complete Learning Curriculum</h1>
+<p>Each course follows a unique BASIC → STANDARD → ADVANCED progression</p>
+</header>
+
+<div class="container">
+<input id="search" placeholder="Search course (AI, trading, domain, cloud...)">
+<select id="courseSelect"></select>
+<div id="content"></div>
+</div>
+
+<script>
+const courses = [
+
+/* ================= DOMAIN ================= */
+
+{
+category:"Domain",
+title:"Custom Domain Recommendation",
+intro:"Learn how to recommend the right domain based on business, branding, SEO and long-term growth.",
+basic:[
+"Understanding what a domain is",
+"TLD types (.com, .in, .ai, etc.)",
+"Brand vs keyword domains",
+"Basic naming rules"
+],
+standard:[
+"Audience & niche-based domain selection",
+"SEO signals in domains",
+"Brand recall & memorability testing",
+"Competitor comparison"
+],
+advanced:[
+"Startup-ready naming frameworks",
+"Premium domain logic",
+"Trademark & legal checks",
+"Long-term brand protection"
+],
+tools:["Namecheap","GoDaddy","Google Trends"],
+outcome:"Recommend domains professionally for any business."
+},
+
+{
+category:"Domain",
+title:"Expired Domain Research",
+intro:"Find expired domains with SEO or resale potential.",
+basic:[
+"What expired domains are",
+"Why domains lose ownership",
+"Basic expired domain platforms"
+],
+standard:[
+"Backlink quality analysis",
+"Spam & penalty detection",
+"Archive history checking"
+],
+advanced:[
+"Authority rebuilding strategies",
+"SEO vs flipping evaluation",
+"Risk scoring systems"
+],
+tools:["Expireddomains.net","Ahrefs","Wayback Machine"],
+outcome:"Identify safe and valuable expired domains."
+},
+
+{
+category:"Domain",
+title:"Competitor Domain Analysis",
+intro:"Analyze how competitors use domains to grow traffic and authority.",
+basic:[
+"Finding competitor domains",
+"Domain structure basics",
+"Key domain metrics"
+],
+standard:[
+"Traffic estimation",
+"SEO footprint mapping",
+"Subdomain usage analysis"
+],
+advanced:[
+"Reverse-engineering growth",
+"Brand positioning strategy",
+"Market gap discovery"
+],
+tools:["SEMrush","Ahrefs","SimilarWeb"],
+outcome:"Analyze competitors strategically."
+},
+
+{
+category:"Domain",
+title:"Domain Authority Boosting",
+intro:"Learn how authority is built and sustained.",
+basic:[
+"What DA is",
+"Links & content basics"
+],
+standard:[
+"White-hat link building",
+"Content authority systems"
+],
+advanced:[
+"Scaling authority safely",
+"Penalty avoidance",
+"Long-term SEO planning"
+],
+tools:["Moz","Google Search Console"],
+outcome:"Build sustainable authority."
+},
+
+{
+category:"Domain",
+title:"Domain Flipping Guidance",
+intro:"Learn buying, selling and valuation of domains.",
+basic:[
+"Domain flipping fundamentals",
+"Marketplaces overview",
+"Beginner mistakes"
+],
+standard:[
+"Valuation techniques",
+"Market trend reading",
+"Negotiation methods"
+],
+advanced:[
+"Portfolio building",
+"Brandable domain creation",
+"Exit & resale strategy"
+],
+tools:["NameBio","Estibot","GoDaddy Auctions"],
+outcome:"Flip domains confidently."
+},
+
+/* ================= CAREER ================= */
+
+{
+category:"Career",
+title:"Resume to Recruitment Masterclass",
+intro:"Become placement-ready from resume to interviews.",
+basic:[
+"Resume structure",
+"Common mistakes",
+"Recruiter mindset"
+],
+standard:[
+"ATS optimization",
+"Interview preparation",
+"Mock interviews"
+],
+advanced:[
+"Personal branding",
+"Offer negotiation",
+"Career roadmap"
+],
+tools:["LinkedIn","Resume tools"],
+outcome:"Job-ready confidence."
+},
+
+/* ================= FRONTEND ================= */
+
+{
+category:"Frontend",
+title:"Frontend Development (HTML, CSS, JS)",
+intro:"Complete frontend journey from beginner to advanced.",
+basic:[
+"HTML structure",
+"CSS fundamentals",
+"JS basics"
+],
+standard:[
+"Responsive layouts",
+"Component thinking",
+"Mini projects"
+],
+advanced:[
+"Advanced JS logic",
+"Performance optimization",
+"Portfolio-grade apps"
+],
+tools:["VS Code","Git","DevTools"],
+outcome:"Build production-ready websites."
+},
+
+/* ================= AI ================= */
+
+{
+category:"AI",
+title:"Intro to AI, ML, Python & Prompt Engineering",
+intro:"Learn AI thinking, Python programming and prompting.",
+basic:[
+"AI & ML concepts",
+"Python basics",
+"Simple prompts"
+],
+standard:[
+"Prompt optimization",
+"Python for data",
+"ML workflows"
+],
+advanced:[
+"Advanced prompting systems",
+"AI pipelines",
+"Ethical AI"
+],
+tools:["Python","Jupyter","AI tools"],
+outcome:"Work confidently with AI."
+},
+
+{
+category:"AI",
+title:"NLP, Chatbots & LLM Integration",
+intro:"Build intelligent conversational systems.",
+basic:[
+"NLP basics",
+"Rule-based chatbots"
+],
+standard:[
+"Intent detection",
+"Conversation flows"
+],
+advanced:[
+"LLM integration",
+"Context handling",
+"Production chatbots"
+],
+tools:["LLM APIs","Chatbot frameworks"],
+outcome:"Build smart chat systems."
+},
+
+{
+category:"AI",
+title:"Deep Learning, Vision, GANs & AutoML",
+intro:"Advanced AI model understanding.",
+basic:[
+"Neural networks",
+"Vision basics"
+],
+standard:[
+"CNNs",
+"GAN fundamentals",
+"AutoML overview"
+],
+advanced:[
+"Optimization",
+"Creative AI",
+"Deployment thinking"
+],
+tools:["DL frameworks"],
+outcome:"Understand advanced AI."
+},
+
+{
+category:"AI",
+title:"AGI & Advanced AI Research",
+intro:"Explore artificial general intelligence.",
+basic:[
+"AGI concepts",
+"AI limitations"
+],
+standard:[
+"Reasoning systems",
+"Multi-modal AI"
+],
+advanced:[
+"Alignment",
+"Safety",
+"Future research"
+],
+tools:["Research papers"],
+outcome:"Think like an AI researcher."
+},
+
+/* ================= CLOUD ================= */
+
+{
+category:"Cloud",
+title:"Cloud Fundamentals & DevOps",
+intro:"Understand cloud systems and DevOps mindset.",
+basic:[
+"What cloud is",
+"AWS & Azure basics"
+],
+standard:[
+"CI/CD",
+"Containers",
+"Monitoring"
+],
+advanced:[
+"Scalable architecture",
+"Cost optimization",
+"Cloud security"
+],
+tools:["AWS","Azure","Docker"],
+outcome:"Understand modern cloud systems."
+},
+
+/* ================= FINANCE ================= */
+
+{
+category:"Finance",
+title:"Stock Market & Algo Trading",
+intro:"Learn how markets work and strategies are built.",
+basic:[
+"Market basics",
+"Charts & candles"
+],
+standard:[
+"Indicators",
+"Risk management"
+],
+advanced:[
+"Algo logic",
+"Backtesting",
+"Capital protection"
+],
+tools:["TradingView","Sheets"],
+outcome:"Build rule-based strategies."
+},
+
+/* ================= SECURITY ================= */
+
+{
+category:"Security",
+title:"Cybersecurity & Ethical Hacking",
+intro:"Understand attacks and defenses.",
+basic:[
+"Cyber basics",
+"Common threats"
+],
+standard:[
+"Web vulnerabilities",
+"Security testing"
+],
+advanced:[
+"Ethical hacking flow",
+"Audits"
+],
+tools:["OWASP"],
+outcome:"Secure systems ethically."
+},
+
+/* ================= FUTURE ================= */
+
+{
+category:"Future Tech",
+title:"Quantum Computing + Qiskit",
+intro:"Early quantum exposure.",
+basic:[
+"Qubits",
+"Quantum logic"
+],
+standard:[
+"Gates & circuits",
+"Qiskit basics"
+],
+advanced:[
+"Quantum algorithms",
+"Future use-cases"
+],
+tools:["IBM Qiskit"],
+outcome:"Quantum fundamentals."
+},
+
+{
+category:"Future Tech",
+title:"Web3, dApps & Smart Contracts",
+intro:"Decentralized systems understanding.",
+basic:[
+"Blockchain basics",
+"Wallets"
+],
+standard:[
+"dApps",
+"Smart contract logic"
+],
+advanced:[
+"Security",
+"DAOs",
+"Scaling"
+],
+tools:["Web3 SDKs"],
+outcome:"Understand Web3 ecosystems."
+},
+
+{
+category:"Future Tech",
+title:"AR/VR & Metaverse",
+intro:"Immersive digital worlds.",
+basic:[
+"AR vs VR",
+"3D basics"
+],
+standard:[
+"Interaction design",
+"Virtual environments"
+],
+advanced:[
+"Optimization",
+"Monetization"
+],
+tools:["3D engines"],
+outcome:"Build immersive experiences."
+},
+
+/* ================= IMPACT ================= */
+
+{
+category:"Impact",
+title:"Humanitarian Tech & Impact Projects",
+intro:"Apply tech for social good.",
+basic:[
+"Problem identification",
+"Impact thinking"
+],
+standard:[
+"Low-cost systems",
+"NGO tech"
+],
+advanced:[
+"Scalable impact",
+"Sustainability"
+],
+tools:["Impact platforms"],
+outcome:"Build tech for humanity."
+}
+
+];
+
+/* ===== JS RENDER ===== */
+
+const select=document.getElementById("courseSelect");
+const search=document.getElementById("search");
+
+function loadCourses(){
+  select.innerHTML="";
+  courses.forEach((c,i)=>{
+    if((c.title+c.intro).toLowerCase().includes(search.value.toLowerCase())){
+      const o=document.createElement("option");
+      o.value=i;
+      o.textContent=c.title;
+      select.appendChild(o);
+    }
+  });
+  renderCourse(select.value);
+}
+
+function renderCourse(i){
+  const c=courses[i];
+  document.getElementById("content").innerHTML=`
+  <div class="card">
+    <span class="badge">${c.category}</span>
+    <h2>${c.title}</h2>
+    <p>${c.intro}</p>
+
+    <div class="section"><h3>🟢 BASIC</h3><ul>${c.basic.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+    <div class="section"><h3>🟡 STANDARD</h3><ul>${c.standard.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+    <div class="section"><h3>🔴 ADVANCED</h3><ul>${c.advanced.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+
+    <div class="section"><h3>🛠 Tools</h3><ul>${c.tools.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+    <div class="section"><h3>🎯 Outcome</h3><p>${c.outcome}</p></div>
+  </div>`;
+}
+
+search.oninput=loadCourses;
+select.onchange=()=>renderCourse(select.value);
+
+loadCourses();
+</script>
+
+</body>
+</html>
