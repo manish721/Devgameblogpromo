@@ -88,18 +88,20 @@
     <h1>DevGameBlogPromo Boards</h1>
     <nav>
       <button onclick="showBoard('press')">Press Release Board</button>
-      <select id="docDropdown">
-  <option value="">-- Select Document --</option>
+  
 
-  <option value="https://docs.google.com/document/d/1HlQbnRjqwhV7yMydwxKPh9ut1RWnJc-SMv8nunVnBDU/preview">
-    DevGameBlogPromo™ Copyright Protection Policy
-  </option>
-        
-</select>
+<div class="doc-dropdown">
+  <button id="dropdownBtn">📄 Select Document</button>
 
-<div class="viewer">
-  <iframe id="docViewer"></iframe>
+  <div id="dropdownMenu" class="dropdown-menu">
+    <div 
+      class="dropdown-item" 
+      data-link="https://docs.google.com/document/d/1HlQbnRjqwhV7yMydwxKPh9ut1RWnJc-SMv8nunVnBDU/preview">
+      DevGameBlogPromo™ Copyright Protection Policy
+    </div>
+  </div>
 </div>
+
     </nav>
   </header>
 
@@ -128,12 +130,25 @@
     
   </section>
 <script>
- const dropdown = document.getElementById("docDropdown");
+ const btn = document.getElementById("dropdownBtn");
+  const menu = document.getElementById("dropdownMenu");
   const viewer = document.getElementById("docViewer");
 
-  dropdown.addEventListener("change", function () {
-    if (this.value) {
-      viewer.src = this.value;
+  btn.addEventListener("click", () => {
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  });
+
+  document.querySelectorAll(".dropdown-item").forEach(item => {
+    item.addEventListener("click", () => {
+      viewer.src = item.dataset.link;
+      menu.style.display = "none";
+    });
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".doc-dropdown")) {
+      menu.style.display = "none";
     }
   });
 </script>
