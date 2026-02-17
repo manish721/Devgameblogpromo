@@ -88,15 +88,18 @@
     <h1>DevGameBlogPromo Boards</h1>
     <nav>
       <button onclick="showBoard('press')">Press Release Board</button>
-       <select id="docDropdown">
-    <option value="">-- Select Document --</option>
-    <option value="https://docs.google.com/document/d/1HlQbnRjqwhV7yMydwxKPh9ut1RWnJc-SMv8nunVnBDU/edit?usp=sharing">DevGameBlogPromo™ Copyright Protection Policy </option>
-    <option value=""></option>
-    <option value=""></option>
-  </select>
-      <div class="viewer">
-    <iframe id="docViewer"></iframe>
-  </div>
+      <select id="docDropdown">
+  <option value="">-- Select Document --</option>
+
+  <option value="https://docs.google.com/document/d/1HlQbnRjqwhV7yMydwxKPh9ut1RWnJc-SMv8nunVnBDU/preview">
+    DevGameBlogPromo™ Copyright Protection Policy
+  </option>
+        
+</select>
+
+<div class="viewer">
+  <iframe id="docViewer"></iframe>
+</div>
     </nav>
   </header>
 
@@ -125,15 +128,14 @@
     
   </section>
 <script>
-  const dropdown = document.getElementById("docDropdown");
-const viewer = document.getElementById("docViewer");
+ const dropdown = document.getElementById("docDropdown");
+  const viewer = document.getElementById("docViewer");
 
-dropdown.addEventListener("change", function () {
-  if (this.value) {
-    viewer.src = this.value;
-  }
-});
-
+  dropdown.addEventListener("change", function () {
+    if (this.value) {
+      viewer.src = this.value;
+    }
+  });
 </script>
   
 </body>
