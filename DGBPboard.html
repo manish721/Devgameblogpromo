@@ -94,6 +94,9 @@
     <option value=""></option>
     <option value=""></option>
   </select>
+      <div class="viewer">
+    <iframe id="docViewer"></iframe>
+  </div>
     </nav>
   </header>
 
@@ -121,7 +124,17 @@
     </ol>
     
   </section>
+<script>
+  const dropdown = document.getElementById("docDropdown");
+const viewer = document.getElementById("docViewer");
 
+dropdown.addEventListener("change", function () {
+  if (this.value) {
+    viewer.src = this.value;
+  }
+});
+
+</script>
   
 </body>
 </html>
