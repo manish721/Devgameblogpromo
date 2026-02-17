@@ -347,6 +347,69 @@
 
 
 <style>
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .stamp-corner {
+    width: 180px;
+    height: 180px;
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .stamp-corner .center-text {
+    font-size: 12px;
+  }
+
+  .stamp-corner .curve-text {
+    font-size: 6px;
+    letter-spacing: 1px;
+  }
+
+  .stamp-corner .watermark-inner {
+    font-size: 38px;
+  }
+
+  .stamp-corner .stamp-signature {
+    font-size: 12px;
+    margin-top: -16px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .stamp-corner {
+    width: 140px;
+    height: 140px;
+    bottom: 8px;
+    right: 8px;
+  }
+
+  .stamp-corner svg {
+    animation: none; /* saves battery on mobile */
+    filter: drop-shadow(0 0 6px rgba(0,255,195,0.6))
+            drop-shadow(0 0 12px rgba(0,255,195,0.4));
+  }
+
+  .stamp-corner .center-text {
+    font-size: 10px;
+  }
+
+  .stamp-corner .curve-text {
+    font-size: 5px;
+    letter-spacing: 0.8px;
+  }
+
+  .stamp-corner .watermark-inner {
+    font-size: 30px;
+  }
+
+  .stamp-corner .stamp-signature {
+    font-size: 10px;
+    margin-top: -14px;
+  }
+}
+
 .stamp-corner {
   position: absolute;  /* instead of fixed */
   bottom: 12px;
@@ -1942,6 +2005,7 @@ function closePromo() {
   document.getElementById("promoOverlay").style.display = "none";
 }
 </script>
+
 
 
 
