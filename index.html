@@ -376,37 +376,42 @@
   }
 }
 
-/* Mobile */
+/* Mobile adjustments for stamp beside Core Team button */
 @media (max-width: 600px) {
   .stamp-corner {
-    width: 50px;
-    height: 50px;
-    bottom: 8px;
-    right: 8px;
+    position: relative; /* place it inline with buttons */
+    width: 60px;
+    height: 60px;
+    margin-left: 8px; /* space from Core Team button */
+    bottom: auto;
+    right: auto;
+    display: inline-block;
+    vertical-align: middle;
   }
 
   .stamp-corner svg {
-    animation: none; /* saves battery on mobile */
-    filter: drop-shadow(0 0 6px rgba(0,255,195,0.6))
-            drop-shadow(0 0 12px rgba(0,255,195,0.4));
+    width: 100%;
+    height: 100%;
+    animation: none; /* optional: remove glow on mobile */
+    filter: drop-shadow(0 0 4px rgba(0,255,195,0.5));
   }
 
   .stamp-corner .center-text {
-    font-size: 10px;
+    font-size: 8px;
   }
 
   .stamp-corner .curve-text {
-    font-size: 5px;
-    letter-spacing: 0.8px;
+    font-size: 4px;
+    letter-spacing: 0.6px;
   }
 
   .stamp-corner .watermark-inner {
-    font-size: 30px;
+    font-size: 20px;
   }
 
   .stamp-corner .stamp-signature {
-    font-size: 10px;
-    margin-top: -14px;
+    font-size: 8px;
+    margin-top: -8px;
   }
 }
 
@@ -2005,6 +2010,7 @@ function closePromo() {
   document.getElementById("promoOverlay").style.display = "none";
 }
 </script>
+
 
 
 
