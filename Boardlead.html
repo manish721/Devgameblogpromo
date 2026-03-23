@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Dev Community Leaderboard</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:#0b0d12;
+  color:white;
+}
+
+/* HEADER */
+header{
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  border-bottom:1px solid #222;
+}
+
+button{
+  padding:6px 10px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.primary{background:#4f7cff;color:white;}
+.danger{background:#ff4d4d;color:white;}
+
+.container{padding:20px;}
+
+table{width:100%;border-collapse:collapse;}
+td,th{padding:10px;border-bottom:1px solid #222;}
+tr:hover{background:#141922;}
+
+.badge{
+  padding:4px 8px;
+  border-radius:6px;
+  font-size:11px;
+}
+.course{background:#4f7cff33;}
+.lab{background:#00d4aa33;}
+
+input{
+  padding:5px;
+  background:#1c2030;
+  color:white;
+  border:none;
+  border-radius:5px;
+}
+
+/* ADMIN PANEL */
+.panel{
+  position:fixed;
+  right:-350px;
+  top:0;
+  width:350px;
+  height:100%;
+  background:#12161f;
+  padding:20px;
+  transition:0.3s;
+}
+
+.panel.active{right:0;}
+
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.5);
+  display:none;
+}
+.overlay.active{display:block;}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h3>Lab & Courses Proficiency  Leaderboard</h3>
+  <button onclick="admin()">Admin</button>
+</header>
+
+<div class="container">
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Name</th>
+<th>Type</th>
+<th>Score</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody id="tbody"></tbody>
+</table>
+</div>
+
+<div class="overlay" id="overlay" onclick="closePanel()"></div>
+
+<div class="panel" id="panel">
+<h3>Admin Panel</h3>
+
+<input id="name" placeholder="Name"><br><br>
+<select id="type">
+<option>Course</option>
+<option>Lab</option>
+</select><br><br>
+
+<input id="score" placeholder="Score"><br><br>
+
+<button class="primary" onclick="add()">Add</button>
+
+<hr>
+
+<div id="list"></div>
+</div>
+
+<script>
+const PASS="483921";
+let isAdmin=false;
+
+let items = JSON.parse(localStorage.getItem("items")) || [
+{name:"AI Systems",type:"Course",score:95,locked:true},
+{name:"Frontend Dev",type:"Course",score:80},
+{name:"Production Lab",type:"Lab",score:90,locked:true},
+{name:"AI Lab",type:"Lab",score:85}
+];
+
+function save(){
+  localStorage.setItem("items",JSON.stringify(items));
+}
+
+/* ADMIN */
+function admin(){
+  if(!isAdmin){
+    let p=prompt("Password:");
+    if(p!==PASS) return;
+    isAdmin=true;
+  }
+  document.getElementById("panel").classList.add("active");
+  document.getElementById("overlay").classList.add("active");
+  renderAdmin();
+}
+
+function closePanel(){
+  document.getElementById("panel").classList.remove("active");
+  document.getElementById("overlay").classList.remove("active");
+}
+
+/* ADD */
+function add(){
+  let name=document.getElementById("name").value;
+  let type=document.getElementById("type").value;
+  let score=parseInt(document.getElementById("score").value);
+
+  if(!name || isNaN(score)) return;
+
+  items.push({name,type,score});
+  save();
+  render();
+  renderAdmin();
+}
+
+/* DELETE */
+function del(i){
+  if(items[i].locked) return;
+  items.splice(i,1);
+  save();
+  render();
+  renderAdmin();
+}
+
+/* LOCK */
+function lock(i){
+  items[i].locked=!items[i].locked;
+  save();
+  render();
+  renderAdmin();
+}
+
+/* UPDATE SCORE */
+function updateScore(i,val){
+  items[i].score=parseInt(val)||0;
+  save();
+  render();
+}
+
+/* ADMIN LIST */
+function renderAdmin(){
+  document.getElementById("list").innerHTML =
+  items.map((x,i)=>`
+  <div style="margin-bottom:8px">
+    ${i+1}.
+    <input value="${x.name}" onchange="items[${i}].name=this.value;save();render()">
+    <input value="${x.score}" style="width:50px" onchange="updateScore(${i},this.value)">
+    <button onclick="lock(${i})">${x.locked?"🔒":"🔓"}</button>
+    <button class="danger" onclick="del(${i})">X</button>
+  </div>
+  `).join("");
+}
+
+/* RENDER */
+function render(){
+  let sorted=[...items].sort((a,b)=>b.score-a.score);
+
+  document.getElementById("tbody").innerHTML =
+  sorted.map((x,i)=>`
+  <tr>
+    <td>#${i+1}</td>
+    <td>${x.name}</td>
+    <td><span class="badge ${x.type==='Course'?'course':'lab'}">${x.type}</span></td>
+    <td>${x.score}</td>
+    <td>${x.locked?"🔒":"Active"}</td>
+  </tr>
+  `).join("");
+}
+
+render();
+</script>
+
+</body>
+</html>
