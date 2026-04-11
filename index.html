@@ -281,11 +281,118 @@
       <a href="announcement page.html">Announcements 📢</a>
       <a href="What Our Community Says.html">Community Says 💬</a>
       <a href="Public Documents.html">Official Docs</a>
-      <a href="https://sites.google.com/view/pixelcraftfest/home">PCF 🎨</a>
+      
       <a href="DGBP India Policy Portal.html">Policy Hub</a>
-	<a href="more.html"> Admin Panel – DevGameBlogPromo</a>
-	<a href="boardlead.html">Lab & Courses Proficiency Leaderboard</a>
+	
+		
+		
+<style>
+/* BODY */
+body {
+  font-family: Arial, sans-serif;
+  padding: 50px;
+}
 
+
+
+
+/* DROPDOWN MENU */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  min-width: 180px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+/* DROPDOWN ITEMS */
+.dropdown-item {
+  display: block;
+  padding: 10px;
+  color: black;
+  text-decoration: none;
+}
+
+.dropdown-item:hover {
+  background: #f1f1f1;
+}
+
+/* DIVIDER */
+.dropdown-divider {
+  height: 1px;
+  background: #ddd;
+  margin: 5px 0;
+}
+
+/* SHOW CLASS */
+.show {
+  display: block;
+}
+
+/* ONLY dropdown toggle button color */
+.dropdown-toggle-split {
+  background: #000000;   /* 🔵 change this color */
+  color: black;
+}
+
+/* hover for dropdown toggle */
+.dropdown-toggle-split:hover {
+  background: #cfc9c9;
+}
+
+/* DROPDOWN MENU COLOR */
+.dropdown-menu {
+  background: #0f172a;   /* dark background */
+}
+
+/* DROPDOWN ITEMS TEXT */
+.dropdown-item {
+  color: white;
+}
+
+/* HOVER EFFECT */
+.dropdown-item:hover {
+  background: #1e293b;
+}
+</style>
+
+
+<div class="btn-group">
+ 
+
+  <button type="button" class="btn dropdown-toggle-split" id="toggleBtn">
+    ▼
+  </button>
+
+
+
+  <div class="dropdown-menu" id="menu">
+    <a class="dropdown-item" href="more.html"> Admin Panel – DevGameBlogPromo</a>
+    <a class="dropdown-item" href="boardlead.html">Lab & Courses Proficiency Leaderboard</a>
+    <a class="dropdown-item" href="https://sites.google.com/view/pixelcraftfest/home">PCF</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="Books.html">Books Store</a>
+  </div>
+</div>
+
+<script>
+const toggleBtn = document.getElementById('toggleBtn');
+const menu = document.getElementById('menu');
+
+toggleBtn.addEventListener('click', function (e) {
+  e.stopPropagation();
+  menu.classList.toggle('show');
+});
+
+document.addEventListener('click', function () {
+  menu.classList.remove('show');
+});
+</script>
     </nav>
 
     <button class="menu-toggle" aria-expanded="false" onclick="toggleMenu()">☰</button>
