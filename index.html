@@ -441,7 +441,95 @@ document.addEventListener('click', function () {
       </svg>
       <span class="stamp-signature">Kakarla Manish Reddy</span>
     </div>
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  }
 
+  /* Arrow button (right side, vertically centered) */
+  .arrow-btn {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 60px;
+    background: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 8px 0 0 8px;
+    z-index: 1000;
+    transition: all 0.25s ease;
+  }
+
+  .arrow-btn:hover {
+    background: #222;
+  }
+
+  /* Slide panel */
+  .message-box {
+    position: fixed;
+    top: 50%;
+    right: -280px; /* hidden */
+    transform: translateY(-50%);
+    width: 260px;
+    background: #111;
+    color: #fff;
+    padding: 18px;
+    border-radius: 8px 0 0 8px;
+    font-size: 14px;
+    line-height: 1.5;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+    transition: right 0.3s ease;
+    z-index: 999;
+  }
+
+  .message-box.active {
+    right: 36px; /* slides in */
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 600px) {
+    .message-box {
+      width: 80%;
+      right: -85%;
+      font-size: 13px;
+    }
+
+    .message-box.active {
+      right: 36px;
+    }
+
+    .arrow-btn {
+      width: 32px;
+      height: 50px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Arrow -->
+<div class="arrow-btn" onclick="toggleMessage()">
+  ➤
+</div>
+
+<!-- Message Panel -->
+<div class="message-box" id="messageBox">
+  This is a working environment.<br>
+  Not everything is explained.<br>
+  Most things are being built.
+</div>
+
+<script>
+  function toggleMessage() {
+    document.getElementById("messageBox").classList.toggle("active");
+  }
+</script>
     <!-- DESKTOP/TABLET STAMP -->
     <div class="stamp-corner hero-stamp">
       <svg viewBox="0 0 320 320">
