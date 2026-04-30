@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevGameBlogPromo - Customer Communication Policy</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      background:#0f172a;
+      color:white;
+      line-height:1.7;
+      overflow-x:hidden;
+    }
+
+    .hero{
+      min-height:50vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:40px 20px;
+      background:linear-gradient(135deg,#111827,#1e293b,#0f172a);
+      position:relative;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      width:300px;
+      height:300px;
+      background:#2563eb;
+      filter:blur(120px);
+      opacity:0.3;
+      top:-50px;
+      left:-50px;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      max-width:900px;
+    }
+
+    .hero h1{
+      font-size:3rem;
+      margin-bottom:15px;
+      color:#60a5fa;
+    }
+
+    .hero p{
+      font-size:1.1rem;
+      color:#cbd5e1;
+    }
+
+    .container{
+      width:90%;
+      max-width:1100px;
+      margin:auto;
+      padding:60px 0;
+    }
+
+    .policy-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:25px;
+    }
+
+    .card{
+      background:#111827;
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:18px;
+      padding:25px;
+      transition:0.3s ease;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card:hover{
+      transform:translateY(-8px);
+      border-color:#3b82f6;
+      box-shadow:0 10px 30px rgba(59,130,246,0.2);
+    }
+
+    .card-number{
+      font-size:2rem;
+      font-weight:bold;
+      color:#3b82f6;
+      margin-bottom:10px;
+    }
+
+    .card h2{
+      font-size:1.3rem;
+      margin-bottom:12px;
+    }
+
+    .card p{
+      color:#cbd5e1;
+      font-size:0.96rem;
+    }
+
+    .footer{
+      text-align:center;
+      padding:40px 20px;
+      border-top:1px solid rgba(255,255,255,0.08);
+      color:#94a3b8;
+      background:#0b1120;
+    }
+
+    .btn{
+      margin-top:25px;
+      display:inline-block;
+      padding:14px 28px;
+      background:#2563eb;
+      color:white;
+      text-decoration:none;
+      border-radius:10px;
+      transition:0.3s;
+      font-weight:bold;
+    }
+
+    .btn:hover{
+      background:#1d4ed8;
+      transform:scale(1.03);
+    }
+
+    .topbar{
+      width:100%;
+      padding:18px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:#020617;
+      position:sticky;
+      top:0;
+      z-index:999;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .logo{
+      font-size:1.3rem;
+      font-weight:bold;
+      color:#60a5fa;
+    }
+
+    .nav a{
+      color:#cbd5e1;
+      text-decoration:none;
+      margin-left:20px;
+      transition:0.3s;
+    }
+
+    .nav a:hover{
+      color:white;
+    }
+
+    @media(max-width:768px){
+      .hero h1{
+        font-size:2.2rem;
+      }
+
+      .hero p{
+        font-size:1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topbar">
+    <div class="logo">DevGameBlogPromo</div>
+
+    <nav class="nav">
+      <a href="#">Home</a>
+      <a href="#">Policy</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Customer Communication & Engagement Policy</h1>
+
+      <p>
+        We maintain a professional, respectful, and structured communication
+        process to ensure a smooth experience for every user and applicant.
+      </p>
+
+      <a href="#policy" class="btn">Read Policy</a>
+    </div>
+  </section>
+
+  <section class="container" id="policy">
+
+    <div class="policy-grid">
+
+      <div class="card">
+        <div class="card-number">01</div>
+        <h2>Application & Interest</h2>
+        <p>
+          By submitting an application or showing interest, you agree to be
+          contacted by our team regarding your inquiry.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-number">02</div>
+        <h2>Communication Method</h2>
+        <p>
+          Initial communication will be through email or messaging platforms.
+          Calls are conducted only after confirmation and scheduling.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-number">03</div>
+        <h2>Respect for Time</h2>
+        <p>
+          We respect your availability. Scheduled discussions should be honored
+          or rescheduled in advance whenever possible.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-number">04</div>
+        <h2>Follow-up Policy</h2>
+        <p>
+          We may follow up a limited number of times regarding your application.
+          Unresponsive applications may be closed automatically.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-number">05</div>
+        <h2>Professional Conduct</h2>
+        <p>
+          All communication will remain respectful and professional.
+          Clear communication from both sides is expected.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-number">06</div>
+        <h2>No Obligation</h2>
+        <p>
+          Showing interest or applying does not create any obligation to
+          proceed. You may discontinue at any stage.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-number">07</div>
+        <h2>Privacy & Boundaries</h2>
+        <p>
+          No unsolicited calls will be made without consent.
+          Communication will respect your preferred timing and platform.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-number">08</div>
+        <h2>Right to Close Applications</h2>
+        <p>
+          DevGameBlogPromo reserves the right to close applications that are
+          inactive, unresponsive, or not aligned.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-number">09</div>
+        <h2>Continuous Improvement</h2>
+        <p>
+          We welcome feedback to improve our systems, communication process,
+          and overall user experience.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer class="footer">
+    <p>© 2026 DevGameBlogPromo. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // Smooth scroll animation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute("href"))
+          .scrollIntoView({
+            behavior: "smooth"
+          });
+      });
+    });
+
+    // Reveal animation
+    const cards = document.querySelectorAll(".card");
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.style.opacity = "1";
+          entry.target.style.transform = "translateY(0)";
+        }
+      });
+    });
+
+    cards.forEach(card => {
+      card.style.opacity = "0";
+      card.style.transform = "translateY(30px)";
+      card.style.transition = "0.6s ease";
+      observer.observe(card);
+    });
+  </script>
+
+</body>
+</html>
