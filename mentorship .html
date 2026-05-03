@@ -3,200 +3,157 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="DevGameBlogPromo — Mentorship + 28 Labs. Learn, build real projects">
 <title>DevGameBlogPromo Courses</title>
 
 <style>
-/* ===== GLOBAL RESET ===== */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+background:#0a0a0a;
+color:#fff;
+font-family:system-ui,Arial;
 }
 
-/* ===== ROOT LEVEL ===== */
-html {
-  width: 100%;
-  height: 100%;
-  background-color: #eee9e9;
+/* HEADER */
+header{
+text-align:center;
+padding:50px 20px;
 }
 
-/* ===== BODY ===== */
-body {
-  min-height: 100vh;
-  width: 100%;
-  background-color: #0a0a0a;
-  color: #ffffff;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-  overflow-x: hidden;
+header h1{font-size:2rem}
+header p{color:#aaa;margin-top:10px}
+
+/* OFFER */
+.dgbp-offer{
+padding:60px 20px;
+display:flex;
+justify-content:center;
 }
 
-/* ===== FORCE ALL SECTIONS TRANSPARENT ===== */
-header,
-main,
-section,
-article,
-aside,
-footer,
-div {
-  background-color: transparent;
+.offer-container{
+max-width:900px;
+background:#111;
+border:1px solid #222;
+padding:35px;
+border-radius:14px;
+text-align:center;
 }
 
-/* ===== REMOVE WHITE FROM FORMS & INPUTS ===== */
-input,
-textarea,
-select,
-button {
-  background-color: #111;
-  color: #fff;
-  border: 1px solid #333;
+.offer-badge{
+background:linear-gradient(90deg,#ff4081,#ff6a00);
+padding:6px 12px;
+border-radius:999px;
+font-size:12px;
+font-weight:bold;
+display:inline-block;
+margin-bottom:10px;
 }
 
-/* ===== SCROLLBAR (OPTIONAL DARK) ===== */
-::-webkit-scrollbar {
-  width: 10px;
+.offer-container h2{margin:10px 0}
+.offer-subtitle{color:#ff6a00;margin-bottom:10px}
+.offer-desc{color:#bbb;margin-bottom:20px}
+
+.offer-points{
+list-style:none;
+color:#ccc;
+margin-bottom:20px;
 }
 
-::-webkit-scrollbar-track {
-  background: #0a0a0a;
+.offer-points li{margin:6px 0}
+
+.offer-actions{
+display:flex;
+gap:10px;
+justify-content:center;
+flex-wrap:wrap;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #222;
-  border-radius: 6px;
+.btn-primary{
+background:#ff6a00;
+color:#000;
+padding:10px 16px;
+border-radius:8px;
+text-decoration:none;
+font-weight:bold;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #333;
+.btn-secondary{
+border:1px solid #333;
+color:#fff;
+padding:10px 16px;
+border-radius:8px;
+text-decoration:none;
 }
 
-/* ===== HEADER ===== */
-header {
-  background: linear-gradient(
-    135deg,
-    var(--brand-secondary),
-    var(--brand-primary)
-  );
-  color: var(--text-inverse);
-  padding: 64px 20px;
-  text-align: center;
+/* GRID */
+.container{
+max-width:1200px;
+margin:auto;
+padding:40px 20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
 }
 
-header h1 {
-  font-size: 2.4rem;
-  margin-bottom: 12px;
+/* CARD */
+.service-card{
+background:#111;
+border:1px solid #222;
+border-radius:12px;
+padding:18px;
+transition:.3s;
 }
 
-header p {
-  max-width: 900px;
-  margin: 0 auto;
-  color: #1550c7;
+.service-card:hover{
+transform:translateY(-5px);
+border-color:#00e5ff;
 }
 
-/* ===== LAYOUT ===== */
-.container {
-  max-width: 1200px;
-  margin: 60px auto;
-  padding: 0 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 28px;
+h3{color:#00e5ff;margin-bottom:8px}
+
+.id-box{
+font-size:12px;
+color:#888;
 }
 
-/* ===== SERVICE CARD ===== */
-.service-card {
-  background: var(--bg-surface);
-  border-radius: var(--radius-md);
-  padding: 24px;
-  border: 1px solid var(--border-subtle);
-  box-shadow: var(--shadow-sm);
-  display: flex;
-  flex-direction: column;
-  transition: transform var(--transition-smooth),
-              box-shadow var(--transition-smooth);
+p{font-size:13px;color:#bbb;margin:6px 0}
+
+/* BAR */
+.seat-bar{
+height:6px;
+background:#222;
+border-radius:10px;
+margin-top:10px;
+overflow:hidden;
 }
 
-.service-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-md);
+.seat-progress{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#00e5ff,#00ff88);
 }
 
-.service-card h3 {
-  font-size: 1.2rem;
-  color: var(--brand-secondary);
-  margin-bottom: 10px;
+/* BUTTON */
+.service-btn{
+display:block;
+text-align:center;
+padding:10px;
+margin-top:10px;
+background:#00e5ff;
+color:#000;
+font-weight:bold;
+text-decoration:none;
+border-radius:8px;
 }
-
-.service-card p {
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-  margin-bottom: 10px;
-}
-
-/* ===== SEAT BAR ===== */
-.seat-bar {
-  background: var(--bg-elevated);
-  height: 8px;
-  border-radius: 6px;
-  overflow: hidden;
-  margin: 12px 0;
-}
-
-.seat-progress {
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    var(--brand-accent),
-    var(--brand-primary)
-  );
-  width: 0%;
-  transition: width 0.5s ease;
-}
-
-.seats-remaining {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-bottom: 14px;
-}
-
-/* ===== BUTTON ===== */
-.service-btn {
-  margin-top: auto;
-  text-align: center;
-  padding: 12px 16px;
-  border-radius: var(--radius-sm);
-  font-weight: 600;
-  text-decoration: none;
-  color: var(--text-inverse);
-  background: linear-gradient(
-    135deg,
-    var(--brand-primary),
-    var(--brand-accent)
-  );
-  transition: transform var(--transition-fast),
-              box-shadow var(--transition-fast);
-}
-
-.service-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 0 18px rgba(0, 229, 255, 0.35);
-}
-footer {
-  background: var(--brand-secondary);
-  color: #FAFAFA;
-  text-align: center;
-  padding: 30px 20px;
-  margin-top: 80px;
-}
- 
 </style>
 </head>
+
 <body>
 
+
 <header>
-  <h1>DevGameBlogPromo – All Courses & Mentorship Programs</h1>
+
+ <h1>DevGameBlogPromo – All Courses & Mentorship Programs</h1>
   <p>Upgrade your skills. Transform your future. Limited seats available for each program.</p>
   <p> 🎨 Professional Services Tailored to Your Vision Design, Illustration, and Creative Solutions That Speak for You Buy Now</p>
 </header>
@@ -232,429 +189,407 @@ footer {
   </div>
 </section>
 
+<div class="contact-info-box">
+
+  <h3>Standard & Advanced Courses Contact</h3>
+
+  <p>
+    If anyone wants Standard or Advanced Courses,
+    please contact us and share the last 4 digits
+    of your SID & PID numbers for verification.
+  </p>
+
+  <div class="contact-details">
+    <p><strong>Email:</strong> M81434409@gmail.com</p>
+    <p><strong>Example:</strong> SID → 1028 | PID → 1028</p>
+  </div>
+
+</div>
+
 <style>
-  /* ===== OFFER SECTION ===== */
-.dgbp-offer {
-  background-color: #0a0a0a;
-  padding: 80px 20px;
-  display: flex;
-  justify-content: center;
+.contact-info-box{
+  max-width:1000px;
+  margin:60px auto;
+  background:#111;
+  border:1px solid #222;
+  border-radius:14px;
+  padding:30px;
+  text-align:center;
 }
 
-.offer-container {
-  max-width: 900px;
-  width: 100%;
-  background: linear-gradient(145deg, #0f0f0f, #151515);
-  border: 1px solid #222;
-  border-radius: 14px;
-  padding: 50px;
-  text-align: center;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+.contact-info-box h3{
+  color:#00e5ff;
+  font-size:26px;
+  margin-bottom:15px;
 }
 
-/* Badge */
-.offer-badge {
-  display: inline-block;
-  background: linear-gradient(90deg, #ff4081, #ff6a00);
-  color: #fff;
-  font-size: 13px;
-  font-weight: 700;
-  padding: 8px 16px;
-  border-radius: 999px;
-  letter-spacing: 1px;
-  margin-bottom: 20px;
+.contact-info-box p{
+  color:#bdbdbd;
+  line-height:1.7;
+  font-size:15px;
+  margin-bottom:10px;
 }
 
-/* Heading */
-.offer-container h2 {
-  font-size: 32px;
-  font-weight: 800;
-  color: #ffffff;
-  margin-bottom: 15px;
+.contact-details{
+  margin-top:20px;
+  padding-top:20px;
+  border-top:1px solid #222;
 }
 
-/* Description */
-.offer-desc {
-  color: #bdbdbd;
-  font-size: 16px;
-  line-height: 1.7;
-  margin-bottom: 30px;
+.contact-details strong{
+  color:#ffffff;
 }
-
-/* Points */
-.offer-points {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 30px;
-}
-
-.offer-points li {
-  color: #e0e0e0;
-  font-size: 15px;
-  margin-bottom: 10px;
-}
-
-/* Meta */
-.offer-meta {
-  display: flex;
-  justify-content: center;
-  gap: 25px;
-  flex-wrap: wrap;
-  color: #9e9e9e;
-  font-size: 14px;
-  margin-bottom: 35px;
-}
-
-/* Buttons */
-.offer-actions {
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-  flex-wrap: wrap;
-}
-
-.btn-primary {
-  background: linear-gradient(90deg, #ff4081, #ff6a00);
-  color: #fff;
-  padding: 14px 28px;
-  border-radius: 8px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(255, 64, 129, 0.4);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: #ffffff;
-  padding: 14px 28px;
-  border-radius: 8px;
-  border: 1px solid #333;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background 0.2s ease, border-color 0.2s ease;
-}
-
-.btn-secondary:hover {
-  background-color: #1a1a1a;
-  border-color: #444;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .offer-container {
-    padding: 35px 25px;
-  }
-
-  .offer-container h2 {
-    font-size: 26px;
-  }
-}
-
 </style>
+
+
 <div class="container">
 
-<!-- List of all courses -->
+<!-- ALL 30 COURSES WITH PRICES -->
 
-<!-- Domain Management Courses -->
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Custom Domain Recommendation</h3>
-  <p><strong>Price:</strong> ₹1,500</p>
-  <p>Personalized consultation, access to domain name tools, evaluation and recommendation report.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+<!-- 1 -->
+<div class="service-card">
+<h3>Custom Domain Recommendation</h3>
+<div class="id-box">SID: 7429183651001</div>
+<div class="id-box">PID: 5582937711001</div>
+<p><strong>Basic Price:</strong> ₹1,500</p>
+<p>Personalized consultation & recommendation report.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Expired Domain Research Packages</h3>
-  <p><strong>Price:</strong> ₹1,500</p>
-  <p>Research expired domains, tools, and comprehensive evaluation report on opportunities.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+<!-- 2 -->
+<div class="service-card">
+<h3>Expired Domain Research</h3>
+<div class="id-box">SID: 9182736451002</div>
+<div class="id-box">PID: 6658392211002</div>
+<p><strong>Basic Price:</strong> ₹1,500</p>
+<p>Research high-potential expired domains.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Competitor Domain Analysis</h3>
-  <p><strong>Price:</strong> ₹1,500</p>
-  <p>Analysis of competitor domains, tools, techniques, and a detailed report.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+<!-- 3 -->
+<div class="service-card">
+<h3>Competitor Domain Analysis</h3>
+<div class="id-box">SID: 5647382911003</div>
+<div class="id-box">PID: 8892015511003</div>
+<p><strong>Basic Price:</strong> ₹1,500</p>
+<p>Analyze competitor domains & SEO strength.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Domain Authority Boosting Strategies</h3>
-  <p><strong>Price:</strong> ₹1,500</p>
-  <p>In-depth strategies for boosting domain authority, link-building, content strategies, and a personalized plan.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+<!-- 4 -->
+<div class="service-card">
+<h3>Domain Authority Boosting</h3>
+<div class="id-box">SID: 8392017461004</div>
+<div class="id-box">PID: 2201945611004</div>
+<p><strong>Basic Price:</strong> ₹1,500</p>
+<p>SEO authority & link-building strategy.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Domain Flipping Guidance</h3>
-  <p><strong>Price:</strong> ₹1,500</p>
-  <p>Guidance on buying/selling domains, market trends, valuation techniques, tools, and strategies.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+<!-- 5 -->
+<div class="service-card">
+<h3>Domain Flipping Guidance</h3>
+<div class="id-box">SID: 1293847561005</div>
+<div class="id-box">PID: 7754933211005</div>
+<p><strong>Basic Price:</strong> ₹1,500</p>
+<p>Learn profitable domain buying & selling.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
 </div>
 
-<!-- Interview Mentorship -->
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Resume to Recruitment: Masterclass</h3>
-  <p><strong>Price:</strong> ₹20,000</p>
-  <p>Professional resume creation, custom interview scripts, mock interviews, real-world practice, career prep, confidence building.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+<!-- 6 -->
+<div class="service-card">
+<h3>Resume to Recruitment Masterclass</h3>
+<div class="id-box">SID: 9812736451006</div>
+<div class="id-box">PID: 5548822211006</div>
+<p><strong>Basic Price:</strong> ₹20,000</p>
+<p>Resume, interview & recruitment mastery.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
 </div>
 
-<!-- Frontend Developer Mentorship -->
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Basic Plan (Frontend)</h3>
-  <p><strong>Price:</strong> ₹6,000</p>
-  <p>Access to all curriculum materials, weekly group sessions, coding challenges, and mini-projects.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+<!-- 7 -->
+<div class="service-card">
+<h3>Basic Frontend Plan</h3>
+<div class="id-box">SID: 5637281941007</div>
+<div class="id-box">PID: 9912345611007</div>
+<p><strong>Basic Price:</strong> ₹6,000</p>
+<p>Frontend foundations & mini projects.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Standard Plan (Frontend)</h3>
-  <p><strong>Price:</strong> ₹8,500</p>
-  <p>All Basic Plan features, extra exercises, exclusive webinars, and private discussion forum access.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+<!-- 8 -->
+<div class="service-card">
+<h3>Standard Frontend Plan</h3>
+<div class="id-box">SID: 7829163451008</div>
+<div class="id-box">PID: 4421987711008</div>
+<p><strong>Standard Price:</strong> ₹8,500</p>
+<p>Frontend training + webinars + support.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Premium Plan (Frontend)</h3>
-  <p><strong>Price:</strong> ₹12,000</p>
-  <p>All Standard features, 1-on-1 mentoring, personalized project feedback, career advice, certificate.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
+<!-- 9 -->
+<div class="service-card">
+<h3>Premium Frontend Plan</h3>
+<div class="id-box">SID: 9182736451009</div>
+<div class="id-box">PID: 6677123411009</div>
+<p><strong>Advanced Price:</strong> ₹12,000</p>
+<p>1-on-1 mentoring & advanced guidance.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
 </div>
 
-<!-- Technical Courses -->
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Frontend, JS, Git, Design Thinking</h3>
-  <p><strong>Price:</strong> ₹499</p>
-  <p>Foundation for builders, UI/UX roots</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+<!-- 10 -->
+<div class="service-card">
+<h3>Frontend + JS + Git</h3>
+<div class="id-box">SID: 3456789121010</div>
+<div class="id-box">PID: 7788990011010</div>
+<p><strong>Basic Price:</strong> ₹499</p>
+<p>Frontend development & Git basics.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Intro to AI, ML, Python, Prompt Engineering</h3>
-  <p><strong>Price:</strong> ₹799</p>
-  <p>AI fundamentals, machine learning, Python basics, and prompt engineering techniques.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+<!-- 11 -->
+<div class="service-card">
+<h3>AI + ML + Python</h3>
+<div class="id-box">SID: 4567891231011</div>
+<div class="id-box">PID: 1122334411011</div>
+<p><strong>Basic Price:</strong> ₹799</p>
+<p>AI, ML & Python foundations.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Cloud Fundamentals (AWS, Azure), DevOps Basics</h3>
-  <p><strong>Price:</strong> ₹999</p>
-  <p>Learn cloud fundamentals, AWS, Azure, and DevOps basics.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+<!-- 12 -->
+<div class="service-card">
+<h3>Cloud + DevOps</h3>
+<div class="id-box">SID: 5678912341012</div>
+<div class="id-box">PID: 5566778811012</div>
+<p><strong>Basic Price:</strong> ₹999</p>
+<p>AWS, Azure & DevOps essentials.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Stock Market, Trading Logic, Algo Trading</h3>
-  <p><strong>Price:</strong> ₹1,199</p>
-  <p>Learn trading logic, algorithmic trading, and stock market skills.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+<!-- 13 -->
+<div class="service-card">
+<h3>Stock Market + Algo Trading</h3>
+<div class="id-box">SID: 6789123451013</div>
+<div class="id-box">PID: 9900112211013</div>
+<p><strong>Basic Price:</strong> ₹1,199</p>
+<p>Trading logic & algorithmic trading.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Cybersecurity & Ethical Hacking</h3>
-  <p><strong>Price:</strong> ₹1,499</p>
-  <p>Secure applications and data infrastructure, learn ethical hacking.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+<!-- 14 -->
+<div class="service-card">
+<h3>Cybersecurity & Ethical Hacking</h3>
+<div class="id-box">SID: 7891234561014</div>
+<div class="id-box">PID: 3344556611014</div>
+<p><strong>Basic Price:</strong> ₹1,499</p>
+<p>Security systems & ethical hacking.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Game Dev (Unity, Godot) + Blockchain Games</h3>
-  <p><strong>Price:</strong> ₹1,699</p>
-  <p>Gamified learning, Unity & Godot, blockchain game development.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+<!-- 15 -->
+<div class="service-card">
+<h3>Game Dev + Blockchain</h3>
+<div class="id-box">SID: 8912345671015</div>
+<div class="id-box">PID: 7788009911015</div>
+<p><strong>Basic Price:</strong> ₹1,699</p>
+<p>Unity, Godot & blockchain gaming.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>NLP, Chatbots, LLM Integration</h3>
-  <p><strong>Price:</strong> ₹1,999</p>
-  <p>Future of interfaces, chatbots, and LLM integration.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+<!-- 16 -->
+<div class="service-card">
+<h3>NLP + Chatbots + LLM</h3>
+<div class="id-box">SID: 9123456781016</div>
+<div class="id-box">PID: 2211334411016</div>
+<p><strong>Basic Price:</strong> ₹1,999</p>
+<p>Build chatbots & AI interfaces.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Deep Learning, Vision, GANs, AutoML</h3>
-  <p><strong>Price:</strong> ₹2,199</p>
-  <p>AI creativity, computer vision, GANs, and AutoML foundations.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+<!-- 17 -->
+<div class="service-card">
+<h3>Deep Learning + GANs</h3>
+<div class="id-box">SID: 1234567891017</div>
+<div class="id-box">PID: 6677889911017</div>
+<p><strong>Basic Price:</strong> ₹2,199</p>
+<p>Deep learning & AI creativity systems.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Data Science, Big Data, Visualization</h3>
-  <p><strong>Price:</strong> ₹2,399</p>
-  <p>Insights, business intelligence, and visualization techniques.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+<!-- 18 -->
+<div class="service-card">
+<h3>Data Science + Visualization</h3>
+<div class="id-box">SID: 2345678911018</div>
+<div class="id-box">PID: 8899002211018</div>
+<p><strong>Basic Price:</strong> ₹2,399</p>
+<p>Data analytics & visualization skills.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Quantum Computing Basics + IBM Qiskit</h3>
-  <p><strong>Price:</strong> ₹2,699</p>
-  <p>Early entry into next-gen quantum computing with Qiskit.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+<!-- 19 -->
+<div class="service-card">
+<h3>Quantum Computing</h3>
+<div class="id-box">SID: 3456789121019</div>
+<div class="id-box">PID: 4455667711019</div>
+<p><strong>Basic Price:</strong> ₹2,699</p>
+<p>Quantum computing with Qiskit.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Quantum Cloud + Hybrid AI (Edge + Cloud)</h3>
-  <p><strong>Price:</strong> ₹2,999</p>
-  <p>Scalable AI, edge computing, and hybrid quantum cloud skills.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+<!-- 20 -->
+<div class="service-card">
+<h3>Quantum Cloud + Hybrid AI</h3>
+<div class="id-box">SID: 4567891231020</div>
+<div class="id-box">PID: 9988776611020</div>
+<p><strong>Basic Price:</strong> ₹2,999</p>
+<p>Hybrid AI & edge/cloud systems.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Web3, dApps, Smart Contracts</h3>
-  <p><strong>Price:</strong> ₹3,199</p>
-  <p>Decentralized tech, Web3, dApps, and smart contract development.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+<!-- 21 -->
+<div class="service-card">
+<h3>Web3 + Smart Contracts</h3>
+<div class="id-box">SID: 5678912341021</div>
+<div class="id-box">PID: 1122445511021</div>
+<p><strong>Basic Price:</strong> ₹3,199</p>
+<p>Decentralized apps, Web3 & smart contracts.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Business Leadership, Startup Creation</h3>
-  <p><strong>Price:</strong> ₹3,499</p>
-  <p>Transform mentees into founders with startup guidance and leadership training.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+<!-- 22 -->
+<div class="service-card">
+<h3>Business Leadership & Startup Creation</h3>
+<div class="id-box">SID: 6789123451022</div>
+<div class="id-box">PID: 2233556611022</div>
+<p><strong>Basic Price:</strong> ₹3,499</p>
+<p>Leadership, startup building & founder systems.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>SpaceTech, IoT, Drone AI</h3>
-  <p><strong>Price:</strong> ₹3,699</p>
-  <p>Explore high-tech future industries: IoT, drones, and space technology.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+<!-- 23 -->
+<div class="service-card">
+<h3>SpaceTech + IoT + Drone AI</h3>
+<div class="id-box">SID: 7891234561023</div>
+<div class="id-box">PID: 3344667711023</div>
+<p><strong>Basic Price:</strong> ₹3,699</p>
+<p>Future technologies, IoT systems & drone AI.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Tech Ethics, Responsible AI</h3>
-  <p><strong>Price:</strong> ₹3,999</p>
-  <p>Ethical AI, governance, and future-proof strategies.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+<!-- 24 -->
+<div class="service-card">
+<h3>Tech Ethics & Responsible AI</h3>
+<div class="id-box">SID: 8912345671024</div>
+<div class="id-box">PID: 4455778811024</div>
+<p><strong>Basic Price:</strong> ₹3,999</p>
+<p>AI governance, ethics & responsible systems.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Innovation Lab Projects + Mentorship</h3>
-  <p><strong>Price:</strong> ₹4,499</p>
-  <p>Hands-on innovation labs, guided projects, prototyping and mentorship.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+<!-- 25 -->
+<div class="service-card">
+<h3>Innovation Lab Projects + Mentorship</h3>
+<div class="id-box">SID: 9123456781025</div>
+<div class="id-box">PID: 5566889911025</div>
+<p><strong>Basic Price:</strong> ₹4,499</p>
+<p>Hands-on innovation projects & mentorship.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Mentor Training & Leadership Program</h3>
-  <p><strong>Price:</strong> ₹4,799</p>
-  <p>Train the next generation of mentors with advanced mentoring and leadership skills.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+<!-- 26 -->
+<div class="service-card">
+<h3>Mentor Training & Leadership Program</h3>
+<div class="id-box">SID: 1234567891026</div>
+<div class="id-box">PID: 6677990011026</div>
+<p><strong>Basic Price:</strong> ₹4,799</p>
+<p>Advanced mentoring & leadership training.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>Humanitarian Tech + Impact Projects</h3>
-  <p><strong>Price:</strong> ₹4,999</p>
-  <p>Apply tech for social good, humanitarian and impact-driven projects.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+<!-- 27 -->
+<div class="service-card">
+<h3>Humanitarian Tech + Impact Projects</h3>
+<div class="id-box">SID: 2345678911027</div>
+<div class="id-box">PID: 7788112211027</div>
+<p><strong>Basic Price:</strong> ₹4,999</p>
+<p>Technology for social impact & humanitarian solutions.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>AR/VR, Metaverse Development</h3>
-  <p><strong>Price:</strong> ₹5,499</p>
-  <p>Augmented & virtual reality, metaverse environments, and development skills.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+<!-- 28 -->
+<div class="service-card">
+<h3>AR/VR + Metaverse Development</h3>
+<div class="id-box">SID: 3456789121028</div>
+<div class="id-box">PID: 8899223311028</div>
+<p><strong>Basic Price:</strong> ₹5,499</p>
+<p>AR, VR & metaverse environment development.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>AGI & Advanced AI Research</h3>
-  <p><strong>Price:</strong> ₹5,999</p>
-  <p>Next-level AI research, AGI principles, and advanced implementations.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+<!-- 29 -->
+<div class="service-card">
+<h3>AGI & Advanced AI Research</h3>
+<div class="id-box">SID: 4567891231029</div>
+<div class="id-box">PID: 9900334411029</div>
+<p><strong>Basic Price:</strong> ₹5,999</p>
+<p>Advanced AI systems & AGI research concepts.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
 </div>
 
-<div class="service-card" data-total-seats="250" data-filled-seats="0">
-  <h3>AI Law & Tech Policy Guidance</h3>
-  <p><strong>Price:</strong> ₹6,499</p>
-  <p>Legal implications of AI, policies, governance, and global compliance trends.</p>
-  <div class="seat-bar"><div class="seat-progress"></div></div>
-  <p class="seats-remaining"></p>
-  <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
+<!-- 30 -->
+<div class="service-card">
+<h3>AI Law & Tech Policy Guidance</h3>
+<div class="id-box">SID: 5678912341030</div>
+<div class="id-box">PID: 1122556611030</div>
+<p><strong>Basic Price:</strong> ₹6,499</p>
+<p>AI law, policy frameworks & governance systems.</p>
+<div class="seat-bar"><div class="seat-progress"></div></div>
+<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Apply Now</a>
 </div>
-
-</div>
-
-<footer>
-  <p>&copy; 2025 DevGameBlogPromo. All rights reserved.</p>
-</footer>
-
 <script>
-  const cards = document.querySelectorAll('.service-card');
-  cards.forEach(card => {
-    const totalSeats = parseInt(card.getAttribute('data-total-seats'));
-    const filledSeats = parseInt(card.getAttribute('data-filled-seats'));
-    const seatsLeft = totalSeats - filledSeats;
-    const progressBar = card.querySelector('.seat-progress');
-    progressBar.style.width = (filledSeats / totalSeats * 100) + '%';
-    card.querySelector('.seats-remaining').textContent = `Seats remaining: ${seatsLeft}/${totalSeats}`;
-  });
+
+
+
+document.querySelectorAll(".service-card").forEach(card=>{
+  let t = card.dataset.total || 250;
+  let f = card.dataset.filled || 0;
+  let p = (f/t)*100;
+  let bar = card.querySelector(".seat-progress");
+  if(bar) bar.style.width = p + "%";
+});
 </script>
 
 </body>
 </html>
-
 
 
 
