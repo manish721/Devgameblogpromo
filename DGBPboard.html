@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DevGameBlogPromo Boards</title>
+
+  <!-- Mobile scaling -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #1a73e8;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 26px;
+    }
+
+    nav {
+      margin-top: 15px;
+    }
+
+    nav button,
+    #dropdownBtn {
+      margin: 5px;
+      padding: 12px 16px;
+      cursor: pointer;
+      background-color: white;
+      color: #1a73e8;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav button:hover,
+    #dropdownBtn:hover {
+      background-color: #e0e0e0;
+    }
+
+    .board {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 25px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    h2, h3 {
+      color: #1a73e8;
+    }
+
+    a {
+      color: #1a73e8;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* ---------- DROPDOWN ---------- */
+    .doc-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 45px;
+      left: 0;
+      background-color: white;
+      min-width: 320px;
+      border-radius: 8px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      z-index: 1000;
+      overflow: hidden;
+    }
+
+    .dropdown-item {
+      padding: 14px 16px;
+      cursor: pointer;
+      font-weight: bold;
+      color: #1a73e8;
+      border-bottom: 1px solid #eee;
+      transition: 0.3s;
+    }
+
+    .dropdown-item:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-item:hover {
+      background-color: #f1f5ff;
+    }
+
+    /* ---------- HANDBOOK ---------- */
+    #lab-handbook {
+      max-width: 700px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #e0f7fa;
+      border-radius: 10px;
+    }
+
+    /* ---------- MOBILE OPTIMIZATION ---------- */
+    @media (max-width: 768px) {
+
+      header {
+        padding: 15px 10px;
+      }
+
+      header h1 {
+        font-size: 20px;
+      }
+
+      nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav button,
+      #dropdownBtn {
+        width: 100%;
+        max-width: 320px;
+        margin: 6px 0;
+        font-size: 14px;
+      }
+
+      .board {
+        margin: 15px 10px;
+        padding: 18px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+
+      h3 {
+        font-size: 15px;
+      }
+
+      p, li {
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .dropdown-menu {
+        width: 100%;
+        min-width: unset;
+        left: 0;
+        right: 0;
+      }
+
+      .dropdown-item {
+        font-size: 14px;
+      }
+
+      #lab-handbook {
+        margin: 15px 10px;
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>DevGameBlogPromo Boards</h1>
+
+  <nav>
+    <button>Press Release Board</button>
+
+    <div class="doc-dropdown">
+      <button id="dropdownBtn">📄 Select Document</button>
+
+      <div id="dropdownMenu" class="dropdown-menu">
+        <div
+          class="dropdown-item"
+          data-link="https://docs.google.com/document/d/1HlQbnRjqwhV7yMydwxKPh9ut1RWnJc-SMv8nunVnBDU/preview">
+          DevGameBlogPromo™ Copyright Protection Policy
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Press Release Board -->
+<section class="board">
+  <h2>📢 Press Release Board</h2>
+  <h3>Important Update: Notification</h3>
+
+  <p>Dear Visitors, we truly value your feedback during this time.</p>
+
+  <p>Please share your thoughts, suggestions, or messages of support through our official feedback form:</p>
+
+  <p>
+    👉 <a href="https://forms.gle/c3VJ7sY2RH8NBbKS6" target="_blank">
+    Click here to submit feedback
+    </a>
+  </p>
+
+  <p>Your support means everything to us. We are committed to coming back stronger and better.</p>
+
+  <p><strong>— Team DevGameBlogPromo™</strong></p>
+</section>
+
+<!-- Lab Handbook -->
+<section id="lab-handbook" class="board">
+  <h2>📚 Any Handbook Needed</h2>
+
+  <p>Rules & submission process:</p>
+
+  <ol>
+    <li>Provide clear documentation with a valid email address.</li>
+    <li>Email submissions to:
+      <a href="mailto:m81434409@gmail.com">m81434409@gmail.com</a>
+    </li>
+    <li>Download access will be provided after approval.</li>
+  </ol>
+</section>
+
+<script>
+  const btn = document.getElementById("dropdownBtn");
+  const menu = document.getElementById("dropdownMenu");
+
+  btn.addEventListener("click", () => {
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  });
+
+  document.querySelectorAll(".dropdown-item").forEach(item => {
+    item.addEventListener("click", () => {
+      window.open(item.dataset.link, "_blank");
+      menu.style.display = "none";
+    });
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".doc-dropdown")) {
+      menu.style.display = "none";
+    }
+  });
+</script>
+
+</body>
+</html>

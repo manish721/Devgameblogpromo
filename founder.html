@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Story — Founder Journey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+ 
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    :root {
+      --bg:        #FAF8F5;
+      --surface:   #F2EFE8;
+      --ink:       #1C1A17;
+      --muted:     #6B6760;
+      --line:      rgba(28,26,23,0.12);
+      --accent:    #B85C38;
+      --accent-dk: #8C3F22;
+      --accent-lt: #FAECE7;
+    }
+ 
+    html { scroll-behavior: smooth; }
+ 
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+ 
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+ 
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
+ 
+    .page { max-width: 780px; margin: 0 auto; padding: 0 2rem; }
+ 
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(250,248,245,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--line);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.06); }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-cta {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      padding: 6px 16px;
+      border-radius: 40px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-cta:hover { background: var(--accent); color: #fff; }
+ 
+    /* HERO */
+    .hero {
+      padding: 9rem 0 5rem;
+      position: relative;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.6s 0.1s forwards;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(38px, 6vw, 62px);
+      line-height: 1.12;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.7s 0.2s forwards;
+    }
+    .hero-title em { font-style: italic; color: var(--accent); }
+    .hero-title .line2 { display: block; padding-left: 2.5rem; }
+    .hero-desc {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 500px;
+      line-height: 1.75;
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.7s 0.35s forwards;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      padding-top: 2rem;
+      border-top: 0.5px solid var(--line);
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.7s 0.5s forwards;
+    }
+    .stat-item { display: flex; flex-direction: column; gap: 3px; }
+    .stat-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+    .stat-val .currency { color: var(--accent); }
+    .stat-lbl {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+    .hero-deco {
+      position: absolute;
+      right: 0; top: 8rem;
+      width: 220px; height: 220px;
+      border: 0.5px solid var(--line);
+      border-radius: 50%;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .hero-deco::after {
+      content: '';
+      position: absolute;
+      inset: 30px;
+      border: 0.5px solid var(--line);
+      border-radius: 50%;
+    }
+ 
+    /* SECTION LABEL */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 3.5rem;
+    }
+    .section-label span {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 0.5px;
+      background: var(--line);
+    }
+ 
+    /* TIMELINE */
+    .timeline {
+      padding: 4rem 0 6rem;
+      position: relative;
+    }
+    .tl-track {
+      position: absolute;
+      left: 95px;
+      top: 100px;
+      bottom: 120px;
+      width: 0.5px;
+      background: linear-gradient(to bottom, transparent, var(--line) 5%, var(--line) 95%, transparent);
+    }
+ 
+    .chapter {
+      display: grid;
+      grid-template-columns: 95px 1fr;
+      gap: 0 2.5rem;
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .chapter.visible { opacity: 1; transform: translateY(0); }
+ 
+    .ch-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 2px;
+      position: relative;
+    }
+    .ch-dot {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--accent);
+      position: relative;
+      z-index: 2;
+      flex-shrink: 0;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .chapter:hover .ch-dot { background: var(--accent); transform: scale(1.3); }
+    .ch-year {
+      font-size: 10.5px;
+      color: var(--muted);
+      margin-top: 10px;
+      text-align: center;
+      line-height: 1.5;
+      letter-spacing: 0.04em;
+      font-weight: 500;
+    }
+ 
+    .ch-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      background: var(--accent-lt);
+      padding: 3px 10px;
+      border-radius: 40px;
+      margin-bottom: 10px;
+    }
+    .ch-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .ch-text {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.85;
+    }
+    .ch-text p + p { margin-top: 0.8rem; }
+ 
+    .pullquote {
+      margin-top: 1.25rem;
+      padding: 1.1rem 1.4rem;
+      border-left: 2.5px solid var(--accent);
+      background: var(--accent-lt);
+      border-radius: 0 8px 8px 0;
+    }
+    .pullquote p {
+      font-family: 'Playfair Display', serif;
+      font-size: 14.5px;
+      font-style: italic;
+      color: var(--accent-dk);
+      line-height: 1.75;
+    }
+ 
+    .lesson {
+      margin-top: 1.25rem;
+      padding: 1.1rem 1.4rem;
+      background: var(--surface);
+      border-radius: 8px;
+      border: 0.5px solid var(--line);
+    }
+    .lesson-lbl {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .lesson p {
+      font-size: 14px;
+      color: var(--ink);
+      line-height: 1.7;
+    }
+    .lesson p + p { margin-top: 0.6rem; }
+ 
+    /* WARNING BOX */
+    .warning {
+      margin-top: 1.25rem;
+      padding: 1.1rem 1.4rem;
+      background: #FFF8F0;
+      border-radius: 8px;
+      border: 0.5px solid #E8C99A;
+      border-left: 2.5px solid #C9922A;
+    }
+    .warning-lbl {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #8C6520;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .warning p {
+      font-size: 14px;
+      color: #5C3D10;
+      line-height: 1.7;
+    }
+    .warning p + p { margin-top: 0.6rem; }
+ 
+    /* CLOSING */
+    .closing {
+      margin: 2rem 0 6rem;
+      padding: 3.5rem;
+      background: var(--surface);
+      border-radius: 16px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s, transform 0.7s;
+    }
+    .closing.visible { opacity: 1; transform: translateY(0); }
+    .closing::before {
+      content: '\201C';
+      position: absolute;
+      top: -20px; left: 24px;
+      font-family: 'Playfair Display', serif;
+      font-size: 160px;
+      color: var(--accent);
+      opacity: 0.07;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .closing-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 2.8vw, 24px);
+      font-style: italic;
+      color: var(--ink);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      position: relative;
+    }
+    .closing-attr {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+    .closing-attr span { color: var(--accent); font-weight: 500; }
+ 
+    footer {
+      border-top: 0.5px solid var(--line);
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+ 
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+ 
+    @media (max-width: 600px) {
+      .chapter { grid-template-columns: 60px 1fr; gap: 0 1.5rem; }
+      .tl-track { left: 60px; }
+      .hero-stats { gap: 1.5rem; }
+      .closing { padding: 2rem 1.5rem; }
+      nav { padding: 1rem 1.25rem; }
+      .page { padding: 0 1.25rem; }
+      .hero-deco { display: none; }
+    }
+  </style>
+</head>
+<body>
+ 
+  <nav id="nav">
+    <a href="#" class="nav-logo">Dev<span>.</span></a>
+    <a href="#story" class="nav-cta">Read Story</a>
+  </nav>
+ 
+  <main class="page">
+ 
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-deco"></div>
+      <p class="hero-eyebrow">Founder Story</p>
+      <h1 class="hero-title">
+        Built from
+        <em><span class="line2">nothing but curiosity</span></em>
+      </h1>
+      <p class="hero-desc">
+        A self-taught developer, entrepreneur, and builder —
+        starting with just an iPad, a dream, and no one
+        telling him what was possible.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-val"><span class="currency">₹</span>25L+</span>
+          <span class="stat-lbl">Earned</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val">2103</span>
+          <span class="stat-lbl">Team members</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val">16</span>
+          <span class="stat-lbl">Years old</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-val">2022</span>
+          <span class="stat-lbl">Year it began</span>
+        </div>
+      </div>
+    </section>
+ 
+    <!-- TIMELINE -->
+    <section class="timeline" id="story">
+      <div class="section-label"><span>The Journey</span></div>
+      <div class="tl-track"></div>
+ 
+      <!-- 1 -->
+      <div class="chapter">
+        <div class="ch-left">
+          <div class="ch-dot"></div>
+          <div class="ch-year">2022<br>Class 8</div>
+        </div>
+        <div class="ch-body">
+          <span class="ch-tag">The Spark</span>
+          <h2 class="ch-heading">An iPad, Java, and a hunger to build</h2>
+          <div class="ch-text">
+            <p>It started in Class 8, inspired by spirituality — a deep curiosity about how things work, how systems are built, how the world is coded beneath the surface. Most kids used the internet to pass time. I used it to learn Java.</p>
+            <p>I didn't have a laptop. I had an iPad — the same one I'd taken to the USA after Class 5, when my father was posted there. That iPad became my classroom, my lab, and my stage. No shortcuts. No guidance. Just me, a screen, and an internet connection.</p>
+            <p>After a year of learning Java, building small projects, and slowly understanding how the web works, I moved on to HTML, CSS, and JavaScript. My first project was the classic — a calculator. The very next day, I pushed myself further and built a full website. It worked.</p>
+          </div>
+          <div class="pullquote">
+            <p>"I showed it to my grandfather. The next day, my mama visited. He saw it — and shared it in his company group: 'A 13-year-old built a website.' That day, he told me he was proud. I had learnt all of this on my own — no one told me to."</p>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- 2 -->
+      <div class="chapter">
+        <div class="ch-left">
+          <div class="ch-dot"></div>
+          <div class="ch-year">2022<br>The Gift</div>
+        </div>
+        <div class="ch-body">
+          <span class="ch-tag">First Tool</span>
+          <h2 class="ch-heading">My grandfather made one request — a laptop</h2>
+          <div class="ch-text">
+            <p>Seeing what I was producing on an iPad, my grandfather quietly went to my mama and made one request: get him a laptop. My mama gifted me an ASUS laptop worth ₹35,000.</p>
+            <p>It was more than hardware. It was belief — someone investing in me before I had anything concrete to show for it. From that day, I had a proper tool to match my ambition.</p>
+            <p>I started showcasing my work at school. Some teachers told me to "just focus on studies." I respected them — and kept coding anyway.</p>
+          </div>
+          <div class="lesson">
+            <div class="lesson-lbl">Lesson learned</div>
+            <p>The right tool in the hands of a determined person changes everything. And sometimes, the people who believe in you earliest are the ones watching quietly from the side.</p>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- 3 -->
+      <div class="chapter">
+        <div class="ch-left">
+          <div class="ch-dot"></div>
+          <div class="ch-year">2023<br>Class 9</div>
+        </div>
+        <div class="ch-body">
+          <span class="ch-tag">Rising</span>
+          <h2 class="ch-heading">School competitions and the Employee Management System</h2>
+          <div class="ch-text">
+            <p>I discovered that my school held tech competitions. I started entering. I built an Employee Management System — learning how to embed images in websites, manage structured data, and think like a product builder rather than just a coder.</p>
+            <p>I pulled my friend into it too. We competed together, planned things during class, dreamed out loud. Every time we came back with a participation certificate, the headmistress would present us in front of the entire school. Win or lose, we showed up.</p>
+          </div>
+          <div class="pullquote">
+            <p>"It doesn't always matter if you win. What matters is having the courage to stand up and speak in front of the world — to be in the right place at the right time, and to show up anyway."</p>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- 4 -->
+      <div class="chapter">
+        <div class="ch-left">
+          <div class="ch-dot"></div>
+          <div class="ch-year">2023<br>Class 9</div>
+        </div>
+        <div class="ch-body">
+          <span class="ch-tag">First Agency</span>
+          <h2 class="ch-heading">Spark Builders → Bear Builders: my first real venture</h2>
+          <div class="ch-text">
+            <p>I started going deep into what an agency actually was — the real difference between a business, an agency, and a company. I created a form and started publishing it on Discord servers.</p>
+            <p>Through Discord, I found my first real teammate: a NEET student who taught me how to build something from absolute zero. He explained the foundations — how agencies work, how to pitch, how to structure a team. We renamed the venture from Spark Builders to Bear Builders, focused entirely on creating and selling 3D websites.</p>
+            <p>We had four team members. We had documents, processes, a marketing plan. We were learning and building at the same time — and it felt real.</p>
+            <p>That birthday, my mama visited. My mami gifted me <em>How to Win Friends and Influence People</em> and a globe. I showed my mama what we had built — a team, a brand, a direction. He said the same words he said the first time I showed him a website. He was proud. I had done all of this on my own, without anyone telling me to.</p>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- 5 -->
+      <div class="chapter">
+        <div class="ch-left">
+          <div class="ch-dot"></div>
+          <div class="ch-year">2023<br>Setback 1</div>
+        </div>
+        <div class="ch-body">
+          <span class="ch-tag">First Goodbye</span>
+          <h2 class="ch-heading">The NEET student, the Figma design, and the silence</h2>
+          <div class="ch-text">
+            <p>The NEET student eventually said goodbye — he had his own studies and his own journey to return to. I kept going.</p>
+            <p>Around this time I connected with the founder of The Cutting Edge School. I designed a full UI/UX website for him on Figma, put real effort into it, and shared it over email. No reply. I commented on his YouTube channel. He gave me a different email address. I sent it again. Still no reply.</p>
+            <p>That silence hurt at first. But then I noticed something: in the process of designing that project and learning around it, I had gone deeper into AI tools than ever before. I had levelled up — without even realising it. The doors that don't open still teach you what you need to know.</p>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- 6 -->
+      <div class="chapter">
+        <div class="ch-left">
+          <div class="ch-dot"></div>
+          <div class="ch-year">2023<br>Setback 2</div>
+        </div>
+        <div class="ch-body">
+          <span class="ch-tag">The Game Plan</span>
+          <h2 class="ch-heading">₹1,000 vs ₹200 — and a friend who walked away</h2>
+          <div class="ch-text">
+            <p>My friend saw where I was heading and said: "You learn, you build — let's both invest money and launch a game together." I was in. We planned a game development project. I put in ₹1,000. He put in ₹200.</p>
+            <p>Then one day, he came back and said he wasn't interested anymore. Just like that. That was the end of Class 9 — and the end of that chapter.</p>
+            <p>I told him: when Class 10 starts, let's leave all of this behind. But he had already left. So I kept the company name — DevGameBlogPromo — and I kept going alone.</p>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- 7 -->
+      <div class="chapter">
+        <div class="ch-left">
+          <div class="ch-dot"></div>
+          <div class="ch-year">2024–25<br>Class 10</div>
+        </div>
+        <div class="ch-body">
+          <span class="ch-tag">Building Solo</span>
+          <h2 class="ch-heading">DevGameBlogPromo: from a channel to a registered company</h2>
+          <div class="ch-text">
+            <p>I started DevGameBlogPromo alone. What began as a content channel slowly became a real operation. In May, I completed the business registration and opened a dedicated business bank account — learning what it actually means to run a company, not just build one.</p>
+            <p>I started making income. I hired carefully. I built slowly — and eventually grew a team of 2,103 members.</p>
+            <p>But growth came with hard lessons. I maintained high transparency with my team — completely open about everything. Some people don't want that. Team one left. Team two left. Even close friends left, because of that one habit: telling the truth about everything, always.</p>
+          </div>
+          <div class="lesson">
+            <div class="lesson-lbl">What I learned about transparency</div>
+            <p>When you are truly transparent, some people will leave. That is not a failure of your character — it is a filter. The ones who stay are the ones worth building with. Transparency is not a weakness. It is a standard.</p>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- 8 -->
+      <div class="chapter">
+        <div class="ch-left">
+          <div class="ch-dot"></div>
+          <div class="ch-year">2025<br>Hard Truth</div>
+        </div>
+        <div class="ch-body">
+          <span class="ch-tag">The Cost of Trust</span>
+          <h2 class="ch-heading">I gave the idea, I helped build it — then he said "you may get destroyed in life"</h2>
+          <div class="ch-text">
+            <p>There was a person I genuinely wanted to help. I gave him the idea. I guided him through every step of building the business. When he had no card to make a payment, he gave me the cash in hand and I paid on his behalf — because I believed in what we were building together.</p>
+            <p>He used that money to pay a company that launches websites. The platform was set up. The business had started. Everything was in motion.</p>
+            <p>But he didn't follow the plan. He didn't take the advice. He went his own way — even though I was the one who had given him the idea and helped him get there.</p>
+            <p>Then, when things didn't go the way he wanted, he came back and asked me to return that amount. The same money he had given me as cash to pay on his behalf. The same money that had already been spent on his own platform, his own launch, his own business.</p>
+            <p>And when I couldn't give back what had already been invested into his future — he said something I will never forget:</p>
+          </div>
+          <div class="pullquote">
+            <p>"You may get destroyed in life."</p>
+          </div>
+          <div class="ch-text" style="margin-top: 1rem;">
+            <p>Those words came from someone I had helped. Someone whose business would not have started without my idea, my guidance, and my help with that payment.</p>
+            <p>I did not respond with anger. I did not break. I let those words land — and then I kept building. Because the people who speak like that when they feel let down are not your enemies. They are your most powerful reminders of why documentation, agreements, and boundaries exist even between people you trust.</p>
+          </div>
+          <div class="warning">
+            <div class="warning-lbl">What this moment taught me</div>
+            <p>If you give someone an idea, help them financially, and help build their business — put everything in writing from day one. Not because you distrust them, but because clarity protects the relationship itself.</p>
+            <p>If someone helps you — with ideas, with money, with their time — follow their guidance. The person who believes in you before you have anything is the most valuable person in your journey. Ignoring them is a mistake that cannot be undone with an apology.</p>
+            <p>And if someone tells you that you will be destroyed — let it be fuel. Every person who doubted me became a reason to go further. That is the only answer worth giving.</p>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- 9 -->
+      <div class="chapter">
+        <div class="ch-left">
+          <div class="ch-dot"></div>
+          <div class="ch-year">2024–25<br>Operations</div>
+        </div>
+        <div class="ch-body">
+          <span class="ch-tag">Business Reality</span>
+          <h2 class="ch-heading">Payment glitches, bad hires, and real money</h2>
+          <div class="ch-text">
+            <p>Running a real company means facing real problems. One that almost cost me everything: a payment glitch. The amount showed correctly in my software — it looked like the money was there. But when I checked with the actual payment handler, it was a glitch. The funds were not real.</p>
+            <p>I also learned the hard way about hiring. Some people join only for the salary — they want money first, work second. Before you commit to someone, test whether they can work with commitment and zero income for at least a month. The ones who can are the ones who are actually building with you. The rest are just passing through.</p>
+          </div>
+          <div class="warning">
+            <div class="warning-lbl">Critical warnings</div>
+            <p><strong>On payments:</strong> Never trust what your software dashboard shows alone. Always verify directly with your payment processor before treating that money as real. A number on a screen can be a glitch.</p>
+            <p><strong>On hiring:</strong> Never hire people who only ask about money before they have done a single hour of work. Check whether they can commit and contribute before you commit to them.</p>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- 10 -->
+      <div class="chapter">
+        <div class="ch-left">
+          <div class="ch-dot"></div>
+          <div class="ch-year">Today<br>Age 16</div>
+        </div>
+        <div class="ch-body">
+          <span class="ch-tag">Where I Stand</span>
+          <h2 class="ch-heading">₹25 lakh earned. Turning 17 in August 2026.</h2>
+          <div class="ch-text">
+            <p>What started on an iPad in Class 8, 2022 — no mentors, no roadmap, no one pointing the way — has become a business that has generated over ₹25 lakh.</p>
+            <p>I have led teams, shipped products, been betrayed, been ignored, made costly mistakes, lost friends over transparency, and built through every single setback. I have been told to "just focus on studies" more times than I can count.</p>
+            <p>Every person who left taught me something. Every closed door pushed me deeper. Every mistake sharpened me. I am 16 years old, turning 17 in August 2026 — and I am just getting started.</p>
+          </div>
+          <div class="lesson">
+            <div class="lesson-lbl">The one thing</div>
+            <p>No one told me to learn any of this. No one showed me the way. I just kept going — and that made all the difference.</p>
+          </div>
+        </div>
+      </div>
+ 
+    </section>
+ 
+    <!-- CLOSING -->
+    <div class="closing">
+      <p class="closing-quote">
+        "No one told me to learn.<br>
+        No one showed me the way.<br>
+        I just kept going —<br>
+        and that made all the difference."
+      </p>
+      <p class="closing-attr">
+        Self-taught &nbsp;·&nbsp; Builder &nbsp;·&nbsp; <span>Entrepreneur</span> &nbsp;·&nbsp; Age 16
+      </p>
+    </div>
+ 
+  </main>
+ 
+  <footer>
+    <p>© 2026 &nbsp;·&nbsp; Built with purpose, not permission.</p>
+  </footer>
+ 
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+ 
+    const chapters = document.querySelectorAll('.chapter, .closing');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+ 
+    chapters.forEach(el => observer.observe(el));
+  </script>
+ 
+</body>
+</html>
