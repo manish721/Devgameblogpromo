@@ -1,0 +1,88 @@
+# DevGameBlogPromo - robots.txt
+# https://devgameblogpromo.vercel.app
+
+# ── ALL CRAWLERS ──────────────────────────
+User-agent: *
+Allow: /
+
+# Block pages that shouldn't be indexed
+Disallow: /more.html
+Disallow: /admin/
+Disallow: /api/
+Disallow: /cdn-cgi/
+Disallow: /temp/
+Disallow: /cache/
+Disallow: /backup/
+Disallow: /node_modules/
+Disallow: /_next/
+Disallow: /.vercel/
+Disallow: /private/
+Disallow: /internal/
+Disallow: /debug/
+
+# Block duplicate URLs with query parameters
+Disallow: /*?*
+
+# ── GOOGLE ────────────────────────────────
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# ── BING ──────────────────────────────────
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# ── AI CRAWLERS ───────────────────────────
+User-agent: GPTBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: ClaudeBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Google-Extended
+Allow: /
+Crawl-delay: 0
+
+User-agent: PerplexityBot
+Allow: /
+Crawl-delay: 1
+
+# ── SOCIAL MEDIA ──────────────────────────
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: WhatsApp
+Allow: /
+
+# ── SEO TOOLS ─────────────────────────────
+User-agent: SemrushBot
+Allow: /
+Crawl-delay: 2
+
+User-agent: AhrefsBot
+Allow: /
+Crawl-delay: 2
+
+User-agent: DotBot
+Allow: /
+Crawl-delay: 2
+
+# ── BLOCK SPAM BOTS ───────────────────────
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: SBIBot
+Disallow: /
+
+# ── SITEMAP ───────────────────────────────
+Sitemap: https://devgameblogpromo.vercel.app/sitemap.xml
