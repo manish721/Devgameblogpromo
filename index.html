@@ -507,7 +507,7 @@ We don’t stop halfway. We stay until you can build, apply, and grow on your ow
         </div>
       </div>
     </section>
-
+<button swg-standard-button="contribution"></button>
     <!-- PROGRAMS -->
     <section class="section-padding" id="program-matrix">
       <h3 class="section-title">Active Platform Execution <span>Programs</span></h3>
@@ -787,6 +787,22 @@ function aiQuery(node){
   var el=document.getElementById('ai-response');
   if(el) el.innerHTML=aiResponses[node]||'Information not found for this node.';
 }
+
+
+
+  <script async type="application/javascript"
+        src="https://news.google.com/swg/js/v1/swg-basic.js"></script>
+<script>
+  (self.SWG_BASIC = self.SWG_BASIC || []).push( basicSubscriptions => {
+    basicSubscriptions.init({
+      type: "NewsArticle",
+      isPartOfType: ["Product"],
+      isPartOfProductId: "CAowjoWvDA:openaccess",
+      clientOptions: { theme: "light", lang: "en" },
+    });
+  });
+</script>
+  
 </script>
 </body>
 </html>
