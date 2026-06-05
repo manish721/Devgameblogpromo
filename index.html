@@ -300,8 +300,6 @@ footer.main-footer{background:#05070a;border-top:1px solid var(--border);padding
             <a class="dropdown-item" href="more.html" role="menuitem">Admin Panel</a>
             <a class="dropdown-item" href="Career Paths.html" role="menuitem">Career Paths</a>
              <a class="dropdown-item" href="founder.html"role="menuitem">Founder Journey</a>
-               
-              
         </div>
       </div>
     </nav>
@@ -321,13 +319,13 @@ footer.main-footer{background:#05070a;border-top:1px solid var(--border);padding
   <section class="hero" aria-labelledby="hero-title">
     <div class="container">
       <h2 id="hero-title">"Transform Your Skills Into Income:<br><span>Create, Contribute, and Grow"</span></h2>
-      <p class="lead">&#x2014; Kakarla Manish Reddy<br><br>"You don’t learn here to memorize—you learn here to build.
+      <p class="lead">&#x2014; Kakarla Manish Reddy<br><br>"You don't learn here to memorize—you learn here to build.
 
 Everything is open, practical, and connected to real understanding—not broken into pieces or hidden behind stages.
 
-This is not exam-based learning. It’s real-world preparation with full clarity and hands-on practice.
+This is not exam-based learning. It's real-world preparation with full clarity and hands-on practice.
 
-We don’t stop halfway. We stay until you can build, apply, and grow on your own."</p>
+We don't stop halfway. We stay until you can build, apply, and grow on your own."</p>
       <div class="cta-group">
         <a class="btn btn-primary" href="https://discord.gg/HdvgYfGw6s" target="_blank" rel="noopener">Join Labs &#x2014; Start Now</a>
         <a class="btn btn-secondary" href="core team.html">Core Team Network</a>
@@ -601,7 +599,7 @@ We don’t stop halfway. We stay until you can build, apply, and grow on your ow
     </div>
     <div class="footer-bottom">
       <div class="footer-legal">
-                <a href="founder.html" target="_blank" rel="noopener"> Founder Journey</a>
+        <a href="founder.html" target="_blank" rel="noopener">Founder Journey</a>
         <a href="https://docs.google.com/document/d/1cfpmmcymNQnB-PoD-KiwY2WQFhvRzblkiv8mFrHEcRY/edit?tab=t.0#heading=h.x1wiq064arp6" target="_blank" rel="noopener">Terms of Service Engine</a>
         <a href="https://www.instagram.com/devgameblogpromo/" target="_blank" rel="noopener">Instagram Node</a>
       </div>
@@ -622,6 +620,9 @@ We don’t stop halfway. We stay until you can build, apply, and grow on your ow
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════════════════════
+     MAIN JAVASCRIPT — one self-contained script block
+     ═══════════════════════════════════════════════════════ -->
 <script>
 /* ================================================================
    TESTIMONIAL DATA
@@ -790,13 +791,17 @@ function aiQuery(node){
   var el=document.getElementById('ai-response');
   if(el) el.innerHTML=aiResponses[node]||'Information not found for this node.';
 }
+</script>
 
+<!-- ═══════════════════════════════════════════════════════
+     SUBSCRIBE WITH GOOGLE (SWG) — separate script tags,
+     NOT nested inside the main script block above
+     ═══════════════════════════════════════════════════════ -->
+<script async type="application/javascript"
+  src="https://news.google.com/swg/js/v1/swg-basic.js"></script>
 
-
-  <script async type="application/javascript"
-        src="https://news.google.com/swg/js/v1/swg-basic.js"></script>
 <script>
-  (self.SWG_BASIC = self.SWG_BASIC || []).push( basicSubscriptions => {
+  (self.SWG_BASIC = self.SWG_BASIC || []).push(basicSubscriptions => {
     basicSubscriptions.init({
       type: "NewsArticle",
       isPartOfType: ["Product"],
@@ -805,7 +810,6 @@ function aiQuery(node){
     });
   });
 </script>
-  
-</script>
+
 </body>
 </html>
