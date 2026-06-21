@@ -3,502 +3,518 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Join DevGameBlogPromo Labs to work on real-world projects, research initiatives, innovation programs, and technology-driven careers.">
-
-  <title>Join Our Labs - DevGameBlogPromo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <meta name="description" content="Join DevGameBlogPromo Labs — 50 unpaid, skill-building labs with real-world impact.">
+  <title>Join Our Labs — DevGameBlogPromo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-10VRSCCMCH"></script>
+  <script>
+    window.dataLayer=window.dataLayer||[];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js',new Date());
+    gtag('config','G-10VRSCCMCH');
+  </script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
+    :root {
+      --bg:#0a0a10;--bg2:#111118;--bg3:#18181f;
+      --border:rgba(255,255,255,0.07);--border-h:rgba(255,255,255,0.14);
+      --tp:#f0eeff;--ts:#9090a8;--tm:#55556a;
+      --acc:#7c6ff7;--accl:#a59ffa;--accd:rgba(124,111,247,0.12);
+      --rad:14px;--rads:8px;
+      --fd:'Syne',sans-serif;--fb:'Inter',sans-serif;
     }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    body{background:var(--bg);color:var(--tp);font-family:var(--fb);font-size:15px;line-height:1.65;}
 
-    body {
-      background: #f3f4f6;
-      color: #1f2937;
-      line-height: 1.6;
-      padding: 2rem;
-    }
+    /* HERO */
+    .hero{padding:80px 24px 64px;max-width:900px;margin:0 auto;text-align:center;}
+    .hero-badge{display:inline-flex;align-items:center;gap:7px;background:var(--accd);border:1px solid rgba(124,111,247,0.25);color:var(--accl);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:100px;margin-bottom:28px;}
+    .hero h1{font-family:var(--fd);font-size:clamp(2.4rem,6vw,4rem);font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px;}
+    .hero h1 span{background:linear-gradient(135deg,#a59ffa 0%,#7c6ff7 50%,#c084fc 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+    .hero p{max-width:560px;margin:0 auto 36px;color:var(--ts);font-size:1.05rem;}
+    .hero-meta{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap;}
+    .hero-meta-item{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--ts);}
+    .hero-meta-item i{color:var(--accl);font-size:16px;}
 
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      background: #ffffff;
-      border-radius: 1rem;
-      padding: 2rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    }
+    /* SECTIONS */
+    .sec{max-width:1100px;margin:0 auto;padding:0 24px 64px;}
+    .sec-label{font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accl);margin-bottom:16px;}
+    .sec-title{font-family:var(--fd);font-size:clamp(1.4rem,3vw,1.9rem);font-weight:700;letter-spacing:-.02em;margin-bottom:8px;}
+    .sec-sub{color:var(--ts);font-size:14px;margin-bottom:32px;}
+    .divider{max-width:1100px;margin:0 auto 64px;padding:0 24px;border-top:1px solid var(--border);}
 
-    .container p {
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-      color: #374151;
-    }
+    /* FLAGSHIP CARDS */
+    .flag-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;}
+    .flag-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--rad);padding:24px 20px;transition:border-color .2s,background .2s;position:relative;overflow:hidden;text-decoration:none;display:block;}
+    .flag-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--acc),#c084fc);opacity:0;transition:opacity .2s;}
+    .flag-card:hover{border-color:rgba(124,111,247,.3);background:var(--bg2);}
+    .flag-card:hover::before{opacity:1;}
+    .flag-icon{width:40px;height:40px;background:var(--accd);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+    .flag-icon i{color:var(--accl);font-size:20px;}
+    .flag-card h3{font-family:var(--fd);font-size:15px;font-weight:700;margin-bottom:6px;color:var(--tp);}
+    .flag-card p{font-size:13px;color:var(--ts);margin-bottom:18px;}
+    .join-link{font-size:12px;font-weight:600;color:var(--accl);display:flex;align-items:center;gap:5px;}
+    .join-link i{font-size:14px;}
 
-    .lab {
-      margin-bottom: 1rem;
-      border-radius: 0.75rem;
-      overflow: hidden;
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      transition: 0.3s ease;
-    }
+    /* SEARCH & FILTER */
+    .search-wrap{position:relative;margin-bottom:20px;}
+    .search-wrap i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--tm);font-size:17px;pointer-events:none;}
+    .search-wrap input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:var(--rads);color:var(--tp);font-family:var(--fb);font-size:14px;padding:12px 16px 12px 42px;outline:none;transition:border-color .2s;}
+    .search-wrap input::placeholder{color:var(--tm);}
+    .search-wrap input:focus{border-color:rgba(124,111,247,.4);}
+    .filter-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
+    .filter-tab{padding:7px 16px;border-radius:100px;font-size:12px;font-weight:600;border:1px solid var(--border);background:transparent;color:var(--ts);cursor:pointer;transition:all .15s;font-family:var(--fb);}
+    .filter-tab:hover{border-color:var(--border-h);color:var(--tp);}
+    .filter-tab.active{background:var(--accd);border-color:rgba(124,111,247,.3);color:var(--accl);}
 
-    .toggle-button {
-      width: 100%;
-      padding: 1rem 1.5rem;
-      background: #1f2937;
-      color: white;
-      font-weight: 600;
-      text-align: left;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.3s ease;
-    }
+    /* COUNT */
+    .results-count{font-size:12px;color:var(--tm);margin-bottom:16px;}
 
-    .toggle-button:hover {
-      background: #374151;
-    }
+    /* LABS GRID */
+    .labs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;}
+    .lab-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--rad);overflow:hidden;transition:border-color .2s;}
+    .lab-card:hover{border-color:var(--border-h);}
+    .lab-header{display:flex;align-items:center;gap:12px;padding:15px 18px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;}
+    .lab-num{font-family:var(--fd);font-size:11px;font-weight:700;color:var(--tm);min-width:22px;}
+    .lab-name{font-family:var(--fd);font-size:13.5px;font-weight:700;flex:1;color:var(--tp);}
+    .lab-chevron{color:var(--tm);font-size:16px;transition:transform .25s;flex-shrink:0;}
+    .lab-card.open .lab-chevron{transform:rotate(180deg);}
+    .lab-body{max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.4,0,.2,1);}
+    .lab-card.open .lab-body{max-height:700px;}
+    .lab-inner{border-top:1px solid var(--border);padding:16px 18px 18px;}
+    .role-list{list-style:none;margin-bottom:16px;}
+    .role-list li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;}
+    .role-list li:last-child{border-bottom:none;}
+    .role-list li i{color:var(--accl);font-size:14px;margin-top:3px;flex-shrink:0;}
+    .role-title{font-weight:600;color:var(--tp);display:block;}
+    .role-desc{color:var(--ts);}
+    .apply-btn{display:inline-flex;align-items:center;gap:6px;background:var(--acc);color:#fff;font-family:var(--fb);font-size:13px;font-weight:600;padding:9px 18px;border-radius:var(--rads);text-decoration:none;transition:background .15s,transform .1s;}
+    .apply-btn:hover{background:#6a5fe0;}
+    .apply-btn:active{transform:scale(.97);}
+    .apply-btn i{font-size:15px;}
 
-    .lab-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-      background: #ffffff;
-      padding: 0 1.5rem;
-    }
+    /* CAT BADGE */
+    .cat-badge{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:100px;flex-shrink:0;}
+    .cat-tech{background:rgba(56,189,248,.1);color:#7dd3fc;}
+    .cat-creative{background:rgba(251,146,60,.1);color:#fdba74;}
+    .cat-business{background:rgba(52,211,153,.1);color:#6ee7b7;}
+    .cat-ops{background:rgba(167,139,250,.1);color:#c4b5fd;}
+    .cat-future{background:rgba(236,72,153,.1);color:#f9a8d4;}
 
-    .lab-content.open {
-      padding: 1rem 1.5rem;
-      max-height: 1000px;
-    }
+    /* NO RESULTS */
+    .no-results{text-align:center;padding:60px 20px;color:var(--tm);display:none;}
+    .no-results i{font-size:40px;display:block;margin-bottom:12px;}
 
-    ul {
-      list-style: none;
-      margin-bottom: 1rem;
-    }
+    footer{border-top:1px solid var(--border);text-align:center;padding:40px 24px;color:var(--tm);font-size:13px;}
+    footer a{color:var(--accl);text-decoration:none;}
+    footer a:hover{text-decoration:underline;}
 
-    li {
-      padding: 0.5rem 0;
-      border-bottom: 1px solid #e5e7eb;
-    }
-
-    li:last-child {
-      border-bottom: none;
-    }
-
-    strong {
-      color: #111827;
-    }
-
-    .service-btn {
-      display: inline-block;
-      margin-top: 0.5rem;
-      background: #10b981;
-      color: white;
-      padding: 0.5rem 1.25rem;
-      border-radius: 0.5rem;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background 0.3s ease;
-    }
-
-    .service-btn:hover {
-      background: #059669;
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 1.2rem;
-      }
-
-      .toggle-button {
-        font-size: 0.95rem;
-        padding: 0.8rem 1rem;
-      }
-
-      .lab-content {
-        padding: 0 1rem;
-      }
-
-      .lab-content.open {
-        padding: 0.8rem 1rem;
-      }
+    @media(max-width:640px){
+      .hero{padding:56px 16px 40px;}
+      .sec,.divider{padding-left:16px;padding-right:16px;}
+      .labs-grid{grid-template-columns:1fr;}
+      .flag-grid{grid-template-columns:1fr 1fr;}
+      .hero-meta{gap:14px;}
     }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <p>
-    🌟 At <strong>DevGameBlogPromo</strong>, we're on a mission to empower future creators. We invite passionate learners and creative thinkers to join our growing community. These are unpaid, skill-building roles designed to give you hands-on experience while making real impact. Explore our open labs below and click "Get Started" to apply!
-  </p>
+<section class="hero">
+  <div class="hero-badge"><i class="ti ti-flask-2" aria-hidden="true"></i> Skill-Building · Real Impact</div>
+  <h1>Build Skills.<br><span>Shape the Future.</span></h1>
+  <p>50 unpaid labs. Hands-on experience. A community of learners building real projects — from AI and game dev to cybersecurity, marketing, and beyond.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><i class="ti ti-users" aria-hidden="true"></i> Open to everyone</div>
+    <div class="hero-meta-item"><i class="ti ti-flask" aria-hidden="true"></i> 50 labs</div>
+    <div class="hero-meta-item"><i class="ti ti-clock" aria-hidden="true"></i> Flexible commitment</div>
+  </div>
+</section>
 
-  
-  <div class="lab">
-    <button class="toggle-button" onclick="toggleLabContent(this)">1. Research Lab</button>
-    <div class="lab-content">
-      <ul>
-        <li><strong>Research Analyst:</strong> Conducts market and technological research for insights.</li>
-        <li><strong>Innovation Strategist:</strong> Identifies emerging trends for product innovation.</li>
-        <li><strong>Data Scientist:</strong> Analyzes data for future predictions and recommendations.</li>
-      </ul>
-      <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-    </div>
+<!-- FLAGSHIP -->
+<section class="sec">
+  <div class="sec-label">Flagship labs</div>
+  <h2 class="sec-title">Start here</h2>
+  <p class="sec-sub">Our four highest-impact labs — where most learners begin.</p>
+  <div class="flag-grid" id="flagGrid"></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ALL LABS -->
+<section class="sec">
+  <div class="sec-label">All 50 labs</div>
+  <h2 class="sec-title">Find your specialization</h2>
+  <p class="sec-sub">Search, filter, and click any lab to see roles and apply.</p>
+
+  <div class="search-wrap">
+    <i class="ti ti-search" aria-hidden="true"></i>
+    <input type="text" id="labSearch" placeholder="Search labs or roles…" autocomplete="off" />
   </div>
 
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">2. Software Developer Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Lead Developer:</strong> Oversees the development team and sets coding standards.</li>
-                <li><strong>Front-end Developer:</strong> Focuses on building user interfaces.</li>
-                <li><strong>Back-end Developer:</strong> Manages server-side logic and databases.</li>
-                <li><strong>Full Stack Developer:</strong> Handles both front-end and back-end development.</li>
-                <li><strong>Quality Assurance (QA) Tester:</strong> Tests and ensures the software works as expected.</li>
-            </ul>
-          <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
+  <div class="filter-tabs" id="filterTabs">
+    <button class="filter-tab active" data-cat="all">All (50)</button>
+    <button class="filter-tab" data-cat="tech">Tech & Dev</button>
+    <button class="filter-tab" data-cat="creative">Creative</button>
+    <button class="filter-tab" data-cat="business">Business</button>
+    <button class="filter-tab" data-cat="ops">Operations</button>
+    <button class="filter-tab" data-cat="future">Future Tech</button>
+  </div>
 
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">3. Software Planner Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Project Planner:</strong> Defines the scope and timeline of software development projects.</li>
-                <li><strong>Technical Architect:</strong> Designs the system architecture.</li>
-                <li><strong>Business Analyst:</strong> Gathers and documents functional requirements.</li>
-            </ul>
-          <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
+  <div class="results-count" id="resultsCount">Showing all 50 labs</div>
+  <div class="labs-grid" id="labsGrid"></div>
+  <div class="no-results" id="noResults">
+    <i class="ti ti-mood-puzzled" aria-hidden="true"></i>
+    No labs match your search.
+  </div>
+</section>
 
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">4. Meeting Schedule Updates Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Scheduler:</strong> Coordinates and manages the meeting calendar.</li>
-                <li><strong>Meeting Facilitator:</strong> Organizes and leads meetings.</li>
-                <li><strong>Documenter:</strong> Takes notes and updates meeting minutes.</li>
-            </ul>
-          <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">5. Strategies Builder Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Strategy Analyst:</strong> Formulates strategies based on market analysis.</li>
-                <li><strong>Business Planner:</strong> Develops strategic roadmaps for growth.</li>
-                <li><strong>Product Strategist:</strong> Focuses on product positioning and market entry strategies.</li>
-            </ul>
-           <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">6. Marketing Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Marketing Specialist:</strong> Develops and executes marketing campaigns.</li>
-                <li><strong>Social Media Manager:</strong> Manages online presence across social platforms.</li>
-                <li><strong>Content Creator:</strong> Writes copy for marketing materials, blogs, and social media posts.</li>
-            </ul>
-         <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">7. Branding Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Brand Manager:</strong> Oversees the consistency of the company’s branding.</li>
-                <li><strong>Graphic Designer:</strong> Creates visual content aligned with the brand’s image.</li>
-                <li><strong>Brand Strategist:</strong> Develops and implements brand strategy.</li>
-            </ul>
-           <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">8. Advertisement Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Ad Campaign Manager:</strong> Creates and oversees ad campaigns.</li>
-                <li><strong>SEO/SEM Specialist:</strong> Optimizes content for search engines.</li>
-                <li><strong>PPC Specialist:</strong> Manages pay-per-click advertising campaigns.</li>
-            </ul>
-<a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">9. Game Developer Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Game Designer:</strong> Develops the game concept and mechanics.</li>
-                <li><strong>Game Developer:</strong> Codes and builds the game.</li>
-                <li><strong>Level Designer:</strong> Designs levels and challenges in the game.</li>
-                <li><strong>3D Artist:</strong> Creates 3D models and animations for games.</li>
-            </ul>
-            <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">10. Game Planner Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Game Concept Developer:</strong> Brainstorms new game ideas and concepts.</li>
-                <li><strong>Narrative Designer:</strong> Focuses on the storytelling aspects of the game.</li>
-                <li><strong>Game Tester:</strong> Tests the game to identify bugs and ensure gameplay quality.</li>
-            </ul>
-           <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">11. Project Manager Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Project Manager:</strong> Manages projects from start to finish.</li>
-                <li><strong>Scrum Master:</strong> Ensures agile processes are followed.</li>
-                <li><strong>Resource Manager:</strong> Manages team resources and allocation.</li>
-            </ul>
-           <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">12. Global Development Network Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Network Coordinator:</strong> Builds and maintains global partnerships.</li>
-                <li><strong>International Business Developer:</strong> Identifies international market opportunities.</li>
-                <li><strong>Cross-Cultural Consultant:</strong> Advises on cultural considerations in global business.</li>
-            </ul>
-          <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">13. Career Development Center Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Career Advisor:</strong> Provides guidance on career paths and opportunities.</li>
-                <li><strong>Resume Coach:</strong> Assists with resume writing and interview preparation.</li>
-                <li><strong>Internship Coordinator:</strong> Connects students with internship opportunities.</li>
-            </ul>
-           <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">14. Training and Development Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Training Specialist:</strong> Develops training programs for team members.</li>
-                <li><strong>Workshop Facilitator:</strong> Conducts hands-on workshops.</li>
-                <li><strong>Content Developer:</strong> Creates training materials and resources.</li>
-            </ul>
-           <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">15. Developer Tool Marketplace Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Marketplace Manager:</strong> Oversees the operation of the developer tools marketplace.</li>
-                <li><strong>Vendor Relations Specialist:</strong> Manages relationships with tool vendors.</li>
-                <li><strong>User Experience Designer:</strong> Enhances the marketplace experience for users.</li>
-            </ul>
-           <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">16. Innovation Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Innovation Lead:</strong> Drives innovation initiatives and projects.</li>
-                <li><strong>Prototype Developer:</strong> Builds prototypes for new ideas.</li>
-                <li><strong>Market Tester:</strong> Tests new ideas with potential users.</li>
-            </ul>
-            <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">17. Customer Support Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Support Representative:</strong> Assists customers with inquiries and issues.</li>
-                <li><strong>Feedback Specialist:</strong> Collects and analyzes customer feedback.</li>
-                <li><strong>Helpdesk Coordinator:</strong> Manages helpdesk operations.</li>
-            </ul>
-            <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">18. Data Analysis Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Data Analyst:</strong> Analyzes data sets to provide insights.</li>
-                <li><strong>Statistician:</strong> Applies statistical methods to data analysis.</li>
-                <li><strong>Business Intelligence Analyst:</strong> Develops strategies based on data trends.</li>
-            </ul>
-        <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">19. Product Management Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Product Manager:</strong> Oversees product development from ideation to launch.</li>
-                <li><strong>Market Researcher:</strong> Conducts research to inform product decisions.</li>
-                <li><strong>User Experience Researcher:</strong> Studies user behavior to improve products.</li>
-            </ul>
-           <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">20. Cybersecurity Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Security Analyst:</strong> Monitors systems for security threats.</li>
-                <li><strong>Penetration Tester:</strong> Tests systems for vulnerabilities.</li>
-                <li><strong>Compliance Officer:</strong> Ensures adherence to security regulations.</li>
-            </ul>
-           <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">21. Content Creation Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Content Writer:</strong> Produces written content for blogs, articles, and more.</li>
-                <li><strong>Video Editor:</strong> Edits video content for marketing and educational purposes.</li>
-                <li><strong>Graphic Designer:</strong> Creates graphics for various content types.</li>
-            </ul>
-          <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">22. Financial Management Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Financial Analyst:</strong> Analyzes financial data to inform business decisions.</li>
-                <li><strong>Budget Manager:</strong> Oversees budgeting processes and financial planning.</li>
-                <li><strong>Investment Analyst:</strong> Researches investment opportunities and risks.</li>
-            </ul>
-            <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">23. User Experience (UX) Design Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>UX Researcher:</strong> Conducts user research to inform design decisions.</li>
-                <li><strong>UI Designer:</strong> Designs user interfaces that are intuitive and engaging.</li>
-                <li><strong>Usability Tester:</strong> Tests designs with real users for feedback.</li>
-            </ul>
-     <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">24. Quality Assurance (QA) Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>QA Engineer:</strong> Ensures the product meets quality standards.</li>
-                <li><strong>Test Analyst:</strong> Creates and executes test plans.</li>
-                <li><strong>Automation Tester:</strong> Develops automated tests for software.</li>
-            </ul>
-       <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">25. Documentation Team Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Technical Writer:</strong> Creates documentation for software and processes.</li>
-                <li><strong>Content Editor:</strong> Edits and reviews written content for clarity.</li>
-                <li><strong>Training Material Developer:</strong> Develops materials for training purposes.</li>
-            </ul>
-           <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">26. Workshop Creator Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Workshop Coordinator:</strong> Plans and organizes workshops for skill development.</li>
-                <li><strong>Facilitator:</strong> Leads workshops and training sessions.</li>
-                <li><strong>Resource Developer:</strong> Creates resources for workshops.</li>
-            </ul>
-       <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">27. Audit Team Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Internal Auditor:</strong> Evaluates internal controls and processes.</li>
-                <li><strong>Compliance Auditor:</strong> Assesses compliance with regulations and standards.</li>
-                <li><strong>Risk Assessor:</strong> Identifies and evaluates risks within the organization.</li>
-            </ul>
-          <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-
-    <div class="lab">
-        <button class="toggle-button" onclick="toggleLabContent(this)">28. Legal and Compliance Lab</button>
-        <div class="lab-content">
-            <ul>
-                <li><strong>Legal Advisor:</strong> Provides legal guidance on business matters.</li>
-                <li><strong>Compliance Officer:</strong> Ensures adherence to laws and regulations.</li>
-                <li><strong>Contract Manager:</strong> Manages contracts and agreements.</li>
-            </ul>
-      <a href="https://forms.gle/LNDC32NR6YsCmeZY8" class="service-btn">Get Started</a>
-        </div>
-    </div>
-</div>
-
- 
-
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-10VRSCCMCH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-10VRSCCMCH');
-</script>
-
-</div>
+<footer>
+  <p>© 2025 DevGameBlogPromo &nbsp;·&nbsp; All roles are unpaid and skill-building &nbsp;·&nbsp;
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLScEXI5KJFM2qA6tb1seCgBd_FJY6hSPGebtQPSfdjiY0eIsrA/viewform" target="_blank">Apply via Google Forms</a></p>
+</footer>
 
 <script>
-  function toggleLabContent(button) {
-    const content = button.nextElementSibling;
-    content.classList.toggle("open");
+const APPLY = 'https://docs.google.com/forms/d/e/1FAIpQLScEXI5KJFM2qA6tb1seCgBd_FJY6hSPGebtQPSfdjiY0eIsrA/viewform';
+
+const FLAGS = [
+  {name:'Production Lab',desc:'Turn ideas into real apps, games, and projects with a team.',icon:'ti-rocket'},
+  {name:'Mentorship Lab',desc:'Guide learners, develop leadership, and build your coaching voice.',icon:'ti-user-check'},
+  {name:'Future Market Lab',desc:'Research emerging trends and shape tomorrow\'s product decisions.',icon:'ti-trending-up'},
+  {name:'Analytics & Intelligence Lab',desc:'Analyze data, extract insights, and drive smarter decisions.',icon:'ti-chart-dots'}
+];
+
+const LABS = [
+  // ── ORIGINAL 28 ──
+  {id:1, name:'Research Lab', cat:'business', icon:'ti-microscope', roles:[
+    {t:'Research Analyst',d:'Conducts market and technology research for actionable insights.'},
+    {t:'Innovation Strategist',d:'Identifies emerging trends to guide product innovation.'},
+    {t:'Data Scientist',d:'Analyzes data to surface predictions and recommendations.'}
+  ]},
+  {id:2, name:'Software Developer Lab', cat:'tech', icon:'ti-code', roles:[
+    {t:'Lead Developer',d:'Oversees the dev team and sets coding standards.'},
+    {t:'Front-end Developer',d:'Builds user interfaces and visual interactions.'},
+    {t:'Back-end Developer',d:'Manages server-side logic and databases.'},
+    {t:'Full Stack Developer',d:'Handles both front-end and back-end development.'},
+    {t:'QA Tester',d:'Tests software to ensure it works as expected.'}
+  ]},
+  {id:3, name:'Software Planner Lab', cat:'tech', icon:'ti-layout-board', roles:[
+    {t:'Project Planner',d:'Defines scope and timelines for software projects.'},
+    {t:'Technical Architect',d:'Designs system architecture for scalable builds.'},
+    {t:'Business Analyst',d:'Gathers and documents functional requirements.'}
+  ]},
+  {id:4, name:'Meeting Schedule Updates Lab', cat:'ops', icon:'ti-calendar', roles:[
+    {t:'Scheduler',d:'Coordinates and manages the team meeting calendar.'},
+    {t:'Meeting Facilitator',d:'Organises and leads productive meetings.'},
+    {t:'Documenter',d:'Takes notes and updates meeting minutes.'}
+  ]},
+  {id:5, name:'Strategies Builder Lab', cat:'business', icon:'ti-chess', roles:[
+    {t:'Strategy Analyst',d:'Formulates strategies based on market analysis.'},
+    {t:'Business Planner',d:'Develops strategic roadmaps for growth.'},
+    {t:'Product Strategist',d:'Focuses on product positioning and market entry.'}
+  ]},
+  {id:6, name:'Marketing Lab', cat:'creative', icon:'ti-speakerphone', roles:[
+    {t:'Marketing Specialist',d:'Develops and executes marketing campaigns.'},
+    {t:'Social Media Manager',d:'Manages online presence across social platforms.'},
+    {t:'Content Creator',d:'Writes copy for blogs, materials, and social posts.'}
+  ]},
+  {id:7, name:'Branding Lab', cat:'creative', icon:'ti-palette', roles:[
+    {t:'Brand Manager',d:'Oversees consistency of the company\'s brand identity.'},
+    {t:'Graphic Designer',d:'Creates visual content aligned with the brand image.'},
+    {t:'Brand Strategist',d:'Develops and implements long-term brand strategy.'}
+  ]},
+  {id:8, name:'Advertisement Lab', cat:'business', icon:'ti-ad', roles:[
+    {t:'Ad Campaign Manager',d:'Creates and oversees ad campaigns end to end.'},
+    {t:'SEO/SEM Specialist',d:'Optimises content for search engine visibility.'},
+    {t:'PPC Specialist',d:'Manages pay-per-click advertising campaigns.'}
+  ]},
+  {id:9, name:'Game Developer Lab', cat:'tech', icon:'ti-device-gamepad-2', roles:[
+    {t:'Game Designer',d:'Develops the game concept and core mechanics.'},
+    {t:'Game Developer',d:'Codes and builds gameplay systems.'},
+    {t:'Level Designer',d:'Designs levels, environments, and challenges.'},
+    {t:'3D Artist',d:'Creates 3D models and animations.'}
+  ]},
+  {id:10, name:'Game Planner Lab', cat:'creative', icon:'ti-map', roles:[
+    {t:'Game Concept Developer',d:'Brainstorms new game ideas and themes.'},
+    {t:'Narrative Designer',d:'Focuses on storytelling and world-building.'},
+    {t:'Game Tester',d:'Tests gameplay and identifies bugs.'}
+  ]},
+  {id:11, name:'Project Manager Lab', cat:'ops', icon:'ti-clipboard-list', roles:[
+    {t:'Project Manager',d:'Manages projects from kickoff to delivery.'},
+    {t:'Scrum Master',d:'Ensures agile processes are followed by the team.'},
+    {t:'Resource Manager',d:'Manages team resources and allocation.'}
+  ]},
+  {id:12, name:'Global Development Network Lab', cat:'business', icon:'ti-world', roles:[
+    {t:'Network Coordinator',d:'Builds and maintains global partnerships.'},
+    {t:'International Business Developer',d:'Identifies international market opportunities.'},
+    {t:'Cross-Cultural Consultant',d:'Advises on cultural considerations in global business.'}
+  ]},
+  {id:13, name:'Career Development Center Lab', cat:'ops', icon:'ti-school', roles:[
+    {t:'Career Advisor',d:'Provides guidance on career paths and opportunities.'},
+    {t:'Resume Coach',d:'Assists with resume writing and interview prep.'},
+    {t:'Internship Coordinator',d:'Connects learners with internship opportunities.'}
+  ]},
+  {id:14, name:'Training and Development Lab', cat:'ops', icon:'ti-certificate', roles:[
+    {t:'Training Specialist',d:'Develops training programs for team members.'},
+    {t:'Workshop Facilitator',d:'Conducts hands-on skills workshops.'},
+    {t:'Content Developer',d:'Creates training materials and learning resources.'}
+  ]},
+  {id:15, name:'Developer Tool Marketplace Lab', cat:'tech', icon:'ti-tools', roles:[
+    {t:'Marketplace Manager',d:'Oversees the developer tools marketplace.'},
+    {t:'Vendor Relations Specialist',d:'Manages relationships with tool vendors.'},
+    {t:'UX Designer',d:'Enhances the marketplace experience for users.'}
+  ]},
+  {id:16, name:'Innovation Lab', cat:'tech', icon:'ti-bulb', roles:[
+    {t:'Innovation Lead',d:'Drives innovation initiatives and new projects.'},
+    {t:'Prototype Developer',d:'Builds rapid prototypes to test new ideas.'},
+    {t:'Market Tester',d:'Tests new ideas with potential users for feedback.'}
+  ]},
+  {id:17, name:'Customer Support Lab', cat:'ops', icon:'ti-headset', roles:[
+    {t:'Support Representative',d:'Assists customers with inquiries and issues.'},
+    {t:'Feedback Specialist',d:'Collects and analyses customer feedback.'},
+    {t:'Helpdesk Coordinator',d:'Manages helpdesk operations and escalations.'}
+  ]},
+  {id:18, name:'Data Analysis Lab', cat:'tech', icon:'ti-chart-bar', roles:[
+    {t:'Data Analyst',d:'Analyses datasets to provide actionable insights.'},
+    {t:'Statistician',d:'Applies statistical methods to data analysis.'},
+    {t:'BI Analyst',d:'Develops strategies based on data trends and reports.'}
+  ]},
+  {id:19, name:'Product Management Lab', cat:'business', icon:'ti-package', roles:[
+    {t:'Product Manager',d:'Oversees product development from idea to launch.'},
+    {t:'Market Researcher',d:'Conducts research to inform product decisions.'},
+    {t:'UX Researcher',d:'Studies user behaviour to improve product experiences.'}
+  ]},
+  {id:20, name:'Cybersecurity Lab', cat:'tech', icon:'ti-shield-lock', roles:[
+    {t:'Security Analyst',d:'Monitors systems for threats and vulnerabilities.'},
+    {t:'Penetration Tester',d:'Tests systems to identify security weaknesses.'},
+    {t:'Compliance Officer',d:'Ensures adherence to security regulations.'}
+  ]},
+  {id:21, name:'Content Creation Lab', cat:'creative', icon:'ti-pencil', roles:[
+    {t:'Content Writer',d:'Produces written content for blogs, articles, and more.'},
+    {t:'Video Editor',d:'Edits video for marketing and educational content.'},
+    {t:'Graphic Designer',d:'Creates visuals for various content types.'}
+  ]},
+  {id:22, name:'Financial Management Lab', cat:'business', icon:'ti-coin', roles:[
+    {t:'Financial Analyst',d:'Analyses financial data to inform business decisions.'},
+    {t:'Budget Manager',d:'Oversees budgeting and financial planning.'},
+    {t:'Investment Analyst',d:'Researches investment opportunities and risks.'}
+  ]},
+  {id:23, name:'UX Design Lab', cat:'creative', icon:'ti-vector-triangle', roles:[
+    {t:'UX Researcher',d:'Conducts user research to inform design decisions.'},
+    {t:'UI Designer',d:'Designs intuitive and engaging user interfaces.'},
+    {t:'Usability Tester',d:'Tests designs with real users for improvement.'}
+  ]},
+  {id:24, name:'Quality Assurance (QA) Lab', cat:'tech', icon:'ti-checklist', roles:[
+    {t:'QA Engineer',d:'Ensures the product meets quality standards.'},
+    {t:'Test Analyst',d:'Creates and executes comprehensive test plans.'},
+    {t:'Automation Tester',d:'Develops automated tests for software products.'}
+  ]},
+  {id:25, name:'Documentation Team Lab', cat:'ops', icon:'ti-file-text', roles:[
+    {t:'Technical Writer',d:'Creates documentation for software and processes.'},
+    {t:'Content Editor',d:'Edits and reviews written content for clarity.'},
+    {t:'Training Material Developer',d:'Develops materials for training programs.'}
+  ]},
+  {id:26, name:'Workshop Creator Lab', cat:'ops', icon:'ti-hammer', roles:[
+    {t:'Workshop Coordinator',d:'Plans and organises workshops for skill development.'},
+    {t:'Facilitator',d:'Leads workshops and training sessions.'},
+    {t:'Resource Developer',d:'Creates resources and toolkits for workshops.'}
+  ]},
+  {id:27, name:'Audit Team Lab', cat:'business', icon:'ti-zoom-check', roles:[
+    {t:'Internal Auditor',d:'Evaluates internal controls and processes.'},
+    {t:'Compliance Auditor',d:'Assesses compliance with regulations and standards.'},
+    {t:'Risk Assessor',d:'Identifies and evaluates organisational risks.'}
+  ]},
+  {id:28, name:'Legal and Compliance Lab', cat:'business', icon:'ti-gavel', roles:[
+    {t:'Legal Advisor',d:'Provides legal guidance on business matters.'},
+    {t:'Compliance Officer',d:'Ensures adherence to laws and regulations.'},
+    {t:'Contract Manager',d:'Manages contracts and legal agreements.'}
+  ]},
+  // ── FROM FLAGSHIP / UNIQUE / NEW ──
+  {id:29, name:'Production Lab', cat:'ops', icon:'ti-rocket', roles:[
+    {t:'Production Lead',d:'Oversees end-to-end delivery of real projects and products.'},
+    {t:'Build Engineer',d:'Sets up and maintains build pipelines and release processes.'},
+    {t:'Project Coordinator',d:'Keeps production timelines on track across teams.'}
+  ]},
+  {id:30, name:'Mentorship Lab', cat:'ops', icon:'ti-user-check', roles:[
+    {t:'Mentor',d:'Guides learners through their skill-building journey.'},
+    {t:'Peer Coach',d:'Provides one-on-one support and feedback to teammates.'},
+    {t:'Learning Designer',d:'Designs mentorship programs and learning pathways.'}
+  ]},
+  {id:31, name:'Future Market Lab', cat:'business', icon:'ti-trending-up', roles:[
+    {t:'Trend Researcher',d:'Monitors emerging markets and technology shifts.'},
+    {t:'Opportunity Analyst',d:'Identifies future business and product opportunities.'},
+    {t:'Foresight Strategist',d:'Builds scenarios to prepare for future market conditions.'}
+  ]},
+  {id:32, name:'Analytics & Intelligence Lab', cat:'tech', icon:'ti-chart-dots', roles:[
+    {t:'Analytics Engineer',d:'Builds data pipelines and reporting infrastructure.'},
+    {t:'Intelligence Analyst',d:'Synthesizes data into strategic recommendations.'},
+    {t:'Dashboard Developer',d:'Creates interactive dashboards for decision-making.'}
+  ]},
+  {id:33, name:'Innovation & Prototyping Lab', cat:'tech', icon:'ti-brand-figma', roles:[
+    {t:'Innovation Lead',d:'Drives rapid experimentation and new concept development.'},
+    {t:'Prototype Engineer',d:'Builds functional prototypes to validate ideas quickly.'},
+    {t:'User Tester',d:'Tests prototypes with real users and documents findings.'}
+  ]},
+  {id:34, name:'Tech Entrepreneurship Lab', cat:'business', icon:'ti-building-store', roles:[
+    {t:'Startup Strategist',d:'Develops go-to-market strategies for early-stage ventures.'},
+    {t:'Venture Builder',d:'Helps launch and structure new tech products and companies.'},
+    {t:'Pitch Coach',d:'Prepares founders and teams to present to investors.'}
+  ]},
+  // ── NEW FORWARD-THINKING LABS ──
+  {id:35, name:'UX & Human-Centered Design Lab', cat:'creative', icon:'ti-heart-handshake', roles:[
+    {t:'Human-Centered Designer',d:'Applies empathy-driven design methods to real problems.'},
+    {t:'Accessibility Specialist',d:'Ensures products are usable by people of all abilities.'},
+    {t:'Design Researcher',d:'Conducts field research to inform user-centered solutions.'}
+  ]},
+  {id:36, name:'Digital Ethics & Cyber Lab', cat:'future', icon:'ti-shield-half', roles:[
+    {t:'Digital Ethics Analyst',d:'Evaluates the ethical impact of technology decisions.'},
+    {t:'Cyber Policy Researcher',d:'Researches policies governing cybersecurity and privacy.'},
+    {t:'Trust & Safety Specialist',d:'Designs systems to keep digital communities safe.'}
+  ]},
+  {id:37, name:'Future Skills Lab', cat:'future', icon:'ti-telescope', roles:[
+    {t:'Skills Forecaster',d:'Identifies skills that will be critical in the next 5–10 years.'},
+    {t:'Learning Architect',d:'Designs future-ready curriculum and learning programs.'},
+    {t:'Career Transition Coach',d:'Helps learners pivot into emerging roles and industries.'}
+  ]},
+  {id:38, name:'Leadership & Strategy Lab', cat:'business', icon:'ti-crown', roles:[
+    {t:'Leadership Coach',d:'Develops leadership capability in individuals and teams.'},
+    {t:'Strategic Planner',d:'Creates long-term strategic plans aligned to the mission.'},
+    {t:'Organizational Designer',d:'Structures teams and systems for maximum effectiveness.'}
+  ]},
+  {id:39, name:'Collaboration & Networking Lab', cat:'ops', icon:'ti-network', roles:[
+    {t:'Community Builder',d:'Creates and nurtures connections across the network.'},
+    {t:'Partnership Manager',d:'Develops mutually beneficial collaborations with partners.'},
+    {t:'Events Coordinator',d:'Plans networking events, meetups, and community gatherings.'}
+  ]},
+  {id:40, name:'Impact Projects Lab', cat:'ops', icon:'ti-world-heart', roles:[
+    {t:'Impact Lead',d:'Oversees projects designed to create measurable social good.'},
+    {t:'Social Researcher',d:'Measures and reports on the community impact of projects.'},
+    {t:'Outreach Coordinator',d:'Connects the community with external stakeholders.'}
+  ]},
+  {id:41, name:'Quantum Computing Lab', cat:'future', icon:'ti-atom', roles:[
+    {t:'Quantum Researcher',d:'Explores quantum algorithms and computing paradigms.'},
+    {t:'Quantum Software Developer',d:'Writes and tests quantum computing programs.'},
+    {t:'Physics & Math Analyst',d:'Applies advanced mathematics to quantum problem-solving.'}
+  ]},
+  {id:42, name:'Blockchain & Web3 Lab', cat:'future', icon:'ti-link', roles:[
+    {t:'Smart Contract Developer',d:'Writes and audits smart contracts on blockchain platforms.'},
+    {t:'Web3 Frontend Developer',d:'Builds decentralised application user interfaces.'},
+    {t:'DeFi Researcher',d:'Researches decentralised finance protocols and ecosystems.'}
+  ]},
+  {id:43, name:'AR/VR & Immersive Experiences Lab', cat:'future', icon:'ti-augmented-reality', roles:[
+    {t:'XR Developer',d:'Builds augmented and virtual reality experiences.'},
+    {t:'Immersive Designer',d:'Designs spatial environments and 3D user interfaces.'},
+    {t:'XR Content Creator',d:'Produces interactive content for AR/VR platforms.'}
+  ]},
+  {id:44, name:'Sustainable Tech Lab', cat:'future', icon:'ti-leaf', roles:[
+    {t:'Green Tech Researcher',d:'Investigates technologies that reduce environmental impact.'},
+    {t:'Sustainability Analyst',d:'Measures and reports on the eco-footprint of tech systems.'},
+    {t:'Climate Solutions Designer',d:'Develops tech-driven solutions to climate challenges.'}
+  ]},
+  {id:45, name:'Robotics & Automation Lab', cat:'future', icon:'ti-robot', roles:[
+    {t:'Robotics Engineer',d:'Designs and builds robotic systems and hardware.'},
+    {t:'Automation Developer',d:'Creates scripts and systems to automate repetitive tasks.'},
+    {t:'Mechatronics Researcher',d:'Studies the intersection of mechanical and electronic systems.'}
+  ]},
+  {id:46, name:'Creative Media Lab', cat:'creative', icon:'ti-movie', roles:[
+    {t:'Media Producer',d:'Produces video, audio, and multimedia content end to end.'},
+    {t:'Motion Designer',d:'Creates animations and motion graphics for digital media.'},
+    {t:'Podcast Producer',d:'Plans, records, and edits podcast episodes.'}
+  ]},
+  {id:47, name:'Innovation Challenges Lab', cat:'ops', icon:'ti-trophy', roles:[
+    {t:'Challenge Designer',d:'Creates hackathons and competitions to spark innovation.'},
+    {t:'Jury Coordinator',d:'Organises judging panels and evaluation criteria.'},
+    {t:'Participant Advocate',d:'Supports and guides participants through challenges.'}
+  ]},
+  {id:48, name:'Entrepreneurship Incubator Lab', cat:'business', icon:'ti-plant-2', roles:[
+    {t:'Incubator Manager',d:'Guides early-stage ideas through structured growth programs.'},
+    {t:'Business Model Coach',d:'Helps teams define and validate sustainable business models.'},
+    {t:'Investor Relations Analyst',d:'Prepares materials and connects teams with investors.'}
+  ]},
+  {id:49, name:'AI & Machine Learning Lab', cat:'future', icon:'ti-brain', roles:[
+    {t:'ML Engineer',d:'Builds and trains machine learning models for real-world use.'},
+    {t:'AI Researcher',d:'Explores cutting-edge AI techniques and publications.'},
+    {t:'Data Engineer',d:'Prepares and pipelines data for model training and evaluation.'},
+    {t:'AI Ethics Reviewer',d:'Evaluates models for bias, fairness, and responsible deployment.'}
+  ]},
+  {id:50, name:'Global Collaboration Lab', cat:'ops', icon:'ti-globe', roles:[
+    {t:'Global Community Manager',d:'Connects members across time zones and cultures.'},
+    {t:'Cross-Team Liaison',d:'Facilitates communication and collaboration across labs.'},
+    {t:'Cultural Ambassador',d:'Promotes diversity and inclusive participation globally.'}
+  ]}
+];
+
+const CAT_LABEL = {tech:'Tech & Dev',creative:'Creative',business:'Business',ops:'Operations',future:'Future Tech'};
+const CAT_CLASS = {tech:'cat-tech',creative:'cat-creative',business:'cat-business',ops:'cat-ops',future:'cat-future'};
+const CAT_ICON  = {tech:'ti-cpu',creative:'ti-brush',business:'ti-building-store',ops:'ti-settings',future:'ti-planet'};
+
+// Build flagship cards
+document.getElementById('flagGrid').innerHTML = FLAGS.map(f=>`
+  <a class="flag-card" href="${APPLY}" target="_blank">
+    <div class="flag-icon"><i class="ti ${f.icon}" aria-hidden="true"></i></div>
+    <h3>${f.name}</h3>
+    <p>${f.desc}</p>
+    <span class="join-link">Apply now <i class="ti ti-arrow-right" aria-hidden="true"></i></span>
+  </a>`).join('');
+
+function buildCard(lab){
+  const roles = lab.roles.map(r=>`
+    <li>
+      <i class="ti ti-point" aria-hidden="true"></i>
+      <div><span class="role-title">${r.t}</span><span class="role-desc">${r.d}</span></div>
+    </li>`).join('');
+  return `
+    <article class="lab-card" data-cat="${lab.cat}" data-search="${lab.name.toLowerCase()} ${lab.roles.map(r=>r.t+' '+r.d).join(' ').toLowerCase()}">
+      <div class="lab-header" onclick="this.closest('.lab-card').classList.toggle('open')">
+        <span class="lab-num">${String(lab.id).padStart(2,'0')}</span>
+        <i class="ti ${lab.icon}" style="color:var(--accl);font-size:16px;flex-shrink:0" aria-hidden="true"></i>
+        <span class="lab-name">${lab.name}</span>
+        <span class="cat-badge ${CAT_CLASS[lab.cat]}">${CAT_LABEL[lab.cat]}</span>
+        <i class="ti ti-chevron-down lab-chevron" aria-hidden="true"></i>
+      </div>
+      <div class="lab-body">
+        <div class="lab-inner">
+          <ul class="role-list">${roles}</ul>
+          <a class="apply-btn" href="${APPLY}" target="_blank">
+            <i class="ti ti-external-link" aria-hidden="true"></i> Apply for this lab
+          </a>
+        </div>
+      </div>
+    </article>`;
+}
+
+let activeFilter='all', searchTerm='';
+
+function applyFilters(){
+  let list=LABS;
+  if(activeFilter!=='all') list=list.filter(l=>l.cat===activeFilter);
+  if(searchTerm){
+    const q=searchTerm.toLowerCase();
+    list=list.filter(l=>l.name.toLowerCase().includes(q)||l.roles.some(r=>r.t.toLowerCase().includes(q)||r.d.toLowerCase().includes(q)));
   }
-</script>
+  const grid=document.getElementById('labsGrid');
+  const noR=document.getElementById('noResults');
+  const cnt=document.getElementById('resultsCount');
+  if(list.length===0){grid.innerHTML='';noR.style.display='block';}
+  else{grid.innerHTML=list.map(buildCard).join('');noR.style.display='none';}
+  cnt.textContent=list.length===50?'Showing all 50 labs':`Showing ${list.length} of 50 labs`;
+}
 
+document.getElementById('filterTabs').addEventListener('click',e=>{
+  const tab=e.target.closest('.filter-tab');
+  if(!tab)return;
+  document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
+  tab.classList.add('active');
+  activeFilter=tab.dataset.cat;
+  applyFilters();
+});
+
+document.getElementById('labSearch').addEventListener('input',e=>{
+  searchTerm=e.target.value.trim();
+  applyFilters();
+});
+
+applyFilters();
+</script>
 </body>
 </html>
