@@ -659,6 +659,1917 @@ footer p{font-size:13px;color:var(--muted);}
     <span>❤️ 7.9K Likes</span>
   </div>
 </article>
+
+
+  <article class="card">
+  <div class="card-meta">
+    <span class="card-date">June 24, 2026</span>
+    <span class="card-dot">·</span>
+    <span class="card-tag">HTML & CSS</span>
+  </div>
+  <h2>How to Build a Responsive Navbar with HTML &amp; CSS 🧭</h2>
+  <p class="card-desc">Step-by-step guide to creating a navigation bar that works perfectly on mobile, tablet and desktop — no JavaScript needed.</p>
+  <button class="read-btn" onclick="toggleBlog('blogA1', this)">
+    <span>Read Now</span><span class="arrow">↓</span>
+  </button>
+  <div class="fullBlog" id="blogA1">
+    <p>A navigation bar is the first thing visitors interact with on your website. If it breaks on mobile, you lose users immediately. In this tutorial, you will learn how to build a fully responsive navbar using only HTML and CSS — no JavaScript required.</p>
+ 
+    <h3>What You Will Build</h3>
+    <p>By the end of this guide you will have a navbar with a logo on the left, menu links in the center, and a call-to-action button on the right. On small screens the links will collapse into a clean hamburger menu that toggles using a CSS checkbox trick.</p>
+ 
+    <h3>Step 1: The HTML Structure</h3>
+    <p>Start with semantic HTML. Use the <code>&lt;nav&gt;</code> element — it tells browsers and screen readers that this block is site navigation.</p>
+    <pre><code>&lt;nav class="navbar"&gt;
+  &lt;div class="nav-logo"&gt;YourBrand&lt;/div&gt;
+ 
+  &lt;input type="checkbox" id="nav-toggle" class="nav-toggle"&gt;
+  &lt;label for="nav-toggle" class="hamburger"&gt;
+    &lt;span&gt;&lt;/span&gt;
+    &lt;span&gt;&lt;/span&gt;
+    &lt;span&gt;&lt;/span&gt;
+  &lt;/label&gt;
+ 
+  &lt;ul class="nav-links"&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Courses&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Blog&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+ 
+  &lt;a href="#" class="nav-cta"&gt;Join Free&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+ 
+    <h3>Step 2: Base CSS Styles</h3>
+    <p>Style the navbar for desktop first — this is the "desktop-first" approach. We will add mobile overrides with media queries afterward.</p>
+    <pre><code>* { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 40px;
+  background: #0f0f0f;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+ 
+.nav-logo {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 1px;
+}
+ 
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+}
+ 
+.nav-links a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+ 
+.nav-links a:hover { color: #fff; }
+ 
+.nav-cta {
+  background: #5c6ef8;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+ 
+.nav-cta:hover { background: #3a50e0; }
+ 
+.nav-toggle { display: none; }
+.hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+.hamburger span {
+  display: block; width: 24px; height: 2px;
+  background: #fff; transition: all 0.3s;
+}</code></pre>
+ 
+    <h3>Step 3: Mobile Responsive CSS</h3>
+    <p>Below 768px, we hide the links and show the hamburger icon. When the checkbox is checked (hamburger clicked), the links drop down.</p>
+    <pre><code>@media (max-width: 768px) {
+  .hamburger { display: flex; }
+ 
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 60px; left: 0; right: 0;
+    background: #0f0f0f;
+    padding: 20px 40px;
+  }
+ 
+  .nav-links li { padding: 12px 0; border-bottom: 1px solid #222; }
+ 
+  .nav-toggle:checked ~ .nav-links { display: flex; }
+ 
+  .nav-cta { display: none; }
+}</code></pre>
+ 
+    <h3>Step 4: Hamburger Animation</h3>
+    <p>Make the hamburger turn into an X when the menu opens — a small detail that makes your UI feel polished and professional.</p>
+    <pre><code>.nav-toggle:checked ~ label span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle:checked ~ label span:nth-child(2) {
+  opacity: 0;
+}
+.nav-toggle:checked ~ label span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}</code></pre>
+ 
+    <h3>Common Mistakes to Avoid</h3>
+    <ul>
+      <li><strong>Forgetting box-sizing: border-box</strong> — without it, padding breaks your layout calculations.</li>
+      <li><strong>Not using position: sticky</strong> — your navbar will scroll away and users lose navigation.</li>
+      <li><strong>Using fixed pixel widths</strong> — always use percentages or flex/grid for responsive layouts.</li>
+      <li><strong>No focus styles</strong> — keyboard users cannot navigate your site without visible focus outlines.</li>
+      <li><strong>Missing z-index on navbar</strong> — dropdowns and sticky navbars will hide behind page content.</li>
+    </ul>
+ 
+    <h3>Accessibility Tips</h3>
+    <p>Always add <code>aria-label="Main navigation"</code> to your <code>&lt;nav&gt;</code> element. Add <code>aria-expanded</code> to the hamburger button and toggle it with a tiny bit of JavaScript for screen reader users. Make sure your color contrast ratio is at least 4.5:1 for links — use the WebAIM Contrast Checker to verify.</p>
+ 
+    <h3>Next Steps</h3>
+    <p>Once you have this working, try adding a dropdown submenu for the "Courses" link. Use <code>position: relative</code> on the parent <code>&lt;li&gt;</code> and <code>position: absolute</code> on the dropdown <code>&lt;ul&gt;</code>. Combine with CSS <code>:hover</code> and <code>:focus-within</code> selectors for a fully accessible mega menu — no JavaScript needed.</p>
+    <p>Building a strong navbar is one of the first real-world skills every frontend developer needs. Once you understand Flexbox and responsive design at this level, you can tackle any UI layout confidently.</p>
+  </div>
+  <div class="blogStats">
+    <span>👁 4.2K Views</span>
+    <span>❤️ 3.8K Likes</span>
+  </div>
+</article>
+ 
+ 
+<!-- BLOG A2 -->
+<article class="card">
+  <div class="card-meta">
+    <span class="card-date">June 22, 2026</span>
+    <span class="card-dot">·</span>
+    <span class="card-tag">JavaScript</span>
+  </div>
+  <h2>JavaScript for Beginners: Variables, Functions &amp; the DOM 🟨</h2>
+  <p class="card-desc">Learn the three core concepts every JavaScript beginner must master before moving to frameworks like React or Vue.</p>
+  <button class="read-btn" onclick="toggleBlog('blogA2', this)">
+    <span>Read Now</span><span class="arrow">↓</span>
+  </button>
+  <div class="fullBlog" id="blogA2">
+    <p>JavaScript is the only programming language that runs natively inside every web browser. If you want to build interactive websites — buttons that do things, forms that validate, animations that respond to clicks — you need JavaScript. This guide covers the three most important fundamentals: variables, functions and DOM manipulation.</p>
+ 
+    <h3>Part 1: Variables — Storing Information</h3>
+    <p>A variable is a named container for data. JavaScript has three ways to declare variables:</p>
+    <pre><code>var name = "Manish";    // Old way — avoid this
+let age = 22;           // Modern, can be changed
+const country = "India"; // Modern, cannot be changed</code></pre>
+    <p>Always prefer <code>const</code> by default. Use <code>let</code> only when you know the value will change (like a counter or a score). Never use <code>var</code> in modern code — it has confusing scoping rules that cause bugs.</p>
+ 
+    <h3>Data Types You Must Know</h3>
+    <ul>
+      <li><strong>String</strong> — text in quotes: <code>"Hello"</code> or <code>'World'</code></li>
+      <li><strong>Number</strong> — integers and decimals: <code>42</code>, <code>3.14</code></li>
+      <li><strong>Boolean</strong> — true or false: <code>true</code>, <code>false</code></li>
+      <li><strong>Array</strong> — a list of values: <code>[1, 2, 3]</code></li>
+      <li><strong>Object</strong> — key-value pairs: <code>{ name: "Manish", age: 22 }</code></li>
+      <li><strong>null</strong> — intentionally empty</li>
+      <li><strong>undefined</strong> — declared but not assigned yet</li>
+    </ul>
+ 
+    <h3>Part 2: Functions — Reusable Code Blocks</h3>
+    <p>A function is a block of code you write once and run many times. Without functions, you would repeat the same code over and over — that is bad practice.</p>
+    <pre><code>// Function declaration
+function greet(name) {
+  return "Hello, " + name + "!";
+}
+ 
+console.log(greet("Manish")); // Hello, Manish!
+console.log(greet("Priya"));  // Hello, Priya!</code></pre>
+ 
+    <p>Modern JavaScript also uses <strong>arrow functions</strong> — a shorter syntax:</p>
+    <pre><code>const greet = (name) => "Hello, " + name + "!";
+ 
+// With multiple lines:
+const addNumbers = (a, b) => {
+  const result = a + b;
+  return result;
+};</code></pre>
+ 
+    <h3>Parameters vs Arguments</h3>
+    <p><strong>Parameters</strong> are the placeholders in the function definition (<code>name</code> in the example above). <strong>Arguments</strong> are the actual values you pass when calling the function (<code>"Manish"</code>). This distinction confuses beginners — remember it by: parameters are in the definition, arguments are in the call.</p>
+ 
+    <h3>Part 3: The DOM — Making Pages Interactive</h3>
+    <p>DOM stands for Document Object Model. When a browser loads your HTML, it creates a JavaScript-accessible tree of all your elements. You can find, read, change and create elements using JavaScript's DOM API.</p>
+ 
+    <h3>Selecting Elements</h3>
+    <pre><code>// By ID — returns one element
+const title = document.getElementById("main-title");
+ 
+// By CSS selector — most flexible
+const btn = document.querySelector(".submit-btn");
+const allCards = document.querySelectorAll(".card");</code></pre>
+ 
+    <h3>Changing Content and Style</h3>
+    <pre><code>// Change text content
+title.textContent = "New Title Text";
+ 
+// Change HTML inside an element
+title.innerHTML = "&lt;span&gt;Bold Title&lt;/span&gt;";
+ 
+// Change CSS style
+btn.style.backgroundColor = "#5c6ef8";
+btn.style.color = "white";</code></pre>
+ 
+    <h3>Responding to User Actions — Event Listeners</h3>
+    <p>This is where JavaScript becomes powerful. An event listener watches for something to happen (a click, a keypress, a scroll) and runs your code when it does.</p>
+    <pre><code>const btn = document.querySelector("#myButton");
+ 
+btn.addEventListener("click", function() {
+  alert("Button was clicked!");
+});
+ 
+// With arrow function:
+btn.addEventListener("click", () => {
+  btn.textContent = "Clicked!";
+  btn.style.background = "green";
+});</code></pre>
+ 
+    <h3>A Real Mini-Project: Counter App</h3>
+    <p>Put all three concepts together — variable, function and DOM manipulation:</p>
+    <pre><code>let count = 0;
+ 
+const display = document.querySelector("#count");
+const addBtn = document.querySelector("#add");
+const resetBtn = document.querySelector("#reset");
+ 
+function updateDisplay() {
+  display.textContent = count;
+}
+ 
+addBtn.addEventListener("click", () => {
+  count++;
+  updateDisplay();
+});
+ 
+resetBtn.addEventListener("click", () => {
+  count = 0;
+  updateDisplay();
+});</code></pre>
+ 
+    <h3>Common Beginner Mistakes</h3>
+    <ul>
+      <li>Running <code>document.querySelector()</code> before the HTML loads — always put your script at the bottom of <code>&lt;body&gt;</code> or use <code>DOMContentLoaded</code>.</li>
+      <li>Confusing <code>=</code> (assignment) with <code>==</code> (comparison) and <code>===</code> (strict comparison). Always use <code>===</code>.</li>
+      <li>Forgetting to call a function — writing <code>greet</code> does nothing; you need <code>greet()</code>.</li>
+      <li>Using <code>innerHTML</code> to insert user-typed content — this creates security vulnerabilities. Use <code>textContent</code> instead.</li>
+    </ul>
+ 
+    <h3>What to Learn Next</h3>
+    <p>Once you are comfortable with these three concepts, your next steps are: arrays and loops, fetch API for loading data from the internet, and ES6 features like destructuring and spread operators. From there, frameworks like React will make much more sense because they are just JavaScript with extra tools on top.</p>
+  </div>
+  <div class="blogStats">
+    <span>👁 5.1K Views</span>
+    <span>❤️ 4.6K Likes</span>
+  </div>
+</article>
+ 
+ 
+<!-- BLOG A3 -->
+<article class="card">
+  <div class="card-meta">
+    <span class="card-date">June 20, 2026</span>
+    <span class="card-dot">·</span>
+    <span class="card-tag">Git & GitHub</span>
+  </div>
+  <h2>Git &amp; GitHub for Beginners: Your Complete 2026 Guide 🐙</h2>
+  <p class="card-desc">Understand version control, push your first repository and collaborate with other developers — all explained from scratch.</p>
+  <button class="read-btn" onclick="toggleBlog('blogA3', this)">
+    <span>Read Now</span><span class="arrow">↓</span>
+  </button>
+  <div class="fullBlog" id="blogA3">
+    <p>Every professional developer uses Git. Whether you are building a personal project, contributing to open source, or working in a company team, Git is the tool that tracks your code changes, lets you experiment safely, and helps teams collaborate without overwriting each other's work. This guide teaches you everything from scratch.</p>
+ 
+    <h3>What Is Git? What Is GitHub?</h3>
+    <p><strong>Git</strong> is a free, open-source version control system that runs on your computer. It tracks every change you make to your code and lets you go back to any previous version. <strong>GitHub</strong> is a website that stores your Git repositories online so you can access them from anywhere, share them with others, and collaborate with teams. Git is the tool; GitHub is the cloud storage for that tool.</p>
+ 
+    <h3>Installing Git</h3>
+    <ul>
+      <li><strong>Windows:</strong> Download from git-scm.com and run the installer. Accept all defaults.</li>
+      <li><strong>Mac:</strong> Open Terminal and type <code>git --version</code>. If Git is not installed, macOS will prompt you to install it automatically.</li>
+      <li><strong>Linux (Ubuntu/Debian):</strong> Run <code>sudo apt install git</code> in your terminal.</li>
+    </ul>
+    <p>Verify your installation: open a terminal and type <code>git --version</code>. You should see something like <code>git version 2.43.0</code>.</p>
+ 
+    <h3>One-Time Setup</h3>
+    <p>Tell Git who you are. This information is attached to every commit you make:</p>
+    <pre><code>git config --global user.name "Your Name"
+git config --global user.email "you@example.com"</code></pre>
+ 
+    <h3>The 5 Core Git Commands You Use Every Day</h3>
+    <p>You will use these five commands for 90% of your daily Git workflow:</p>
+    <pre><code># 1. Start tracking a folder as a Git repository
+git init
+ 
+# 2. See what files have changed
+git status
+ 
+# 3. Stage files (mark them ready to save)
+git add filename.html
+git add .         # Stages ALL changed files
+ 
+# 4. Save a snapshot (commit) with a message
+git commit -m "Add homepage layout"
+ 
+# 5. See the history of commits
+git log --oneline</code></pre>
+ 
+    <h3>Understanding the Three Areas</h3>
+    <p>Git has three areas you need to understand:</p>
+    <ul>
+      <li><strong>Working Directory</strong> — where you actually edit your files.</li>
+      <li><strong>Staging Area</strong> — where you collect changes before committing. Think of it as a "draft" basket.</li>
+      <li><strong>Repository</strong> — the permanent saved history of your project.</li>
+    </ul>
+    <p>The flow is always: edit files → <code>git add</code> (stage) → <code>git commit</code> (save permanently).</p>
+ 
+    <h3>Pushing to GitHub</h3>
+    <p>First, create a free account at github.com. Then create a new repository (click the + button → New repository). GitHub will give you commands to connect your local repo. Here is the standard flow:</p>
+    <pre><code># Connect your local repo to GitHub
+git remote add origin https://github.com/yourusername/your-repo.git
+ 
+# Rename your branch to main (modern standard)
+git branch -M main
+ 
+# Push your code to GitHub for the first time
+git push -u origin main
+ 
+# After that, every future push is just:
+git push</code></pre>
+ 
+    <h3>Branching — Working Safely</h3>
+    <p>A branch is a separate copy of your code where you can experiment without breaking your main project. This is one of Git's most powerful features:</p>
+    <pre><code># Create a new branch and switch to it
+git checkout -b feature/navbar
+ 
+# Make your changes, then commit
+git add .
+git commit -m "Build responsive navbar"
+ 
+# Switch back to main branch
+git checkout main
+ 
+# Merge your feature branch into main
+git merge feature/navbar</code></pre>
+ 
+    <h3>Pulling Updates from GitHub</h3>
+    <p>When you work with a team, others will push changes to GitHub. To get their latest code onto your computer:</p>
+    <pre><code>git pull origin main</code></pre>
+    <p>Always pull before you start working each day. This prevents merge conflicts — situations where two people edited the same line of code differently.</p>
+ 
+    <h3>Reading a .gitignore File</h3>
+    <p>Some files should never be uploaded to GitHub — secret API keys, passwords, and large generated folders. A <code>.gitignore</code> file tells Git to ignore them:</p>
+    <pre><code># .gitignore example
+node_modules/
+.env
+.DS_Store
+dist/</code></pre>
+ 
+    <h3>Your First Complete Workflow</h3>
+    <ol>
+      <li>Create a folder for your project and open it in VS Code.</li>
+      <li>Run <code>git init</code> inside that folder.</li>
+      <li>Create an <code>index.html</code> file and write some code.</li>
+      <li>Run <code>git add .</code> then <code>git commit -m "Initial commit"</code>.</li>
+      <li>Create a repo on GitHub and push your code.</li>
+      <li>Your portfolio project is now live on GitHub — share the link!</li>
+    </ol>
+ 
+    <h3>Why This Matters for Your Career</h3>
+    <p>Every tech company uses Git. In a job interview, if you cannot show a GitHub profile with real commits, you will struggle. Start committing code every single day, even if it is a small change. A green GitHub contribution graph tells employers you are actively building — that alone can get you shortlisted.</p>
+  </div>
+  <div class="blogStats">
+    <span>👁 6.3K Views</span>
+    <span>❤️ 5.7K Likes</span>
+  </div>
+</article>
+ 
+ 
+<!-- BLOG A4 -->
+<article class="card">
+  <div class="card-meta">
+    <span class="card-date">June 18, 2026</span>
+    <span class="card-dot">·</span>
+    <span class="card-tag">Python</span>
+  </div>
+  <h2>Python Basics: Write Your First Real Program in 30 Minutes 🐍</h2>
+  <p class="card-desc">Learn Python from scratch — variables, loops, functions and file handling — with practical examples you can run immediately.</p>
+  <button class="read-btn" onclick="toggleBlog('blogA4', this)">
+    <span>Read Now</span><span class="arrow">↓</span>
+  </button>
+  <div class="fullBlog" id="blogA4">
+    <p>Python is consistently ranked as the most beginner-friendly programming language in the world, yet it is also used by Google, NASA, Netflix and almost every AI research lab. It is the perfect first language and an incredibly powerful professional tool. In 30 minutes, you will write real Python programs.</p>
+ 
+    <h3>Installing Python</h3>
+    <p>Download Python from python.org (version 3.12 or newer). During installation on Windows, check the box that says "Add Python to PATH" — this is critical. On Mac, Python 3 may already be installed; check by running <code>python3 --version</code> in Terminal.</p>
+    <p>For writing code, install <strong>VS Code</strong> (free) and add the Python extension. Alternatively, use <strong>Thonny</strong> — it is a Python editor designed specifically for beginners.</p>
+ 
+    <h3>Your First Program</h3>
+    <p>Open VS Code, create a file called <code>hello.py</code>, and type:</p>
+    <pre><code>print("Hello, World!")
+print("I am learning Python!")
+name = input("What is your name? ")
+print("Nice to meet you, " + name + "!")</code></pre>
+    <p>Run it by opening the terminal in VS Code and typing <code>python hello.py</code>. Congratulations — you just wrote and ran your first Python program.</p>
+ 
+    <h3>Variables and Data Types</h3>
+    <pre><code># Python figures out the type automatically
+name = "Priya"          # String (text)
+age = 20                # Integer (whole number)
+height = 5.6            # Float (decimal number)
+is_student = True       # Boolean (True or False)
+ 
+print(type(name))       # &lt;class 'str'&gt;
+print(type(age))        # &lt;class 'int'&gt;</code></pre>
+ 
+    <h3>String Operations</h3>
+    <pre><code>first = "Game"
+last = "Developer"
+ 
+# Concatenation
+full = first + " " + last
+print(full)  # Game Developer
+ 
+# f-strings (modern, preferred way)
+greeting = f"Hello, I am a {full}!"
+print(greeting)
+ 
+# Useful string methods
+text = "  hello world  "
+print(text.strip())        # "hello world" (removes spaces)
+print(text.upper())        # "  HELLO WORLD  "
+print(text.replace("hello", "hi"))  # "  hi world  "</code></pre>
+ 
+    <h3>Conditional Logic (if/else)</h3>
+    <pre><code>score = 72
+ 
+if score >= 90:
+    print("Grade: A")
+elif score >= 75:
+    print("Grade: B")
+elif score >= 60:
+    print("Grade: C")
+else:
+    print("Grade: F — keep practising!")
+ 
+# Comparison operators: == != > < >= <=
+# Logical operators: and, or, not</code></pre>
+ 
+    <h3>Loops — Repeating Actions</h3>
+    <pre><code># for loop — iterate over a sequence
+languages = ["Python", "JavaScript", "C++", "Rust"]
+for lang in languages:
+    print(f"I want to learn {lang}")
+ 
+# range() — generates a sequence of numbers
+for i in range(1, 6):
+    print(f"Step {i}")
+ 
+# while loop — repeat until condition is False
+count = 0
+while count < 3:
+    print(f"Count: {count}")
+    count += 1   # same as count = count + 1</code></pre>
+ 
+    <h3>Functions — Write Once, Reuse Everywhere</h3>
+    <pre><code>def calculate_area(length, width):
+    """Calculate the area of a rectangle."""
+    area = length * width
+    return area
+ 
+room_area = calculate_area(5, 4)
+print(f"Room area: {room_area} square meters")
+ 
+# Default parameter values
+def greet(name, greeting="Hello"):
+    return f"{greeting}, {name}!"
+ 
+print(greet("Manish"))           # Hello, Manish!
+print(greet("Priya", "Hi"))      # Hi, Priya!</code></pre>
+ 
+    <h3>Lists — Storing Multiple Values</h3>
+    <pre><code>games = ["Minecraft", "Valorant", "FIFA"]
+ 
+# Access by index (starts at 0)
+print(games[0])   # Minecraft
+print(games[-1])  # FIFA (last item)
+ 
+# Modify
+games.append("GTA")        # Add to end
+games.remove("FIFA")       # Remove by value
+games.insert(1, "Roblox")  # Insert at position
+ 
+# Loop through
+for game in games:
+    print(game)
+ 
+# List comprehension (powerful shortcut)
+lengths = [len(game) for game in games]
+print(lengths)</code></pre>
+ 
+    <h3>Dictionaries — Key-Value Storage</h3>
+    <pre><code>student = {
+    "name": "Rahul",
+    "age": 21,
+    "course": "Game Development",
+    "score": 88
+}
+ 
+print(student["name"])    # Rahul
+student["score"] = 92     # Update value
+student["city"] = "Hyderabad"  # Add new key
+ 
+# Loop through dictionary
+for key, value in student.items():
+    print(f"{key}: {value}")</code></pre>
+ 
+    <h3>Mini Project: Grade Calculator</h3>
+    <pre><code>def get_grade(score):
+    if score >= 90: return "A"
+    elif score >= 75: return "B"
+    elif score >= 60: return "C"
+    else: return "F"
+ 
+subjects = {
+    "Math": 85,
+    "English": 72,
+    "Programming": 94,
+    "Design": 68
+}
+ 
+total = 0
+for subject, score in subjects.items():
+    grade = get_grade(score)
+    print(f"{subject}: {score}/100 — Grade {grade}")
+    total += score
+ 
+average = total / len(subjects)
+print(f"\nAverage: {average:.1f}")
+print(f"Overall Grade: {get_grade(average)}")</code></pre>
+ 
+    <h3>What to Learn After This</h3>
+    <p>Now that you know the basics, explore: file handling (read/write .txt and .csv files), error handling with try/except, and Python's massive library ecosystem. For web development, learn Flask or Django. For data science and AI, learn NumPy, Pandas and scikit-learn. Python's strength is its libraries — almost any problem you can think of, there is already a Python library for it.</p>
+  </div>
+  <div class="blogStats">
+    <span>👁 7.8K Views</span>
+    <span>❤️ 6.9K Likes</span>
+  </div>
+</article>
+ 
+ 
+<!-- BLOG A5 -->
+<article class="card">
+  <div class="card-meta">
+    <span class="card-date">June 16, 2026</span>
+    <span class="card-dot">·</span>
+    <span class="card-tag">CSS</span>
+  </div>
+  <h2>CSS Flexbox Complete Guide: Master Layouts in 2026 📐</h2>
+  <p class="card-desc">Flexbox is the foundation of modern CSS layouts. Learn every property with visual examples and build real UI components.</p>
+  <button class="read-btn" onclick="toggleBlog('blogA5', this)">
+    <span>Read Now</span><span class="arrow">↓</span>
+  </button>
+  <div class="fullBlog" id="blogA5">
+    <p>Before Flexbox existed, centering a div vertically was one of the most frustrating things in web development. Developers used float hacks, table layouts and JavaScript just to align elements. Flexbox changed everything. Today it is the standard layout system used in virtually every modern website and web app.</p>
+ 
+    <h3>The Core Concept: Parent and Children</h3>
+    <p>Flexbox works with two levels: the <strong>flex container</strong> (the parent) and the <strong>flex items</strong> (the children). You apply <code>display: flex</code> to the parent, and its children automatically become flex items that you can arrange powerfully.</p>
+    <pre><code>.container {
+  display: flex;
+  /* Now all direct children are flex items */
+}</code></pre>
+ 
+    <h3>The Two Axes</h3>
+    <p>Flexbox operates along two axes: the <strong>main axis</strong> (horizontal by default) and the <strong>cross axis</strong> (vertical by default). Understanding this is the key to mastering Flexbox — every property relates to one of these two axes.</p>
+ 
+    <h3>flex-direction — Which Way Do Items Flow?</h3>
+    <pre><code>.container {
+  display: flex;
+  flex-direction: row;            /* Default — left to right */
+  flex-direction: row-reverse;   /* Right to left */
+  flex-direction: column;        /* Top to bottom */
+  flex-direction: column-reverse; /* Bottom to top */
+}</code></pre>
+    <p>Use <code>flex-direction: column</code> for stacked card layouts and mobile-first designs. Use <code>row</code> for horizontal navigation bars and side-by-side elements.</p>
+ 
+    <h3>justify-content — Align Along Main Axis</h3>
+    <pre><code>.container {
+  display: flex;
+  justify-content: flex-start;    /* Default — pack at start */
+  justify-content: flex-end;      /* Pack at end */
+  justify-content: center;        /* Center in the middle */
+  justify-content: space-between; /* Equal space between items */
+  justify-content: space-around;  /* Equal space around items */
+  justify-content: space-evenly;  /* Perfectly equal spacing */
+}</code></pre>
+    <p><code>space-between</code> is the most useful for navigation bars — it pushes the logo to the left and links to the right automatically.</p>
+ 
+    <h3>align-items — Align Along Cross Axis</h3>
+    <pre><code>.container {
+  display: flex;
+  align-items: stretch;    /* Default — items fill the height */
+  align-items: flex-start; /* Align to the top */
+  align-items: flex-end;   /* Align to the bottom */
+  align-items: center;     /* Vertically center — very useful! */
+  align-items: baseline;   /* Align text baselines */
+}</code></pre>
+    <p>The famous "center a div" solution is just two lines: <code>display: flex; align-items: center; justify-content: center;</code></p>
+ 
+    <h3>flex-wrap — Handling Overflow</h3>
+    <pre><code>.container {
+  display: flex;
+  flex-wrap: nowrap;  /* Default — all items on one line */
+  flex-wrap: wrap;    /* Items wrap to next line if too wide */
+}</code></pre>
+    <p>Always use <code>flex-wrap: wrap</code> for card grids — this allows your cards to wrap naturally on mobile without any media queries.</p>
+ 
+    <h3>gap — Space Between Items</h3>
+    <pre><code>.container {
+  display: flex;
+  gap: 20px;        /* Equal gap between all items */
+  gap: 20px 40px;   /* Row gap 20px, column gap 40px */
+}</code></pre>
+    <p><code>gap</code> replaced the old margin hack. It is clean, does not add extra space at edges, and works perfectly with <code>flex-wrap</code>.</p>
+ 
+    <h3>Properties on Individual Flex Items</h3>
+    <pre><code>.item {
+  /* How much the item grows to fill available space */
+  flex-grow: 1;    /* Grows equally with other flex-grow: 1 items */
+  flex-grow: 2;    /* Grows twice as much */
+ 
+  /* How much the item shrinks if space is tight */
+  flex-shrink: 1;  /* Default — will shrink */
+  flex-shrink: 0;  /* Will NOT shrink (useful for logos/icons) */
+ 
+  /* Base size before growing or shrinking */
+  flex-basis: 200px;
+  flex-basis: 33%;
+ 
+  /* Shorthand: grow shrink basis */
+  flex: 1 1 200px;
+  flex: 1;         /* Common shorthand meaning "grow to fill space" */
+}</code></pre>
+ 
+    <h3>align-self — Override Parent Alignment</h3>
+    <pre><code>.special-item {
+  align-self: flex-end; /* This one item aligns differently */
+}
+ 
+.another-item {
+  align-self: center;
+}</code></pre>
+ 
+    <h3>Real-World Example: Card Grid Layout</h3>
+    <pre><code>.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+ 
+.card {
+  flex: 1 1 300px;    /* Grow, shrink, minimum 300px wide */
+  max-width: 400px;   /* Don't get too wide */
+  background: #1a1a2e;
+  border-radius: 12px;
+  padding: 24px;
+}
+ 
+/* Result: 3 cards on desktop, 2 on tablet, 1 on mobile
+   — no media queries needed! */</code></pre>
+ 
+    <h3>Real-World Example: Centering a Hero Section</h3>
+    <pre><code>.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;  /* Full screen height */
+  text-align: center;
+  gap: 20px;
+}
+ 
+/* Everything inside .hero is now perfectly centered */</code></pre>
+ 
+    <h3>Flexbox vs CSS Grid: When to Use Each</h3>
+    <ul>
+      <li><strong>Use Flexbox</strong> for one-dimensional layouts — a row of items, a column of items, or a navbar.</li>
+      <li><strong>Use CSS Grid</strong> for two-dimensional layouts — a full page layout with header, sidebar, content, and footer.</li>
+      <li>They work beautifully together — Grid for the page layout, Flexbox for components inside each grid area.</li>
+    </ul>
+ 
+    <h3>Practice Challenge</h3>
+    <p>Build a pricing card section: three cards side by side on desktop, stacked on mobile. Each card has an icon at the top, a title, a price, a list of features and a button at the bottom pushed to the very bottom of the card. Use Flexbox for the card row and also use <code>flex-direction: column</code> inside each card to push the button down with <code>margin-top: auto</code>. This is a classic real-world layout pattern you will use in almost every project.</p>
+  </div>
+  <div class="blogStats">
+    <span>👁 5.4K Views</span>
+    <span>❤️ 4.9K Likes</span>
+  </div>
+</article>
+ 
+ 
+<!-- BLOG A6 -->
+<article class="card">
+  <div class="card-meta">
+    <span class="card-date">June 14, 2026</span>
+    <span class="card-dot">·</span>
+    <span class="card-tag">Game Development</span>
+  </div>
+  <h2>Getting Started with Unity: Build Your First 2D Game 🎮</h2>
+  <p class="card-desc">Install Unity, understand the editor, write C# scripts and build a working Pong-style game from scratch — step by step.</p>
+  <button class="read-btn" onclick="toggleBlog('blogA6', this)">
+    <span>Read Now</span><span class="arrow">↓</span>
+  </button>
+  <div class="fullBlog" id="blogA6">
+    <p>Unity is the world's most popular game engine — powering over 50% of all mobile games and countless PC and console titles. It uses C# as its scripting language and has one of the richest free learning ecosystems available. This guide gets you from zero to a working 2D game.</p>
+ 
+    <h3>Installing Unity</h3>
+    <p>Download <strong>Unity Hub</strong> from unity.com/download (free). Unity Hub manages your Unity versions and projects. Inside Hub, install the <strong>Unity 6</strong> (the current LTS version as of 2026). During installation, add the module <strong>WebGL Build Support</strong> so you can export your game to play in a browser.</p>
+ 
+    <h3>Understanding the Unity Editor</h3>
+    <p>When you open a new project, you will see these panels:</p>
+    <ul>
+      <li><strong>Scene View</strong> — your visual editing canvas where you place objects.</li>
+      <li><strong>Game View</strong> — what the player actually sees when the game runs.</li>
+      <li><strong>Hierarchy</strong> — a list of every object in your current scene.</li>
+      <li><strong>Project</strong> — your file browser — assets, scripts, sprites, sounds.</li>
+      <li><strong>Inspector</strong> — shows properties of the selected object. This is where you configure everything.</li>
+    </ul>
+ 
+    <h3>Key Concepts Before Coding</h3>
+    <ul>
+      <li><strong>GameObject</strong> — every object in Unity (player, enemy, wall, camera) is a GameObject.</li>
+      <li><strong>Component</strong> — functionality attached to a GameObject. Transform (position/rotation/scale), Rigidbody2D (physics), SpriteRenderer (image), Collider2D (collision detection) are all components.</li>
+      <li><strong>Script</strong> — a C# file you attach as a component. This is where your game logic lives.</li>
+      <li><strong>Prefab</strong> — a reusable template of a GameObject. Create once, use many times.</li>
+    </ul>
+ 
+    <h3>Setting Up Your 2D Project</h3>
+    <ol>
+      <li>In Unity Hub click "New Project" → Select "2D Core" template.</li>
+      <li>Name it "MyFirstPong" and click Create.</li>
+      <li>The editor opens with a default scene. Delete the default camera; Unity 2D adds its own.</li>
+      <li>In the Hierarchy, right-click → 2D Object → Sprites → Square. This creates a white square.</li>
+      <li>Rename it "Player" in the Inspector.</li>
+      <li>Scale it in the Inspector: X=0.3, Y=2, Z=1 — this creates a paddle shape.</li>
+      <li>Position it at X=-8, Y=0, Z=0.</li>
+    </ol>
+ 
+    <h3>Writing Your First C# Script</h3>
+    <p>In the Project panel, right-click → Create → C# Script. Name it "PlayerController". Double-click to open in VS Code. Replace the contents with:</p>
+    <pre><code>using UnityEngine;
+ 
+public class PlayerController : MonoBehaviour
+{
+    public float speed = 8f;
+    private Rigidbody2D rb;
+ 
+    void Start()
+    {
+        rb = GetComponent&lt;Rigidbody2D&gt;();
+    }
+ 
+    void Update()
+    {
+        float input = Input.GetAxisRaw("Vertical");
+        rb.linearVelocity = new Vector2(0, input * speed);
+    }
+}</code></pre>
+    <p>Save the file. Back in Unity, select your Player object. Add a Rigidbody2D component (Inspector → Add Component → search "Rigidbody2D"). Set Gravity Scale to 0 and Constraints → Freeze Rotation Z. Then drag your PlayerController script onto the Player in the Inspector.</p>
+ 
+    <h3>Adding Physics Collision</h3>
+    <p>Add a BoxCollider2D to your Player (Add Component → Box Collider 2D). Create the ball: Hierarchy → 2D Object → Sprites → Circle. Name it "Ball". Scale: X=0.5, Y=0.5. Add Rigidbody2D (Gravity Scale = 0) and CircleCollider2D. Create walls using square sprites at the top, bottom, and right edge with BoxCollider2D components. Set them as static (no Rigidbody needed for walls).</p>
+ 
+    <h3>Ball Movement Script</h3>
+    <pre><code>using UnityEngine;
+ 
+public class BallController : MonoBehaviour
+{
+    public float speed = 6f;
+    private Rigidbody2D rb;
+ 
+    void Start()
+    {
+        rb = GetComponent&lt;Rigidbody2D&gt;();
+        Launch();
+    }
+ 
+    void Launch()
+    {
+        float xDir = Random.Range(0, 2) == 0 ? -1f : 1f;
+        float yDir = Random.Range(-1f, 1f);
+        rb.linearVelocity = new Vector2(xDir, yDir).normalized * speed;
+    }
+ 
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        // Ball bounces automatically via physics
+        // Check for scoring:
+        if (col.gameObject.CompareTag("RightWall"))
+        {
+            Debug.Log("Player scores!");
+            // Reset ball position
+            transform.position = Vector3.zero;
+            Launch();
+        }
+    }
+}</code></pre>
+ 
+    <h3>Adding a Score System</h3>
+    <pre><code>using UnityEngine;
+using TMPro;
+ 
+public class ScoreManager : MonoBehaviour
+{
+    public TextMeshProUGUI scoreText;
+    private int score = 0;
+ 
+    public void AddPoint()
+    {
+        score++;
+        scoreText.text = "Score: " + score;
+    }
+}</code></pre>
+    <p>Add a TextMeshPro UI text element (GameObject → UI → Text - TextMeshPro). Place it at the top of your scene and link it to the ScoreManager script.</p>
+ 
+    <h3>Testing Your Game</h3>
+    <p>Press the Play button (▶) at the top of the editor. Your player paddle should move up and down with W/S or arrow keys, and the ball should bounce around. This is a working game! Press Play again to stop.</p>
+ 
+    <h3>Exporting for the Web</h3>
+    <p>File → Build Settings → Select WebGL → Switch Platform → Build and Run. Unity will compile your game into HTML/JavaScript files you can upload to itch.io (free) and share with anyone — no app install needed.</p>
+ 
+    <h3>What to Build Next</h3>
+    <p>From here, explore: particle effects for visual feedback, audio (AudioSource component), a main menu scene, mobile touch controls, and PlayerPrefs for saving high scores. Unity's free Asset Store has thousands of sprites, sounds and tools. The best way to learn game development is to finish small games completely — a finished simple game beats an unfinished complex one every time.</p>
+  </div>
+  <div class="blogStats">
+    <span>👁 8.1K Views</span>
+    <span>❤️ 7.3K Likes</span>
+  </div>
+</article>
+ 
+ 
+<!-- BLOG A7 -->
+<article class="card">
+  <div class="card-meta">
+    <span class="card-date">June 12, 2026</span>
+    <span class="card-dot">·</span>
+    <span class="card-tag">Web Dev Career</span>
+  </div>
+  <h2>How to Build a Developer Portfolio That Gets You Hired in 2026 💼</h2>
+  <p class="card-desc">Your portfolio is your most powerful job application tool. Learn exactly what to include, what to avoid, and how to make recruiters notice you.</p>
+  <button class="read-btn" onclick="toggleBlog('blogA7', this)">
+    <span>Read Now</span><span class="arrow">↓</span>
+  </button>
+  <div class="fullBlog" id="blogA7">
+    <p>Recruiters at tech companies spend an average of 6 seconds on a portfolio before deciding whether to read more. Your portfolio is not just a collection of projects — it is a live demonstration of how you think, what you build, and how you communicate technical work to non-technical people. This guide shows you exactly what works.</p>
+ 
+    <h3>Why Most Developer Portfolios Fail</h3>
+    <ul>
+      <li>Too many tutorial clone projects (calculator, to-do list, weather app) with no original thought.</li>
+      <li>No live deployed links — recruiters will not clone and run your project locally.</li>
+      <li>Poor README files — no explanation of what the project does or why you built it.</li>
+      <li>No context — a list of technologies without explaining the problems you solved.</li>
+      <li>Cluttered design — trying to show everything ends up showing nothing clearly.</li>
+    </ul>
+ 
+    <h3>The 3-Project Rule</h3>
+    <p>You do not need 20 projects. You need 3 excellent ones. Each project should demonstrate a different skill area. Here is the ideal combination for a frontend or fullstack developer:</p>
+    <ul>
+      <li><strong>Project 1:</strong> A UI-focused project — beautiful design, responsive, animations. Shows you care about how things look and feel.</li>
+      <li><strong>Project 2:</strong> An API-integrated project — fetches real data, handles loading states and errors. Shows you can connect to backend services.</li>
+      <li><strong>Project 3:</strong> A personal tool or problem-solver — something you actually built to solve a real problem you had. Shows initiative and creativity.</li>
+    </ul>
+ 
+    <h3>What Makes a Project "Portfolio-Ready"</h3>
+    <p>For each project you include, it must have:</p>
+    <ul>
+      <li>A <strong>live demo link</strong> — deploy for free on Vercel, Netlify, or GitHub Pages.</li>
+      <li>A <strong>GitHub repository</strong> with clean, commented code.</li>
+      <li>A <strong>professional README</strong> with: what the project does, why you built it, key features, tech stack, how to run locally, and screenshots.</li>
+      <li>A <strong>case study description</strong> on your portfolio — what problem it solves, what you learned, what you would do differently.</li>
+    </ul>
+ 
+    <h3>Your Portfolio Website Structure</h3>
+    <p>Keep it simple and fast. A portfolio does not need to be complex — it needs to be clear:</p>
+    <ol>
+      <li><strong>Hero section</strong> — Your name, role, one-line value proposition, and two buttons: "View Projects" and "Contact Me".</li>
+      <li><strong>About section</strong> — 3–5 sentences about who you are, what you build, and what kind of work you are looking for. Keep it specific.</li>
+      <li><strong>Skills section</strong> — list technologies you are actually comfortable using. Do not list every technology you have ever seen.</li>
+      <li><strong>Projects section</strong> — your 3 featured projects with screenshots, description, tech stack, and links.</li>
+      <li><strong>Contact section</strong> — email, GitHub, LinkedIn. Add a contact form if you know how to handle it.</li>
+    </ol>
+ 
+    <h3>Writing Your Project Descriptions</h3>
+    <p>Use this formula: <em>"I built [what] for [who] because [why]. The key technical challenge was [problem] which I solved by [solution]. The result was [outcome]."</em></p>
+    <p>For example: "I built a real-time expense tracker for students managing tight budgets because I struggled to find a simple, free tool myself. The key technical challenge was syncing data across tabs without a backend — I solved this using localStorage and the browser's storage event API. The result is a fully offline-capable tool I use personally every month."</p>
+ 
+    <h3>Free Hosting Options</h3>
+    <ul>
+      <li><strong>Vercel</strong> — best for React/Next.js projects. Free tier, automatic deploys from GitHub.</li>
+      <li><strong>Netlify</strong> — great for static sites and form handling. Free tier.</li>
+      <li><strong>GitHub Pages</strong> — perfect for your portfolio website itself. Completely free.</li>
+      <li><strong>Railway / Render</strong> — for fullstack apps that need a backend server. Free tiers available.</li>
+    </ul>
+ 
+    <h3>GitHub Profile Optimization</h3>
+    <p>Many recruiters check GitHub before the portfolio. Optimize your GitHub profile:</p>
+    <ul>
+      <li>Add a profile README (create a repo with the same name as your username).</li>
+      <li>Pin your 6 best repositories.</li>
+      <li>Write good descriptions for every repo — what it does in one sentence.</li>
+      <li>Commit consistently — a green contribution graph shows you are actively building.</li>
+      <li>Star and follow relevant repositories — it shows you are engaged with the community.</li>
+    </ul>
+ 
+    <h3>The LinkedIn + Portfolio Combination</h3>
+    <p>Your portfolio URL must be in your LinkedIn headline and GitHub bio. When recruiters search LinkedIn for "frontend developer Hyderabad" and click your profile, the portfolio link is what they click next. Make sure it loads fast (under 2 seconds), works on mobile, and has no broken links.</p>
+ 
+    <h3>Common Mistakes to Fix Right Now</h3>
+    <ul>
+      <li>Do not write "Passionate developer who loves coding." Every developer says this. Be specific about what you build.</li>
+      <li>Do not use a free subdomain like myportfolio.wordpress.com. Buy a custom domain (₹500/year) — it immediately signals professionalism.</li>
+      <li>Do not have a loading animation that takes more than 1 second — you will lose the recruiter before they see anything.</li>
+      <li>Do not list "Microsoft Office" or "Photoshop" in your developer skills section.</li>
+    </ul>
+ 
+    <h3>Your Action Plan This Week</h3>
+    <ol>
+      <li>Choose your 3 best projects and deploy them today.</li>
+      <li>Write a proper README for each one.</li>
+      <li>Build your portfolio site (pure HTML/CSS is fine — simplicity beats complexity).</li>
+      <li>Deploy it on GitHub Pages with a custom domain.</li>
+      <li>Share the link in developer communities for feedback before applying anywhere.</li>
+    </ol>
+    <p>A strong portfolio with 3 real projects will get you more interviews than a certificate from any course. Build, deploy, and share.</p>
+  </div>
+  <div class="blogStats">
+    <span>👁 9.2K Views</span>
+    <span>❤️ 8.4K Likes</span>
+  </div>
+</article>
+ 
+ 
+<!-- BLOG A8 -->
+<article class="card">
+  <div class="card-meta">
+    <span class="card-date">June 10, 2026</span>
+    <span class="card-dot">·</span>
+    <span class="card-tag">APIs</span>
+  </div>
+  <h2>What Is an API? A Beginner's Guide With Real Code Examples 🔌</h2>
+  <p class="card-desc">APIs power every modern app. Learn what they are, how they work, and write JavaScript code to fetch real data from the internet.</p>
+  <button class="read-btn" onclick="toggleBlog('blogA8', this)">
+    <span>Read Now</span><span class="arrow">↓</span>
+  </button>
+  <div class="fullBlog" id="blogA8">
+    <p>When you open a weather app and it shows today's temperature, that data came from a weather API. When Instagram loads your feed, it is fetching posts from an API. When Zomato shows you restaurant menus, it is calling a restaurant data API. APIs are the invisible backbone of every modern application. This guide explains them clearly with real working code.</p>
+ 
+    <h3>What Is an API?</h3>
+    <p>API stands for <strong>Application Programming Interface</strong>. In simple terms: an API is a way for two software applications to talk to each other. It defines the rules for how requests are made and responses are delivered.</p>
+    <p>Think of an API like a restaurant waiter. You (the client) give your order (a request) to the waiter (the API). The waiter goes to the kitchen (the server) and brings back your food (the response). You never go into the kitchen yourself — you just interact with the waiter.</p>
+ 
+    <h3>REST APIs — The Most Common Type</h3>
+    <p>REST (Representational State Transfer) APIs are the most widely used type. They use HTTP — the same protocol your browser uses to load websites. Data is usually sent and received in <strong>JSON</strong> format (JavaScript Object Notation).</p>
+    <p>REST APIs have four main operations, called CRUD:</p>
+    <ul>
+      <li><strong>GET</strong> — Read/fetch data (most common)</li>
+      <li><strong>POST</strong> — Create new data</li>
+      <li><strong>PUT / PATCH</strong> — Update existing data</li>
+      <li><strong>DELETE</strong> — Remove data</li>
+    </ul>
+ 
+    <h3>What Is JSON?</h3>
+    <p>JSON is the language APIs speak. It looks like a JavaScript object and is easy to read:</p>
+    <pre><code>{
+  "name": "Manish Reddy",
+  "age": 22,
+  "city": "Hyderabad",
+  "skills": ["JavaScript", "Python", "Unity"],
+  "isStudent": false
+}</code></pre>
+    <p>Every key is a string in double quotes. Values can be strings, numbers, booleans, arrays, or nested objects. JavaScript can parse JSON directly with <code>JSON.parse()</code> and convert objects to JSON with <code>JSON.stringify()</code>.</p>
+ 
+    <h3>Making Your First API Call with Fetch</h3>
+    <p>JavaScript's built-in <code>fetch()</code> function lets you call any API from your browser or Node.js. We will use JSONPlaceholder — a free fake REST API perfect for practice:</p>
+    <pre><code>// Fetch a list of users from a free API
+fetch("https://jsonplaceholder.typicode.com/users")
+  .then(response => response.json())  // Parse the JSON
+  .then(users => {
+    console.log(users);               // Array of 10 user objects
+    users.forEach(user => {
+      console.log(user.name, user.email);
+    });
+  })
+  .catch(error => {
+    console.error("Something went wrong:", error);
+  });</code></pre>
+ 
+    <h3>Using async/await (Modern, Cleaner Way)</h3>
+    <p>The same code using modern async/await syntax is much easier to read:</p>
+    <pre><code>async function getUsers() {
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/users");
+ 
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+ 
+    const users = await response.json();
+    return users;
+  } catch (error) {
+    console.error("Failed to fetch users:", error);
+  }
+}
+ 
+// Call the function
+getUsers().then(users => console.log(users));</code></pre>
+ 
+    <h3>Real Project: Display Users on a Webpage</h3>
+    <pre><code>// HTML needed: &lt;div id="user-list"&gt;&lt;/div&gt;
+ 
+async function displayUsers() {
+  const container = document.querySelector("#user-list");
+  container.innerHTML = "&lt;p&gt;Loading...&lt;/p&gt;";
+ 
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/users");
+    const users = await response.json();
+ 
+    container.innerHTML = "";  // Clear loading text
+ 
+    users.forEach(user => {
+      const card = document.createElement("div");
+      card.className = "user-card";
+      card.innerHTML = `
+        &lt;h3&gt;${user.name}&lt;/h3&gt;
+        &lt;p&gt;📧 ${user.email}&lt;/p&gt;
+        &lt;p&gt;🌐 ${user.website}&lt;/p&gt;
+        &lt;p&gt;🏢 ${user.company.name}&lt;/p&gt;
+      `;
+      container.appendChild(card);
+    });
+ 
+  } catch (error) {
+    container.innerHTML = `&lt;p style="color:red"&gt;Error: ${error.message}&lt;/p&gt;`;
+  }
+}
+ 
+displayUsers();</code></pre>
+ 
+    <h3>Understanding API Responses</h3>
+    <p>Every API response has a <strong>status code</strong> that tells you what happened:</p>
+    <ul>
+      <li><strong>200 OK</strong> — Success. Your data is in the response body.</li>
+      <li><strong>201 Created</strong> — Your POST request successfully created new data.</li>
+      <li><strong>400 Bad Request</strong> — You sent invalid data or a malformed request.</li>
+      <li><strong>401 Unauthorized</strong> — You need an API key or to log in.</li>
+      <li><strong>403 Forbidden</strong> — You do not have permission for this resource.</li>
+      <li><strong>404 Not Found</strong> — The URL does not exist.</li>
+      <li><strong>500 Internal Server Error</strong> — Something went wrong on the server's side.</li>
+    </ul>
+ 
+    <h3>API Keys — Authentication</h3>
+    <p>Many real APIs require an API key to identify who is making the request. For example, the OpenWeather API needs a key:</p>
+    <pre><code>const API_KEY = "your_api_key_here";
+const city = "Hyderabad";
+ 
+const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
+ 
+const response = await fetch(url);
+const data = await response.json();
+ 
+console.log(`${data.name}: ${data.main.temp}°C, ${data.weather[0].description}`);</code></pre>
+    <p><strong>Important:</strong> Never put API keys in code you upload to GitHub. Use environment variables (<code>.env</code> files) and add <code>.env</code> to your <code>.gitignore</code>.</p>
+ 
+    <h3>5 Free APIs to Practice With</h3>
+    <ul>
+      <li><strong>JSONPlaceholder</strong> (jsonplaceholder.typicode.com) — Fake users, posts, todos. No key needed.</li>
+      <li><strong>OpenWeather API</strong> — Real weather data. Free tier with API key.</li>
+      <li><strong>NASA APIs</strong> (api.nasa.gov) — Astronomy pictures, Mars rover photos. Free API key.</li>
+      <li><strong>PokéAPI</strong> (pokeapi.co) — All Pokémon data. No key needed. Great for learning.</li>
+      <li><strong>REST Countries</strong> (restcountries.com) — Country data worldwide. No key needed.</li>
+    </ul>
+ 
+    <h3>Your Next API Project</h3>
+    <p>Build a weather dashboard using the OpenWeather API. Allow users to search any city name, display the current temperature, humidity, wind speed and a weather icon, and show a 5-day forecast. Handle the loading state and the error state (invalid city name). This is a genuine portfolio project that demonstrates API integration, DOM manipulation, error handling and good UX — all in one.</p>
+  </div>
+  <div class="blogStats">
+    <span>👁 6.7K Views</span>
+    <span>❤️ 6.1K Likes</span>
+  </div>
+</article>
+ 
+ 
+<!-- BLOG A9 -->
+<article class="card">
+  <div class="card-meta">
+    <span class="card-date">June 8, 2026</span>
+    <span class="card-dot">·</span>
+    <span class="card-tag">React</span>
+  </div>
+  <h2>React.js in 2026: Why It Still Dominates and How to Start ⚛️</h2>
+  <p class="card-desc">React remains the most in-demand frontend framework. Understand components, state, props and hooks with hands-on examples.</p>
+  <button class="read-btn" onclick="toggleBlog('blogA9', this)">
+    <span>Read Now</span><span class="arrow">↓</span>
+  </button>
+  <div class="fullBlog" id="blogA9">
+    <p>React was created by Facebook in 2013 and open-sourced to the world. More than a decade later, it remains the most used JavaScript UI library, powering Facebook, Instagram, Netflix, Airbnb, and thousands of Indian startups. In 2026, React skills are still consistently the most requested in frontend job listings. Here is how to actually learn it.</p>
+ 
+    <h3>What React Actually Is</h3>
+    <p>React is not a full framework — it is a JavaScript <strong>library for building user interfaces</strong>. It solves one problem brilliantly: making it easy to build UIs that update efficiently when data changes. React does this through three core concepts: <strong>components</strong>, <strong>state</strong>, and <strong>props</strong>.</p>
+ 
+    <h3>Setting Up a React Project</h3>
+    <p>The fastest way to start in 2026 is with Vite:</p>
+    <pre><code># Requires Node.js installed (nodejs.org)
+npm create vite@latest my-app -- --template react
+cd my-app
+npm install
+npm run dev</code></pre>
+    <p>Your app is now running at <code>http://localhost:5173</code>. Open the folder in VS Code and start editing <code>src/App.jsx</code>.</p>
+ 
+    <h3>Components — The Building Blocks</h3>
+    <p>In React, every piece of UI is a <strong>component</strong> — a JavaScript function that returns JSX (HTML-like syntax). Break your UI into small, reusable components:</p>
+    <pre><code>// A simple component
+function Greeting({ name }) {
+  return (
+    &lt;div className="greeting"&gt;
+      &lt;h1&gt;Hello, {name}! 👋&lt;/h1&gt;
+      &lt;p&gt;Welcome to React.&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+ 
+// Using it inside App
+function App() {
+  return (
+    &lt;div&gt;
+      &lt;Greeting name="Manish" /&gt;
+      &lt;Greeting name="Priya" /&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+ 
+    <h3>JSX — Not Quite HTML</h3>
+    <p>JSX looks like HTML but has differences. The key rules:</p>
+    <ul>
+      <li>Use <code>className</code> instead of <code>class</code> (class is a reserved word in JavaScript).</li>
+      <li>Every component must return one parent element — wrap multiple elements in a <code>&lt;div&gt;</code> or <code>&lt;&gt;&lt;/&gt;</code> (Fragment).</li>
+      <li>JavaScript expressions go inside curly braces: <code>{name}</code>, <code>{2 + 2}</code>, <code>{isLoggedIn ? "Logout" : "Login"}</code>.</li>
+      <li>Self-closing tags must be closed: <code>&lt;img /&gt;</code> not <code>&lt;img&gt;</code>.</li>
+    </ul>
+ 
+    <h3>Props — Passing Data to Components</h3>
+    <p>Props are how you pass data from a parent component to a child component — like function arguments:</p>
+    <pre><code>function CourseCard({ title, price, students, tag }) {
+  return (
+    &lt;div className="card"&gt;
+      &lt;span className="tag"&gt;{tag}&lt;/span&gt;
+      &lt;h3&gt;{title}&lt;/h3&gt;
+      &lt;p&gt;{students} students enrolled&lt;/p&gt;
+      &lt;strong&gt;₹{price}&lt;/strong&gt;
+    &lt;/div&gt;
+  );
+}
+ 
+// Usage in parent:
+&lt;CourseCard
+  title="Frontend Development"
+  price={999}
+  students={450}
+  tag="Bestseller"
+/&gt;</code></pre>
+ 
+    <h3>State — Data That Changes</h3>
+    <p>Props are read-only. When data needs to <em>change</em> — a counter, a toggle, user input — you use <strong>state</strong> with the <code>useState</code> hook:</p>
+    <pre><code>import { useState } from "react";
+ 
+function Counter() {
+  const [count, setCount] = useState(0); // Initial value: 0
+ 
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Count: {count}&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;+&lt;/button&gt;
+      &lt;button onClick={() =&gt; setCount(count - 1)}&gt;-&lt;/button&gt;
+      &lt;button onClick={() =&gt; setCount(0)}&gt;Reset&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+    <p>Every time you call <code>setCount()</code>, React re-renders the component with the new value. This is React's core superpower — the UI automatically stays in sync with your data.</p>
+ 
+    <h3>useEffect — Running Code at the Right Time</h3>
+    <p><code>useEffect</code> runs code after a component renders — perfect for API calls, timers, and subscriptions:</p>
+    <pre><code>import { useState, useEffect } from "react";
+ 
+function UserList() {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+ 
+  useEffect(() =&gt; {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then(res =&gt; res.json())
+      .then(data =&gt; {
+        setUsers(data);
+        setLoading(false);
+      });
+  }, []); // Empty array = run only once when component mounts
+ 
+  if (loading) return &lt;p&gt;Loading...&lt;/p&gt;;
+ 
+  return (
+    &lt;ul&gt;
+      {users.map(user =&gt; (
+        &lt;li key={user.id}&gt;{user.name} — {user.email}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}</code></pre>
+ 
+    <h3>Rendering Lists</h3>
+    <p>Always use <code>.map()</code> to render lists in React. Each item must have a unique <code>key</code> prop — React uses this to track which items change:</p>
+    <pre><code>const games = ["Minecraft", "Valorant", "Roblox", "Among Us"];
+ 
+function GameList() {
+  return (
+    &lt;ul&gt;
+      {games.map((game, index) =&gt; (
+        &lt;li key={index}&gt;🎮 {game}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}</code></pre>
+ 
+    <h3>Conditional Rendering</h3>
+    <pre><code>function LoginButton({ isLoggedIn }) {
+  return (
+    &lt;div&gt;
+      {isLoggedIn ? (
+        &lt;button&gt;Logout&lt;/button&gt;
+      ) : (
+        &lt;button&gt;Login&lt;/button&gt;
+      )}
+ 
+      {/* Short-circuit for optional elements */}
+      {isLoggedIn &amp;&amp; &lt;p&gt;Welcome back!&lt;/p&gt;}
+    &lt;/div&gt;
+  );
+}</code></pre>
+ 
+    <h3>What to Learn After These Basics</h3>
+    <ul>
+      <li><strong>React Router</strong> — for navigating between pages in a single-page app.</li>
+      <li><strong>Context API</strong> — for sharing state between many components without prop drilling.</li>
+      <li><strong>Custom Hooks</strong> — for reusing stateful logic across components.</li>
+      <li><strong>Next.js</strong> — React with server-side rendering, routing, and full-stack capabilities. The most in-demand React framework in 2026.</li>
+    </ul>
+    <p>Start by rebuilding a simple project you previously made in vanilla JavaScript using React. The difference in maintainability will immediately show you why React exists.</p>
+  </div>
+  <div class="blogStats">
+    <span>👁 7.4K Views</span>
+    <span>❤️ 6.8K Likes</span>
+  </div>
+</article>
+ 
+ 
+<!-- BLOG A10 -->
+<article class="card">
+  <div class="card-meta">
+    <span class="card-date">June 6, 2026</span>
+    <span class="card-dot">·</span>
+    <span class="card-tag">CSS</span>
+  </div>
+  <h2>10 CSS Mistakes Every Beginner Makes (And How to Fix Them) ⚠️</h2>
+  <p class="card-desc">Avoid the most common CSS pitfalls that waste hours of debugging time — explained with before and after code examples.</p>
+  <button class="read-btn" onclick="toggleBlog('blogA10', this)">
+    <span>Read Now</span><span class="arrow">↓</span>
+  </button>
+  <div class="fullBlog" id="blogA10">
+    <p>CSS looks deceptively simple — it is just styles, right? But most developers spend more time debugging CSS than writing it, especially when they are starting out. Here are the 10 most common mistakes beginners make, why they happen, and the clean fix for each.</p>
+ 
+    <h3>Mistake 1: Not Using box-sizing: border-box</h3>
+    <p>By default, CSS calculates element width <em>excluding</em> padding and border. A <code>width: 300px</code> box with <code>padding: 20px</code> actually becomes 340px wide — breaking your layout.</p>
+    <pre><code>/* Fix: Add this to the top of every CSS file */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+/* Now width: 300px always means 300px total, including padding */</code></pre>
+ 
+    <h3>Mistake 2: Using Pixels for Font Sizes</h3>
+    <p>Setting font sizes in pixels ignores the user's browser default size settings, harming accessibility.</p>
+    <pre><code>/* Wrong */
+body { font-size: 16px; }
+h1 { font-size: 32px; }
+ 
+/* Right — rem is relative to root font size */
+body { font-size: 1rem; }     /* = 16px by default */
+h1 { font-size: 2rem; }       /* = 32px by default */
+/* If user increases their browser font size, your site scales correctly */</code></pre>
+ 
+    <h3>Mistake 3: Overusing !important</h3>
+    <p><code>!important</code> overrides all other styles. Beginners use it when their styles are not working — but it creates a cascade war where you need more and more <code>!important</code> and eventually nothing works predictably.</p>
+    <pre><code>/* Wrong — fighting the cascade with brute force */
+.button { background: red !important; }
+ 
+/* Right — be more specific in your selector */
+.hero-section .button { background: red; }
+/* Or reorganize your CSS so specificity is clear */</code></pre>
+ 
+    <h3>Mistake 4: Centering with margin: 0 auto on Inline Elements</h3>
+    <p><code>margin: 0 auto</code> only centers block-level elements and only when the element has an explicit width. It does nothing to inline or inline-block elements.</p>
+    <pre><code>/* Wrong — span is inline, margin: auto does nothing */
+span { margin: 0 auto; }
+ 
+/* Right options: */
+.container { text-align: center; }          /* Center inline content */
+.block-element { width: 400px; margin: 0 auto; }  /* Center block */
+.flex-parent { display: flex; justify-content: center; } /* Flexbox center */</code></pre>
+ 
+    <h3>Mistake 5: Forgetting Position Context for Absolute</h3>
+    <p><code>position: absolute</code> positions an element relative to its nearest <em>positioned</em> ancestor (anything with <code>position</code> other than <code>static</code>). Beginners forget to set <code>position: relative</code> on the parent, so the element escapes to the wrong container.</p>
+    <pre><code>/* Wrong — tooltip escapes to the body */
+.card { /* no position */ }
+.tooltip { position: absolute; top: 0; }
+ 
+/* Right */
+.card { position: relative; }   /* Establishes positioning context */
+.tooltip { position: absolute; top: -40px; left: 0; }</code></pre>
+ 
+    <h3>Mistake 6: Using px for Media Query Breakpoints</h3>
+    <p>Media queries with px do not respect the user's font size settings. Use <code>em</code> units instead:</p>
+    <pre><code>/* Okay but not ideal */
+@media (max-width: 768px) { }
+ 
+/* Better — em-based breakpoints respect browser settings */
+@media (max-width: 48em) { }    /* 48 * 16 = 768px */
+@media (max-width: 64em) { }    /* 64 * 16 = 1024px */</code></pre>
+ 
+    <h3>Mistake 7: Not Using CSS Custom Properties (Variables)</h3>
+    <p>Repeating the same color hex code 40 times across a stylesheet means changing one color requires a global find-and-replace. CSS variables fix this:</p>
+    <pre><code>/* Define once at the top */
+:root {
+  --color-primary: #5c6ef8;
+  --color-bg: #0f0f0f;
+  --color-text: #e0e0e0;
+  --spacing-md: 16px;
+  --border-radius: 8px;
+}
+ 
+/* Use everywhere */
+.button {
+  background: var(--color-primary);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+}</code></pre>
+ 
+    <h3>Mistake 8: Relying on Float for Layouts</h3>
+    <p><code>float</code> was designed for wrapping text around images, not building layouts. Using it for layout requires clearfix hacks and breaks in unexpected ways. Flexbox and Grid are the modern tools:</p>
+    <pre><code>/* Old float layout — avoid */
+.sidebar { float: left; width: 30%; }
+.content { float: left; width: 70%; }
+.clearfix::after { content: ""; display: table; clear: both; }
+ 
+/* Modern Flexbox */
+.page-layout { display: flex; gap: 24px; }
+.sidebar { flex: 0 0 30%; }
+.content { flex: 1; }</code></pre>
+ 
+    <h3>Mistake 9: Writing CSS Without a Clear Naming System</h3>
+    <p>Class names like <code>.red-box</code>, <code>.thing1</code>, and <code>.myStyle</code> become unmaintainable. Use a naming convention like BEM (Block Element Modifier):</p>
+    <pre><code>/* BEM naming: block__element--modifier */
+.card { }                        /* Block */
+.card__title { }                 /* Element */
+.card__title--large { }          /* Modifier */
+.card--featured { }              /* Block modifier */
+ 
+/* This makes the HTML relationship clear at a glance */</code></pre>
+ 
+    <h3>Mistake 10: Not Testing on Mobile</h3>
+    <p>Building on a large monitor and never checking mobile is the number one cause of broken responsive layouts. Test early and often:</p>
+    <ul>
+      <li>In Chrome DevTools (F12), click the device icon for mobile simulation.</li>
+      <li>Test at 375px (iPhone), 414px (large iPhone), and 768px (tablet).</li>
+      <li>Use <code>min-height: 100dvh</code> instead of <code>100vh</code> — on mobile, <code>dvh</code> accounts for the browser toolbar which <code>vh</code> ignores, causing content to be cut off.</li>
+      <li>Check touch targets — buttons should be at least 44×44px to be easily tappable.</li>
+    </ul>
+ 
+    <h3>Summary Cheatsheet</h3>
+    <ul>
+      <li>Always add <code>box-sizing: border-box</code> globally.</li>
+      <li>Use <code>rem</code> for font sizes, <code>em</code> for component spacing.</li>
+      <li>Avoid <code>!important</code> — fix your specificity instead.</li>
+      <li>Use Flexbox or Grid — never float for layouts.</li>
+      <li>Define CSS variables in <code>:root</code> for colors and spacing.</li>
+      <li>Always test on mobile using DevTools.</li>
+    </ul>
+    <p>Fixing these 10 mistakes will instantly level up the quality of your CSS. Bookmark this page and check each point on your next project.</p>
+  </div>
+  <div class="blogStats">
+    <span>👁 11.3K Views</span>
+    <span>❤️ 9.8K Likes</span>
+  </div>
+</article>
+ 
+ 
+<!-- BLOG A11 -->
+<article class="card">
+  <div class="card-meta">
+    <span class="card-date">June 4, 2026</span>
+    <span class="card-dot">·</span>
+    <span class="card-tag">Game Design</span>
+  </div>
+  <h2>Game Design Fundamentals: How Fun Is Actually Engineered 🕹️</h2>
+  <p class="card-desc">Understand the psychology and design principles behind why games feel good to play — and apply them to your own game projects.</p>
+  <button class="read-btn" onclick="toggleBlog('blogA11', this)">
+    <span>Read Now</span><span class="arrow">↓</span>
+  </button>
+  <div class="fullBlog" id="blogA11">
+    <p>Fun is not an accident. Every mechanic in a great game — whether it is the satisfying "pop" of popping a bubble in a casual game or the deep strategy of a 4X turn-based game — is the result of deliberate design decisions. Game design is the art and science of creating experiences that are engaging, rewarding and meaningful. This guide covers the core principles every aspiring game developer must understand.</p>
+ 
+    <h3>The Core Loop</h3>
+    <p>Every game, from Tetris to Elden Ring, has a <strong>core loop</strong> — the primary repeating cycle of actions the player performs. A clear, satisfying core loop is the foundation of any good game. For a typical action game it might be: <em>Explore → Encounter → Combat → Reward → Level Up → Explore again.</em></p>
+    <p>When designing your game, define the core loop first. Ask yourself: what does the player do every 30 seconds? Every 5 minutes? Does each cycle feel complete and satisfying? If the loop is not fun, adding more content does not fix it.</p>
+ 
+    <h3>The Four Elements of Fun (MDA Framework)</h3>
+    <p>Researchers Marc LeBlanc, Robin Hunicke and Robert Zubek created the MDA (Mechanics, Dynamics, Aesthetics) framework to analyze games:</p>
+    <ul>
+      <li><strong>Mechanics</strong> — the rules and systems: jump, shoot, collect, build.</li>
+      <li><strong>Dynamics</strong> — how mechanics interact during play: the emergent situations that arise from the rules.</li>
+      <li><strong>Aesthetics</strong> — the emotional experience: challenge, fellowship, discovery, narrative, expression.</li>
+    </ul>
+    <p>Designers think from mechanics down. Players experience aesthetics up. A game is successful when the mechanics create the right dynamics to produce the intended aesthetic experience.</p>
+ 
+    <h3>Intrinsic vs Extrinsic Motivation</h3>
+    <p><strong>Intrinsic motivation</strong> means the player acts because the action itself is rewarding — jumping feels good, the puzzle is genuinely interesting, exploring is inherently satisfying. <strong>Extrinsic motivation</strong> means rewards drive behavior — points, badges, loot boxes, leaderboards.</p>
+    <p>The best games primarily use intrinsic motivation. If you remove all the external rewards and the core gameplay is still fun, you have something special. Games that rely entirely on extrinsic rewards (certain mobile gacha games) often feel hollow once the rewards slow down.</p>
+ 
+    <h3>Challenge and Skill: The Flow State</h3>
+    <p>Psychologist Mihaly Csikszentmihalyi identified <strong>flow</strong> — a state of total absorption in a task that feels effortless and deeply satisfying. Games are uniquely good at creating flow. The key is matching challenge to skill:</p>
+    <ul>
+      <li><strong>Too easy + high skill</strong> = boredom. The player disengages.</li>
+      <li><strong>Too hard + low skill</strong> = frustration. The player quits.</li>
+      <li><strong>Balanced challenge + growing skill</strong> = flow. The player loses track of time.</li>
+    </ul>
+    <p>Great games dynamically adjust difficulty. Dark Souls does it through level design — the player keeps dying until they learn the pattern, then it feels earned. Mario does it through progressive level design — easy in world 1, demanding by world 8.</p>
+ 
+    <h3>Feedback — The Invisible Teacher</h3>
+    <p>Every action the player takes should have clear, immediate feedback. Without feedback, the player does not know if their actions matter. Good feedback works on multiple layers simultaneously:</p>
+    <ul>
+      <li><strong>Visual</strong> — hit effects, particle bursts, screen shake, color flashes.</li>
+      <li><strong>Audio</strong> — satisfying sound effects synced to actions (the "click" matters enormously).</li>
+      <li><strong>Haptic</strong> — controller rumble on impact.</li>
+      <li><strong>Numerical</strong> — damage numbers, score popups, XP gain.</li>
+      <li><strong>Narrative</strong> — characters reacting to what you did.</li>
+    </ul>
+    <p>The most satisfying moment in Minecraft? Hearing the "pop" and seeing items fly toward you when you break a block. Three layers of feedback: audio, visual, and inventory change — all instantaneous.</p>
+ 
+    <h3>Player Agency and Meaningful Choices</h3>
+    <p>Agency means the player's choices actually matter and produce different outcomes. False choices — where all paths lead to the same result — feel manipulative. Meaningful choices create genuine tension: there is no objectively correct answer, and the player must weigh real trade-offs.</p>
+    <p>In game design, ask: "What is lost by choosing option A over option B?" If nothing meaningful is lost, it is not a real choice. In resource management games, spending resources on offense means neglecting defense — that tension is what makes the decision interesting.</p>
+ 
+    <h3>Tutorials: Teaching Without Boring</h3>
+    <p>The tutorial is where most players quit. Rules:</p>
+    <ul>
+      <li>Teach through doing, not reading. Show the mechanic, then make the player use it immediately.</li>
+      <li>Introduce one mechanic at a time with enough time to master it before the next.</li>
+      <li>Make the tutorial world safe — low stakes so the player can experiment without fear of failure.</li>
+      <li>Never stop the game for a wall of text. Contextual hints appear when needed.</li>
+      <li>Let experienced players skip it or learn faster through optional challenge rooms.</li>
+    </ul>
+ 
+    <h3>Game Feel: The Thing You Cannot Quite Name</h3>
+    <p>Game feel (also called "juice") is the overall sensory and tactile experience of controlling a game character. It is why some games feel snappy and responsive and others feel floaty and dull — even with identical mechanics on paper. Key elements of great game feel:</p>
+    <ul>
+      <li><strong>Input responsiveness</strong> — the character responds to input with minimal delay.</li>
+      <li><strong>Animation</strong> — squash and stretch, anticipation frames, follow-through.</li>
+      <li><strong>Camera</strong> — slight camera shake and lag adds weight to movement.</li>
+      <li><strong>Coyote time</strong> — allowing a jump for a few frames after walking off a ledge (used in almost every platformer).</li>
+    </ul>
+ 
+    <h3>Prototyping: Build Fast, Learn Fast</h3>
+    <p>The most important skill in game design is rapid prototyping. Build the simplest possible version of your core mechanic in one day. Use placeholder art (colored rectangles). Get it in front of real players as fast as possible. Watch them play — do not explain anything. What confuses them reveals your design flaws. Fix, iterate, repeat. Ship your first game before it is perfect. Learning from a shipped game is worth more than months of solo development.</p>
+  </div>
+  <div class="blogStats">
+    <span>👁 5.9K Views</span>
+    <span>❤️ 5.2K Likes</span>
+  </div>
+</article>
+ 
+ 
+<!-- BLOG A12 -->
+<article class="card">
+  <div class="card-meta">
+    <span class="card-date">June 2, 2026</span>
+    <span class="card-dot">·</span>
+    <span class="card-tag">Career</span>
+  </div>
+  <h2>How to Crack Your First Tech Interview as a Fresher in India 🧠</h2>
+  <p class="card-desc">A realistic, practical guide to landing your first developer job — from DSA prep to HR rounds, with a week-by-week study plan.</p>
+  <button class="read-btn" onclick="toggleBlog('blogA12', this)">
+    <span>Read Now</span><span class="arrow">↓</span>
+  </button>
+  <div class="fullBlog" id="blogA12">
+    <p>Getting your first tech job in India in 2026 is competitive — but it is absolutely achievable with a clear strategy. Thousands of freshers get hired every year from colleges that are not IITs, without any prior work experience, purely through strong preparation and smart positioning. This guide gives you the complete roadmap.</p>
+ 
+    <h3>The Hiring Process — What to Expect</h3>
+    <p>Most tech companies in India use a 3–5 stage process for freshers:</p>
+    <ol>
+      <li><strong>Resume screening</strong> — ATS software and human review. You need to pass this to get called.</li>
+      <li><strong>Online Assessment (OA)</strong> — 2–3 DSA coding problems, sometimes with MCQs. Timed, usually 90 minutes.</li>
+      <li><strong>Technical Interview Round 1</strong> — DSA problems, discussed live with an interviewer. You explain your thinking.</li>
+      <li><strong>Technical Interview Round 2</strong> — System design basics, project discussion, CS fundamentals (DBMS, OS, networks).</li>
+      <li><strong>HR Interview</strong> — Behavioral questions, salary discussion, culture fit.</li>
+    </ol>
+ 
+    <h3>Phase 1: DSA (Data Structures and Algorithms)</h3>
+    <p>DSA is the most important preparation for service companies (TCS, Infosys, Wipro) and product companies (startups, mid-size). You do not need to solve 500 LeetCode problems. You need to <em>understand</em> patterns deeply.</p>
+    <p>The essential topics to cover, in order:</p>
+    <ul>
+      <li><strong>Arrays and Strings</strong> — sliding window, two pointers, prefix sum. These appear in ~40% of problems.</li>
+      <li><strong>Hashing</strong> — HashMap, HashSet. Converts O(n²) brute force to O(n) in most problems.</li>
+      <li><strong>Linked Lists</strong> — reversal, cycle detection (Floyd's algorithm), merge sorted lists.</li>
+      <li><strong>Stacks and Queues</strong> — monotonic stack, next greater element, BFS with queue.</li>
+      <li><strong>Binary Search</strong> — not just sorted arrays. Binary search on the answer for optimization problems.</li>
+      <li><strong>Trees and BST</strong> — inorder/preorder/postorder traversal, height, LCA, level-order (BFS).</li>
+      <li><strong>Graphs</strong> — BFS, DFS, connected components, topological sort.</li>
+      <li><strong>Dynamic Programming</strong> — 1D DP (Fibonacci patterns), 2D DP (grid problems, subsequences). Start here only after mastering the above.</li>
+    </ul>
+    <p>Resource: Start with Striver's A2Z DSA Sheet (free, widely used by Indian students). Solve problems in Java or Python — both are perfectly acceptable in interviews.</p>
+ 
+    <h3>Phase 2: CS Fundamentals</h3>
+    <p>Product companies and many service companies test core CS concepts:</p>
+    <ul>
+      <li><strong>DBMS</strong>: SQL queries (JOINs, GROUP BY, subqueries), normalization (1NF–3NF), ACID properties, indexing.</li>
+      <li><strong>Operating Systems</strong>: processes vs threads, deadlock (conditions + prevention), memory management, paging, scheduling algorithms (FCFS, SJF, Round Robin).</li>
+      <li><strong>Computer Networks</strong>: OSI model, TCP vs UDP, HTTP vs HTTPS, DNS, how a browser loads a web page step by step.</li>
+      <li><strong>OOP Concepts</strong>: four pillars (Encapsulation, Abstraction, Inheritance, Polymorphism) with code examples in your language of choice.</li>
+    </ul>
+ 
+    <h3>Phase 3: Resume That Gets Shortlisted</h3>
+    <p>For freshers, your resume should be one page maximum. Use this structure:</p>
+    <ul>
+      <li><strong>Header</strong>: Name, phone, email, LinkedIn URL, GitHub URL, portfolio URL.</li>
+      <li><strong>Education</strong>: Degree, college, graduation year, CGPA (if above 7.0).</li>
+      <li><strong>Skills</strong>: Languages (Java, Python, JavaScript), frameworks, tools, databases. Only list what you can actually talk about in an interview.</li>
+      <li><strong>Projects</strong>: 2–3 projects with a one-line description, tech stack used, and a live link or GitHub link. Use action verbs: "Built", "Developed", "Implemented", "Reduced".</li>
+      <li><strong>Achievements</strong>: Competitive programming ratings, hackathon wins, open-source contributions, relevant certifications.</li>
+    </ul>
+    <p>ATS tip: include keywords from the job description naturally in your resume. If the job says "REST APIs", make sure your project description mentions "REST APIs" — not just "APIs".</p>
+ 
+    <h3>Where to Apply</h3>
+    <ul>
+      <li><strong>LinkedIn</strong> — most important. Apply to jobs and also DM recruiters directly with your resume attached.</li>
+      <li><strong>Naukri.com</strong> — most Indian companies post here. Keep your profile 100% complete.</li>
+      <li><strong>Internshala</strong> — excellent for internship-to-job conversion, especially for freshers.</li>
+      <li><strong>Company career pages directly</strong> — Swiggy, Zomato, CRED, Razorpay, Meesho all hire freshers. Go directly to their careers page.</li>
+      <li><strong>GitHub and open-source</strong> — contributing to a popular open-source project on GitHub has directly led to job offers for many Indian developers.</li>
+    </ul>
+ 
+    <h3>8-Week Preparation Plan</h3>
+    <ul>
+      <li><strong>Week 1–2:</strong> Arrays, strings, hashing — solve 30 problems total.</li>
+      <li><strong>Week 3:</strong> Linked lists, stacks, queues — 20 problems.</li>
+      <li><strong>Week 4:</strong> Binary search, recursion — 20 problems.</li>
+      <li><strong>Week 5:</strong> Trees, BST — 20 problems.</li>
+      <li><strong>Week 6:</strong> Graphs — 15 problems.</li>
+      <li><strong>Week 7:</strong> CS fundamentals (DBMS, OS, Networks, OOP) — 2 topics per day.</li>
+      <li><strong>Week 8:</strong> Mock interviews, resume finalization, applications. Do at least 3 mock interviews on Pramp or with friends.</li>
+    </ul>
+ 
+    <h3>The HR Interview</h3>
+    <p>Prepare clear answers for: "Tell me about yourself" (90-second structured intro), "Why this company?" (research their product and culture), "Where do you see yourself in 5 years?", and "Describe a challenge you overcame." Be honest, be specific, and tie your answers back to what you will bring to the team. Never speak negatively about past experiences or people.</p>
+ 
+    <h3>One Last Thing</h3>
+    <p>Rejection is part of the process. Every developer — including senior engineers at top companies — faced multiple rejections early in their career. The developers who get hired are not the smartest ones; they are the most consistent in their preparation and the most resilient when things do not go their way. Keep applying, keep solving problems, and ask for feedback wherever you can get it.</p>
+  </div>
+  <div class="blogStats">
+    <span>👁 13.6K Views</span>
+    <span>❤️ 11.9K Likes</span>
+  </div>
+</article>
+ 
+ 
+<!-- BLOG A13 -->
+<article class="card">
+  <div class="card-meta">
+    <span class="card-date">May 30, 2026</span>
+    <span class="card-dot">·</span>
+    <span class="card-tag">VS Code</span>
+  </div>
+  <h2>VS Code Setup Guide for Web Developers: Extensions, Shortcuts &amp; Tips ⚡</h2>
+  <p class="card-desc">Turn VS Code into a powerful development environment with the right extensions, settings and keyboard shortcuts that save hours every week.</p>
+  <button class="read-btn" onclick="toggleBlog('blogA13', this)">
+    <span>Read Now</span><span class="arrow">↓</span>
+  </button>
+  <div class="fullBlog" id="blogA13">
+    <p>Visual Studio Code is free, runs on Windows, Mac and Linux, and is used by more developers than any other editor in the world. But most beginners use it like a basic text editor — they are missing 80% of its power. This guide shows you how to configure VS Code for maximum web development productivity.</p>
+ 
+    <h3>Essential Extensions for Web Developers</h3>
+    <p>Install these from the Extensions panel (Ctrl+Shift+X):</p>
+    <ul>
+      <li><strong>Prettier</strong> — Automatically formats your code on save. Eliminates formatting arguments in teams. Configure: set as default formatter and enable "Format On Save" in settings.</li>
+      <li><strong>ESLint</strong> — Catches JavaScript errors and bad practices as you type. Works with your project's ESLint config.</li>
+      <li><strong>Live Server</strong> — Launch a local development server with live browser refresh on every file save. Essential for HTML/CSS work. Right-click your HTML file → "Open with Live Server".</li>
+      <li><strong>GitLens</strong> — See who wrote every line of code (git blame), visualize git history, and compare branches. Transforms how you work with Git inside VS Code.</li>
+      <li><strong>Auto Rename Tag</strong> — Automatically renames the closing HTML tag when you rename the opening one. Saves constant manual fixes.</li>
+      <li><strong>Path Intellisense</strong> — Autocompletes file paths when you type <code>src=""</code> or <code>import</code>. No more typos in file paths.</li>
+      <li><strong>CSS Peek</strong> — Ctrl+click on a CSS class name in HTML to jump directly to its definition in your stylesheet.</li>
+      <li><strong>Thunder Client</strong> — A lightweight REST API client built into VS Code. Test API endpoints without leaving the editor — a simpler alternative to Postman.</li>
+      <li><strong>Error Lens</strong> — Shows error messages inline on the same line as the error, instead of requiring you to hover. Dramatically speeds up debugging.</li>
+      <li><strong>GitHub Copilot</strong> — AI code completion. Free for students via GitHub Student Developer Pack. Suggests entire functions based on your comments and context.</li>
+    </ul>
+ 
+    <h3>Settings You Should Change Immediately</h3>
+    <p>Open settings: Ctrl+, (Cmd+, on Mac). Or open <code>settings.json</code> with Ctrl+Shift+P → "Open User Settings JSON":</p>
+    <pre><code>{
+  "editor.fontSize": 14,
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.wordWrap": "on",
+  "editor.minimap.enabled": false,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.cursorBlinking": "smooth",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "files.autoSave": "onFocusChange",
+  "terminal.integrated.fontSize": 13,
+  "workbench.colorTheme": "One Dark Pro",
+  "workbench.iconTheme": "material-icon-theme"
+}</code></pre>
+ 
+    <h3>The Most Useful Keyboard Shortcuts</h3>
+    <p>Learning these shortcuts will make you visibly faster — colleagues will notice:</p>
+    <ul>
+      <li><strong>Ctrl+P</strong> — Quick open any file by name. Fastest way to navigate a project.</li>
+      <li><strong>Ctrl+Shift+P</strong> — Command Palette. Access any VS Code command by typing its name.</li>
+      <li><strong>Ctrl+`</strong> — Toggle integrated terminal. Never leave VS Code to open a separate terminal.</li>
+      <li><strong>Alt+Up/Down</strong> — Move a line up or down. Reorder code without cut and paste.</li>
+      <li><strong>Shift+Alt+Down</strong> — Duplicate a line below. Fastest way to copy a line.</li>
+      <li><strong>Ctrl+D</strong> — Select next occurrence of the current word. Press multiple times to select multiple instances and edit them all simultaneously.</li>
+      <li><strong>Ctrl+Shift+L</strong> — Select all occurrences of current word in the file.</li>
+      <li><strong>Ctrl+/**</strong> — Toggle comment on selected line(s).</li>
+      <li><strong>Ctrl+Shift+K</strong> — Delete the current line instantly.</li>
+      <li><strong>Ctrl+B</strong> — Toggle sidebar. Maximum screen space when you need to focus on code.</li>
+      <li><strong>F2</strong> — Rename a variable/function across all files in the project (Rename Symbol).</li>
+      <li><strong>F12</strong> — Go to Definition. Jump to where a function or variable is defined.</li>
+      <li><strong>Alt+Click</strong> — Create multiple cursors. Edit multiple locations in the file simultaneously.</li>
+    </ul>
+ 
+    <h3>Emmet — Write HTML at Lightning Speed</h3>
+    <p>Emmet is built into VS Code and lets you write HTML with CSS-like shortcuts. Type an abbreviation and press Tab:</p>
+    <pre><code>! → Full HTML boilerplate
+div.container → &lt;div class="container"&gt;&lt;/div&gt;
+ul>li*5 → &lt;ul&gt; with 5 &lt;li&gt; items
+a{Click here} → &lt;a href=""&gt;Click here&lt;/a&gt;
+div.card>img+h3{Title}+p{Description} → full card structure
+input[type=email][placeholder="Enter email"] → input with attributes</code></pre>
+ 
+    <h3>Recommended Color Themes</h3>
+    <ul>
+      <li><strong>One Dark Pro</strong> — the most popular theme. Easy on the eyes for long sessions.</li>
+      <li><strong>Dracula Official</strong> — high contrast purple-based theme. Very readable.</li>
+      <li><strong>Night Owl</strong> — specifically designed for night coding. Low eye strain.</li>
+      <li><strong>GitHub Light</strong> — if you prefer a light theme and want consistency with GitHub's interface.</li>
+    </ul>
+ 
+    <h3>Multi-Root Workspaces</h3>
+    <p>Working on a project with a separate frontend and backend folder? Use a Workspace file to open both in one VS Code window: File → Add Folder to Workspace. Save the workspace as a <code>.code-workspace</code> file. Now you see both folders in one sidebar with separate Git tracking for each.</p>
+ 
+    <h3>Integrated Git UI</h3>
+    <p>VS Code has a full Git interface built in — you do not need the terminal for basic operations. Click the Source Control icon (Ctrl+Shift+G). Stage files by clicking the + icon next to changed files. Type a commit message and press Ctrl+Enter to commit. Use the three-dot menu for push, pull, branch switching and more. For complex operations, combine the UI with terminal commands.</p>
+ 
+    <h3>Your Setup Challenge</h3>
+    <p>Spend 30 minutes this week setting up VS Code properly using this guide. Install the 5 most important extensions, configure your settings.json, and practice the top 5 keyboard shortcuts until they are muscle memory. A well-configured editor is not just about convenience — it reduces cognitive load so you can focus entirely on solving the actual problem.</p>
+  </div>
+  <div class="blogStats">
+    <span>👁 8.7K Views</span>
+    <span>❤️ 7.6K Likes</span>
+  </div>
+</article>
+ 
+ 
+<!-- BLOG A14 -->
+<article class="card">
+  <div class="card-meta">
+    <span class="card-date">May 28, 2026</span>
+    <span class="card-dot">·</span>
+    <span class="card-tag">AI Tools</span>
+  </div>
+  <h2>How to Use AI Tools as a Developer Without Losing Your Skills 🤖</h2>
+  <p class="card-desc">GitHub Copilot, ChatGPT and Claude are reshaping how developers work. Learn the right way to use them so they make you better, not dependent.</p>
+  <button class="read-btn" onclick="toggleBlog('blogA14', this)">
+    <span>Read Now</span><span class="arrow">↓</span>
+  </button>
+  <div class="fullBlog" id="blogA14">
+    <p>AI coding assistants have fundamentally changed software development. Surveys in 2025 showed that over 75% of professional developers now use some form of AI tool in their daily workflow. For learners, this creates a genuine dilemma: use AI and risk becoming dependent on it, or avoid it and fall behind professionally. The answer, as with most tools, is to use it correctly.</p>
+ 
+    <h3>The Real Risk: Learning Short-Circuit</h3>
+    <p>The problem is not that AI tools generate code. The problem is when you copy AI-generated code without understanding it. This is the exact same problem as blindly copying Stack Overflow answers — except AI makes it much easier to do at scale. A developer who cannot read and explain the code in their own project is not a developer; they are a prompt engineer with a shaky foundation. The moment the AI makes an error (and it regularly does), they cannot spot it.</p>
+ 
+    <h3>The Right Mental Model</h3>
+    <p>Think of AI tools as an <strong>extremely fast, knowledgeable pair programmer</strong> who makes frequent mistakes and has no understanding of your specific project context. You are the senior developer. You decide what to build, review the output critically, catch the errors, and integrate it thoughtfully. The AI is fast — you are smart. Together you are productive.</p>
+ 
+    <h3>GitHub Copilot — Best Practices</h3>
+    <p>Copilot works as an autocomplete that suggests entire functions. Use it effectively:</p>
+    <ul>
+      <li><strong>Write a descriptive comment first.</strong> Type <code>// Function to validate email format and return boolean</code> before writing any code. Copilot's suggestion quality dramatically improves with clear comments.</li>
+      <li><strong>Read every suggestion before accepting.</strong> Tab to accept — but actually read what it wrote. If you cannot explain what the accepted code does, do not accept it.</li>
+      <li><strong>Use it for boilerplate, not logic.</strong> Let Copilot write your import statements, basic class structure, and repetitive patterns. Write your core business logic yourself — that is where real learning happens.</li>
+      <li><strong>Generate tests.</strong> Asking Copilot to write unit tests for your functions is excellent practice. It generates edge cases you might not have thought of, and reading the tests helps you understand your own code better.</li>
+    </ul>
+ 
+    <h3>ChatGPT / Claude — Best Practices for Learning</h3>
+    <ul>
+      <li><strong>Ask "why" not just "what".</strong> Instead of "write me a sort function", ask "explain the difference between merge sort and quick sort, when would I use each, then show me both implementations." You learn from the explanation.</li>
+      <li><strong>Use it to debug, not to solve.</strong> When you have a bug, paste your code and say "I expected X but got Y — can you help me understand why?" Force yourself to find the error with AI guidance rather than asking AI to rewrite the code.</li>
+      <li><strong>Verify everything independently.</strong> AI tools confidently produce incorrect code, outdated APIs, and completely hallucinated function names. Always test the code and cross-reference with official documentation.</li>
+      <li><strong>Ask for explanations of unfamiliar code.</strong> Paste a piece of code you found or that AI generated and ask "explain this line by line." This is one of the most genuinely useful learning applications.</li>
+    </ul>
+ 
+    <h3>Where AI Tools Genuinely Excel</h3>
+    <ul>
+      <li>Writing boilerplate code (class scaffolding, basic CRUD endpoints, test setup).</li>
+      <li>Converting between languages (Python to JavaScript, SQL to MongoDB queries).</li>
+      <li>Generating documentation and code comments from your existing code.</li>
+      <li>Explaining error messages in plain English when you are stuck.</li>
+      <li>Suggesting regex patterns (regex is notoriously hard to write from scratch).</li>
+      <li>Brainstorming architecture approaches before you commit to one.</li>
+    </ul>
+ 
+    <h3>Where AI Tools Regularly Fail</h3>
+    <ul>
+      <li><strong>Complex, multi-file projects</strong> — AI has no understanding of your full codebase context. It will suggest code that breaks other parts of your system.</li>
+      <li><strong>Security-sensitive code</strong> — Authentication, authorization, input validation. AI-generated security code often has subtle but serious vulnerabilities. Write this yourself and have it reviewed.</li>
+      <li><strong>Latest API versions</strong> — AI training data has a cutoff date. It will confidently use deprecated APIs, old syntax, and outdated patterns. Always check the official documentation.</li>
+      <li><strong>Business logic</strong> — Only you know the specific requirements of your product. AI does not understand your users, your constraints, or your company's rules.</li>
+    </ul>
+ 
+    <h3>The Skills That AI Cannot Replace</h3>
+    <p>Understand these skills, because they are what makes a developer irreplaceable in an AI-abundant world:</p>
+    <ul>
+      <li><strong>Problem decomposition</strong> — breaking a complex problem into solvable sub-problems.</li>
+      <li><strong>System design</strong> — understanding how components fit together at scale.</li>
+      <li><strong>Code review</strong> — reading code critically and catching logical errors.</li>
+      <li><strong>Debugging</strong> — systematic reasoning about why something is wrong.</li>
+      <li><strong>Communication</strong> — translating technical decisions for non-technical stakeholders.</li>
+      <li><strong>Judgment</strong> — choosing the right tool or approach for a specific context.</li>
+    </ul>
+ 
+    <h3>The 70/30 Rule</h3>
+    <p>A practical guideline: let AI handle up to 30% of your code in any given session — the repetitive, structural, well-defined parts. Ensure you write and fully understand at least 70% yourself. As your skills grow, you will naturally generate more of your own code because you will be faster than typing the prompt. AI tools are a ladder to climb — not a hammock to rest in.</p>
+  </div>
+  <div class="blogStats">
+    <span>👁 10.1K Views</span>
+    <span>❤️ 8.9K Likes</span>
+  </div>
+</article>
+ 
+ 
+<!-- BLOG A15 -->
+<article class="card">
+  <div class="card-meta">
+    <span class="card-date">May 26, 2026</span>
+    <span class="card-dot">·</span>
+    <span class="card-tag">Web Performance</span>
+  </div>
+  <h2>Web Performance for Beginners: Make Your Website Load Faster ⚡</h2>
+  <p class="card-desc">A slow website loses users and rankings. Learn the most impactful techniques to optimize loading speed — no advanced tools required.</p>
+  <button class="read-btn" onclick="toggleBlog('blogA15', this)">
+    <span>Read Now</span><span class="arrow">↓</span>
+  </button>
+  <div class="fullBlog" id="blogA15">
+    <p>Google research shows that 53% of mobile users abandon a site if it takes more than 3 seconds to load. Every 100ms of extra load time decreases conversion rates by about 1%. Web performance is not just a technical concern — it is a business concern, a UX concern, and since Google's Core Web Vitals update, a search ranking concern. Here is how to fix the most common performance problems.</p>
+ 
+    <h3>How to Measure Your Site Speed First</h3>
+    <p>Before optimizing, measure. Use these free tools:</p>
+    <ul>
+      <li><strong>PageSpeed Insights</strong> (pagespeed.web.dev) — Google's official tool. Gives you a performance score and specific recommendations for your URL.</li>
+      <li><strong>WebPageTest</strong> (webpagetest.org) — More detailed analysis. Test from specific locations (Mumbai, Singapore) on real mobile devices.</li>
+      <li><strong>Chrome DevTools</strong> — Press F12 → Network tab. Reload the page to see every resource that loads, its size, and how long it took.</li>
+    </ul>
+    <p>Focus on the three Core Web Vitals: <strong>LCP</strong> (Largest Contentful Paint — how fast the main content loads, target under 2.5s), <strong>CLS</strong> (Cumulative Layout Shift — how much the page jumps around, target under 0.1), and <strong>INP</strong> (Interaction to Next Paint — how fast the page responds to clicks, target under 200ms).</p>
+ 
+    <h3>Fix 1: Optimize Your Images (Biggest Impact)</h3>
+    <p>Images are typically 60–70% of a webpage's total download size. Fixing images alone can cut your page size by half:</p>
+    <ul>
+      <li><strong>Use WebP format</strong> — WebP images are 25–35% smaller than JPG/PNG with the same visual quality. Convert for free at squoosh.app.</li>
+      <li><strong>Set explicit width and height</strong> — prevents layout shift (CLS) as images load.</li>
+      <li><strong>Use lazy loading</strong> — images below the fold do not need to load immediately.</li>
+      <li><strong>Serve appropriately sized images</strong> — do not serve a 2000px wide image in a 400px container.</li>
+    </ul>
+    <pre><code>&lt;!-- Good image HTML --&gt;
+&lt;img
+  src="hero.webp"
+  alt="Team working on laptops"
+  width="800"
+  height="450"
+  loading="lazy"
+&gt;
+ 
+&lt;!-- Even better — responsive images --&gt;
+&lt;img
+  srcset="hero-400.webp 400w, hero-800.webp 800w, hero-1200.webp 1200w"
+  sizes="(max-width: 600px) 400px, (max-width: 1000px) 800px, 1200px"
+  src="hero-800.webp"
+  alt="Team working"
+  loading="lazy"
+&gt;</code></pre>
+ 
+    <h3>Fix 2: Minimize and Compress CSS and JavaScript</h3>
+    <p>Modern build tools like Vite and Webpack automatically minify (remove whitespace and comments) and bundle your files. If you are not using a build tool, use these free online tools:</p>
+    <ul>
+      <li><strong>CSS Minifier</strong> (cssminifier.com) — paste CSS, get minified output.</li>
+      <li><strong>JavaScript Minifier</strong> (javascript-minifier.com) — same for JS.</li>
+    </ul>
+    <p>Enable <strong>Gzip or Brotli compression</strong> on your server. Most hosting platforms (Netlify, Vercel, Cloudflare) do this automatically. Gzip typically reduces text file sizes by 60–80%.</p>
+ 
+    <h3>Fix 3: Load Fonts Efficiently</h3>
+    <p>Google Fonts is convenient but adds a network request. Optimize:</p>
+    <pre><code>&lt;!-- Add this to your &lt;head&gt; --&gt;
+&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+ 
+&lt;!-- Only load the weights you actually use --&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"&gt;
+&lt;!-- display=swap prevents FOIT (Flash of Invisible Text) --&gt;</code></pre>
+    <p>Even better: download the font files, self-host them, and use <code>@font-face</code> in your CSS. This eliminates the Google Fonts network request entirely.</p>
+ 
+    <h3>Fix 4: Preload Critical Resources</h3>
+    <p>Tell the browser in advance about important resources it will need, so it starts fetching them early:</p>
+    <pre><code>&lt;!-- In &lt;head&gt;: preload the hero image and main font --&gt;
+&lt;link rel="preload" href="hero.webp" as="image"&gt;
+&lt;link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin&gt;
+ 
+&lt;!-- Preconnect to external domains you will fetch from --&gt;
+&lt;link rel="preconnect" href="https://api.yourservice.com"&gt;</code></pre>
+ 
+    <h3>Fix 5: Eliminate Render-Blocking Resources</h3>
+    <p>CSS in <code>&lt;head&gt;</code> and JavaScript in <code>&lt;head&gt;</code> block the browser from rendering anything until they finish downloading. Fix JS placement:</p>
+    <pre><code>&lt;!-- Wrong — blocks page render --&gt;
+&lt;head&gt;
+  &lt;script src="app.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+ 
+&lt;!-- Right — async or defer --&gt;
+&lt;head&gt;
+  &lt;script src="analytics.js" async&gt;&lt;/script&gt;  &lt;!-- loads in parallel, executes immediately --&gt;
+  &lt;script src="app.js" defer&gt;&lt;/script&gt;        &lt;!-- loads in parallel, executes after HTML parsed --&gt;
+&lt;/head&gt;</code></pre>
+    <p>Use <code>defer</code> for your main application scripts. Use <code>async</code> for scripts that do not depend on the DOM (analytics, tracking).</p>
+ 
+    <h3>Fix 6: Use a CDN for Static Assets</h3>
+    <p>A CDN (Content Delivery Network) stores copies of your files on servers around the world. A user in Mumbai gets your assets from a nearby Indian server instead of your host in the US — dramatically reducing latency. Cloudflare CDN is free. Netlify and Vercel automatically serve your site through their CDN when you deploy to them — another reason they are excellent for Indian developers.</p>
+ 
+    <h3>Fix 7: Set Browser Caching</h3>
+    <p>Tell browsers to save your files locally so repeat visitors do not need to download them again. Add these headers in your server config or Netlify's <code>_headers</code> file:</p>
+    <pre><code># _headers file for Netlify
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate</code></pre>
+ 
+    <h3>Your Performance Checklist</h3>
+    <ul>
+      <li>✅ Run PageSpeed Insights and note your current score.</li>
+      <li>✅ Convert all images to WebP and compress them.</li>
+      <li>✅ Add <code>loading="lazy"</code> to all images below the fold.</li>
+      <li>✅ Add <code>defer</code> to all your script tags.</li>
+      <li>✅ Preconnect to Google Fonts and any external APIs.</li>
+      <li>✅ Remove unused CSS (use PurgeCSS or check Chrome DevTools Coverage tab).</li>
+      <li>✅ Deploy on Vercel or Netlify for automatic CDN and Brotli compression.</li>
+      <li>✅ Run PageSpeed Insights again — compare before and after scores.</li>
+    </ul>
+    <p>Even applying just the image optimization and deferred JavaScript loading can push most beginner sites from a PageSpeed score of 40–60 up to 80–90. Start with the highest-impact fixes first, measure the improvement, and work your way down the list.</p>
+  </div>
+  <div class="blogStats">
+    <span>👁 7.2K Views</span>
+    <span>❤️ 6.4K Likes</span>
+  </div>
+</article>
  
 </section>
  
