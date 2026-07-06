@@ -1,0 +1,42 @@
+# DGBPLabZ
+
+> DGBPLabZ is a project-based learning platform, operated by DevGameBlogPromo, teaching Web Development, AI & Machine Learning, and Cloud/DevOps through real projects and live mentorship. Based in Hyderabad, Telangana, India, with students across India and internationally.
+
+DGBPLabZ was founded in 2023 by Kakarla Manish Reddy. Courses are project-first (not lecture-based), taught via live Discord sessions, and priced one-time in INR: Frontend Web Development (₹499), AI & Machine Learning (₹799), and Cloud Architecture & DevOps (₹999). Each course includes mentorship, project reviews, and a completion certificate.
+
+## Courses
+
+- [Learning Curriculum](https://devgameblogpromo.vercel.app/Learning%20Curriculum.html): Full breakdown of all three course tracks — Frontend Development, AI & Machine Learning, and Cloud & DevOps — including syllabus, tools, and project structure.
+- [Career Paths](https://devgameblogpromo.vercel.app/Career%20Paths.html): Progression path from student to leadership roles within DGBPLabZ labs.
+
+## Mentorship & Community
+
+- [Mentorship Program](https://devgameblogpromo.vercel.app/mentorship.html): Live mentorship program details and enrollment.
+- [Innovation Labs](https://devgameblogpromo.vercel.app/carrer.html): 28 project-based labs offering real enterprise-style project exposure.
+- [Founder Journey](https://devgameblogpromo.vercel.app/founder.html): Background and philosophy of founder Kakarla Manish Reddy.
+- [Core Team](https://devgameblogpromo.vercel.app/core%20team.html): Meet the mentors and staff.
+
+## Resources
+
+- [Blog](https://devgameblogpromo.vercel.app/blog.html): Articles and updates from DGBPLabZ.
+- [FAQ](https://devgameblogpromo.vercel.app/FAQ.html): Answers to common questions about courses, pricing, certification, and enrollment.
+- [Books Store](https://devgameblogpromo.vercel.app/Books.html): Recommended technical reading.
+
+## Policies & Governance
+
+- [Terms of Service](https://docs.google.com/document/d/1cfpmmcymNQnB-PoD-KiwY2WQFhvRzblkiv8mFrHEcRY/edit): Terms governing use of DGBPLabZ services.
+- [Policy Hub](https://devgameblogpromo.vercel.app/DGBP%20India%20Policy%20Portal.html): DevGameBlogPromo's India policy documentation.
+- [Official Documents](https://devgameblogpromo.vercel.app/Public%20Documents.html): Public-facing organizational documents.
+- [Governance & Press](https://devgameblogpromo.vercel.app/DGBPboard.html): Board structure and press releases.
+
+## Contact
+
+- Email: m81434409@gmail.com
+- [Discord Community](https://discord.gg/HdvgYfGw6s)
+- [WhatsApp Channel](https://whatsapp.com/channel/0029VbBxEVF23n3gy0Ndpp2J)
+- [Instagram](https://www.instagram.com/devgameblogpromo/)
+
+## Optional
+
+- [Ecosystem Purpose Doc](https://docs.google.com/document/d/1WIx2NHOD_i_lpI5g289VnN_jEFsZ9IPt0ouQ1mkvwH0/edit): Broader purpose statement for the DevGameBlogPromo network.
+- [Culture Blueprint](https://docs.google.com/document/d/1FgSGJqn6ofVdUAzamu5oVnuMDQxlpEzOKhIoeKscReA/edit): Internal culture and values documentation.
