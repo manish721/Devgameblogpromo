@@ -1,59 +1,72 @@
-<?xml version="1.0" encoding="UTF-8"?> 
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> 
-<url>
-  <loc>http://devgameblogpromo.vercel.app/</loc>
-</url>
-<url>
-  <loc>http://devgameblogpromo.vercel.app/carrer.html</loc>
-</url>
-<url>
-  <loc>http://devgameblogpromo.vercel.app/blog.html</loc>
-</url>
-<url>
-  <loc>http://devgameblogpromo.vercel.app/mentorship.html</loc>
-</url>
-<url>
-  <loc>http://devgameblogpromo.vercel.app/announcement page.html</loc>
-</url>
-<url>
-  <loc>http://devgameblogpromo.vercel.app/Learning Curriculum.html</loc>
-</url>
-<url>
-  <loc>http://devgameblogpromo.vercel.app/Agency.html</loc>
-</url>
-<url>
-  <loc>http://devgameblogpromo.vercel.app/DGBP India Policy Portal.html</loc>
-</url>
-<url>
-  <loc>http://devgameblogpromo.vercel.app/Public Documents.html</loc>
-</url>
-<url>
-  <loc>http://devgameblogpromo.vercel.app/Books.html</loc>
-</url>
-<url>
-  <loc>http://devgameblogpromo.vercel.app/more.html</loc>
-</url>
-<url>
-  <loc>http://devgameblogpromo.vercel.app/Career Paths.html</loc>
-</url>
-<url>
-  <loc>http://devgameblogpromo.vercel.app/founder.html</loc>
-</url>
-<url>
-  <loc>http://devgameblogpromo.vercel.app/core team.html</loc>
-</url>
-<url>
-  <loc>http://devgameblogpromo.vercel.app/DGBPboard.html</loc>
-</url>
-<url>
-  <loc>http://devgameblogpromo.vercel.app/FAQ.html</loc>
-</url>
-<url>
-  <loc>http://devgameblogpromo.vercel.app/Execution.html</loc>
-</url>
-<url>
-  <loc>http://devgameblogpromo.vercel.app/DevGameBlogPromo.html</loc>
-</url>
-<url>
-  <loc></loc>
-</url>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://devgameblogpromo.vercel.app/</loc>
+  </url>
+
+  <url>
+    <loc>https://devgameblogpromo.vercel.app/career.html</loc>
+  </url>
+
+  <url>
+    <loc>https://devgameblogpromo.vercel.app/blog.html</loc>
+  </url>
+
+  <url>
+    <loc>https://devgameblogpromo.vercel.app/mentorship.html</loc>
+  </url>
+
+  <url>
+    <loc>https://devgameblogpromo.vercel.app/announcement-page.html</loc>
+  </url>
+
+  <url>
+    <loc>https://devgameblogpromo.vercel.app/learning-curriculum.html</loc>
+  </url>
+
+  <url>
+    <loc>https://devgameblogpromo.vercel.app/agency.html</loc>
+  </url>
+
+  <url>
+    <loc>https://devgameblogpromo.vercel.app/policy-portal.html</loc>
+  </url>
+
+  <url>
+    <loc>https://devgameblogpromo.vercel.app/public-documents.html</loc>
+  </url>
+
+  <url>
+    <loc>https://devgameblogpromo.vercel.app/books.html</loc>
+  </url>
+
+  <url>
+    <loc>https://devgameblogpromo.vercel.app/more.html</loc>
+  </url>
+
+  <url>
+    <loc>https://devgameblogpromo.vercel.app/career-paths.html</loc>
+  </url>
+
+  <url>
+    <loc>https://devgameblogpromo.vercel.app/founder.html</loc>
+  </url>
+
+  <url>
+    <loc>https://devgameblogpromo.vercel.app/core-team.html</loc>
+  </url>
+
+  <url>
+    <loc>https://devgameblogpromo.vercel.app/board.html</loc>
+  </url>
+
+  <url>
+    <loc>https://devgameblogpromo.vercel.app/faq.html</loc>
+  </url>
+
+  <url>
+    <loc>https://devgameblogpromo.vercel.app/execution.html</loc>
+  </url>
+
+</urlset>
