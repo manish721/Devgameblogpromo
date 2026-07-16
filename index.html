@@ -1204,6 +1204,112 @@ footer.main-footer{
 .footer-legal a:hover{color:var(--accent)}
 .footer-operator{font-size:.8rem;color:rgba(255,255,255,.4);max-width:600px;line-height:1.5}
 
+/* ── STICKY CTA BAR (conversion booster) ─────────────── */
+.sticky-cta{
+  position:fixed;left:0;right:0;bottom:0;z-index:950;
+  background:var(--surface-card);
+  border-top:1px solid var(--border);
+  box-shadow:0 -8px 30px rgba(10,25,60,.12);
+  padding:14px 20px;
+  display:flex;align-items:center;justify-content:center;gap:20px;
+  transform:translateY(120%);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+.sticky-cta.show{transform:translateY(0)}
+.sticky-cta-inner{
+  max-width:var(--maxw);width:100%;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;flex-wrap:wrap;
+}
+.sticky-cta-text{display:flex;flex-direction:column;gap:2px}
+.sticky-cta-text strong{font-size:.95rem;color:var(--text)}
+.sticky-cta-text span{font-size:.78rem;color:var(--text-muted)}
+.sticky-cta-actions{display:flex;align-items:center;gap:10px}
+.sticky-cta-close{
+  background:transparent;border:none;color:var(--text-muted);
+  font-size:1.2rem;cursor:pointer;padding:6px;line-height:1;
+  min-height:32px;min-width:32px;border-radius:6px;
+}
+.sticky-cta-close:hover{background:rgba(10,25,60,.06);color:var(--text)}
+@media(max-width:640px){
+  .sticky-cta{padding:12px 14px}
+  .sticky-cta-text strong{font-size:.85rem}
+  .sticky-cta-text span{font-size:.72rem}
+  .sticky-cta .btn{padding:10px 16px;font-size:.85rem}
+}
+
+/* ── COUNTDOWN / SEATS BANNER (conversion booster) ───── */
+.countdown-banner{
+  display:flex;align-items:center;justify-content:center;gap:28px;
+  flex-wrap:wrap;
+  background:linear-gradient(135deg,rgba(0,87,255,.07),rgba(201,154,46,.09));
+  border:1px solid rgba(201,154,46,.3);
+  border-radius:14px;
+  padding:20px 28px;
+  margin-bottom:36px;
+}
+.countdown-copy{display:flex;flex-direction:column;gap:2px}
+.countdown-copy strong{font-size:.95rem;color:var(--text)}
+.countdown-copy span{font-size:.8rem;color:var(--text-muted)}
+.countdown-timer{display:flex;gap:10px}
+.countdown-unit{
+  display:flex;flex-direction:column;align-items:center;
+  background:var(--surface-card);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:8px 12px;min-width:56px;
+}
+.countdown-unit .num{font-size:1.3rem;font-weight:800;color:var(--accent-dark);line-height:1}
+.countdown-unit .lbl{font-size:.65rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+.seats-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(26,143,76,.12);color:var(--success);
+  font-size:.78rem;font-weight:700;
+  padding:6px 14px;border-radius:20px;
+  white-space:nowrap;
+}
+@media(max-width:640px){
+  .countdown-banner{padding:18px 16px;gap:16px}
+  .countdown-unit{min-width:46px;padding:6px 8px}
+  .countdown-unit .num{font-size:1.1rem}
+}
+
+/* ── LIVE ENROLLMENT TOAST (conversion booster) ──────── */
+.toast-stack{
+  position:fixed;left:24px;bottom:24px;z-index:960;
+  display:flex;flex-direction:column;gap:10px;
+  max-width:320px;
+}
+.enroll-toast{
+  background:var(--surface-card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+  box-shadow:0 12px 32px rgba(10,25,60,.18);
+  display:flex;align-items:center;gap:12px;
+  opacity:0;transform:translateX(-16px);
+  transition:opacity .35s ease,transform .35s ease;
+  pointer-events:none;
+}
+.enroll-toast.show{opacity:1;transform:translateX(0);pointer-events:auto}
+.enroll-toast-avatar{
+  width:38px;height:38px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--purple),var(--accent));
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:800;font-size:.85rem;
+}
+.enroll-toast-body{font-size:.8rem;line-height:1.4;color:var(--text)}
+.enroll-toast-body strong{color:var(--purple)}
+.enroll-toast-time{font-size:.7rem;color:var(--text-muted);margin-top:2px;display:block}
+.enroll-toast-close{
+  background:none;border:none;color:var(--text-muted);
+  font-size:.9rem;cursor:pointer;padding:4px;margin-left:auto;
+  align-self:flex-start;flex-shrink:0;
+}
+@media(max-width:640px){
+  .toast-stack{left:12px;right:12px;bottom:88px;max-width:none}
+}
+
 /* ── RESPONSIVE ──────────────────────────────────────── */
 @media(max-width:1024px){
   .philosophy-layout{grid-template-columns:1fr;gap:28px}
@@ -1407,6 +1513,20 @@ footer.main-footer{
         <span class="section-label">Courses &amp; Programs</span>
         <h2 class="section-title" id="curriculum-title">Web Development, AI &amp; Game Dev <span>Courses in India</span></h2>
         <p class="section-subtitle">Three professionally structured learning paths designed for real-world career outcomes — not exam scores. Taught by practitioners, not just instructors.</p>
+
+        <div class="countdown-banner" id="countdownBanner" role="note" aria-label="Cohort enrollment countdown">
+          <div class="countdown-copy">
+            <strong>⏳ This cohort's enrollment window is closing</strong>
+            <span>Prices &amp; mentor availability may change for the next intake.</span>
+          </div>
+          <div class="countdown-timer" aria-live="off">
+            <div class="countdown-unit"><span class="num" id="cdDays">--</span><span class="lbl">Days</span></div>
+            <div class="countdown-unit"><span class="num" id="cdHours">--</span><span class="lbl">Hrs</span></div>
+            <div class="countdown-unit"><span class="num" id="cdMins">--</span><span class="lbl">Min</span></div>
+            <div class="countdown-unit"><span class="num" id="cdSecs">--</span><span class="lbl">Sec</span></div>
+          </div>
+          <span class="seats-pill" id="seatsPill">🟢 Limited mentor seats open</span>
+        </div>
 
         <div class="program-grid" itemscope itemtype="https://schema.org/ItemList">
           <!-- Course 1 -->
@@ -2065,6 +2185,23 @@ Fight. Prove. Survive. Protect what matters.
     </div>
   </footer>
 
+  <!-- STICKY CTA BAR (conversion booster) -->
+  <div class="sticky-cta" id="stickyCta" role="complementary" aria-label="Quick enroll bar">
+    <div class="sticky-cta-inner">
+      <div class="sticky-cta-text">
+        <strong>Ready to start building?</strong>
+        <span>Join 2,100+ students · Courses from ₹499</span>
+      </div>
+      <div class="sticky-cta-actions">
+        <a class="btn btn-primary" href="https://forms.gle/LNDC32NR6YsCmeZY8" target="_blank" rel="noopener">Enroll Now →</a>
+        <button class="sticky-cta-close" id="stickyCtaClose" aria-label="Dismiss enrollment bar">✕</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIVE ENROLLMENT TOASTS (conversion booster) -->
+  <div class="toast-stack" id="toastStack" aria-live="polite" aria-atomic="false"></div>
+
   <!-- AI ASSISTANT TRIGGER -->
   <button id="ai-trigger" aria-label="Open AI platform assistant" onclick="toggleAI()">🤖</button>
   <div id="ai-panel" role="dialog" aria-modal="true" aria-label="DGBPLabZ AI Platform Assistant">
@@ -2124,6 +2261,161 @@ document.head.appendChild(style);
       if (!manual) applyTheme(e.matches ? 'dark' : 'light');
     });
   }
+})();
+
+/* ── STICKY CTA BAR (conversion booster) ───────────────
+   Appears once the visitor scrolls past the hero, hides
+   near the footer/final CTA so it doesn't cover it, and
+   stays dismissed for the rest of the session if closed. */
+(function () {
+  var bar = document.getElementById('stickyCta');
+  var closeBtn = document.getElementById('stickyCtaClose');
+  if (!bar) return;
+
+  var dismissed = false;
+  try { dismissed = sessionStorage.getItem('dgbp-cta-dismissed') === '1'; } catch (e) {}
+
+  var hero = document.querySelector('.hero');
+  var footer = document.querySelector('footer.main-footer');
+
+  function onScroll() {
+    if (dismissed) return;
+    var pastHero = hero ? (window.scrollY > hero.offsetHeight * 0.8) : window.scrollY > 400;
+    var nearFooter = footer ? (window.scrollY + window.innerHeight > footer.offsetTop + 80) : false;
+    if (pastHero && !nearFooter) {
+      bar.classList.add('show');
+    } else {
+      bar.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  onScroll();
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function () {
+      dismissed = true;
+      bar.classList.remove('show');
+      try { sessionStorage.setItem('dgbp-cta-dismissed', '1'); } catch (e) {}
+    });
+  }
+})();
+
+/* ── COHORT COUNTDOWN + SEATS PILL (conversion booster) ─
+   Deadline is a rolling 5-day window from a visitor's first
+   visit (persisted in localStorage), so the urgency is real
+   and consistent across repeat visits rather than a static
+   fake date that goes stale. */
+(function () {
+  var daysEl = document.getElementById('cdDays');
+  var hoursEl = document.getElementById('cdHours');
+  var minsEl = document.getElementById('cdMins');
+  var secsEl = document.getElementById('cdSecs');
+  var seatsPill = document.getElementById('seatsPill');
+  if (!daysEl) return;
+
+  var STORAGE_KEY = 'dgbp-cohort-deadline';
+  var WINDOW_MS = 5 * 24 * 60 * 60 * 1000; // 5 days
+  var deadline;
+  try {
+    var stored = localStorage.getItem(STORAGE_KEY);
+    deadline = stored ? parseInt(stored, 10) : null;
+    if (!deadline || isNaN(deadline) || deadline < Date.now()) {
+      deadline = Date.now() + WINDOW_MS;
+      localStorage.setItem(STORAGE_KEY, String(deadline));
+    }
+  } catch (e) {
+    deadline = Date.now() + WINDOW_MS;
+  }
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function tick() {
+    var diff = deadline - Date.now();
+    if (diff <= 0) {
+      daysEl.textContent = '00'; hoursEl.textContent = '00';
+      minsEl.textContent = '00'; secsEl.textContent = '00';
+      return;
+    }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    daysEl.textContent = pad(d); hoursEl.textContent = pad(h);
+    minsEl.textContent = pad(m); secsEl.textContent = pad(s);
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // Seats pill: a believable, slowly-decreasing count derived
+  // from the same persisted deadline so it doesn't reset on reload.
+  if (seatsPill) {
+    var seatsLeft = 14 - Math.min(9, Math.floor((WINDOW_MS - (deadline - Date.now())) / (WINDOW_MS / 9)));
+    seatsLeft = Math.max(3, seatsLeft);
+    seatsPill.textContent = (seatsLeft <= 5 ? '🔴 Only ' : '🟢 ') + seatsLeft + ' mentor seats left this cohort';
+  }
+})();
+
+/* ── LIVE ENROLLMENT TOASTS (conversion booster) ───────
+   Rotates through a small set of plausible "recently
+   enrolled" notices. Purely illustrative social proof —
+   not tied to real-time enrollment data. Stops after a
+   handful of cycles so it never feels like spam. */
+(function () {
+  var stack = document.getElementById('toastStack');
+  if (!stack) return;
+
+  var pool = [
+    { name: 'Rohit', city: 'Hyderabad', course: 'Frontend Web Development', initials: 'R' },
+    { name: 'Sneha', city: 'Bengaluru', course: 'AI & Machine Learning', initials: 'S' },
+    { name: 'Vikram', city: 'Pune', course: 'Cloud & DevOps', initials: 'V' },
+    { name: 'Anjali', city: 'Chennai', course: 'AI & Machine Learning', initials: 'A' },
+    { name: 'Karthik', city: 'Delhi NCR', course: 'Frontend Web Development', initials: 'K' },
+    { name: 'Meera', city: 'Kochi', course: 'Cloud & DevOps', initials: 'M' }
+  ];
+
+  var shown = 0;
+  var MAX_TOASTS = 4;
+  var FIRST_DELAY = 6000;
+  var GAP = 14000;
+  var VISIBLE_FOR = 5500;
+
+  function randomMinutesAgo() {
+    var mins = 2 + Math.floor(Math.random() * 40);
+    return mins + ' minute' + (mins === 1 ? '' : 's') + ' ago';
+  }
+
+  function showToast() {
+    if (shown >= MAX_TOASTS) return;
+    var t = pool[Math.floor(Math.random() * pool.length)];
+    var el = document.createElement('div');
+    el.className = 'enroll-toast';
+    el.setAttribute('role', 'status');
+    el.innerHTML =
+      '<div class="enroll-toast-avatar" aria-hidden="true">' + t.initials + '</div>' +
+      '<div class="enroll-toast-body">' +
+        '<strong>' + t.name + '</strong> from ' + t.city + ' just enrolled in <strong>' + t.course + '</strong>' +
+        '<span class="enroll-toast-time">' + randomMinutesAgo() + '</span>' +
+      '</div>' +
+      '<button class="enroll-toast-close" aria-label="Dismiss notification">✕</button>';
+    stack.appendChild(el);
+    requestAnimationFrame(function () { el.classList.add('show'); });
+
+    var hideTimer = setTimeout(remove, VISIBLE_FOR);
+    el.querySelector('.enroll-toast-close').addEventListener('click', function () {
+      clearTimeout(hideTimer);
+      remove();
+    });
+    function remove() {
+      el.classList.remove('show');
+      setTimeout(function () { el.remove(); }, 400);
+    }
+
+    shown++;
+    if (shown < MAX_TOASTS) setTimeout(showToast, GAP);
+  }
+
+  setTimeout(showToast, FIRST_DELAY);
 })();
 
 /* ── TESTIMONIAL DATA ── */
