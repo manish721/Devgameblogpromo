@@ -402,6 +402,74 @@
   --shadow-card:0 4px 24px rgba(10,25,60,.08);
 }
 
+/* ── DARK MODE TOKENS ─────────────────────────────────
+   Overrides the same variable names, so every existing
+   component (cards, buttons, footer, header, etc.) picks
+   up the dark palette automatically with zero extra CSS. */
+html[data-theme="dark"]{
+  --bg:#0b0f19;
+  --surface:#121826;
+  --surface-card:#161d2e;
+  --border:rgba(255,255,255,.10);
+  --text:#eef1f8;
+  --text-muted:#a3acc2;
+  --accent:#e0b34a;
+  --accent-dark:#f0c869;
+  --accent-glow:rgba(224,179,74,.25);
+  --purple:#5b9bff;
+  --warning:#f5b942;
+  --success:#3ecb7e;
+  --shadow-card:0 4px 24px rgba(0,0,0,.35);
+}
+html[data-theme="dark"] body{background:var(--bg)}
+html[data-theme="dark"] header{background:rgba(11,15,25,.97)}
+html[data-theme="dark"] .btn-secondary{background:rgba(255,255,255,.05)}
+html[data-theme="dark"] .btn-secondary:hover,
+html[data-theme="dark"] .btn-secondary:focus-visible{background:rgba(255,255,255,.09)}
+html[data-theme="dark"] .trust-badge{background:rgba(255,255,255,.04)}
+html[data-theme="dark"] .map-svg{opacity:.5;filter:grayscale(100%) invert(.88)}
+html[data-theme="dark"] .newsletter-form input{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14)}
+html[data-theme="dark"] footer.main-footer{background:#05070d}
+html[data-theme="dark"] .marquee-outer::before{background:linear-gradient(90deg,var(--bg),transparent)}
+html[data-theme="dark"] .marquee-outer::after{background:linear-gradient(270deg,var(--bg),transparent)}
+html{transition:background-color .25s ease}
+body,.card,.program-card,.t-card,.faq-item,header,footer.main-footer,
+.instructor-card,.notice-box,.quote-card,.clarity-section,.env-panel,#ai-panel{
+  transition:background-color .25s ease,border-color .25s ease,color .25s ease;
+}
+
+/* ── THEME TOGGLE BUTTON ─────────────────────────────── */
+.theme-toggle{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:44px;height:44px;
+  border-radius:50%;
+  border:1px solid var(--border);
+  background:rgba(10,25,60,.03);
+  color:var(--text);
+  cursor:pointer;
+  font-size:1.15rem;
+  touch-action:manipulation;
+  transition:var(--tr);
+  flex-shrink:0;
+  margin-left:8px;
+}
+html[data-theme="dark"] .theme-toggle{background:rgba(255,255,255,.05)}
+.theme-toggle:hover,.theme-toggle:focus-visible{
+  border-color:rgba(0,87,255,.35);
+  transform:translateY(-1px) rotate(8deg);
+}
+.theme-toggle .icon-sun,.theme-toggle .icon-moon{
+  position:absolute;
+  transition:opacity .25s ease, transform .25s ease;
+}
+.theme-toggle .icon-sun{opacity:1;transform:scale(1) rotate(0)}
+.theme-toggle .icon-moon{opacity:0;transform:scale(.4) rotate(-90deg)}
+html[data-theme="dark"] .theme-toggle .icon-sun{opacity:0;transform:scale(.4) rotate(90deg)}
+html[data-theme="dark"] .theme-toggle .icon-moon{opacity:1;transform:scale(1) rotate(0)}
+
 /* ── RESET & BASE ────────────────────────────────────── */
 *, *::before, *::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -531,6 +599,7 @@ header{
 }
 .brand-meta .brand-name{font-size:1.2rem;font-weight:800;color:var(--text);display:block}
 .brand-meta .brand-tagline{font-size:.72rem;color:var(--text-muted);display:block}
+.nav-right{display:flex;align-items:center}
 nav.nav-menu{display:flex;align-items:center;gap:6px}
 nav.nav-menu > a{
   padding:8px 14px;
@@ -1173,6 +1242,17 @@ footer.main-footer{
   *{animation:none!important;transition:none!important}
 }
   </style>
+
+  <!-- Prevent flash-of-wrong-theme: set data-theme before first paint -->
+  <script>
+  (function(){
+    try{
+      var saved = localStorage.getItem('dgbp-theme');
+      var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    }catch(e){}
+  })();
+  </script>
 </head>
 <body>
 
@@ -1193,31 +1273,37 @@ footer.main-footer{
           <span class="brand-tagline">School Of Development &amp; Gaming</span>
         </div>
       </div>
-      <nav class="nav-menu" id="navMenu" aria-label="Primary navigation">
-        <a href="carrer.html">Labs 🚀</a>
-        <a href="blog.html" target="_blank" rel="noopener">Blog 📝</a>
-        <a href="mentorship.html">Mentorship 💬</a>
-        <a href="announcement page.html">Announcements 📢</a>
-        <a href="Learning Curriculum.html">Curriculum 📚</a>
-        <div class="dropdown">
-          <button class="dropdown-trigger" id="dropTrigger" aria-haspopup="true" aria-expanded="false" aria-controls="dropMenu">
-            More ▾
-          </button>
-          <div class="dropdown-menu" id="dropMenu" role="menu">
-            <a class="dropdown-item" href="Agency.html" role="menuitem">The EdTech Research Agency</a>
-            <a class="dropdown-item" href="DGBP India Policy Portal.html" target="_blank" rel="noopener" role="menuitem">Policy Hub</a>
-            <div class="dropdown-divider" role="separator"></div>
-            <a class="dropdown-item" href="Public Documents.html" role="menuitem">Official Docs</a>
-            <a class="dropdown-item" href="https://dgbpcomparsion.netlify.app/" role="menuitem">See how we compare →</a>
-            <a class="dropdown-item" href="Books.html" role="menuitem">Books Store</a>
-            <a class="dropdown-item" href="https://sites.google.com/view/pixelcraftfest/home" role="menuitem">PCF External</a>
-            <a class="dropdown-item" href="more.html" role="menuitem">Admin Panel</a>
-            <a class="dropdown-item" href="Career Paths.html" role="menuitem">Career Paths</a>
-            <a class="dropdown-item" href="founder.html" role="menuitem">Founder Journey</a>
+      <div class="nav-right">
+        <nav class="nav-menu" id="navMenu" aria-label="Primary navigation">
+          <a href="carrer.html">Labs 🚀</a>
+          <a href="blog.html" target="_blank" rel="noopener">Blog 📝</a>
+          <a href="mentorship.html">Mentorship 💬</a>
+          <a href="announcement page.html">Announcements 📢</a>
+          <a href="Learning Curriculum.html">Curriculum 📚</a>
+          <div class="dropdown">
+            <button class="dropdown-trigger" id="dropTrigger" aria-haspopup="true" aria-expanded="false" aria-controls="dropMenu">
+              More ▾
+            </button>
+            <div class="dropdown-menu" id="dropMenu" role="menu">
+              <a class="dropdown-item" href="Agency.html" role="menuitem">The EdTech Research Agency</a>
+              <a class="dropdown-item" href="DGBP India Policy Portal.html" target="_blank" rel="noopener" role="menuitem">Policy Hub</a>
+              <div class="dropdown-divider" role="separator"></div>
+              <a class="dropdown-item" href="Public Documents.html" role="menuitem">Official Docs</a>
+              <a class="dropdown-item" href="https://dgbpcomparsion.netlify.app/" role="menuitem">See how we compare →</a>
+              <a class="dropdown-item" href="Books.html" role="menuitem">Books Store</a>
+              <a class="dropdown-item" href="https://sites.google.com/view/pixelcraftfest/home" role="menuitem">PCF External</a>
+              <a class="dropdown-item" href="more.html" role="menuitem">Admin Panel</a>
+              <a class="dropdown-item" href="Career Paths.html" role="menuitem">Career Paths</a>
+              <a class="dropdown-item" href="founder.html" role="menuitem">Founder Journey</a>
+            </div>
           </div>
-        </div>
-      </nav>
-      <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu" onclick="toggleMobileMenu(this)">☰</button>
+        </nav>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark / light mode">
+          <span class="icon-sun" aria-hidden="true">☀️</span>
+          <span class="icon-moon" aria-hidden="true">🌙</span>
+        </button>
+        <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu" onclick="toggleMobileMenu(this)">☰</button>
+      </div>
     </div>
   </header>
 
@@ -2001,6 +2087,44 @@ Fight. Prove. Survive. Protect what matters.
 var style = document.createElement('style');
 style.textContent = '.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}';
 document.head.appendChild(style);
+
+/* ── DARK / LIGHT MODE TOGGLE ──────────────────────────
+   Reads/writes localStorage('dgbp-theme'), falls back to
+   the OS-level prefers-color-scheme, and keeps aria-pressed
+   in sync for screen-reader users. The <head> script already
+   set the initial data-theme attribute before paint. */
+(function () {
+  var root = document.documentElement;
+  var toggleBtn = document.getElementById('themeToggle');
+
+  function currentTheme() {
+    return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  }
+
+  function applyTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    if (toggleBtn) toggleBtn.setAttribute('aria-pressed', String(theme === 'dark'));
+    try { localStorage.setItem('dgbp-theme', theme); } catch (e) {}
+  }
+
+  // Sync toggle's aria-pressed with whatever the head script already set
+  applyTheme(currentTheme());
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', function () {
+      applyTheme(currentTheme() === 'dark' ? 'light' : 'dark');
+    });
+  }
+
+  // Follow OS theme changes only if the user hasn't manually chosen one
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+      var manual = null;
+      try { manual = localStorage.getItem('dgbp-theme'); } catch (err) {}
+      if (!manual) applyTheme(e.matches ? 'dark' : 'light');
+    });
+  }
+})();
 
 /* ── TESTIMONIAL DATA ── */
 var testimonials = [
