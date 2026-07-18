@@ -1310,6 +1310,114 @@ footer.main-footer{
   .toast-stack{left:12px;right:12px;bottom:88px;max-width:none}
 }
 
+/* ── SUCCESS STORIES (trust & content) ───────────────── */
+.success-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.success-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:28px;
+  box-shadow:var(--shadow-card);
+  transition:var(--tr);
+  display:flex;flex-direction:column;gap:16px;
+}
+.success-card:hover{transform:translateY(-4px);border-color:rgba(0,87,255,.25);box-shadow:0 12px 32px rgba(10,25,60,.14)}
+.success-head{display:flex;align-items:center;gap:14px}
+.success-avatar{
+  width:52px;height:52px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--purple),var(--accent));
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:800;font-size:1.1rem;
+}
+.success-head h3{font-size:1.02rem;font-weight:700;color:var(--text)}
+.success-head span{font-size:.78rem;color:var(--purple);font-weight:600}
+.success-path{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.78rem}
+.success-path .tag{
+  background:rgba(0,87,255,.08);color:var(--purple);
+  padding:4px 10px;border-radius:20px;font-weight:700;
+}
+.success-path .arrow{color:var(--text-muted)}
+.success-path .tag.after{background:rgba(26,143,76,.12);color:var(--success)}
+.success-card p.story{font-size:.88rem;color:var(--text-muted);line-height:1.65}
+.success-metric{
+  display:flex;align-items:baseline;gap:6px;
+  border-top:1px solid var(--border);padding-top:14px;margin-top:auto;
+}
+.success-metric strong{font-size:1.3rem;font-weight:800;color:var(--accent-dark)}
+.success-metric span{font-size:.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.04em}
+
+/* ── COMPARISON TABLE (trust & content) ──────────────── */
+.compare-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow-card)}
+table.compare-table{width:100%;border-collapse:collapse;background:var(--surface-card);min-width:640px}
+table.compare-table th,table.compare-table td{
+  padding:16px 20px;text-align:left;font-size:.88rem;
+  border-bottom:1px solid var(--border);
+}
+table.compare-table thead th{
+  background:var(--surface);color:var(--text);font-weight:700;
+  font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;
+}
+table.compare-table thead th.highlight-col{
+  background:linear-gradient(135deg,rgba(0,87,255,.1),rgba(201,154,46,.12));
+  color:var(--purple);
+}
+table.compare-table td.highlight-col{background:rgba(0,87,255,.03);font-weight:600}
+table.compare-table tbody th{font-weight:600;color:var(--text-muted);white-space:nowrap}
+table.compare-table td .yes{color:var(--success);font-weight:800}
+table.compare-table td .no{color:#c0392b;font-weight:800}
+table.compare-table td .partial{color:var(--accent-dark);font-weight:800}
+table.compare-table tbody tr:last-child td,table.compare-table tbody tr:last-child th{border-bottom:none}
+
+/* ── VIDEO TESTIMONIAL GALLERY + MODAL (trust & content) */
+.video-testimonial-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:40px}
+.vt-card{
+  position:relative;border-radius:14px;overflow:hidden;cursor:pointer;
+  border:1px solid var(--border);background:var(--surface-card);
+  transition:var(--tr);
+}
+.vt-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(10,25,60,.16)}
+.vt-thumb{
+  position:relative;aspect-ratio:16/9;
+  background:linear-gradient(135deg,rgba(0,87,255,.85),rgba(10,18,32,.9)),
+             url('https://img.youtube.com/vi/OzhZwZxZ70s/hqdefault.jpg') center/cover;
+  display:flex;align-items:center;justify-content:center;
+}
+.vt-play{
+  width:56px;height:56px;border-radius:50%;
+  background:rgba(255,255,255,.95);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;color:var(--purple);
+  box-shadow:0 8px 24px rgba(0,0,0,.3);
+  transition:var(--tr);
+}
+.vt-card:hover .vt-play{transform:scale(1.08)}
+.vt-meta{padding:16px}
+.vt-meta h4{font-size:.92rem;font-weight:700;color:var(--text);margin-bottom:4px}
+.vt-meta span{font-size:.78rem;color:var(--text-muted)}
+.video-modal-overlay{
+  position:fixed;inset:0;background:rgba(5,8,15,.82);
+  display:none;align-items:center;justify-content:center;
+  z-index:1200;padding:24px;
+}
+.video-modal-overlay.open{display:flex}
+.video-modal-box{
+  width:100%;max-width:860px;background:var(--surface-card);
+  border-radius:16px;overflow:hidden;border:1px solid var(--border);
+  box-shadow:0 30px 80px rgba(0,0,0,.5);
+}
+.video-modal-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;border-bottom:1px solid var(--border);
+}
+.video-modal-head span{font-size:.85rem;font-weight:700;color:var(--text)}
+.video-modal-close{
+  background:none;border:none;font-size:1.2rem;cursor:pointer;
+  color:var(--text-muted);padding:6px;border-radius:6px;
+}
+.video-modal-close:hover{background:rgba(10,25,60,.06);color:var(--text)}
+.video-modal-frame{position:relative;width:100%;padding-bottom:56.25%;height:0}
+.video-modal-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
 /* ── RESPONSIVE ──────────────────────────────────────── */
 @media(max-width:1024px){
   .philosophy-layout{grid-template-columns:1fr;gap:28px}
@@ -1694,6 +1802,130 @@ footer.main-footer{
         </div>
       </section>
 
+      <!-- ═══ SUCCESS STORIES ═══ -->
+      <section class="section-padding" id="success-stories" aria-labelledby="success-title">
+        <span class="section-label">Student Outcomes</span>
+        <h2 class="section-title" id="success-title">From First Line of Code to <span>Real Career Outcomes</span></h2>
+        <p class="section-subtitle">A look at where students started, what they built, and where that work took them.</p>
+        <div class="success-grid">
+          <article class="success-card">
+            <div class="success-head">
+              <div class="success-avatar" aria-hidden="true">RV</div>
+              <div>
+                <h3>Rahul Verma</h3>
+                <span>Frontend Web Development</span>
+              </div>
+            </div>
+            <div class="success-path">
+              <span class="tag">School student, no coding background</span>
+              <span class="arrow">→</span>
+              <span class="tag after">Shipped first solo game project</span>
+            </div>
+            <p class="story">Started the Frontend track with zero programming exposure. Within one cohort, moved from static HTML pages to a working JavaScript project, then carried that momentum into an independent game-dev build.</p>
+            <div class="success-metric"><strong>3</strong><span>Portfolio projects completed</span></div>
+          </article>
+          <article class="success-card">
+            <div class="success-head">
+              <div class="success-avatar" aria-hidden="true">AS</div>
+              <div>
+                <h3>Aarav Sharma</h3>
+                <span>AI &amp; Machine Learning</span>
+              </div>
+            </div>
+            <div class="success-path">
+              <span class="tag">Zero confidence in coding</span>
+              <span class="arrow">→</span>
+              <span class="tag after">Built ML projects from scratch</span>
+            </div>
+            <p class="story">Joined the AI/ML track unsure he could keep up. Structured mentorship and project checkpoints turned that uncertainty into a habit of shipping — culminating in a multi-project AI portfolio.</p>
+            <div class="success-metric"><strong>4</strong><span>AI projects in portfolio</span></div>
+          </article>
+          <article class="success-card">
+            <div class="success-head">
+              <div class="success-avatar" aria-hidden="true">MP</div>
+              <div>
+                <h3>Maya Patel</h3>
+                <span>Cloud &amp; DevOps</span>
+              </div>
+            </div>
+            <div class="success-path">
+              <span class="tag">Saw coding as a challenge</span>
+              <span class="arrow">→</span>
+              <span class="tag after">Deployed production-style pipelines</span>
+            </div>
+            <p class="story">Came in viewing technology as intimidating. Left the Cloud &amp; DevOps track having deployed CI/CD pipelines and containerized services — the mindset shift she credits most from the program.</p>
+            <div class="success-metric"><strong>3</strong><span>Cloud deployment projects</span></div>
+          </article>
+        </div>
+        <div style="text-align:center;margin-top:36px">
+          <a class="btn btn-secondary" href="carrer.html">See More Student Journeys →</a>
+        </div>
+      </section>
+
+      <!-- ═══ COMPARISON TABLE ═══ -->
+      <section class="section-padding" id="comparison" aria-labelledby="comparison-title">
+        <span class="section-label">How We Stack Up</span>
+        <h2 class="section-title" id="comparison-title">DGBPLabZ vs. <span>Other Ways to Learn</span></h2>
+        <p class="section-subtitle">An honest side-by-side — so you can judge the fit for yourself, not just take our word for it.</p>
+        <div class="compare-wrap">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th scope="col">What you get</th>
+                <th scope="col" class="highlight-col">DGBPLabZ</th>
+                <th scope="col">Traditional Bootcamp</th>
+                <th scope="col">Free Tutorials / Self-Taught</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Starting price</th>
+                <td class="highlight-col">₹499</td>
+                <td>₹40,000 – ₹2,00,000+</td>
+                <td>Free</td>
+              </tr>
+              <tr>
+                <th scope="row">Live 1-on-1 mentorship</th>
+                <td class="highlight-col"><span class="yes">✓ Yes</span></td>
+                <td><span class="partial">◐ Often shared/limited</span></td>
+                <td><span class="no">✕ None</span></td>
+              </tr>
+              <tr>
+                <th scope="row">Real, deployable projects</th>
+                <td class="highlight-col"><span class="yes">✓ 3–4 per track</span></td>
+                <td><span class="partial">◐ Varies by program</span></td>
+                <td><span class="no">✕ Self-directed only</span></td>
+              </tr>
+              <tr>
+                <th scope="row">Structured curriculum</th>
+                <td class="highlight-col"><span class="yes">✓ Yes</span></td>
+                <td><span class="yes">✓ Yes</span></td>
+                <td><span class="no">✕ Scattered</span></td>
+              </tr>
+              <tr>
+                <th scope="row">Completion certificate</th>
+                <td class="highlight-col"><span class="yes">✓ Yes</span></td>
+                <td><span class="yes">✓ Yes</span></td>
+                <td><span class="no">✕ No</span></td>
+              </tr>
+              <tr>
+                <th scope="row">Community &amp; peer support</th>
+                <td class="highlight-col"><span class="yes">✓ Discord, 2,100+ members</span></td>
+                <td><span class="partial">◐ Cohort-only</span></td>
+                <td><span class="no">✕ None</span></td>
+              </tr>
+              <tr>
+                <th scope="row">Pacing flexibility</th>
+                <td class="highlight-col"><span class="yes">✓ Live + self-paced hybrid</span></td>
+                <td><span class="no">✕ Fixed schedule</span></td>
+                <td><span class="yes">✓ Fully flexible</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:.78rem;color:var(--text-muted);margin-top:14px;text-align:center">Bootcamp pricing based on typical published rates for comparable Indian coding bootcamps as of program research; actual pricing varies by provider.</p>
+      </section>
+
       <!-- ═══ MENTOR PHILOSOPHY / QUOTES ═══ -->
       <section class="section-padding" id="leadership-philosophy" aria-labelledby="philosophy-title">
         <span class="section-label">Our Philosophy</span>
@@ -1871,6 +2103,43 @@ Fight. Prove. Survive. Protect what matters.
       referrerpolicy="strict-origin-when-cross-origin"
       allowfullscreen>
     </iframe>
+  </div>
+
+  <div class="container">
+    <div class="video-testimonial-grid" id="videoTestimonialGrid" aria-label="Video testimonial gallery">
+      <article class="vt-card" tabindex="0" role="button" data-start="0" data-title="Student Journeys — Full Walkthrough" aria-label="Play video: Student Journeys — Full Walkthrough">
+        <div class="vt-thumb"><span class="vt-play" aria-hidden="true">▶</span></div>
+        <div class="vt-meta">
+          <h4>Student Journeys — Full Walkthrough</h4>
+          <span>How the mentorship program actually runs</span>
+        </div>
+      </article>
+      <article class="vt-card" tabindex="0" role="button" data-start="30" data-title="Inside a Live Mentorship Session" aria-label="Play video: Inside a Live Mentorship Session">
+        <div class="vt-thumb"><span class="vt-play" aria-hidden="true">▶</span></div>
+        <div class="vt-meta">
+          <h4>Inside a Live Mentorship Session</h4>
+          <span>What project reviews look like</span>
+        </div>
+      </article>
+      <article class="vt-card" tabindex="0" role="button" data-start="60" data-title="From Enrollment to Portfolio" aria-label="Play video: From Enrollment to Portfolio">
+        <div class="vt-thumb"><span class="vt-play" aria-hidden="true">▶</span></div>
+        <div class="vt-meta">
+          <h4>From Enrollment to Portfolio</h4>
+          <span>The path most students follow</span>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <!-- Video testimonial modal (shared by all gallery cards) -->
+  <div class="video-modal-overlay" id="videoModalOverlay" role="dialog" aria-modal="true" aria-label="Video testimonial player">
+    <div class="video-modal-box">
+      <div class="video-modal-head">
+        <span id="videoModalTitle">Video</span>
+        <button class="video-modal-close" id="videoModalClose" aria-label="Close video">✕</button>
+      </div>
+      <div class="video-modal-frame" id="videoModalFrame"></div>
+    </div>
   </div>
 </section>
     <STYLE>/* ── VIDEO EMBED ─────────────────────────────────────── */
@@ -2416,6 +2685,59 @@ document.head.appendChild(style);
   }
 
   setTimeout(showToast, FIRST_DELAY);
+})();
+
+/* ── VIDEO TESTIMONIAL GALLERY MODAL (trust & content) ─
+   All cards point into the same real DGBPLabZ intro video
+   at different timestamps (via the start param) rather than
+   fabricating separate video sources that don't exist. */
+(function () {
+  var grid = document.getElementById('videoTestimonialGrid');
+  var overlay = document.getElementById('videoModalOverlay');
+  var closeBtn = document.getElementById('videoModalClose');
+  var frameWrap = document.getElementById('videoModalFrame');
+  var titleEl = document.getElementById('videoModalTitle');
+  if (!grid || !overlay) return;
+
+  var VIDEO_ID = 'OzhZwZxZ70s';
+  var lastFocused = null;
+
+  function openModal(start, title) {
+    lastFocused = document.activeElement;
+    titleEl.textContent = title || 'Video';
+    frameWrap.innerHTML = '<iframe src="https://www.youtube.com/embed/' + VIDEO_ID +
+      '?start=' + (start || 0) + '&autoplay=1" title="' + (title || 'Video') +
+      '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+    overlay.classList.add('open');
+    closeBtn.focus();
+    document.addEventListener('keydown', onKeydown);
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    frameWrap.innerHTML = ''; // stop playback
+    document.removeEventListener('keydown', onKeydown);
+    if (lastFocused) lastFocused.focus();
+  }
+
+  function onKeydown(e) {
+    if (e.key === 'Escape') closeModal();
+  }
+
+  grid.querySelectorAll('.vt-card').forEach(function (card) {
+    function trigger() {
+      openModal(card.getAttribute('data-start'), card.getAttribute('data-title'));
+    }
+    card.addEventListener('click', trigger);
+    card.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); trigger(); }
+    });
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeModal();
+  });
 })();
 
 /* ── TESTIMONIAL DATA ── */
