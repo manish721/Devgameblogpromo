@@ -53,8 +53,8 @@
   <meta name="google-adsense-account" content="ca-pub-2440649601845501"/>
 
   <!-- ═══ FAVICON ═══ -->
-  <link rel="icon" href="LOGGO (1) (1).jpeg" type="image/jpeg"/>
-  <link rel="apple-touch-icon" href="LOGGO (1) (1).jpeg"/>
+  <link rel="icon" href="Gemini_Generated_Image_77r12p77r12p77r1 (1).png" type="image/jpeg"/>
+  <link rel="apple-touch-icon" href="Gemini_Generated_Image_77r12p77r12p77r1 (1).png"/>
 
   <!-- ═══ FONTS — non-blocking ═══ -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -66,8 +66,11 @@
   <!-- ═══════════════════════════════════════════════════
        SCHEMA MARKUP — All structured data blocks
        WHY: Google uses schema to build entity graphs.
-       EducationalOrganization → Course → FAQPage → LocalBusiness
-       creates a full entity cluster for maximum SERP features.
+       A SINGLE canonical @id (#organization) is used across
+       EducationalOrganization / LocalBusiness / Course.provider /
+       AggregateRating.itemReviewed / every Review.itemReviewed
+       so Google merges these into one entity instead of splitting
+       trust signals across three different IDs.
   ═══════════════════════════════════════════════════ -->
 
   <!-- 1. WebSite + SearchAction (enables Google Sitelinks Search Box) -->
@@ -93,11 +96,11 @@
   }
   </script>
 
-  <!-- 2. EducationalOrganization (primary entity — maximum EEAT signal) -->
+  <!-- 2. EducationalOrganization + LocalBusiness (merged into ONE canonical entity) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
+    "@type": ["EducationalOrganization", "LocalBusiness"],
     "@id": "https://devgameblogpromo.vercel.app/#organization",
     "name": "DGBPLabZ — School of Development & Gaming",
     "alternateName": ["DGBPLabZ", "DevGameBlogPromo", "DGBP"],
@@ -115,54 +118,13 @@
       "@type": "QuantitativeValue",
       "value": 20
     },
+    "email": "m81434409@gmail.com",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Hyderabad",
       "addressRegion": "Telangana",
       "addressCountry": "IN",
       "postalCode": "500001"
-    },
-    "contactPoint": [
-      {
-        "@type": "ContactPoint",
-        "contactType": "Customer Support",
-        "email": "m81434409@gmail.com",
-        "availableLanguage": ["English", "Telugu", "Hindi"]
-      }
-    ],
-    "sameAs": [
-      "https://devgameblogpromo.vercel.app/",
-      "https://www.instagram.com/devgameblogpromo/",
-      "https://discord.gg/HdvgYfGw6s"
-    ],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "DGBPLabZ Courses",
-      "itemListElement": [
-        {"@type": "Offer", "itemOffered": {"@type": "Course", "@id": "https://devgameblogpromo.vercel.app/#course-frontend"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Course", "@id": "https://devgameblogpromo.vercel.app/#course-aiml"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Course", "@id": "https://devgameblogpromo.vercel.app/#course-devops"}}
-      ]
-    }
-  }
-  </script>
-
-  <!-- 3. LocalBusiness (critical for Hyderabad local SEO) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "EducationalOrganization"],
-    "@id": "https://devgameblogpromo.vercel.app/#localbusiness",
-    "name": "DGBPLabZ — School of Development & Gaming",
-    "image": "https://devgameblogpromo.vercel.app/og-image.jpg",
-    "url": "https://devgameblogpromo.vercel.app/",
-    "email": "m81434409@gmail.com",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Hyderabad",
-      "addressRegion": "Telangana",
-      "postalCode": "500001",
-      "addressCountry": "IN"
     },
     "geo": {
       "@type": "GeoCoordinates",
@@ -185,8 +147,31 @@
       {"@type": "State", "name": "Telangana"},
       {"@type": "Country", "name": "India"}
     ],
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "contactType": "Customer Support",
+        "email": "m81434409@gmail.com",
+        "availableLanguage": ["English", "Telugu", "Hindi"]
+      }
+    ],
+    "sameAs": [
+      "https://devgameblogpromo.vercel.app/",
+      "https://www.instagram.com/devgameblogpromo/",
+      "https://discord.gg/HdvgYfGw6s"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "DGBPLabZ Courses",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Course", "@id": "https://devgameblogpromo.vercel.app/#course-frontend"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Course", "@id": "https://devgameblogpromo.vercel.app/#course-aiml"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Course", "@id": "https://devgameblogpromo.vercel.app/#course-devops"}}
+      ]
+    },
     "aggregateRating": {
       "@type": "AggregateRating",
+      "itemReviewed": { "@id": "https://devgameblogpromo.vercel.app/#organization" },
       "ratingValue": "4.9",
       "reviewCount": "18",
       "bestRating": "5",
@@ -195,7 +180,7 @@
   }
   </script>
 
-  <!-- 4. Course schema x3 (enables rich results for each program) -->
+  <!-- 3. Course schema x3 (enables rich results for each program) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -276,7 +261,7 @@
   }
   </script>
 
-  <!-- 5. Person schema for Founder (EEAT: real named expert) -->
+  <!-- 4. Person schema for Founder (EEAT: real named expert) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -303,7 +288,7 @@
   }
   </script>
 
-  <!-- 6. FAQPage schema (enables FAQ rich results in SERP) -->
+  <!-- 5. FAQPage schema (enables FAQ rich results in SERP) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -377,7 +362,7 @@
   }
   </script>
 
-  <!-- 7. BreadcrumbList (enables breadcrumb rich results) -->
+  <!-- 6. BreadcrumbList (enables breadcrumb rich results) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -460,7 +445,6 @@ img{max-width:100%;height:auto}
 .section-padding{padding:100px 0;border-bottom:1px solid var(--border);content-visibility:auto;contain-intrinsic-size:0 500px}
 
 /* ── SECTION TYPOGRAPHY ──────────────────────────────── */
-/* WHY: Clear H2/H3 hierarchy helps Google understand content structure */
 .section-label{
   display:inline-block;
   font-size:.75rem;
@@ -638,12 +622,10 @@ nav.nav-menu > a[aria-current="page"]{
   position:relative;
   overflow:hidden;
 }
-/* PERF: gradient only on large screens */
 @media(min-width:769px){
   .hero{background:radial-gradient(circle at 80% 20%,rgba(0,87,255,.06),transparent 40%),radial-gradient(circle at 10% 80%,rgba(201,154,46,.08),transparent 40%),var(--bg)}
 }
 
-/* WHY H1 here: Google needs exactly one H1 per page identifying the primary topic */
 .hero-eyebrow{
   display:inline-block;
   font-size:.8rem;
@@ -834,7 +816,7 @@ nav.nav-menu > a[aria-current="page"]{
 .instructor-stat strong{display:block;font-size:1.3rem;font-weight:800;color:var(--text)}
 .instructor-stat span{font-size:.78rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em}
 
-/* ── PROGRAM CARDS (replaces old slider for better SEO) ── */
+/* ── PROGRAM CARDS ── */
 .program-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
 .program-card{
   background:var(--surface);
@@ -1014,7 +996,6 @@ nav.nav-menu > a[aria-current="page"]{
 .t-featured-card .t-author-tag{font-size:.75rem;color:var(--accent-dark);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
 
 /* ── FAQ SECTION ─────────────────────────────────────── */
-/* WHY: FAQ schema + visible FAQ = Google FAQPage rich results */
 .faq-section{padding:80px 0;border-bottom:1px solid var(--border)}
 .faq-list{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
 .faq-item{
@@ -1045,7 +1026,6 @@ nav.nav-menu > a[aria-current="page"]{
   font-size:.92rem;color:var(--text-muted);
   line-height:1.7;
 }
-/* details/summary native accordion */
 details.faq-item summary{list-style:none}
 details.faq-item summary::-webkit-details-marker{display:none}
 
@@ -1174,11 +1154,9 @@ footer.main-footer{
   .clarity-section p{font-size:.97rem}
   .t-featured-grid{grid-template-columns:1fr}
   .instructor-card{flex-direction:column}
-  /* PERF: Kill infinite animations on mobile */
   .marquee-track,.ticker-track{animation:none!important;flex-wrap:wrap;width:100%;gap:12px}
   .marquee-outer::before,.marquee-outer::after{display:none}
   .t-card{width:100%}
-  /* No hover transforms on touch */
   .card:hover,.t-card:hover,.btn-primary:hover,.btn-secondary:hover{transform:none!important}
   .map-marker::before{animation:none}
   #ai-trigger{bottom:20px;left:20px;width:48px;height:48px}
@@ -1243,7 +1221,7 @@ footer.main-footer{
     </div>
   </header>
 
-  <!-- BREADCRUMB: Semantic navigation + BreadcrumbList schema support -->
+  <!-- BREADCRUMB -->
   <nav class="breadcrumb container" aria-label="Breadcrumb">
     <span><a href="/">Home</a></span>
     <span class="breadcrumb-sep" aria-hidden="true">/</span>
@@ -1261,7 +1239,6 @@ footer.main-footer{
   <main id="main-content">
 
     <!-- ═══ HERO ═══ -->
-    <!-- WHY H1 HERE: Single H1 on the page with primary keyword phrase for Google entity matching -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="container">
         <span class="hero-eyebrow">🇮🇳 Hyderabad, India · Est. 2023</span>
@@ -1280,7 +1257,7 @@ footer.main-footer{
       </div>
     </section>
 
-    <!-- ═══ STATS BAR (Social proof numbers — CRO: anchors trust before scroll) ═══ -->
+    <!-- ═══ STATS BAR ═══ -->
     <section class="stats-bar" aria-label="Platform statistics">
       <div class="container">
         <div class="stats-grid">
@@ -1312,7 +1289,7 @@ footer.main-footer{
       </div>
     </section>
 
-    <!-- ═══ TRUST BADGES (EEAT visual layer) ═══ -->
+    <!-- ═══ TRUST BADGES ═══ -->
     <section class="trust-section" aria-label="Trust and credibility signals">
       <div class="container">
         <div class="trust-inner">
@@ -1331,7 +1308,7 @@ footer.main-footer{
 
     <div class="container">
 
-      <!-- ═══ CLARITY: What You'll Learn (answers primary search intent) ═══ -->
+      <!-- ═══ CLARITY: What You'll Learn ═══ -->
       <section class="clarity-section" aria-labelledby="clarity-title">
         <h2 id="clarity-title">What Will I Learn at DGBPLabZ — and How Will It Help My Career?</h2>
         <p>DGBPLabZ teaches <strong>frontend web development</strong>, <strong>artificial intelligence &amp; machine learning</strong>, and <strong>game development</strong> through a project-first approach. Every student builds real, deployable projects — not toy exercises.</p>
@@ -1339,14 +1316,12 @@ footer.main-footer{
         <div class="section-line"></div>
       </section>
 
-      <!-- ═══ COURSES & MENTORSHIP (H2 — second most important keyword section) ═══ -->
+      <!-- ═══ COURSES & MENTORSHIP ═══ -->
       <section class="section-padding" id="curriculum" aria-labelledby="curriculum-title">
         <span class="section-label">Courses &amp; Programs</span>
         <h2 class="section-title" id="curriculum-title">Web Development, AI &amp; Game Dev <span>Courses in India</span></h2>
         <p class="section-subtitle">Three professionally structured learning paths designed for real-world career outcomes — not exam scores. Taught by practitioners, not just instructors.</p>
 
-        <!-- ═══ PROGRAM CARDS (all 3 visible, crawlable — better than JS slider) ═══ -->
-        <!-- WHY: Replacing JS-only slider with visible HTML cards lets Googlebot read all program content -->
         <div class="program-grid" itemscope itemtype="https://schema.org/ItemList">
           <!-- Course 1 -->
           <article class="program-card" itemscope itemtype="https://schema.org/Course" aria-labelledby="course1-title">
@@ -1428,8 +1403,7 @@ footer.main-footer{
         </div>
       </section>
 
-      <!-- ═══ INSTRUCTOR / FOUNDER (EEAT: Named expert with credentials) ═══ -->
-      <!-- WHY: Google's EEAT guidelines specifically require identifiable, credentialed authors/experts -->
+      <!-- ═══ INSTRUCTOR / FOUNDER ═══ -->
       <section class="section-padding" id="instructor" aria-labelledby="instructor-title">
         <span class="section-label">Meet Your Mentor</span>
         <h2 class="section-title" id="instructor-title">Learn From a <span>Real Practitioner</span></h2>
@@ -1448,7 +1422,7 @@ footer.main-footer{
             </div>
             <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap">
               <a class="btn btn-secondary" href="founder.html">Full Founder Story →</a>
-              <a class="btn btn-secondary" href="core team.html">Meet the Core Team →</a>
+             
             </div>
           </div>
         </div>
@@ -1644,7 +1618,7 @@ Fight. Prove. Survive. Protect what matters.
           </div>
           <div class="card" style="text-align:center">
             <h3>Platform by the Numbers</h3>
-            <p style="font-size:2.4rem;font-weight:800;color:var(--accent-dark);margin:12px 0" aria-label="2103 verified students">4300+</p>
+            <p style="font-size:2.4rem;font-weight:800;color:var(--accent-dark);margin:12px 0" aria-label="4300 plus active students">4300+</p>
             <p style="font-size:.82rem;text-transform:uppercase;color:var(--text-muted);letter-spacing:.05em">Active Enrolled Students</p>
             <div style="height:1px;background:var(--border);margin:16px 0"></div>
             <p style="font-size:.85rem;color:var(--text-muted)">Verified Partners:</p>
@@ -1677,10 +1651,46 @@ Fight. Prove. Survive. Protect what matters.
       </div>
     </section>
 
+<!-- ═══ FEATURED VIDEO ═══ -->
+<section class="section-padding video-section" id="intro-video" aria-labelledby="video-title">
+  <span class="section-label">Watch</span>
+  <h2 class="section-title" id="video-title">See <span>DGBPLabZ</span> in Action</h2>
+  <p class="section-subtitle">A quick look at how our project-based mentorship works.</p>
+  <div class="video-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/OzhZwZxZ70s?si=QYXdvb0DET-INpSl"
+      title="YouTube video player"
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+    <STYLE>/* ── VIDEO EMBED ─────────────────────────────────────── */
+.video-section{padding:0 0 20px}
+.video-wrapper{
+  position:relative;
+  width:100%;
+  max-width:900px;
+  margin:0 auto;
+  padding-bottom:50.625%; /* 16:9 ratio, scaled for max-width */
+  height:0;
+  overflow:hidden;
+  border-radius:16px;
+  box-shadow:0 20px 40px rgba(10,25,60,.12);
+  border:1px solid var(--border);
+}
+.video-wrapper iframe{
+  position:absolute;
+  top:0;left:0;
+  width:100%;height:100%;
+  border:0;
+}</STYLE>
+    
     <div class="container">
 
-      <!-- ═══ FAQ SECTION (FAQPage schema support + Google rich results) ═══ -->
-      <!-- WHY: FAQ sections with proper schema earn FAQ rich results — free SERP real estate -->
+      <!-- ═══ FAQ SECTION ═══ -->
       <section class="faq-section" id="faq" aria-labelledby="faq-title">
         <span class="section-label" style="display:block;text-align:center">Questions Answered</span>
         <h2 class="section-title" id="faq-title">Frequently Asked <span>Questions</span></h2>
@@ -1899,7 +1909,6 @@ Fight. Prove. Survive. Protect what matters.
 }
 </style>
 
-<center> <a href="https://hilltopads.com/?ref=391103"><img src="//static.hilltopads.com/other/banners/pub/make_big_money/1100x90.gif?v=1782745578"></a></center>
   <!-- ═══ FOOTER ═══ -->
   <!-- PRESERVED: DevGameBlogPromo attribution exactly as required -->
   <footer class="main-footer" role="contentinfo">
@@ -1963,18 +1972,6 @@ Fight. Prove. Survive. Protect what matters.
 
     <button swg-standard-button="contribution"></button>
   </div>
- <script>
-(function(ssby){
-var d = document,
-    s = d.createElement('script'),
-    l = d.scripts[d.scripts.length - 1];
-s.settings = ssby || {};
-s.src = "\/\/untimely-hello.com\/bDXJVds.dZGsl\/0\/Y\/W_cb\/qe\/mq9duSZLUblGknPqTbcWxxN\/z\/kI5BNeD\/ETtQNTzwE-3\/O\/TEk\/0oNVQJ";
-s.async = true;
-s.referrerPolicy = 'no-referrer-when-downgrade';
-l.parentNode.insertBefore(s, l);
-})({})
-</script>
   <hr>
         <!-- ⚠️ PRESERVED: DevGameBlogPromo attribution unchanged as per FOOTER PRESERVATION RULE -->
         <p class="footer-operator">© 2023–2026 Operated By <strong>DevGameBlogPromo</strong> System Cluster. All rights reserved. Designed, operated, and maintained through a unified development and educational ecosystem.</p>
@@ -2045,7 +2042,10 @@ var testimonials = [
    text:"Every session pushed me to think bigger. DGBPLabZ consistently challenged my assumptions and expanded what I believed was possible."}
 ];
 
-/* ── BUILD TESTIMONIAL CARD ── */
+/* ── BUILD TESTIMONIAL CARD ──
+   FIX: author now uses itemscope/itemtype="Person" with a nested
+   itemprop="name" span, so Google reads a properly typed Person
+   entity instead of a bare string on the author property. */
 function buildCard(t) {
   return '<article class="t-card" itemscope itemtype="https://schema.org/Review">'
     + '<span class="t-card-quote" aria-hidden="true">\u201C</span>'
@@ -2053,7 +2053,7 @@ function buildCard(t) {
     + '<p class="t-card-body" itemprop="reviewBody">' + t.text + '</p>'
     + '<div class="t-card-footer">'
     + '<div>'
-    + '<div class="t-card-name" itemprop="author">' + t.name + '</div>'
+    + '<div class="t-card-name" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">' + t.name + '</span></div>'
     + '<div class="t-card-role">' + t.role + '</div>'
     + '</div>'
     + '<div class="t-card-stars" aria-label="5 out of 5 stars">'
@@ -2081,7 +2081,7 @@ function initTestimonials() {
         + '<div class="t-author-row">'
         + '<div class="t-avatar-lg" aria-hidden="true">' + t.initials + '</div>'
         + '<div>'
-        + '<div class="t-author-name" itemprop="author">' + t.name + '</div>'
+        + '<div class="t-author-name" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">' + t.name + '</span></div>'
         + '<div class="t-author-tag">' + t.role + '</div>'
         + '</div></div></article>';
     }).join('');
@@ -2198,493 +2198,203 @@ function handleSubscribe(e) {
   });
   </script>
 
-
+  <!-- Review schema blocks: all itemReviewed pointers now reference the
+       single canonical #organization @id defined in <head>, and every
+       author is typed as schema.org/Person. -->
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
-  "@id": "https://devgameblogpromo.vercel.app/#educational-org",
-  "name": "DGBPLabZ School of Development & Gaming",
-  "url": "https://devgameblogpromo.vercel.app/",
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "itemReviewed": {
-      "@type": "EducationalOrganization",
-      "@id": "https://devgameblogpromo.vercel.app/#educational-org",
-      "name": "DGBPLabZ School of Development & Gaming"
-    },
-    "ratingValue": "4.9",
-    "bestRating": "5",
-    "worstRating": "1",
-    "reviewCount": "18"
-  }
-}
-</script>
- 
- 
-<!-- Review: Sophia Bennett -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
   "@type": "Review",
-  "itemReviewed": {
-    "@type": "EducationalOrganization",
-    "@id": "https://devgameblogpromo.vercel.app/#educational-org",
-    "name": "DGBPLabZ School of Development & Gaming",
-    "url": "https://devgameblogpromo.vercel.app/"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Sophia Bennett"
-  },
-  "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": "5",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
+  "itemReviewed": { "@id": "https://devgameblogpromo.vercel.app/#organization" },
+  "author": { "@type": "Person", "name": "Sophia Bennett" },
+  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
   "reviewBody": "Learning under Manish Kakarla was truly life-changing. His passion for technology is matched only by his care for students. He teaches like a mentor — firm, kind, and always guiding with clarity. He simplified everything from AI to programming, but what stayed with me most were the values he taught: discipline, respect, and purpose."
 }
 </script>
- 
- 
-<!-- Review: G. Sandhya -->
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Review",
-  "itemReviewed": {
-    "@type": "EducationalOrganization",
-    "@id": "https://devgameblogpromo.vercel.app/#educational-org",
-    "name": "DGBPLabZ School of Development & Gaming",
-    "url": "https://devgameblogpromo.vercel.app/"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "G. Sandhya"
-  },
-  "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": "5",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
+  "itemReviewed": { "@id": "https://devgameblogpromo.vercel.app/#organization" },
+  "author": { "@type": "Person", "name": "G. Sandhya" },
+  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
   "reviewBody": "Manish Kakarla is an extraordinary educator in the tech and gaming world. With expertise in programming, AI, and Machine Learning, he makes complex topics accessible and engaging. His teaching style stands out for its structure, simplicity, and real impact. Beyond technical knowledge, he instils values and discipline."
 }
 </script>
- 
- 
-<!-- Review: Arian Matthews -->
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Review",
-  "itemReviewed": {
-    "@type": "EducationalOrganization",
-    "@id": "https://devgameblogpromo.vercel.app/#educational-org",
-    "name": "DGBPLabZ School of Development & Gaming",
-    "url": "https://devgameblogpromo.vercel.app/"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Arian Matthews"
-  },
-  "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": "5",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
+  "itemReviewed": { "@id": "https://devgameblogpromo.vercel.app/#organization" },
+  "author": { "@type": "Person", "name": "Arian Matthews" },
+  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
   "reviewBody": "I joined as one of 25 international students — excited but unsure about diving into AI and programming. Within minutes, his calm confidence and clear explanations put us at ease. He taught us to code, lead, and dream bigger. That's the DGBPLabZ effect."
 }
 </script>
- 
- 
-<!-- Review: Aarav Sharma -->
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Review",
-  "itemReviewed": {
-    "@type": "EducationalOrganization",
-    "@id": "https://devgameblogpromo.vercel.app/#educational-org",
-    "name": "DGBPLabZ School of Development & Gaming",
-    "url": "https://devgameblogpromo.vercel.app/"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Aarav Sharma"
-  },
-  "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": "5",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
+  "itemReviewed": { "@id": "https://devgameblogpromo.vercel.app/#organization" },
+  "author": { "@type": "Person", "name": "Aarav Sharma" },
+  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
   "reviewBody": "Before joining DGBPLabZ, I had zero confidence in coding. Within weeks, Manish made me believe I could build anything from scratch. His patience and clear teaching completely changed my approach to learning."
 }
 </script>
- 
- 
-<!-- Review: Emily Foster -->
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Review",
-  "itemReviewed": {
-    "@type": "EducationalOrganization",
-    "@id": "https://devgameblogpromo.vercel.app/#educational-org",
-    "name": "DGBPLabZ School of Development & Gaming",
-    "url": "https://devgameblogpromo.vercel.app/"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Emily Foster"
-  },
-  "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": "5",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
+  "itemReviewed": { "@id": "https://devgameblogpromo.vercel.app/#organization" },
+  "author": { "@type": "Person", "name": "Emily Foster" },
+  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
   "reviewBody": "Every class felt like a step toward my goals — programming and AI taught in a way that was genuinely engaging. I also built discipline and consistency alongside technical skills."
 }
 </script>
- 
- 
-<!-- Review: Rahul Verma -->
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Review",
-  "itemReviewed": {
-    "@type": "EducationalOrganization",
-    "@id": "https://devgameblogpromo.vercel.app/#educational-org",
-    "name": "DGBPLabZ School of Development & Gaming",
-    "url": "https://devgameblogpromo.vercel.app/"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Rahul Verma"
-  },
-  "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": "5",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
+  "itemReviewed": { "@id": "https://devgameblogpromo.vercel.app/#organization" },
+  "author": { "@type": "Person", "name": "Rahul Verma" },
+  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
   "reviewBody": "As a school student, I thought coding was too complicated for me. DGBPLabZ made it feel exciting and achievable. Now I'm working on my first game project with real confidence."
 }
 </script>
- 
- 
-<!-- Review: Zara Khan -->
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Review",
-  "itemReviewed": {
-    "@type": "EducationalOrganization",
-    "@id": "https://devgameblogpromo.vercel.app/#educational-org",
-    "name": "DGBPLabZ School of Development & Gaming",
-    "url": "https://devgameblogpromo.vercel.app/"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Zara Khan"
-  },
-  "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": "5",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
+  "itemReviewed": { "@id": "https://devgameblogpromo.vercel.app/#organization" },
+  "author": { "@type": "Person", "name": "Zara Khan" },
+  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
   "reviewBody": "Manish sir teaches with so much passion you can't help but get inspired. He treats his students like family and genuinely motivates them in every session."
 }
 </script>
- 
- 
-<!-- Review: Jacob Miller -->
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Review",
-  "itemReviewed": {
-    "@type": "EducationalOrganization",
-    "@id": "https://devgameblogpromo.vercel.app/#educational-org",
-    "name": "DGBPLabZ School of Development & Gaming",
-    "url": "https://devgameblogpromo.vercel.app/"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Jacob Miller"
-  },
-  "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": "5",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
+  "itemReviewed": { "@id": "https://devgameblogpromo.vercel.app/#organization" },
+  "author": { "@type": "Person", "name": "Jacob Miller" },
+  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
   "reviewBody": "Being mentored by Manish Kakarla was a turning point in my life. Technology became exciting and meaningful instead of confusing and intimidating."
 }
 </script>
- 
- 
-<!-- Review: Amelia Rodriguez -->
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Review",
-  "itemReviewed": {
-    "@type": "EducationalOrganization",
-    "@id": "https://devgameblogpromo.vercel.app/#educational-org",
-    "name": "DGBPLabZ School of Development & Gaming",
-    "url": "https://devgameblogpromo.vercel.app/"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Amelia Rodriguez"
-  },
-  "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": "5",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
+  "itemReviewed": { "@id": "https://devgameblogpromo.vercel.app/#organization" },
+  "author": { "@type": "Person", "name": "Amelia Rodriguez" },
+  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
   "reviewBody": "DGBPLabZ completely redefined my understanding of technology and how it applies to real-world challenges. The mentorship quality is outstanding."
 }
 </script>
- 
- 
-<!-- Review: James Wilson -->
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Review",
-  "itemReviewed": {
-    "@type": "EducationalOrganization",
-    "@id": "https://devgameblogpromo.vercel.app/#educational-org",
-    "name": "DGBPLabZ School of Development & Gaming",
-    "url": "https://devgameblogpromo.vercel.app/"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "James Wilson"
-  },
-  "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": "5",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
+  "itemReviewed": { "@id": "https://devgameblogpromo.vercel.app/#organization" },
+  "author": { "@type": "Person", "name": "James Wilson" },
+  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
   "reviewBody": "Working with DGBPLabZ was like having a clear roadmap — complex topics felt structured, achievable, and genuinely exciting at every step."
 }
 </script>
- 
- 
-<!-- Review: Maya Patel -->
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Review",
-  "itemReviewed": {
-    "@type": "EducationalOrganization",
-    "@id": "https://devgameblogpromo.vercel.app/#educational-org",
-    "name": "DGBPLabZ School of Development & Gaming",
-    "url": "https://devgameblogpromo.vercel.app/"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Maya Patel"
-  },
-  "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": "5",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
+  "itemReviewed": { "@id": "https://devgameblogpromo.vercel.app/#organization" },
+  "author": { "@type": "Person", "name": "Maya Patel" },
+  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
   "reviewBody": "Before this program, I saw coding as a challenge. Now I see it as a powerful tool. That mindset shift alone was worth every rupee invested."
 }
 </script>
- 
- 
-<!-- Review: Lucas Bennett -->
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Review",
-  "itemReviewed": {
-    "@type": "EducationalOrganization",
-    "@id": "https://devgameblogpromo.vercel.app/#educational-org",
-    "name": "DGBPLabZ School of Development & Gaming",
-    "url": "https://devgameblogpromo.vercel.app/"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Lucas Bennett"
-  },
-  "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": "5",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
+  "itemReviewed": { "@id": "https://devgameblogpromo.vercel.app/#organization" },
+  "author": { "@type": "Person", "name": "Lucas Bennett" },
+  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
   "reviewBody": "DGBPLabZ sessions weren't just about skills — they were about transformation, mindset, and growing into a better version of yourself."
 }
 </script>
- 
- 
-<!-- Review: Isabella Green -->
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Review",
-  "itemReviewed": {
-    "@type": "EducationalOrganization",
-    "@id": "https://devgameblogpromo.vercel.app/#educational-org",
-    "name": "DGBPLabZ School of Development & Gaming",
-    "url": "https://devgameblogpromo.vercel.app/"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Isabella Green"
-  },
-  "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": "5",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
+  "itemReviewed": { "@id": "https://devgameblogpromo.vercel.app/#organization" },
+  "author": { "@type": "Person", "name": "Isabella Green" },
+  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
   "reviewBody": "Both my creativity and coding skills improved significantly through the mentorship. The results are visible and verifiable."
 }
 </script>
- 
- 
-<!-- Review: Noah Kim -->
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Review",
-  "itemReviewed": {
-    "@type": "EducationalOrganization",
-    "@id": "https://devgameblogpromo.vercel.app/#educational-org",
-    "name": "DGBPLabZ School of Development & Gaming",
-    "url": "https://devgameblogpromo.vercel.app/"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Noah Kim"
-  },
-  "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": "5",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
+  "itemReviewed": { "@id": "https://devgameblogpromo.vercel.app/#organization" },
+  "author": { "@type": "Person", "name": "Noah Kim" },
+  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
   "reviewBody": "In every class, the mentors delivered more than knowledge — they gave us vision and clear direction we hadn't imagined for ourselves."
 }
 </script>
- 
- 
-<!-- Review: Sophia Li -->
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Review",
-  "itemReviewed": {
-    "@type": "EducationalOrganization",
-    "@id": "https://devgameblogpromo.vercel.app/#educational-org",
-    "name": "DGBPLabZ School of Development & Gaming",
-    "url": "https://devgameblogpromo.vercel.app/"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Sophia Li"
-  },
-  "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": "5",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
+  "itemReviewed": { "@id": "https://devgameblogpromo.vercel.app/#organization" },
+  "author": { "@type": "Person", "name": "Sophia Li" },
+  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
   "reviewBody": "Instead of just opening doors, DGBPLabZ teaches students how to build their own. That's the most powerful lesson I took away."
 }
 </script>
- 
- 
-<!-- Review: Daniel Harris -->
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Review",
-  "itemReviewed": {
-    "@type": "EducationalOrganization",
-    "@id": "https://devgameblogpromo.vercel.app/#educational-org",
-    "name": "DGBPLabZ School of Development & Gaming",
-    "url": "https://devgameblogpromo.vercel.app/"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Daniel Harris"
-  },
-  "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": "5",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
+  "itemReviewed": { "@id": "https://devgameblogpromo.vercel.app/#organization" },
+  "author": { "@type": "Person", "name": "Daniel Harris" },
+  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
   "reviewBody": "The discipline and clarity from this mentorship completely changed how I approach learning and problem-solving. I think differently now."
 }
 </script>
- 
- 
-<!-- Review: Ava Thompson -->
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Review",
-  "itemReviewed": {
-    "@type": "EducationalOrganization",
-    "@id": "https://devgameblogpromo.vercel.app/#educational-org",
-    "name": "DGBPLabZ School of Development & Gaming",
-    "url": "https://devgameblogpromo.vercel.app/"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Ava Thompson"
-  },
-  "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": "5",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
+  "itemReviewed": { "@id": "https://devgameblogpromo.vercel.app/#organization" },
+  "author": { "@type": "Person", "name": "Ava Thompson" },
+  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
   "reviewBody": "The influence of DGBPLabZ goes far beyond academics. It builds character, resilience, and the kind of mindset that lasts a lifetime."
 }
 </script>
- 
- 
-<!-- Review: Ethan White -->
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Review",
-  "itemReviewed": {
-    "@type": "EducationalOrganization",
-    "@id": "https://devgameblogpromo.vercel.app/#educational-org",
-    "name": "DGBPLabZ School of Development & Gaming",
-    "url": "https://devgameblogpromo.vercel.app/"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "Ethan White"
-  },
-  "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": "5",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
+  "itemReviewed": { "@id": "https://devgameblogpromo.vercel.app/#organization" },
+  "author": { "@type": "Person", "name": "Ethan White" },
+  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5", "worstRating": "1" },
   "reviewBody": "Every session pushed me to think bigger. DGBPLabZ consistently challenged my assumptions and expanded what I believed was possible."
 }
 </script>
