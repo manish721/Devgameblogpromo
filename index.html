@@ -1085,18 +1085,15 @@ else{ setTimeout(initTestimonials,200); }
 
 
 
- const banner = document.getElementById("termsBanner");
+const banner = document.getElementById("termsBanner");
 const closeBtn = document.getElementById("closeBanner");
 
-// Hide if previously closed
-if (localStorage.getItem("termsBannerClosed") === "true") {
-    banner.style.display = "none";
-}
+// Always show the banner when the page loads
+banner.style.display = "flex";
 
-// Close banner
+// Close only for the current page session
 closeBtn.addEventListener("click", () => {
     banner.style.display = "none";
-    localStorage.setItem("termsBannerClosed", "true");
 });
 </script>
 </body>
