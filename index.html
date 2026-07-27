@@ -655,6 +655,55 @@ footer.site-footer{background:var(--ink);color:#e7e0c9;padding:64px 0 30px;font-
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 
+
+.top-banner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    background:#FFCB2E;
+    color:#141310;
+    border-bottom:2px solid #141310;
+    padding:10px 18px;
+    font-size:.88rem;
+    font-weight:600;
+    position:relative;
+    z-index:99;
+}
+
+.top-banner a{
+    color:#141310;
+    font-weight:700;
+    text-decoration:underline;
+}
+
+.banner-close{
+    background:transparent;
+    border:none;
+    font-size:1rem;
+    cursor:pointer;
+    color:#141310;
+    font-weight:700;
+    padding:4px 8px;
+    border-radius:4px;
+}
+
+.banner-close:hover{
+    background:rgba(0,0,0,.1);
+}
+
+@media (max-width:768px){
+    .top-banner{
+        padding:10px 12px;
+        font-size:.8rem;
+    }
+
+    .banner-close{
+        align-self:flex-start;
+    }
+}
+
+ 
 </style>
 </head>
 <body>
@@ -696,7 +745,18 @@ footer.site-footer{background:var(--ink);color:#e7e0c9;padding:64px 0 30px;font-
     <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle navigation">☰</button>
   </div>
 </header>
+<div class="top-banner" id="termsBanner">
+  <span>
+    📄 We've updated our <strong>📜 Legal & Policy Center</strong>.
+    Please review our Terms, Privacy Policy, Refund Policy, and Copyright Policy. <a href="https://docs.google.com/document/d/1cfpmmcymNQnB-PoD-KiwY2WQFhvRzblkiv8mFrHEcRY/edit?usp=sharing">📜 Legal & Policy Center</a>.
+  </span>
 
+  <button class="banner-close" id="closeBanner" aria-label="Close banner">
+    ✕
+  </button>
+</div>
+
+ 
 <section class="hero">
   <div class="container hero-grid">
     <div>
@@ -1023,6 +1083,21 @@ function initTestimonials(){
 if('requestIdleCallback' in window){ requestIdleCallback(initTestimonials,{timeout:1500}); }
 else{ setTimeout(initTestimonials,200); }
 
+
+
+ const banner = document.getElementById("termsBanner");
+const closeBtn = document.getElementById("closeBanner");
+
+// Hide if previously closed
+if (localStorage.getItem("termsBannerClosed") === "true") {
+    banner.style.display = "none";
+}
+
+// Close banner
+closeBtn.addEventListener("click", () => {
+    banner.style.display = "none";
+    localStorage.setItem("termsBannerClosed", "true");
+});
 </script>
 </body>
 </html>
