@@ -996,117 +996,249 @@ footer.site-footer{background:var(--ink);color:#e7e0c9;padding:64px 0 30px;font-
   </div>
 </footer>
 <script>
-/* Mobile nav */
-function toggleMobileMenu(){
-  var nav=document.getElementById('navMenu');
-  if(!nav) return;
-  if(nav.style.display==='flex'){ nav.style.cssText=''; }
-  else{
-    nav.style.cssText='display:flex;flex-direction:column;position:absolute;top:74px;right:20px;left:20px;background:#FFFDF6;padding:14px;border:2px solid #141310;box-shadow:6px 6px 0 #141310;z-index:999;gap:2px';
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+function toggleMobileMenu() {
+
+  const nav =
+    document.getElementById("navMenu");
+
+  const button =
+    document.querySelector(".menu-toggle");
+
+  if (!nav) {
+    console.error(
+      "navMenu was not found"
+    );
+
+    return;
   }
+
+  nav.classList.toggle(
+    "mobile-open"
+  );
+
+  const isOpen =
+    nav.classList.contains(
+      "mobile-open"
+    );
+
+  if (button) {
+
+    button.textContent =
+      isOpen ? "✕" : "☰";
+
+    button.setAttribute(
+      "aria-expanded",
+      isOpen ? "true" : "false"
+    );
+
+  }
+
 }
-/* "More" dropdown */
-(function(){
-  var trig=document.getElementById('moreTrigger');
-  var menu=document.getElementById('moreMenu');
-  if(!trig||!menu) return;
-  trig.addEventListener('click',function(e){ e.stopPropagation(); menu.classList.toggle('show'); });
-  document.addEventListener('click',function(e){
-    if(!menu.contains(e.target) && !trig.contains(e.target)) menu.classList.remove('show');
-  });
+
+
+/* =========================
+   MORE DROPDOWN
+========================= */
+
+(function () {
+
+  const trigger =
+    document.getElementById(
+      "moreTrigger"
+    );
+
+  const menu =
+    document.getElementById(
+      "moreMenu"
+    );
+
+  if (!trigger || !menu) {
+    return;
+  }
+
+  trigger.addEventListener(
+    "click",
+    function (event) {
+
+      event.preventDefault();
+
+      event.stopPropagation();
+
+      menu.classList.toggle(
+        "show"
+      );
+
+    }
+  );
+
+
+  document.addEventListener(
+    "click",
+    function (event) {
+
+      if (
+        !menu.contains(
+          event.target
+        ) &&
+        !trigger.contains(
+          event.target
+        )
+      ) {
+
+        menu.classList.remove(
+          "show"
+        );
+
+      }
+
+    }
+  );
+
 })();
-/* FAQ accordion */
-document.querySelectorAll('.faq-q').forEach(function(btn){
-  btn.addEventListener('click',function(){
-    var item=btn.closest('.faq-item');
-    var wasOpen=item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(function(i){ if(i!==item) i.classList.remove('open'); });
-    item.classList.toggle('open', !wasOpen);
+
+
+/* =========================
+   FAQ
+========================= */
+
+document
+  .querySelectorAll(
+    ".faq-q"
+  )
+  .forEach(function (button) {
+
+    button.addEventListener(
+      "click",
+      function () {
+
+        const item =
+          button.closest(
+            ".faq-item"
+          );
+
+        if (!item) {
+          return;
+        }
+
+        const wasOpen =
+          item.classList.contains(
+            "open"
+          );
+
+        document
+          .querySelectorAll(
+            ".faq-item.open"
+          )
+          .forEach(
+            function (openItem) {
+
+              if (
+                openItem !== item
+              ) {
+
+                openItem.classList.remove(
+                  "open"
+                );
+
+              }
+
+            }
+          );
+
+        item.classList.toggle(
+          "open",
+          !wasOpen
+        );
+
+      }
+    );
+
   });
-});
 
-/* Testimonials data — all reported by the founder as real submissions */
-var testimonials=[
- {name:"Sophia Bennett",role:"Community Member",initials:"SB",
-  text:"Learning under Manish Kakarla was a genuinely life-changing experience. He simplified everything from AI to programming, and the values he taught — discipline, respect, purpose — stayed with me as much as the technical skills."},
- {name:"G. Sandhya",role:"Community Member",initials:"GS",
-  text:"Manish Kakarla makes even the most complex programming and AI topics accessible. His teaching style stands out for its structure and simplicity, and beyond the technical knowledge, he instills real discipline."},
- {name:"Arian Matthews",role:"Community Member",initials:"AM",
-  text:"I joined as one of the early cohort of students, unsure about diving into AI and programming. His calm, clear explanations put us at ease fast, and the habits he taught carried well beyond the classes."},
- {name:"Aarav Sharma",role:"Student",initials:"AS",
-  text:"Before this mentorship I had zero confidence in coding. Within weeks I believed I could build things from scratch — the patience and clear teaching style changed how I approach learning."},
- {name:"Emily Foster",role:"Student",initials:"EF",
-  text:"Every session felt like a step toward something real. Programming and AI were taught in a way that was engaging, and I picked up consistency alongside the technical skills."},
- {name:"Rahul Verma",role:"Student",initials:"RV",
-  text:"I thought coding was too complicated for a school student like me. It was made to feel simple and exciting — I'm now building my first game project with real confidence."},
- {name:"Zara Khan",role:"Student",initials:"ZK",
-  text:"The mentorship is taught with a lot of care — you're treated like part of a team, not just an enrolled student, and that made a real difference to how much I stuck with it."},
- {name:"Jacob Miller",role:"Student",initials:"JM",
-  text:"Being part of an early mentored cohort was a turning point for me. Technology went from confusing and intimidating to exciting and meaningful."},
- {name:"Amelia Rodriguez",role:"Community Member",initials:"AR",
-  text:"This mentorship reshaped how I think about applying technology to real problems, not just passing exams or ticking off tutorials."},
- {name:"James Wilson",role:"Community Member",initials:"JW",
-  text:"It felt like having a clear roadmap — complex learning became structured and achievable step by step, instead of overwhelming."},
- {name:"Maya Patel",role:"Community Member",initials:"MP",
-  text:"Before this, I saw coding as a challenge to survive. Now I see it as a tool for building things I actually care about — that mindset shift was worth the whole program."},
- {name:"Lucas Bennett",role:"Community Member",initials:"LB",
-  text:"These sessions weren't only about skills — they were about mindset change and growing into someone who follows through on what they start."},
- {name:"Isabella Green",role:"Community Member",initials:"IG",
-  text:"Both my creative thinking and my coding skills improved noticeably through the mentorship. It's a very hands-on, very real style of teaching."},
- {name:"Noah Kim",role:"Community Member",initials:"NK",
-  text:"Every class delivered more than a lesson — it gave direction toward goals I hadn't clearly imagined for myself before joining."},
- {name:"Sophia Li",role:"Community Member",initials:"SL",
-  text:"Instead of handing us finished answers, Manish teaches how to build your own way through a problem. That's the lesson that stuck the most."},
- {name:"Daniel Harris",role:"Community Member",initials:"DH",
-  text:"The discipline and clarity from this mentorship changed how I approach problem-solving generally — more systematically, more confidently."},
- {name:"Ava Thompson",role:"Community Member",initials:"AT",
-  text:"The influence goes beyond the technical syllabus — it builds character and the kind of resilience that carries into everything else."},
- {name:"Ethan White",role:"Community Member",initials:"EW",
-  text:"Every session pushed me to think bigger. It challenged assumptions I didn't know I had about what I was capable of building."}
-];
-function buildTCard(t){
-  return '<div class="t-card">'
-    +'<div class="stars">★★★★★</div>'
-    +'<p>“'+t.text+'”</p>'
-    +'<div class="t-foot"><div class="t-avatar">'+t.initials+'</div>'
-    +'<div><div class="t-name">'+t.name+'</div><div class="t-role">'+t.role+'</div></div></div>'
-    +'</div>';
+
+/* =========================
+   TERMS BANNER
+========================= */
+
+const banner =
+  document.getElementById(
+    "termsBanner"
+  );
+
+const closeButton =
+  document.getElementById(
+    "closeBanner"
+  );
+
+
+if (banner) {
+
+  banner.style.display =
+    "flex";
+
 }
-function initTestimonials(){
-  var row1=document.getElementById('tRow1');
-  var row2=document.getElementById('tRow2');
-  if(!row1 && !row2) return;
-  var half=Math.ceil(testimonials.length/2);
-  if(row1){ var h1=testimonials.slice(0,half).map(buildTCard).join(''); row1.innerHTML=h1+h1; }
-  if(row2){ var h2=testimonials.slice(half).map(buildTCard).join(''); row2.innerHTML=h2+h2; }
+
+
+if (
+  banner &&
+  closeButton
+) {
+
+  closeButton.addEventListener(
+    "click",
+    function () {
+
+      banner.style.display =
+        "none";
+
+    }
+  );
+
 }
-if('requestIdleCallback' in window){ requestIdleCallback(initTestimonials,{timeout:1500}); }
-else{ setTimeout(initTestimonials,200); }
+
+</script>
 
 
+<!-- =========================
+     GOOGLE ANALYTICS
+========================= -->
 
-const banner = document.getElementById("termsBanner");
-const closeBtn = document.getElementById("closeBanner");
-
-// Always show the banner when the page loads
-banner.style.display = "flex";
-
-// Close only for the current page session
-closeBtn.addEventListener("click", () => {
-    banner.style.display = "none";
-});
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-EX2K2P91Y6">
+</script>
 
 
-
-nav.classList.toggle("mobile-open");
- <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EX2K2P91Y6"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-EX2K2P91Y6');
+window.dataLayer =
+  window.dataLayer || [];
+
+
+function gtag() {
+
+  dataLayer.push(
+    arguments
+  );
+
+}
+
+
+gtag(
+  "js",
+  new Date()
+);
+
+
+gtag(
+  "config",
+  "G-EX2K2P91Y6"
+);
 
 </script>
 </body>
