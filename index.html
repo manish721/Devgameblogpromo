@@ -935,76 +935,131 @@ footer.site-footer{background:var(--ink);color:#e7e0c9;padding:64px 0 30px;font-
   </div>
 </section>
 <!-- Verified Partners -->
-<section class="partners-section">
-  <div class="partners-container">
 
-    <span class="partners-eyebrow">
+<!-- =========================
+     VERIFIED PARTNERS
+========================= -->
+
+<section class="verified-partners">
+  <div class="verified-partners-container">
+
+    <p class="partners-label">
       DEVGAMEBLOGPROMO NETWORK
-    </span>
+    </p>
 
-    <h2>Our Current Verified Partners</h2>
+    <h2>
+      Our Current
+      <span>Verified Partners</span>
+    </h2>
 
     <p class="partners-description">
       We collaborate with organizations that support innovation,
       practical learning, technology, and community growth.
     </p>
 
-    <div class="partners-grid" id="partnersGrid">
-      <!-- Partner cards are added using JavaScript -->
-    </div>
+    <!-- Partner cards are created by JavaScript -->
+    <div
+      class="partners-grid"
+      id="partnersGrid"
+    ></div>
 
-    <p class="partners-note">
-      These partnerships are officially verified and recognized
-      by DevGameBlogPromo.
+    <p class="partners-footer-note">
+      — Officially verified and recognized by DGBPLabZ
     </p>
 
   </div>
 </section>
 
-<script src="script.js"></script>
-     <style>
-  /* ===================================
-   DGBPLABZ VERIFIED PARTNERS
-=================================== */
 
-.partners-section {
+     <style>
+/* =====================================
+   DGBPLABZ VERIFIED PARTNERS
+===================================== */
+
+.verified-partners {
   padding: 100px 24px;
-  background: #07111f;
-  color: #f8fafc;
-  border-top: 1px solid rgba(148, 163, 184, 0.14);
+
+  background: #f4f1e8;
+
+  color: #1f2933;
+
+  border-top: 3px solid #242424;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
 }
 
-.partners-container {
+.verified-partners-container {
+  width: 100%;
+
   max-width: 1180px;
+
   margin: 0 auto;
+
   text-align: center;
 }
 
 /* Small heading */
 
-.partners-eyebrow {
-  display: inline-block;
-  margin-bottom: 18px;
+.partners-label {
+  margin: 0 0 16px;
 
-  color: #60a5fa;
+  color: #5b5b5b;
 
-  font-size: 0.78rem;
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 13px;
+
   font-weight: 700;
-  letter-spacing: 0.16em;
+
+  letter-spacing: 2px;
 }
 
 /* Main heading */
 
-.partners-container h2 {
-  margin: 0;
+.verified-partners h2 {
+  max-width: 750px;
 
-  color: #ffffff;
+  margin: 0 auto;
 
-  font-size: clamp(2rem, 4vw, 3.4rem);
-  font-weight: 700;
-  line-height: 1.15;
+  color: #1f2933;
 
-  letter-spacing: -0.03em;
+  font-size:
+    clamp(
+      38px,
+      5vw,
+      64px
+    );
+
+  font-weight: 800;
+
+  line-height: 1.1;
+
+  letter-spacing: -2px;
+}
+
+/* Yellow highlighted text */
+
+.verified-partners h2 span {
+  display: inline-block;
+
+  padding:
+    5px
+    12px;
+
+  background: #ffc94a;
+
+  border:
+    2px solid
+    #242424;
+
+  box-shadow:
+    5px 5px 0
+    #242424;
 }
 
 /* Description */
@@ -1012,12 +1067,15 @@ footer.site-footer{background:var(--ink);color:#e7e0c9;padding:64px 0 30px;font-
 .partners-description {
   max-width: 650px;
 
-  margin: 22px auto 52px;
+  margin:
+    30px auto
+    55px;
 
-  color: #94a3b8;
+  color: #505861;
 
-  font-size: 1rem;
-  line-height: 1.8;
+  font-size: 18px;
+
+  line-height: 1.65;
 }
 
 /* Partner cards */
@@ -1026,75 +1084,92 @@ footer.site-footer{background:var(--ink);color:#e7e0c9;padding:64px 0 30px;font-
   display: grid;
 
   grid-template-columns:
-    repeat(5, minmax(0, 1fr));
+    repeat(
+      5,
+      1fr
+    );
 
-  gap: 14px;
+  gap: 18px;
 }
 
-/* Individual card */
+/* Individual partner */
 
 .partner-card {
-  min-height: 155px;
+  position: relative;
 
-  padding: 28px 18px;
+  min-height: 185px;
+
+  padding:
+    30px
+    15px;
 
   display: flex;
 
   flex-direction: column;
 
   align-items: center;
+
   justify-content: center;
 
-  background: rgba(15, 23, 42, 0.72);
+  background: #fffdf7;
 
   border:
-    1px solid
-    rgba(148, 163, 184, 0.18);
+    2px solid
+    #242424;
 
-  border-radius: 10px;
+  box-shadow:
+    6px 6px 0
+    #242424;
 
   transition:
-    transform 0.25s ease,
-    border-color 0.25s ease,
-    background 0.25s ease;
+    transform
+    0.2s ease,
+    box-shadow
+    0.2s ease;
 }
+
+/* Hover effect */
 
 .partner-card:hover {
-  transform: translateY(-4px);
+  transform:
+    translate(
+      3px,
+      3px
+    );
 
-  background:
-    rgba(20, 32, 52, 0.95);
-
-  border-color:
-    rgba(96, 165, 250, 0.55);
+  box-shadow:
+    3px 3px 0
+    #242424;
 }
 
-/* Verified icon */
+/* Yellow verified icon */
 
 .partner-icon {
-  width: 38px;
-  height: 38px;
+  width: 48px;
 
-  margin-bottom: 17px;
+  height: 48px;
+
+  margin-bottom: 20px;
 
   display: flex;
 
   align-items: center;
+
   justify-content: center;
+
+  background: #ffc94a;
+
+  border:
+    2px solid
+    #242424;
 
   border-radius: 50%;
 
-  color: #93c5fd;
+  color: #1f2933;
 
-  background:
-    rgba(59, 130, 246, 0.12);
+  font-size: 22px;
 
-  border:
-    1px solid
-    rgba(96, 165, 250, 0.22);
-
-  font-size: 1rem;
-  font-weight: 700;
+  font-weight: 900;
 }
 
 /* Partner name */
@@ -1102,77 +1177,115 @@ footer.site-footer{background:var(--ink);color:#e7e0c9;padding:64px 0 30px;font-
 .partner-name {
   margin: 0;
 
-  color: #f8fafc;
+  color: #1f2933;
 
-  font-size: 1rem;
-  font-weight: 650;
+  font-size: 19px;
+
+  font-weight: 800;
 }
 
-/* Status */
+/* Verified text */
 
 .partner-status {
   margin-top: 8px;
 
-  color: #64748b;
+  color: #5b5b5b;
 
-  font-size: 0.75rem;
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 12px;
+
+  letter-spacing: 0.5px;
 }
 
 /* Bottom note */
 
-.partners-note {
-  margin: 30px 0 0;
+.partners-footer-note {
+  margin:
+    45px 0 0;
 
-  color: #64748b;
+  color: #5b5b5b;
 
-  font-size: 0.8rem;
-  line-height: 1.6;
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 14px;
 }
 
-/* Tablet */
+/* =========================
+   TABLET
+========================= */
 
-@media screen and (max-width: 900px) {
+@media (
+  max-width: 950px
+) {
 
   .partners-grid {
     grid-template-columns:
-      repeat(3, 1fr);
+      repeat(
+        3,
+        1fr
+      );
   }
 
 }
 
-/* Mobile */
+/* =========================
+   MOBILE
+========================= */
 
-@media screen and (max-width: 600px) {
+@media (
+  max-width: 650px
+) {
 
-  .partners-section {
-    padding: 75px 16px;
+  .verified-partners {
+    padding:
+      75px
+      16px;
   }
 
   .partners-grid {
     grid-template-columns:
-      repeat(2, 1fr);
+      repeat(
+        2,
+        1fr
+      );
 
-    gap: 12px;
+    gap: 14px;
   }
 
   .partner-card {
-    min-height: 140px;
+    min-height: 160px;
 
-    padding: 22px 12px;
+    padding:
+      25px
+      10px;
+  }
+
+  .partner-name {
+    font-size: 16px;
   }
 
   .partners-description {
-    margin-bottom: 38px;
+    font-size: 16px;
   }
 
 }
 
-/* Very small screens */
+/* =========================
+   SMALL MOBILE
+========================= */
 
-@media screen and (max-width: 390px) {
+@media (
+  max-width: 390px
+) {
 
   .partners-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      1fr;
   }
 
 }
