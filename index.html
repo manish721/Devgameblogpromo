@@ -1500,6 +1500,50 @@ gtag(
   "G-EX2K2P91Y6"
 );
 
+
+
+ /* ================================
+   VERIFIED PARTNERS
+================================ */
+
+const verifiedPartners = [
+  "StrideWorks",
+  "PixelPlay",
+  "BrightLeaf",
+  "CodeNova",
+  "VectorHive"
+];
+
+const partnersGrid =
+  document.getElementById("partnersGrid");
+
+verifiedPartners.forEach((partner) => {
+
+  const partnerCard =
+    document.createElement("article");
+
+  partnerCard.className =
+    "partner-card";
+
+  partnerCard.innerHTML = `
+    <div class="partner-check">
+      ✓
+    </div>
+
+    <h3 class="partner-name">
+      ${partner}
+    </h3>
+
+    <span class="partner-status">
+      Verified Partner
+    </span>
+  `;
+
+  partnersGrid.appendChild(
+    partnerCard
+  );
+
+});
 </script>
 
 
