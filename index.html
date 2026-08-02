@@ -934,29 +934,34 @@ footer.site-footer{background:var(--ink);color:#e7e0c9;padding:64px 0 30px;font-
   
   </div>
 </section>
-<section class="verified-partners" id="verified-partners">
+<!-- Verified Partners -->
+<section class="partners-section">
   <div class="partners-container">
 
-    <div class="partners-heading">
-      <span class="section-label">DEVGAMEBLOGPROMO NETWORK</span>
+    <span class="partners-eyebrow">
+      DEVGAMEBLOGPROMO NETWORK
+    </span>
 
-      <h2>Our Current Verified Partners</h2>
+    <h2>Our Current Verified Partners</h2>
 
-      <p>
-        We collaborate with organizations that support innovation,
-        practical learning, technology, and community growth.
-      </p>
+    <p class="partners-description">
+      We collaborate with organizations that support innovation,
+      practical learning, technology, and community growth.
+    </p>
+
+    <div class="partners-grid" id="partnersGrid">
+      <!-- Partner cards are added using JavaScript -->
     </div>
 
-    <!-- Partner cards will be added by JavaScript -->
-    <div class="partners-grid" id="partnersGrid"></div>
-
-    <p class="verification-note">
-      Verified partnerships are officially recognized by DevGameBlogPromo.
+    <p class="partners-note">
+      These partnerships are officially verified and recognized
+      by DevGameBlogPromo.
     </p>
 
   </div>
 </section>
+
+<script src="script.js"></script>
      <style>
   /* ===================================
    DGBPLABZ VERIFIED PARTNERS
@@ -1545,9 +1550,9 @@ gtag(
 
 
 
- /* ================================
+ /* ===================================
    VERIFIED PARTNERS
-================================ */
+=================================== */
 
 const verifiedPartners = [
   "StrideWorks",
@@ -1560,33 +1565,37 @@ const verifiedPartners = [
 const partnersGrid =
   document.getElementById("partnersGrid");
 
-verifiedPartners.forEach((partner) => {
+if (partnersGrid) {
 
-  const partnerCard =
-    document.createElement("article");
+  verifiedPartners.forEach((partner) => {
 
-  partnerCard.className =
-    "partner-card";
+    const partnerCard =
+      document.createElement("article");
 
-  partnerCard.innerHTML = `
-    <div class="partner-check">
-      ✓
-    </div>
+    partnerCard.className =
+      "partner-card";
 
-    <h3 class="partner-name">
-      ${partner}
-    </h3>
+    partnerCard.innerHTML = `
+      <div class="partner-icon">
+        ✓
+      </div>
 
-    <span class="partner-status">
-      Verified Partner
-    </span>
-  `;
+      <h3 class="partner-name">
+        ${partner}
+      </h3>
 
-  partnersGrid.appendChild(
-    partnerCard
-  );
+      <span class="partner-status">
+        Verified Partner
+      </span>
+    `;
 
-});
+    partnersGrid.appendChild(
+      partnerCard
+    );
+
+  });
+
+}
 </script>
 
 
