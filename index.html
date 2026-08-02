@@ -958,170 +958,213 @@ footer.site-footer{background:var(--ink);color:#e7e0c9;padding:64px 0 30px;font-
   </div>
 </section>
      <style>
-      /* ================================
-   VERIFIED PARTNERS
-================================ */
+  /* ===================================
+   DGBPLABZ VERIFIED PARTNERS
+=================================== */
 
-.verified-partners {
-  padding: 90px 20px;
+.partners-section {
+  padding: 100px 24px;
   background: #07111f;
-  color: #ffffff;
+  color: #f8fafc;
+  border-top: 1px solid rgba(148, 163, 184, 0.14);
 }
 
 .partners-container {
-  width: min(1100px, 100%);
+  max-width: 1180px;
   margin: 0 auto;
   text-align: center;
 }
 
-.partners-heading {
-  max-width: 700px;
-  margin: 0 auto 50px;
-}
+/* Small heading */
 
-.section-label {
+.partners-eyebrow {
   display: inline-block;
-  color: #4da3ff;
-  font-size: 13px;
+  margin-bottom: 18px;
+
+  color: #60a5fa;
+
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 0.16em;
 }
 
-.partners-heading h2 {
-  margin: 15px 0;
-  font-size: clamp(32px, 5vw, 52px);
-  line-height: 1.15;
-}
+/* Main heading */
 
-.partners-heading p {
+.partners-container h2 {
   margin: 0;
-  color: #9aa8ba;
-  font-size: 17px;
-  line-height: 1.7;
+
+  color: #ffffff;
+
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.15;
+
+  letter-spacing: -0.03em;
 }
 
-/* Partner Grid */
+/* Description */
+
+.partners-description {
+  max-width: 650px;
+
+  margin: 22px auto 52px;
+
+  color: #94a3b8;
+
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* Partner cards */
 
 .partners-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 18px;
+
+  grid-template-columns:
+    repeat(5, minmax(0, 1fr));
+
+  gap: 14px;
 }
 
-/* Partner Card */
+/* Individual card */
 
 .partner-card {
-  position: relative;
-  padding: 30px 18px;
-  overflow: hidden;
+  min-height: 155px;
 
-  background: rgba(16, 30, 49, 0.9);
+  padding: 28px 18px;
 
-  border: 1px solid rgba(77, 163, 255, 0.25);
-  border-radius: 18px;
+  display: flex;
 
-  cursor: default;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(15, 23, 42, 0.72);
+
+  border:
+    1px solid
+    rgba(148, 163, 184, 0.18);
+
+  border-radius: 10px;
 
   transition:
-    transform 0.3s ease,
-    border-color 0.3s ease,
-    box-shadow 0.3s ease;
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease;
 }
 
 .partner-card:hover {
-  transform: translateY(-7px);
+  transform: translateY(-4px);
 
-  border-color: #4da3ff;
+  background:
+    rgba(20, 32, 52, 0.95);
 
-  box-shadow:
-    0 15px 40px rgba(0, 102, 255, 0.2);
+  border-color:
+    rgba(96, 165, 250, 0.55);
 }
 
-.partner-check {
-  display: flex;
+/* Verified icon */
 
+.partner-icon {
   width: 38px;
   height: 38px;
 
-  margin: 0 auto 15px;
+  margin-bottom: 17px;
+
+  display: flex;
 
   align-items: center;
   justify-content: center;
 
   border-radius: 50%;
 
-  background: rgba(77, 163, 255, 0.15);
+  color: #93c5fd;
 
-  color: #55b0ff;
+  background:
+    rgba(59, 130, 246, 0.12);
 
-  font-size: 18px;
-  font-weight: 800;
+  border:
+    1px solid
+    rgba(96, 165, 250, 0.22);
+
+  font-size: 1rem;
+  font-weight: 700;
 }
+
+/* Partner name */
 
 .partner-name {
   margin: 0;
 
-  color: #ffffff;
+  color: #f8fafc;
 
-  font-size: 19px;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 650;
 }
+
+/* Status */
 
 .partner-status {
-  display: block;
-
   margin-top: 8px;
 
-  color: #8291a5;
+  color: #64748b;
 
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
-/* Verification Note */
+/* Bottom note */
 
-.verification-note {
-  margin-top: 35px;
+.partners-note {
+  margin: 30px 0 0;
 
-  color: #748297;
+  color: #64748b;
 
-  font-size: 14px;
+  font-size: 0.8rem;
+  line-height: 1.6;
 }
 
 /* Tablet */
 
-@media (max-width: 900px) {
+@media screen and (max-width: 900px) {
 
   .partners-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns:
+      repeat(3, 1fr);
   }
 
 }
 
 /* Mobile */
 
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
 
-  .verified-partners {
-    padding: 65px 16px;
+  .partners-section {
+    padding: 75px 16px;
   }
 
   .partners-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:
+      repeat(2, 1fr);
+
+    gap: 12px;
   }
 
   .partner-card {
-    padding: 25px 12px;
+    min-height: 140px;
+
+    padding: 22px 12px;
   }
 
-  .partner-name {
-    font-size: 16px;
+  .partners-description {
+    margin-bottom: 38px;
   }
 
 }
 
-/* Small Mobile */
+/* Very small screens */
 
-@media (max-width: 380px) {
+@media screen and (max-width: 390px) {
 
   .partners-grid {
     grid-template-columns: 1fr;
