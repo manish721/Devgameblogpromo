@@ -1663,9 +1663,9 @@ gtag(
 
 
 
- /* ===================================
+ /* =====================================
    VERIFIED PARTNERS
-=================================== */
+===================================== */
 
 const verifiedPartners = [
   "StrideWorks",
@@ -1676,37 +1676,52 @@ const verifiedPartners = [
 ];
 
 const partnersGrid =
-  document.getElementById("partnersGrid");
+  document.getElementById(
+    "partnersGrid"
+  );
 
 if (partnersGrid) {
 
-  verifiedPartners.forEach((partner) => {
+  verifiedPartners.forEach(
+    function (partner) {
 
-    const partnerCard =
-      document.createElement("article");
+      const card =
+        document.createElement(
+          "article"
+        );
 
-    partnerCard.className =
-      "partner-card";
+      card.className =
+        "partner-card";
 
-    partnerCard.innerHTML = `
-      <div class="partner-icon">
-        ✓
-      </div>
+      card.innerHTML = `
 
-      <h3 class="partner-name">
-        ${partner}
-      </h3>
+        <div
+          class="partner-icon"
+          aria-label="Verified"
+        >
+          ✓
+        </div>
 
-      <span class="partner-status">
-        Verified Partner
-      </span>
-    `;
+        <h3
+          class="partner-name"
+        >
+          ${partner}
+        </h3>
 
-    partnersGrid.appendChild(
-      partnerCard
-    );
+        <span
+          class="partner-status"
+        >
+          VERIFIED PARTNER
+        </span>
 
-  });
+      `;
+
+      partnersGrid.appendChild(
+        card
+      );
+
+    }
+  );
 
 }
 </script>
