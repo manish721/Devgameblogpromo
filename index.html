@@ -913,7 +913,32 @@ footer.site-footer{background:var(--ink);color:#e7e0c9;padding:64px 0 30px;font-
 
  
 
- 
+ .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
+    .loop-card { position: relative; height: 100%; padding: 26px; transition: var(--tr); }
+    .loop-card:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--ink); }
+    .loop-card:nth-child(even) { transform: rotate(1deg); }
+    .loop-card:nth-child(even):hover { transform: translate(-3px, -3px) rotate(0); }
+    .loop-card::before { content: ""; position: absolute; top: -9px; left: 22px; width: 16px; height: 16px; background: var(--paper); border: 2px solid var(--ink); border-radius: 50%; }
+    .loop-tag { display: inline-block; margin-bottom: 8px; color: var(--yellow-deep); font: 700 .68rem "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .06em; }
+    .loop-card h4 { margin-bottom: 10px; font-size: 1.08rem; }
+    .loop-cycle, .loop-reality { margin-bottom: 7px; color: var(--ink-soft); font-size: .89rem; }
+    .loop-reality b { color: var(--ink); }
+    .loop-xp-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 17px 0 6px; }
+    .loop-xp-row .lvl { padding: 2px 8px; background: var(--yellow); border: 1px solid var(--ink); font: 700 .72rem "IBM Plex Mono", monospace; }
+    .xp-num { color: var(--ink-soft); font: .72rem "IBM Plex Mono", monospace; }
+    .xp-track { height: 12px; overflow: hidden; background: var(--paper); border: 2px solid var(--ink); }
+    .xp-fill { height: 100%; background: repeating-linear-gradient(45deg, var(--yellow-deep), var(--yellow-deep) 6px, var(--yellow) 6px, var(--yellow) 12px); transition: width .6s ease; }
+
+    .notice { margin-top: 42px; padding: 22px 24px; background: var(--paper-dim); border: 2px dashed var(--ink); }
+    .notice h4 { margin-bottom: 8px; font: 700 .82rem "IBM Plex Mono", monospace; text-transform: uppercase; letter-spacing: .06em; }
+    .notice p { max-width: 800px; margin-bottom: 0; color: var(--ink-soft); font-size: .92rem; }
+    .cta { text-align: center; }
+    .cta .card { padding: 46px 28px; }
+    .cta h3 { margin-bottom: 12px; font-size: 2rem; }
+    .cta p { max-width: 600px; margin: 0 auto 24px; color: var(--ink-soft); }
+    .btn { display: inline-flex; padding: 13px 24px; color: var(--ink); background: var(--yellow); border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); text-decoration: none; font-weight: 700; transition: var(--tr); }
+    .btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+    
 
     
 
@@ -938,9 +963,6 @@ footer.site-footer{background:var(--ink);color:#e7e0c9;padding:64px 0 30px;font-
   
     <section class="hero">
       <div class="container hero-grid">
-      
-    
-
     <section class="section" id="infinite-loops">
       <div class="container">
         <span class="section-tag">Why the work never stops</span>
