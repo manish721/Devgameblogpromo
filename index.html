@@ -1648,7 +1648,424 @@ if (partnersGrid) {
 
 }
 </script>
+<section class="verified-partners">
+  <div class="verified-partners-container">
 
+    <p class="partners-label">
+      DEVGAMEBLOGPROMO NETWORK
+    </p>
+
+    <h2>
+      Our Current
+      <span>Verified Partners</span>
+    </h2>
+
+    <p class="partners-description">
+      We collaborate with organizations that support innovation,
+      practical learning, technology, and community growth.
+    </p>
+
+    <!-- Partner cards are created by JavaScript -->
+    <div
+      class="partners-grid"
+      id="partnersGrid"
+    ></div>
+
+    <p class="partners-footer-note">
+      — Officially verified and recognized by DGBPLabZ
+    </p>
+
+  </div>
+
+
+
+     <style>
+/* =====================================
+   DGBPLABZ VERIFIED PARTNERS
+===================================== */
+
+.verified-partners {
+  padding: 100px 24px;
+
+  background: #f4f1e8;
+
+  color: #1f2933;
+
+  border-top: 3px solid #242424;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
+.verified-partners-container {
+  width: 100%;
+
+  max-width: 1180px;
+
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+/* Small heading */
+
+.partners-label {
+  margin: 0 0 16px;
+
+  color: #5b5b5b;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+/* Main heading */
+
+.verified-partners h2 {
+  max-width: 750px;
+
+  margin: 0 auto;
+
+  color: #1f2933;
+
+  font-size:
+    clamp(
+      38px,
+      5vw,
+      64px
+    );
+
+  font-weight: 800;
+
+  line-height: 1.1;
+
+  letter-spacing: -2px;
+}
+
+/* Yellow highlighted text */
+
+.verified-partners h2 span {
+  display: inline-block;
+
+  padding:
+    5px
+    12px;
+
+  background: #ffc94a;
+
+  border:
+    2px solid
+    #242424;
+
+  box-shadow:
+    5px 5px 0
+    #242424;
+}
+
+/* Description */
+
+.partners-description {
+  max-width: 650px;
+
+  margin:
+    30px auto
+    55px;
+
+  color: #505861;
+
+  font-size: 18px;
+
+  line-height: 1.65;
+}
+
+/* Partner cards */
+
+.partners-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      5,
+      1fr
+    );
+
+  gap: 18px;
+}
+
+/* Individual partner */
+
+.partner-card {
+  position: relative;
+
+  min-height: 185px;
+
+  padding:
+    30px
+    15px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #fffdf7;
+
+  border:
+    2px solid
+    #242424;
+
+  box-shadow:
+    6px 6px 0
+    #242424;
+
+  transition:
+    transform
+    0.2s ease,
+    box-shadow
+    0.2s ease;
+}
+
+/* Hover effect */
+
+.partner-card:hover {
+  transform:
+    translate(
+      3px,
+      3px
+    );
+
+  box-shadow:
+    3px 3px 0
+    #242424;
+}
+
+/* Yellow verified icon */
+
+.partner-icon {
+  width: 48px;
+
+  height: 48px;
+
+  margin-bottom: 20px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #ffc94a;
+
+  border:
+    2px solid
+    #242424;
+
+  border-radius: 50%;
+
+  color: #1f2933;
+
+  font-size: 22px;
+
+  font-weight: 900;
+}
+
+/* Partner name */
+
+.partner-name {
+  margin: 0;
+
+  color: #1f2933;
+
+  font-size: 19px;
+
+  font-weight: 800;
+}
+
+/* Verified text */
+
+.partner-status {
+  margin-top: 8px;
+
+  color: #5b5b5b;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 12px;
+
+  letter-spacing: 0.5px;
+}
+
+/* Bottom note */
+
+.partners-footer-note {
+  margin:
+    45px 0 0;
+
+  color: #5b5b5b;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 14px;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (
+  max-width: 950px
+) {
+
+  .partners-grid {
+    grid-template-columns:
+      repeat(
+        3,
+        1fr
+      );
+  }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (
+  max-width: 650px
+) {
+
+  .verified-partners {
+    padding:
+      75px
+      16px;
+  }
+
+  .partners-grid {
+    grid-template-columns:
+      repeat(
+        2,
+        1fr
+      );
+
+    gap: 14px;
+  }
+
+  .partner-card {
+    min-height: 160px;
+
+    padding:
+      25px
+      10px;
+  }
+
+  .partner-name {
+    font-size: 16px;
+  }
+
+  .partners-description {
+    font-size: 16px;
+  }
+
+}
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (
+  max-width: 390px
+) {
+
+  .partners-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+}
+     </style>
+
+<section class="section" id="cta-final" style="border-bottom:none">
+  <div class="container">
+    <div class="card" style="text-align:center;padding:48px 30px">
+      <h3 class="section-title" style="margin-bottom:14px">Ready to start building?</h3>
+      <p class="section-lead" style="margin:0 auto 26px">Join the Discord community first — it's free — then apply to whichever track fits where you are.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a class="btn btn-primary" href="https://discord.gg/HdvgYfGw6s" target="_blank" rel="noopener">Join Discord</a>
+        <a class="btn btn-dark" href="https://forms.gle/LNDC32NR6YsCmeZY8" target="_blank" rel="noopener">Apply to a Track</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>DGBPLabZ</h3>
+        <p>A founder-led mentorship program teaching web development, AI and game development through real projects — not just video lessons.</p>
+        <p style="color:#948f7d;font-size:.8rem">Questions? Write to <a href="mailto:m81434409@gmail.com" style="color:#e7e0c9">m81434409@gmail.com</a></p>
+      </div>
+      <div class="footer-col">
+        <h4>Programs</h4>
+        <ul>
+          <li><a href="labs.html">Labs</a></li>
+          <li><a class="" href="mentorship.html">Mentorship</a></li>
+          <li><a class="" href="Learning Curriculum.html">Curriculum</a>
+</li>
+          <li><a href="career-paths.html">Career Paths</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="">Announcements</a></li>
+          <li><a href="">FAQ</a></li>
+          <li><a href="">Books Store</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="founder.html">Founder Journey</a></li>
+        
+          <li><a href="agency.html">Research Agency</a></li>
+           <li><a href="https://forms.gle/aoKgfnEavd118qkt5">Partnership</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>
+       <a href="Public Documents.html">Public Documents</a>
+
+        <a href="DevGameBlogPromo.html">Communication Policies</a>
+ <a href="DGBP India Policy Portal.html">Policy Hub</a>
+        <a href="Execution.html">Execution Framework</a>
+        <a href="https://docs.google.com/document/d/1cfpmmcymNQnB-PoD-KiwY2WQFhvRzblkiv8mFrHEcRY/edit?tab=t.0#heading=h.x1wiq064arp6" target="_blank" rel="noopener">Terms of Use
+</a>
+        <a href="https://www.instagram.com/devgameblogpromo/" target="_blank" rel="noopener">Instagram</a>
+        <a href="more.html">Admin</a>
+      </div>
+      <span>© 2023–2026 DGBPLabZ / DevGameBlogPromo. Founder-led. Built with real intent.</span>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
