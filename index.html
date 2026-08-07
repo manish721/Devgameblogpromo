@@ -913,14 +913,7 @@ footer.site-footer{background:var(--ink);color:#e7e0c9;padding:64px 0 30px;font-
 
  
 
-    .loop-level-header { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; margin-bottom: 30px; padding: 16px 20px; background: var(--paper-dim); }
-    .loop-level-badge { flex-shrink: 0; padding: 8px 16px; color: var(--yellow); background: var(--ink); border: 2px solid var(--ink); transform: rotate(-2deg); font: 700 1.3rem "Space Grotesk", sans-serif; }
-    .loop-level-meta { display: flex; flex-direction: column; gap: 2px; }
-    .loop-level-meta b { font: 700 1.05rem "Space Grotesk", sans-serif; }
-    .loop-level-meta span { color: var(--ink-soft); font-size: .8rem; }
-    .loop-level-meter { flex: 1 1 210px; min-width: 190px; }
-    .overall-track { height: 10px; margin-top: 8px; overflow: hidden; background: var(--paper); border: 2px solid var(--ink); }
-    .overall-fill { height: 100%; background: repeating-linear-gradient(45deg, var(--yellow-deep), var(--yellow-deep) 6px, var(--yellow) 6px, var(--yellow) 12px); transition: width .6s ease; }
+ 
 
     .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
     .loop-card { position: relative; height: 100%; padding: 26px; transition: var(--tr); }
@@ -949,20 +942,7 @@ footer.site-footer{background:var(--ink);color:#e7e0c9;padding:64px 0 30px;font-
     .btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
     footer { padding: 28px 0; color: var(--ink-soft); text-align: center; font: .76rem "IBM Plex Mono", monospace; }
 
-    @media (max-width: 800px) {
-      .hero-grid, .grid-2 { grid-template-columns: 1fr; }
-      .hero { padding-top: 54px; }
-    }
-    @media (max-width: 560px) {
-      .container { padding: 0 16px; }
-      .section { padding: 56px 0; }
-      .nav-link { display: none; }
-      .loop-level-header { padding: 14px 16px; }
-      .loop-card:nth-child(even), .loop-card:nth-child(even):hover { transform: none; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
-    }
+  
   </style>
 
  
