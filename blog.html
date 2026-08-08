@@ -2574,89 +2574,206 @@ input[type=email][placeholder="Enter email"] → input with attributes</code></p
 </article>
 
 
+<article class="card">
+  <div class="card-meta">
+    <span class="card-date">August 5, 2026</span>
+    <span class="card-dot">·</span>
+    <span class="card-tag">Game Dev</span>
+  </div>
+  <h2>Game Performance for Indie Devs: Why Your FPS Tanks and How to Fix It 🎮</h2>
+  <p class="card-desc">Choppy frame rates kill playtests and reviews before your game gets a fair shot. Here's how to find your real bottleneck and fix it — no expensive profiler required.</p>
+  <button class="read-btn" onclick="toggleBlog('blogA16', this)">
+    <span>Read Now</span><span class="arrow">↓</span>
+  </button>
+  <div class="fullBlog" id="blogA16">
+    <p>Most solo devs guess at performance problems — they see low FPS, assume it's the graphics, and spend a week baking lightmaps that barely move the needle. Frame drops almost always come from one of four sources: CPU-side draw calls, garbage collection, physics overhead, or unoptimized shaders. Find out which one first — everything else is a waste of time.</p>
 
-<article class="card"> <div class="card-meta"> <span class="card-date">July 12, 2026</span> <span class="card-dot">·</span> <span class="card-tag">Company News</span> </div> <h2>DevGameBlogPromo: From Ideas to Execution 🚀</h2> <p class="card-desc">How DevGameBlogPromo continues transforming ideas into real products through coding, experimentation, learning and consistent execution.</p> <button class="read-btn" onclick="toggleBlog('blog2', this)"> <span>Read Now</span><span class="arrow">↓</span> </button> <div class="fullBlog" id="blog2"> <p>After June 24, 2026, DevGameBlogPromo entered another period of development. While there were no new public blog posts for a few weeks, the journey did not stop. Behind the scenes, ideas continued to turn into code, projects continued to evolve and new possibilities continued to be explored.</p>
+    <h3>Step 1: Profile Before You Touch Anything</h3>
+    <p>Every major engine ships a free profiler. Use it before changing a single line of code:</p>
+    <ul>
+      <li><strong>Unity</strong> — Window → Analysis → Profiler. Watch the CPU and Rendering modules; a tall "Camera.Render" bar means draw calls, a tall "GC.Collect" bar means allocation churn.</li>
+      <li><strong>Unreal</strong> — Stat Unit (console command) gives you Game/Draw/GPU ms split instantly. Stat GPU breaks down which pass is expensive.</li>
+      <li><strong>Godot 4</strong> — Debugger → Monitors tab. Check "Objects Drawn" and "Draw Calls" first.</li>
+    </ul>
+    <p>Whichever number is closest to your frame budget (16.6ms for 60fps, 33.3ms for 30fps) is your actual bottleneck. Don't optimize what isn't slow.</p>
 
-<p>For a technology-focused company and community, progress is not always measured by the number of announcements published. Sometimes the most important work happens quietly: improving a website, experimenting with a new technology, understanding a difficult programming concept, fixing a problem or planning the next product.</p>
+    <h3>Fix 1: Cut Draw Calls (Usually the Biggest Win)</h3>
+    <p>Every unique material or mesh the GPU has to switch to costs CPU time issuing that draw call. Ten thousand triangles in one draw call is nearly free; the same triangles split across 200 objects is not.</p>
+    <ul>
+      <li><strong>Batch static geometry</strong> — combine meshes that share a material into one mesh at build time.</li>
+      <li><strong>Use texture atlases</strong> — one 2048x2048 atlas beats fifty separate 128x128 textures, since objects sharing a texture can often share a draw call too.</li>
+      <li><strong>GPU instancing</strong> — for repeated objects (trees, rocks, enemies), instancing draws hundreds of copies in a single call.</li>
+    </ul>
+    <pre><code>// Unity — enable GPU instancing on a material via script
+Material mat = renderer.sharedMaterial;
+mat.enableInstancing = true;
 
-<h3>The Work Behind the Scenes</h3>
+// Then draw many copies in one call
+Graphics.DrawMeshInstanced(mesh, 0, mat, matrices);</code></pre>
 
-<p>DevGameBlogPromo has always been built around the idea of bringing technology, development, gaming, blogging, marketing and creativity together. As the platform continues to evolve, the focus is becoming broader. The goal is not simply to publish content, but to create an environment where ideas can become projects and where developers and creators can learn from the process.</p>
+    <h3>Fix 2: Stop the Garbage Collector From Stuttering Your Game</h3>
+    <p>In garbage-collected engines (Unity/C#, Godot/GDScript), allocating objects every frame — <code>new Vector3()</code> in Update, string concatenation, LINQ queries, boxing — fills up managed heap fast. When the GC finally runs, it pauses your whole game for a frame or more. That's the mystery "random stutter" nobody can reproduce consistently.</p>
+    <pre><code>// Bad — allocates every frame
+void Update() {
+    string label = "HP: " + currentHealth + "/" + maxHealth;
+    List&lt;Enemy&gt; nearby = enemies.Where(e =&gt; e.InRange(pos)).ToList();
+}
 
-<p>During this period, development became one of the strongest areas of focus. Website interfaces, navigation systems, interactive components and new sections were explored and improved. Every small change contributes to a larger experience for the people who visit and use the platform.</p>
+// Good — reuse buffers, avoid LINQ in hot paths
+StringBuilder sb = new StringBuilder(32); // allocated once, outside Update
+void Update() {
+    sb.Clear().Append("HP: ").Append(currentHealth).Append("/").Append(maxHealth);
+    for (int i = 0; i &lt; enemies.Count; i++) {
+        if (enemies[i].InRange(pos)) nearbyBuffer.Add(enemies[i]);
+    }
+}</code></pre>
+    <p>Pool your bullets, particles, and enemies instead of instantiating/destroying them constantly — object pooling alone fixes most shooter and bullet-hell stutter.</p>
 
-<h3>Building With Code</h3>
+    <h3>Fix 3: Tame Physics Overhead</h3>
+    <ul>
+      <li><strong>Lower the fixed timestep only if you must</strong> — 50Hz physics is usually indistinguishable from 60Hz but noticeably cheaper.</li>
+      <li><strong>Use simple collision shapes</strong> — a capsule or box collider is far cheaper than a mesh collider. Reserve mesh colliders for static level geometry only.</li>
+      <li><strong>Set collision layers/masks correctly</strong> — if bullets never need to hit other bullets, exclude that layer pair. Fewer possible collision checks means less CPU work every physics step.</li>
+    </ul>
 
-<p>Code is one of the foundations of DevGameBlogPromo. HTML creates the structure, CSS creates the visual experience and JavaScript brings interaction and functionality to the platform. Together, these technologies provide the foundation for turning an idea into an actual website.</p>
+    <h3>Fix 4: Reduce What You're Actually Rendering</h3>
+    <ul>
+      <li><strong>Occlusion culling</strong> — don't render what's behind walls. Unity, Unreal, and Godot all support this natively; it just needs to be baked or enabled.</li>
+      <li><strong>LOD (Level of Detail)</strong> — swap high-poly meshes for low-poly versions at distance. A tree needs its full detail up close, not from 200 meters away.</li>
+      <li><strong>Cap your shadow distance</strong> — shadows are one of the most expensive settings per pixel; most players won't notice shadows cutting off past 40–50 units.</li>
+    </ul>
 
-<p>But development is much more than writing lines of code. It involves understanding users, identifying problems, designing solutions, testing different approaches and learning from mistakes. A feature that looks simple from the outside can require many decisions behind the scenes.</p>
+    <h3>Your Optimization Checklist</h3>
+    <ul>
+      <li>✅ Profile first — identify CPU, GC, physics, or GPU as the real bottleneck.</li>
+      <li>✅ Batch or instance repeated objects to cut draw calls.</li>
+      <li>✅ Pool bullets, particles, and short-lived enemies.</li>
+      <li>✅ Remove per-frame allocations from Update/Tick loops.</li>
+      <li>✅ Simplify collision shapes; disable unnecessary collision layer pairs.</li>
+      <li>✅ Enable occlusion culling and set up LODs for distant geometry.</li>
+      <li>✅ Re-profile after each fix — confirm it actually moved the number.</li>
+    </ul>
+    <p>Optimization is a loop, not a checklist you do once: measure, fix the biggest bottleneck, measure again. Most solo devs can go from a stuttery 30fps prototype to a stable 60fps build by fixing draw calls and GC allocations alone — before touching a single graphics setting.</p>
+  </div>
+  <div class="blogStats">
+    <span>👁 5.8K Views</span>
+    <span>❤️ 5.1K Likes</span>
+  </div>
+</article>
 
-<p>This is why every development project becomes a learning experience. A bug can teach debugging. A slow page can teach optimization. A confusing interface can teach better user experience design. A failed idea can teach better product thinking.</p>
+<article class="card">
+  <div class="card-meta">
+    <span class="card-date">August 8, 2026</span>
+    <span class="card-dot">·</span>
+    <span class="card-tag">Web Security</span>
+  </div>
+  <h2>Website Security Basics: Locking Down Your App Before Launch 🔒</h2>
+  <p class="card-desc">Most indie apps get hit by bots and scrapers, not hackers with a master plan. Here are the security layers that stop 90% of real-world attacks — and they're simpler to add than you think.</p>
+  <button class="read-btn" onclick="toggleBlog('blogA17', this)">
+    <span>Read Now</span><span class="arrow">↓</span>
+  </button>
+  <div class="fullBlog" id="blogA17">
+    <p>You don't need a security team to protect a launch. Most attacks on small apps are automated — credential stuffing bots, scrapers hammering your API, form spam, and people poking at your signup endpoint to see what breaks. Fixing the basics below closes off the overwhelming majority of that traffic before it ever becomes a real incident.</p>
 
-<h3>Exploring New Technologies</h3>
+    <h3>Layer 1: Rate Limiting (Your First Line of Defense)</h3>
+    <p>Rate limiting stops a single client from hammering your endpoints — whether that's a brute-force login attempt, a scraper, or a misbehaving script. Apply it per IP and per user, with tighter limits on sensitive routes like login and signup.</p>
+    <pre><code>// Express + express-rate-limit
+const rateLimit = require('express-rate-limit');
 
-<p>The technology landscape continues to change quickly. Artificial intelligence, automation, modern web frameworks, APIs, cloud services and developer tools are creating new opportunities for builders.</p>
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5,                    // 5 attempts per window
+  message: 'Too many login attempts, try again later.',
+  standardHeaders: true,
+});
 
-<p>DevGameBlogPromo is exploring how these technologies can be used in practical ways. Instead of following technology simply because it is popular, the focus is on understanding how it can solve real problems and improve the experience of developers, creators and communities.</p>
+app.post('/api/login', loginLimiter, loginHandler);
 
-<h3>AI and Development</h3>
+// A looser limit for general API traffic
+const apiLimiter = rateLimit({ windowMs: 60 * 1000, max: 100 });
+app.use('/api/', apiLimiter);</code></pre>
+    <p>Cloudflare and most CDNs also offer rate limiting at the edge — worth enabling even if you rate-limit in-app too, since it stops abusive traffic before it reaches your server at all.</p>
 
-<p>Artificial intelligence has become one of the most important areas of modern software development. AI tools can help developers understand code, generate ideas, analyze problems, automate repetitive tasks and experiment with new solutions.</p>
+    <h3>Layer 2: Authentication Done Right</h3>
+    <ul>
+      <li><strong>Never store plaintext passwords</strong> — hash with bcrypt or argon2, never MD5 or SHA1 alone.</li>
+      <li><strong>Use HTTP-only, secure cookies for sessions</strong> — not localStorage, which is readable by any injected JavaScript.</li>
+      <li><strong>Add rate limits and lockouts on login</strong> — see above.</li>
+      <li><strong>Support MFA if you can</strong> — even a simple TOTP option meaningfully cuts account-takeover risk.</li>
+    </ul>
+    <pre><code>// Password hashing with bcrypt
+const bcrypt = require('bcrypt');
 
-<p>At the same time, using AI effectively requires understanding its limitations. Developers still need to review generated code, test applications, understand security risks and make responsible technical decisions.</p>
+const hash = await bcrypt.hash(plainPassword, 12); // 12 salt rounds
+const isValid = await bcrypt.compare(inputPassword, storedHash);
 
-<p>For DevGameBlogPromo, AI is not simply another feature. It is an area of learning and experimentation that could become part of future products, workflows and community experiences.</p>
+// Secure cookie config
+res.cookie('session', token, {
+  httpOnly: true,
+  secure: true,      // HTTPS only
+  sameSite: 'strict',
+  maxAge: 24 * 60 * 60 * 1000,
+});</code></pre>
 
-<h3>Security Is Part of Building</h3>
+    <h3>Layer 3: Authorization — Auth Isn't Enough on Its Own</h3>
+    <p>Authentication confirms who someone is; authorization confirms what they're allowed to do. A common bug: checking a user is logged in, but not checking they own the resource they're editing.</p>
+    <pre><code>// Bad — any logged-in user can edit any post
+app.put('/api/posts/:id', requireAuth, async (req, res) => {
+  await Post.update(req.params.id, req.body);
+});
 
-<p>As more applications move online, security becomes increasingly important. A successful website cannot focus only on design and functionality. It must also consider how users, data and systems are protected.</p>
+// Good — verify ownership before mutating
+app.put('/api/posts/:id', requireAuth, async (req, res) => {
+  const post = await Post.findById(req.params.id);
+  if (post.userId !== req.user.id) {
+    return res.status(403).json({ error: 'Forbidden' });
+  }
+  await Post.update(req.params.id, req.body);
+});</code></pre>
 
-<p>Important concepts being explored include authentication, authorization, input validation, secure API design, rate limiting, session protection and protection against abusive requests.</p>
+    <h3>Layer 4: Input Validation (Never Trust the Client)</h3>
+    <p>Every field a user can submit is an attack surface — SQL injection, XSS, oversized payloads, malformed data crashing your server. Validate on the server, always, even if you already validate on the frontend.</p>
+    <pre><code>// Zod schema validation example
+const signupSchema = z.object({
+  email: z.string().email().max(255),
+  password: z.string().min(8).max(128),
+  username: z.string().min(3).max(30).regex(/^[a-zA-Z0-9_]+$/),
+});
 
-<p>Rate limiting is particularly useful because it can help prevent systems from being overwhelmed by excessive requests. It is one example of how a relatively small technical feature can become an important part of a larger security strategy.</p>
+app.post('/api/signup', (req, res) => {
+  const result = signupSchema.safeParse(req.body);
+  if (!result.success) {
+    return res.status(400).json({ errors: result.error.issues });
+  }
+  // proceed with result.data, not req.body
+});</code></pre>
+    <p>Use parameterized queries or an ORM for anything touching your database — never build SQL with string concatenation.</p>
 
-<h3>Learning Through Problems</h3>
+    <h3>Layer 5: API Security Essentials</h3>
+    <ul>
+      <li><strong>Require API keys or tokens</strong> for any endpoint that isn't meant to be public.</li>
+      <li><strong>Set CORS explicitly</strong> — don't leave it wide open with <code>*</code> in production.</li>
+      <li><strong>Version your API</strong> (<code>/api/v1/...</code>) so you can patch security issues without breaking every client at once.</li>
+      <li><strong>Log and alert on repeated 401/403 responses</strong> — that pattern usually means someone's probing your endpoints.</li>
+    </ul>
 
-<p>One of the biggest lessons from building technology is that problems are unavoidable. A project can have broken code, unexpected errors, design issues, performance problems or features that do not work as expected.</p>
-
-<p>The important part is what happens after the problem appears. Instead of treating every error as failure, developers can treat problems as opportunities to understand the system better.</p>
-
-<p>Every debugging session creates knowledge. Every failed experiment provides information. Every improvement makes the next project easier.</p>
-
-<h3>More Than a Website</h3>
-
-<p>DevGameBlogPromo is continuing to grow beyond the idea of being only a website. The larger vision includes developers, gamers, bloggers, creators, entrepreneurs and technology enthusiasts coming together to share knowledge and build ideas.</p>
-
-<p>A community becomes valuable when people can contribute, learn and create together. That is why future development will continue exploring ways to improve interaction, content discovery, collaboration and community participation.</p>
-
-<h3>The Founder Journey</h3>
-
-<p>Building something from an idea is a long process. There are moments when progress feels exciting and moments when progress feels almost invisible. There can be periods of high productivity followed by periods of learning, planning and rebuilding.</p>
-
-<p>One of the most important lessons is that building a company is not about having everything figured out from the beginning. It is about continuously learning, making decisions, correcting mistakes and moving forward.</p>
-
-<p>DevGameBlogPromo is still on that journey. The platform is not a finished product, and the vision is not limited to what exists today.</p>
-
-<h3>What Comes Next</h3>
-
-<p>The next phase will focus on continued development, stronger content, better user experiences and new experiments with technology. More ideas will be tested, some will succeed and others will become lessons for future projects.</p>
-
-<p>There is also a renewed focus on documenting the journey. Sharing what is being built, what is being learned and what challenges appear along the way can help other developers and creators understand that building something real is a process.</p>
-
-<h3>The Road Ahead</h3>
-
-<p>DevGameBlogPromo continues forward with a simple philosophy: do not wait for everything to be perfect before building. Start with an idea, create something, learn from it, improve it and continue.</p>
-
-<p>The period after June 24 was not a pause in the journey. It was another part of the building process.</p>
-
-<p>From code to content, from technology to community, every step contributes to the bigger vision.</p>
-
-<p><strong>DevGameBlogPromo is still building. The next chapter starts with what we create today.</strong></p>
-
-<p>Where Dreams Meet Discipline. Where Ideas Become Reality. Where The Future Is Being Built.</p>
-
-</div> <div class="blogStats"> <span>👁 10.9K Views</span> <span>❤️ 7.2KLikes</span> </div> </article>
-
+    <h3>Your Security Checklist Before Launch</h3>
+    <ul>
+      <li>✅ Rate limit login, signup, and any expensive endpoints.</li>
+      <li>✅ Hash passwords with bcrypt/argon2; never store them plaintext.</li>
+      <li>✅ Use HTTP-only secure cookies, not localStorage, for sessions.</li>
+      <li>✅ Check resource ownership on every update/delete route, not just login status.</li>
+      <li>✅ Validate and sanitize every input server-side, even fields you "trust."</li>
+      <li>✅ Lock down CORS and require auth on non-public API routes.</li>
+      <li>✅ Enable HTTPS everywhere — no exceptions, no mixed content.</li>
+    </ul>
+    <p>None of this requires a security background — it's mostly about not skipping steps under launch pressure. Add these five layers once, and your app stops being an easy target for the automated attacks that actually make up most of the traffic hitting small sites.</p>
+  </div>
+  <div class="blogStats">
+    <span>👁 4.6K Views</span>
+    <span>❤️ 4.0K Likes</span>
+  </div>
+</article>
 </section>
  
 <footer>
