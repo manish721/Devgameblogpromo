@@ -1028,6 +1028,487 @@ footer.site-footer{background:var(--ink);color:#e7e0c9;padding:64px 0 30px;font-
 
   </div>
 </section>
+
+<Style>
+ /* ==========================================
+   DGBPLabZ — SOCIAL PROOF / BADGES
+   Matches existing website visual language
+   ========================================== */
+
+.dgbp-social-proof {
+  position: relative;
+
+  padding: 110px 7vw;
+
+  background: #f8f6ef;
+
+  color: #111;
+
+  overflow: hidden;
+}
+
+
+/* subtle top line */
+
+.dgbp-social-proof::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 2px;
+
+  background: #111;
+}
+
+
+.dgbp-social-proof-inner {
+  width: min(1180px, 100%);
+
+  margin: 0 auto;
+}
+
+
+/* ==========================================
+   HEADING
+   ========================================== */
+
+.dgbp-social-proof-heading {
+  max-width: 700px;
+
+  margin-bottom: 55px;
+}
+
+
+.dgbp-kicker {
+  display: inline-block;
+
+  margin-bottom: 17px;
+
+  font-family: monospace;
+
+  font-size: 11px;
+
+  letter-spacing: .08em;
+
+  color: #333;
+}
+
+
+.dgbp-social-proof-heading h2 {
+  margin: 0;
+
+  font-size: clamp(42px, 6vw, 72px);
+
+  line-height: .96;
+
+  letter-spacing: -.055em;
+
+  font-weight: 800;
+}
+
+
+.dgbp-social-proof-heading h2 span {
+  display: inline-block;
+
+  background: #ffca28;
+
+  padding: 2px 10px 5px;
+
+  transform: rotate(-1deg);
+}
+
+
+.dgbp-social-proof-heading p {
+  max-width: 620px;
+
+  margin-top: 25px;
+
+  font-size: 16px;
+
+  line-height: 1.65;
+
+  color: #333;
+}
+
+
+/* ==========================================
+   BADGE AREA
+   ========================================== */
+
+.dgbp-badge-area {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 25px;
+
+  align-items: start;
+}
+
+
+/* ==========================================
+   COMMON BADGE
+   ========================================== */
+
+.dgbp-proof-badge {
+  position: relative;
+
+  min-height: 320px;
+
+  padding: 27px;
+
+  background: #fffdf7;
+
+  border: 2px solid #111;
+
+  color: #111;
+
+  text-decoration: none;
+
+  box-shadow: 7px 8px 0 #111;
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+
+.dgbp-proof-badge:hover {
+  transform: translate(-3px, -5px);
+
+  box-shadow: 10px 13px 0 #111;
+}
+
+
+/* individual rotations */
+
+.dgbp-product-hunt {
+  transform: rotate(-1.2deg);
+}
+
+.dgbp-product-hunt:hover {
+  transform: rotate(-1.2deg) translate(-3px, -5px);
+}
+
+
+.dgbp-community-badge {
+  transform: rotate(.8deg);
+
+  background: #fff;
+}
+
+.dgbp-community-badge:hover {
+  transform: rotate(.8deg) translate(-3px, -5px);
+}
+
+
+.dgbp-founder-badge {
+  transform: rotate(-.6deg);
+
+  background: #fffdf2;
+}
+
+.dgbp-founder-badge:hover {
+  transform: rotate(-.6deg) translate(-3px, -5px);
+}
+
+
+/* ==========================================
+   TAPE
+   ========================================== */
+
+.dgbp-tape {
+  position: absolute;
+
+  width: 65px;
+  height: 20px;
+
+  top: -10px;
+  right: 38px;
+
+  background: rgba(255, 202, 40, .75);
+
+  border: 1px solid rgba(0,0,0,.12);
+
+  transform: rotate(2deg);
+}
+
+
+.dgbp-tape-right {
+  left: 42px;
+  right: auto;
+
+  transform: rotate(-4deg);
+}
+
+
+/* ==========================================
+   PIN
+   ========================================== */
+
+.dgbp-pin {
+  position: absolute;
+
+  width: 15px;
+  height: 15px;
+
+  top: -8px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  border: 2px solid #111;
+
+  border-radius: 50%;
+
+  background: #f8f6ef;
+}
+
+
+/* ==========================================
+   BADGE TOP
+   ========================================== */
+
+.dgbp-badge-top {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 30px;
+
+  font-family: monospace;
+
+  font-size: 10px;
+
+  letter-spacing: .08em;
+
+  font-weight: 700;
+}
+
+
+.dgbp-badge-top span:last-child {
+  color: #777;
+}
+
+
+/* ==========================================
+   PRODUCT HUNT LOGO
+   ========================================== */
+
+.dgbp-ph-logo {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 23px;
+
+  background: #ff6154;
+
+  border: 2px solid #111;
+
+  color: white;
+
+  font-size: 23px;
+
+  font-weight: 900;
+
+  box-shadow: 4px 4px 0 #111;
+}
+
+
+/* ==========================================
+   OTHER ICONS
+   ========================================== */
+
+.dgbp-mini-icon {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 23px;
+
+  border: 2px solid #111;
+
+  background: #ffca28;
+
+  font-weight: 900;
+
+  box-shadow: 4px 4px 0 #111;
+}
+
+
+/* ==========================================
+   BADGE TEXT
+   ========================================== */
+
+.dgbp-proof-badge h3 {
+  margin: 0;
+
+  font-size: 32px;
+
+  line-height: 1;
+
+  letter-spacing: -.045em;
+}
+
+
+.dgbp-proof-badge h3 mark {
+  background: #ffca28;
+
+  padding: 0 5px;
+
+  color: #111;
+}
+
+
+.dgbp-proof-badge p {
+  max-width: 310px;
+
+  margin: 18px 0 25px;
+
+  font-size: 13px;
+
+  line-height: 1.65;
+
+  color: #444;
+}
+
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+
+.dgbp-badge-footer {
+  position: absolute;
+
+  bottom: 23px;
+  left: 27px;
+  right: 27px;
+
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding-top: 15px;
+
+  border-top: 1px solid #111;
+
+  font-family: monospace;
+
+  font-size: 9px;
+
+  letter-spacing: .08em;
+}
+
+
+.dgbp-badge-footer strong {
+  font-family: Arial;
+
+  font-size: 18px;
+}
+
+
+/* ==========================================
+   BOTTOM NOTE
+   ========================================== */
+
+.dgbp-proof-note {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-top: 45px;
+
+  padding: 20px 24px;
+
+  border: 2px solid #111;
+
+  background: #ffca28;
+
+  box-shadow: 5px 5px 0 #111;
+}
+
+
+.dgbp-proof-note p {
+  margin: 0;
+
+  font-size: 14px;
+}
+
+
+.dgbp-proof-note a {
+  color: #111;
+
+  font-weight: 800;
+
+  font-size: 13px;
+
+  text-decoration: underline;
+}
+
+
+.dgbp-note-star {
+  font-size: 22px;
+}
+
+
+/* ==========================================
+   MOBILE
+   ========================================== */
+
+@media (max-width: 900px) {
+
+  .dgbp-badge-area {
+    grid-template-columns: 1fr;
+  }
+
+  .dgbp-proof-badge {
+    min-height: 290px;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .dgbp-social-proof {
+    padding: 75px 22px;
+  }
+
+  .dgbp-social-proof-heading h2 {
+    font-size: 44px;
+  }
+
+  .dgbp-proof-note {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
+}
+ </style>
+
+
+ 
      
 <section class="section" id="map">
   <div class="container">
