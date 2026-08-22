@@ -67,6 +67,18 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" media="print" onload="this.media='all'"/>
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap"/></noscript>
 
+  <!-- ═══ PERFORMANCE: extra resource hints (additive — the CSS @import for
+       Space Grotesk / Inter / IBM Plex Mono further down still loads normally;
+       this just lets the browser start that connection/download earlier
+       instead of discovering it only once it parses the <style> block) ═══ -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"/>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com"/>
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com"/>
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com"/>
+  <link rel="dns-prefetch" href="https://api.producthunt.com"/>
+  <link rel="dns-prefetch" href="https://upload.wikimedia.org"/>
+  <link rel="dns-prefetch" href="https://news.google.com"/>
+
   <!-- ═══════════════════════════════════════════════════
        SCHEMA MARKUP — All structured data blocks
        WHY: Google uses schema to build entity graphs.
@@ -560,7 +572,7 @@ nav.primary-nav>a.is-active{background:var(--ink);color:var(--paper)}
 .t-role{font-size:.72rem;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;text-transform:uppercase}
 
 /* ---------- TESTIMONIAL MARQUEE ---------- */
-.marquee-outer{overflow:hidden;position:relative;margin-bottom:18px}
+.marquee-outer{overflow:hidden;position:relative;margin-bottom:18px;content-visibility:auto;contain-intrinsic-size:auto 320px}
 .marquee-outer::before,.marquee-outer::after{
   content:'';position:absolute;top:0;bottom:0;width:60px;z-index:2;pointer-events:none;
 }
@@ -896,6 +908,8 @@ footer.site-footer{background:var(--ink);color:#e7e0c9;padding:64px 0 30px;font-
       <div style="text-align:center;margin-top:36px">
       <a class="btn btn-dark" href="https://docs.google.com/document/d/1WIx2NHOD_i_lpI5g289VnN_jEFsZ9IPt0ouQ1mkvwH0/edit?usp=sharing">Explore the Labs Framework →</a>
     </div>
+    </div>
+  </div>
   </div>
 </section>
 
@@ -964,7 +978,7 @@ footer.site-footer{background:var(--ink);color:#e7e0c9;padding:64px 0 30px;font-
 
 
       
-<a href="https://www.producthunt.com/products/dgbplabz-by-devgameblogpromo?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-dgbplabz-by-devgameblogpromo" target="_blank" rel="noopener noreferrer"><img alt="DGBPLabZ by DevGameBlogPromo - School of Development &amp; Gaming | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1218669&amp;theme=dark&amp;t=1786282741776"></a>
+<a href="https://www.producthunt.com/products/dgbplabz-by-devgameblogpromo?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-dgbplabz-by-devgameblogpromo" target="_blank" rel="noopener noreferrer"><img alt="DGBPLabZ by DevGameBlogPromo - School of Development &amp; Gaming | Product Hunt" width="250" height="54" loading="lazy" decoding="async" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1218669&amp;theme=dark&amp;t=1786282741776"></a>
 
     
 
@@ -1478,7 +1492,7 @@ footer.site-footer{background:var(--ink);color:#e7e0c9;padding:64px 0 30px;font-
     <h3 class="section-title">Where our students are</h3>
     <p class="section-lead">A small, real footprint — not a claim of global scale we can't back up.</p>
     <div class="map-frame">
-      <img class="map-svg" src="https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg" alt="World map showing reach" loading="lazy">
+      <img class="map-svg" src="https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg" alt="World map showing reach" loading="lazy" decoding="async" width="2000" height="1001">
       <div class="map-marker" style="top:38%;left:23%" data-name="United States"></div>
       <div class="map-marker" style="top:31%;left:48%" data-name="Germany"></div>
       <div class="map-marker" style="top:24%;left:50%" data-name="Finland"></div>
@@ -1555,6 +1569,7 @@ footer.site-footer{background:var(--ink);color:#e7e0c9;padding:64px 0 30px;font-
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+  </div>
 </section>
 <!-- Verified Partners -->
 
