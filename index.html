@@ -913,6 +913,840 @@ footer.site-footer{background:var(--ink);color:#e7e0c9;padding:64px 0 30px;font-
   </div>
 </section>
 
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #eef2f7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.title {
+    text-align: center;
+}
+
+.title h1 {
+    margin: 0;
+    color: #102a56;
+    font-size: 30px;
+}
+
+.title p {
+    margin-top: 8px;
+    color: #667085;
+}
+
+
+/* =========================
+   CARD CONTAINER
+========================= */
+
+.card-wrapper {
+    width: 900px;
+    max-width: 92vw;
+    aspect-ratio: 1.75 / 1;
+    perspective: 1400px;
+    cursor: pointer;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform .8s ease;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+
+/* =========================
+   COMMON CARD
+========================= */
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 22px;
+    overflow: hidden;
+    backface-visibility: hidden;
+}
+
+
+/* =========================
+   FRONT
+========================= */
+
+.front {
+
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(37,99,235,.35),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #071426,
+            #102a56
+        );
+
+    color: white;
+
+    padding: 55px 65px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    box-shadow:
+        0 25px 60px rgba(16,42,86,.25);
+}
+
+
+/* Decorative shapes */
+
+.front::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+
+    border: 55px solid rgba(255,255,255,.035);
+
+    right: -130px;
+    top: -150px;
+}
+
+.front::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    border-radius: 50%;
+
+    border: 35px solid rgba(96,165,250,.08);
+
+    left: -100px;
+    bottom: -120px;
+}
+
+
+/* =========================
+   BRAND
+========================= */
+
+.brand {
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    position: relative;
+    z-index: 2;
+}
+
+.logo {
+
+    width: 65px;
+    height: 65px;
+
+    border-radius: 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
+
+    font-size: 18px;
+    font-weight: 900;
+
+    box-shadow:
+        0 10px 25px rgba(37,99,235,.35);
+}
+
+.company {
+
+    font-size: 25px;
+    font-weight: 900;
+
+    letter-spacing: -.6px;
+}
+
+.tagline {
+
+    margin-top: 5px;
+
+    color: #aebed6;
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   PERSON
+========================= */
+
+.person {
+
+    position: relative;
+    z-index: 2;
+}
+
+.name {
+
+    font-size: 42px;
+
+    font-weight: 900;
+
+    letter-spacing: -1.5px;
+}
+
+.role {
+
+    margin-top: 6px;
+
+    color: #60a5fa;
+
+    font-size: 17px;
+
+    font-weight: 800;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.front-footer {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    position: relative;
+    z-index: 2;
+
+    color: #d9e3f1;
+
+    font-size: 13px;
+}
+
+.established {
+
+    color: #8fb8ee;
+
+    font-weight: 800;
+}
+
+
+/* =========================
+   BACK
+========================= */
+
+.back {
+
+    transform: rotateY(180deg);
+
+    background: #ffffff;
+
+    color: #102a56;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    padding: 50px 60px;
+
+    border: 1px solid #dce3ed;
+
+    box-shadow:
+        0 25px 60px rgba(16,42,86,.15);
+}
+
+
+/* Back decorative line */
+
+.back::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 7px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2563eb,
+            #7c3aed
+        );
+}
+
+
+/* Back brand */
+
+.back-brand {
+
+    font-size: 28px;
+
+    font-weight: 900;
+
+    letter-spacing: -.5px;
+}
+
+.back-tagline {
+
+    color: #667085;
+
+    margin-top: 6px;
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   INFORMATION
+========================= */
+
+.info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+    font-size: 14px;
+
+    color: #344054;
+}
+
+.info-row {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+}
+
+.icon {
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 9px;
+
+    background: #edf4ff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #2563eb;
+
+    font-weight: 900;
+}
+
+
+/* =========================
+   QR AREA
+========================= */
+
+.bottom {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+}
+
+.qr {
+
+    width: 105px;
+    height: 105px;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #102a56 0,
+            #102a56 3px,
+            white 3px,
+            white 7px
+        );
+
+    border: 10px solid white;
+
+    outline: 1px solid #d0d5dd;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 9px;
+
+    text-align: center;
+
+    font-weight: 900;
+
+    color: white;
+}
+
+.motto {
+
+    max-width: 430px;
+
+    font-size: 18px;
+
+    font-weight: 800;
+
+    line-height: 1.4;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.controls {
+
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+}
+
+button {
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 12px 18px;
+
+    background: #102a56;
+
+    color: white;
+
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+button:hover {
+
+    background: #2563eb;
+}
+
+.secondary {
+
+    background: white;
+
+    color: #102a56;
+
+    border: 1px solid #ccd5e2;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px) {
+
+    .front,
+    .back {
+
+        padding: 28px;
+
+    }
+
+    .company {
+
+        font-size: 18px;
+
+    }
+
+    .logo {
+
+        width: 50px;
+        height: 50px;
+
+    }
+
+    .name {
+
+        font-size: 29px;
+
+    }
+
+    .role {
+
+        font-size: 13px;
+
+    }
+
+    .front-footer {
+
+        font-size: 10px;
+
+    }
+
+    .back-brand {
+
+        font-size: 21px;
+
+    }
+
+    .info {
+
+        font-size: 10px;
+
+    }
+
+    .qr {
+
+        width: 75px;
+        height: 75px;
+
+    }
+
+    .motto {
+
+        font-size: 12px;
+
+    }
+
+}
+
+
+/* =========================
+   PRINT
+========================= */
+
+@media print {
+
+    body {
+
+        background: white;
+
+    }
+
+    .title,
+    .controls {
+
+        display: none;
+
+    }
+
+    .card-wrapper {
+
+        width: 900px;
+
+        max-width: none;
+
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="title">
+
+    <h1>DevGameBlogPromo</h1>
+
+    <p>
+        Professional Business Card
+    </p>
+
+</div>
+
+
+<!-- =========================
+     CARD
+========================= -->
+
+<div
+    class="card-wrapper"
+    onclick="flipCard()"
+>
+
+<div class="card" id="businessCard">
+
+
+<!-- =========================
+     FRONT
+========================= -->
+
+<div class="card-face front">
+
+
+    <div class="brand">
+
+        <div class="logo">
+            DGBP
+        </div>
+
+        <div>
+
+            <div class="company">
+                DevGameBlogPromo
+            </div>
+
+            <div class="tagline">
+                BUILD • LEARN • CREATE • INNOVATE
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="person">
+
+        <div class="name">
+            Manish
+        </div>
+
+        <div class="role">
+            Founder & Entrepreneur
+        </div>
+
+    </div>
+
+
+    <div class="front-footer">
+
+        <div>
+            Technology • Education • Innovation
+        </div>
+
+        <div class="established">
+            EST. 2025
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<!-- =========================
+     BACK
+========================= -->
+
+<div class="card-face back">
+
+
+    <div>
+
+        <div class="back-brand">
+            DevGameBlogPromo
+        </div>
+
+        <div class="back-tagline">
+            A developer-focused innovation ecosystem
+        </div>
+
+    </div>
+
+
+    <div class="info">
+
+
+        <div class="info-row">
+
+            <div class="icon">
+                @
+            </div>
+
+            <div>
+                m81434409@gmail.com
+            </div>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <div class="icon">
+                ↗
+            </div>
+
+            <div>
+                devgameblogpromo.vercel.app
+            </div>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <div class="icon">
+                IN
+            </div>
+
+            <div>
+                India
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="bottom">
+
+
+        <div class="motto">
+
+            Building the next generation
+            of developers, creators
+            and entrepreneurs.
+
+        </div>
+
+
+        <div class="qr">
+
+            DGBP<br>
+            QR READY
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     CONTROLS
+========================= -->
+
+<div class="controls">
+
+    <button onclick="flipCard(); event.stopPropagation();">
+        Flip Card
+    </button>
+
+    <button onclick="window.print(); event.stopPropagation();">
+        Print / Save PDF
+    </button>
+
+    <button
+        class="secondary"
+        onclick="resetCard(); event.stopPropagation();"
+    >
+        Reset
+    </button>
+
+</div>
+
+
+<script>
+
+
+/* =========================
+   FLIP CARD
+========================= */
+
+function flipCard() {
+
+    const card =
+        document.getElementById(
+            "businessCard"
+        );
+
+    card.classList.toggle("flipped");
+
+}
+
+
+/* =========================
+   RESET
+========================= */
+
+function resetCard() {
+
+    const card =
+        document.getElementById(
+            "businessCard"
+        );
+
+    card.classList.remove("flipped");
+
+}
+
+
+</script>
+
+ 
 <section class="section" id="philosophy">
   <div class="container">
     <span class="section-tag">Mentorship philosophy</span>
