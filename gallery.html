@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What We Do – Gallery</title>
+<style>
+:root{--bg:#faf8f5;--card:#fff;--text:#1f1d1a;--muted:#6f6a63;--accent:#d9480f;--line:#e6e1d9;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#161513;--card:#201e1b;--text:#f1ede6;--muted:#a09a90;--accent:#ff8a4c;--line:#34312c}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#161513;--card:#201e1b;--text:#f1ede6;--muted:#a09a90;--accent:#ff8a4c;--line:#34312c}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif}
+header{max-width:1000px;margin:0 auto;padding:48px 20px 24px;text-align:center}
+h1{font-size:clamp(2rem,6vw,3.4rem);margin:0 0 8px;outline:none}
+.sub{color:var(--muted);font-family:system-ui,sans-serif;outline:none;margin:0 0 24px}
+[contenteditable]:focus{border-bottom:2px dashed var(--accent)}
+.btn{font-family:system-ui,sans-serif;background:var(--accent);color:#fff;border:0;padding:12px 22px;border-radius:999px;font-size:1rem;cursor:pointer}
+.btn:hover{opacity:.9}
+.grid{max-width:1000px;margin:0 auto;padding:12px 20px 60px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;position:relative}
+.card img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;cursor:zoom-in}
+.cap{padding:12px 14px 16px;font-family:system-ui,sans-serif;font-size:.95rem;outline:none;min-height:48px}
+.cap:empty::before{content:attr(data-ph);color:var(--muted)}
+.del{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.6);color:#fff;border:0;border-radius:50%;width:30px;height:30px;cursor:pointer}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);font-family:system-ui,sans-serif;padding:40px 0}
+#pw{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:20}
+#pw.on{display:flex}
+#pw .box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;width:100%;max-width:320px;font-family:system-ui,sans-serif;text-align:center}
+#pw input{width:100%;padding:12px;font-size:1.1rem;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);text-align:center;letter-spacing:.2em;margin:12px 0 8px}
+#pw .err{color:#d33;min-height:1.2em;font-size:.9rem;margin-bottom:10px}
+#pw .row{display:flex;gap:8px;justify-content:center}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+#lb{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;padding:20px;z-index:10;cursor:zoom-out}
+#lb.on{display:flex}
+#lb img{max-width:100%;max-height:100%;border-radius:8px}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="title" contenteditable="false" data-edit>People, this is what we do</h1>
+  <p class="sub" id="sub" contenteditable="false" data-edit>Add your photos, write a line under each, and show everyone our work.</p>
+  <button class="btn" id="add">+ Add images</button>
+  <input type="file" id="file" accept="image/*" multiple hidden>
+</header>
+<main class="grid" id="grid"></main>
+<div id="pw"><div class="box"><strong>Enter password to edit</strong>
+<input id="pwin" type="password" inputmode="numeric" autocomplete="off">
+<div class="err" id="pwerr"></div>
+<div class="row"><button class="btn ghost" id="pwcancel">Cancel</button><button class="btn" id="pwok">Unlock</button></div></div></div>
+<div id="lb"><img alt=""></div>
+<script>
+const KEY='gallery-v1';
+let state={title:'',sub:'',items:[]};
+const $=id=>document.getElementById(id);
+function load(){try{const s=localStorage.getItem(KEY);if(s)state=JSON.parse(s)}catch(e){}
+  if(state.title)$('title').textContent=state.title;
+  if(state.sub)$('sub').textContent=state.sub}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+function render(){
+  const g=$('grid');g.innerHTML='';
+  if(!state.items.length){g.innerHTML='<div class="empty">No images yet. Tap “Add images” to start.</div>';return}
+  state.items.forEach((it,i)=>{
+    const c=document.createElement('div');c.className='card';
+    const img=new Image();img.src=it.src;img.alt=it.cap||'Gallery image';
+    img.onclick=()=>{$('lb').querySelector('img').src=it.src;$('lb').classList.add('on')};
+    const cap=document.createElement('div');cap.className='cap';cap.contentEditable=unlocked?'true':'false';cap.setAttribute('data-edit','');
+    cap.dataset.ph='Write what we do here…';cap.textContent=it.cap||'';
+    cap.oninput=()=>{it.cap=cap.textContent;save()};
+    const d=document.createElement('button');d.className='del';d.textContent='✕';d.setAttribute('aria-label','Remove');
+    d.onclick=()=>need(()=>{state.items.splice(i,1);save();render()});
+    c.append(img,d,cap);g.append(c);
+  });
+}
+function shrink(file){return new Promise(res=>{
+  const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{
+    const m=900,s=Math.min(1,m/Math.max(im.width,im.height));
+    const cv=document.createElement('canvas');cv.width=im.width*s;cv.height=im.height*s;
+    cv.getContext('2d').drawImage(im,0,0,cv.width,cv.height);res(cv.toDataURL('image/jpeg',.8))};
+    im.src=r.result};r.readAsDataURL(file)})}
+const PASS='483921';let unlocked=false;
+function closePw(){$('pw').classList.remove('on');$('pwin').value='';$('pwerr').textContent=''}
+let afterUnlock=null;
+function need(cb){if(unlocked){cb();return}afterUnlock=cb;$('pw').classList.add('on');$('pwin').focus()}
+$('add').onclick=()=>need(()=>$('file').click());
+document.addEventListener('click',e=>{const t=e.target.closest('[data-edit]');if(t&&!unlocked)need(()=>t.focus())});
+function tryPw(){if($('pwin').value.trim()===PASS){unlocked=true;const f=afterUnlock;afterUnlock=null;closePw();document.querySelectorAll('[data-edit]').forEach(x=>x.contentEditable='true');if(f)f()}else{$('pwerr').textContent='Wrong password';$('pwin').select()}}
+$('pwok').onclick=tryPw;
+$('pwcancel').onclick=()=>{afterUnlock=null;closePw()};
+$('pwin').onkeydown=e=>{if(e.key==='Enter')tryPw()};
+$('file').onchange=async e=>{
+  for(const f of e.target.files){state.items.push({src:await shrink(f),cap:''})}
+  e.target.value='';save();render()};
+$('title').oninput=()=>{state.title=$('title').textContent;save()};
+$('sub').oninput=()=>{state.sub=$('sub').textContent;save()};
+$('lb').onclick=()=>$('lb').classList.remove('on');
+load();render();
+</script>
+</body>
+</html>
