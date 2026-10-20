@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
   <url>
-  <loc>https://devgameblogpromo.vercel.app/</loc>
+  <loc>http://devgameblogpromo.vercel.app/</loc>
   <news:news>
     <news:publication>
       <news:name>DevGameBlogPromo.Crop</news:name>
