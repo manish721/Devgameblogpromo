@@ -460,6 +460,30 @@ img{max-width:100%;display:block}
   background:#fff;font-size:1.15rem;cursor:pointer;
 }
 
+/* ---------- FULL-WIDTH IMAGE SLIDER ---------- */
+.slider{position:relative;overflow:hidden;width:100%;border-bottom:1px solid var(--line);background:var(--ink)}
+.slides{display:flex;transition:transform .6s ease;will-change:transform}
+.slide{min-width:100%;margin:0;position:relative;height:min(70vh,640px)}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slide figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:56px 28px 26px;color:#fff;font-weight:700;
+  font-size:1.05rem;background:linear-gradient(transparent,rgba(20,19,16,.82));
+}
+.slider-btn{
+  position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;
+  border:1.5px solid var(--ink);background:var(--brand);color:var(--ink);font-size:1.2rem;font-weight:800;
+  cursor:pointer;z-index:3;transition:transform .15s ease;
+}
+.slider-btn:hover{transform:translateY(-50%) scale(1.08)}
+.slider-btn.prev{left:16px}
+.slider-btn.next{right:16px}
+.slider-dots{position:absolute;bottom:14px;right:22px;display:flex;gap:8px;z-index:3}
+.slider-dots button{
+  width:10px;height:10px;border-radius:50%;border:none;background:rgba(255,255,255,.55);
+  cursor:pointer;padding:0;transition:all .2s ease;
+}
+.slider-dots button.active{background:var(--brand);width:26px;border-radius:6px}
+
 /* ---------- HERO ---------- */
 .hero{
   padding:80px 0 56px;
@@ -678,6 +702,9 @@ img{max-width:100%;display:block}
   .marquee-outer::before,.marquee-outer::after{display:none}
   .t-card{width:100%}
   .announce{font-size:.8rem;padding:9px 40px 9px 12px;text-align:left}
+  .slide{height:55vh}
+  .slider-btn{width:38px;height:38px}
+  .slide figcaption{font-size:.9rem;padding:40px 18px 36px}
 }
 @media(max-width:380px){.partners-grid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){
@@ -741,6 +768,29 @@ img{max-width:100%;display:block}
 </header>
 
 <main>
+
+<!-- ═══ FULL-WIDTH IMAGE SLIDER ═══ -->
+<section id="gallery" aria-label="Gallery">
+  <div class="slider" id="slider" aria-roledescription="carousel" aria-label="DGBPLabZ photo gallery">
+    <div class="slides" id="slides">
+      <figure class="slide">
+        <img src="IMG-20251126-WA0002.jpg" alt="Students building projects in a mentorship session" width="1920" height="800">
+        <figcaption>Hands-on mentorship sessions in Hyderabad</figcaption>
+      </figure>
+      <figure class="slide">
+        <img src="IMG-20251126-WA0002.jpg" alt="Students presenting their projects" width="1920" height="800" loading="lazy">
+        <figcaption>Project reviews and demo days</figcaption>
+      </figure>
+      <figure class="slide">
+        <img src="IMG-20251126-WA0002.jpg" alt="Game development lab work" width="1920" height="800" loading="lazy">
+        <figcaption>Game development lab work</figcaption>
+      </figure>
+    </div>
+    <button class="slider-btn prev" type="button" aria-label="Previous slide">‹</button>
+    <button class="slider-btn next" type="button" aria-label="Next slide">›</button>
+    <div class="slider-dots" id="sliderDots"></div>
+  </div>
+</section>
 
 <!-- ═══ HERO ═══ -->
 <section class="hero">
@@ -1105,6 +1155,56 @@ img{max-width:100%;display:block}
       trigger.setAttribute('aria-expanded','false');
     }
   });
+})();
+
+/* ===== Image slider ===== */
+(function(){
+  var slider=document.getElementById('slider');
+  if(!slider) return;
+  var track=document.getElementById('slides');
+  var count=track.children.length;
+  var dotsWrap=document.getElementById('sliderDots');
+  var i=0,timer=null,startX=null;
+
+  for(var d=0;d<count;d++){
+    (function(n){
+      var b=document.createElement('button');
+      b.type='button';b.setAttribute('aria-label','Go to slide '+(n+1));
+      b.addEventListener('click',function(){go(n);restart();});
+      dotsWrap.appendChild(b);
+    })(d);
+  }
+  var dots=dotsWrap.children;
+
+  function go(n){
+    i=(n+count)%count;
+    track.style.transform='translateX(-'+(i*100)+'%)';
+    for(var k=0;k<dots.length;k++) dots[k].classList.toggle('active',k===i);
+  }
+  function start(){
+    if(window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    stop();
+    timer=setInterval(function(){go(i+1);},5000);
+  }
+  function stop(){clearInterval(timer);}
+  function restart(){stop();start();}
+
+  slider.querySelector('.prev').addEventListener('click',function(){go(i-1);restart();});
+  slider.querySelector('.next').addEventListener('click',function(){go(i+1);restart();});
+  slider.addEventListener('mouseenter',stop);
+  slider.addEventListener('mouseleave',start);
+  slider.addEventListener('focusin',stop);
+  slider.addEventListener('focusout',start);
+  slider.addEventListener('touchstart',function(e){startX=e.touches[0].clientX;stop();},{passive:true});
+  slider.addEventListener('touchend',function(e){
+    if(startX!==null){
+      var dx=e.changedTouches[0].clientX-startX;
+      if(Math.abs(dx)>40) go(dx<0?i+1:i-1);
+    }
+    startX=null;start();
+  });
+
+  go(0);start();
 })();
 
 /* ===== Testimonials ===== */
