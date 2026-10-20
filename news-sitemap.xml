@@ -2,7 +2,7 @@
 <urlset xmlns="http://sitemaps.org"
         xmlns:news="http://google.com">
   <url>
-    <loc>https://vercel.app</loc>
+    <loc>https://devgameblogpromo.vercel.app</loc>
     <news:news>
       <news:publication>
         <news:name>DGBPLabZ</news:name>
