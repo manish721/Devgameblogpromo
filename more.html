@@ -1,673 +1,516 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Platform Administration — DevGameBlogPromo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --bg: #080b10;
-      --bg2: #0d1118;
-      --surface: #111722;
-      --surface2: #171f2e;
-      --border: rgba(255,255,255,0.07);
-      --accent: #00e5ff;
-      --accent2: #7c3aed;
-      --accent3: #f59e0b;
-      --text: #e8edf5;
-      --muted: #6b7a99;
-      --danger: #ef4444;
-      --success: #22c55e;
-      --font-head: 'Syne', sans-serif;
-      --font-mono: 'DM Mono', monospace;
-    }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Platform Administration — DGBPLabZ by DevGameBlogPromo</title>
+<link rel="icon" href="logo100.png" type="image/png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"/>
+<style>
+/* ===================================================================
+   DGBPLabZ — Platform Administration
+   Matches the homepage: ink black + marker yellow on white / warm grey.
+   =================================================================== */
+:root{
+  --bg:#ffffff;
+  --bg-soft:#f7f5ee;
+  --ink:#141310;
+  --ink-2:#2b2a25;
+  --muted:#5d5b52;
+  --line:#e7e3d6;
+  --brand:#FFCB2E;
+  --brand-deep:#E8A400;
+  --brand-tint:#fff6d6;
+  --danger:#c2410c;
+  --danger-tint:#fdeadf;
+  --ok:#2f8f4e;
+  --ok-tint:#e3f4e8;
+  --radius:16px;
+  --radius-sm:10px;
+  --maxw:1180px;
+  --shadow:0 1px 2px rgba(20,19,16,.05),0 8px 24px rgba(20,19,16,.06);
+  --shadow-lg:0 2px 4px rgba(20,19,16,.06),0 18px 40px rgba(20,19,16,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{line-height:1.15;letter-spacing:-.02em;font-weight:800}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.section{padding:88px 0}
+.section.soft{background:var(--bg-soft)}
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;
+}
+.eyebrow::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 3px var(--brand-tint)}
+.section-title{font-size:clamp(1.8rem,3.2vw,2.5rem);margin-bottom:14px;max-width:760px}
+.section-lead{color:var(--muted);font-size:1.05rem;max-width:680px;margin-bottom:44px}
 
-    html { scroll-behavior: smooth; }
+/* ---------- BUTTONS ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:13px 22px;border-radius:var(--radius-sm);font-weight:700;font-size:.94rem;
+  border:1.5px solid var(--ink);cursor:pointer;font-family:inherit;
+  transition:transform .15s ease,box-shadow .15s ease,background .15s ease;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-brand{background:var(--brand);color:var(--ink)}
+.btn-outline{background:transparent;color:var(--ink)}
+.btn-outline:hover{background:var(--bg-soft)}
+.btn-sm{padding:9px 16px;font-size:.86rem}
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-mono);
-      font-size: 15px;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
+/* ---------- ANNOUNCEMENT BAR ---------- */
+.announce{
+  background:var(--ink);color:#f3efe0;font-size:.86rem;
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  padding:9px 48px 9px 16px;position:relative;text-align:center;
+}
+.announce .live{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 3px rgba(74,222,128,.2);flex-shrink:0}
+.announce a{color:var(--brand);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.announce button{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;
+  color:#f3efe0;font-size:1rem;cursor:pointer;padding:6px 8px;border-radius:6px;
+}
+.announce button:hover{background:rgba(255,255,255,.12)}
 
-    /* ── NOISE OVERLAY ── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 9999; opacity: .4;
-    }
+/* ---------- HEADER ---------- */
+.site-header{
+  position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);
+  backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line);
+}
+.nav-wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:72px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{
+  width:40px;height:40px;border-radius:11px;background:var(--brand);color:var(--ink);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;flex-shrink:0;
+}
+.brand-name{font-weight:800;font-size:1.08rem;letter-spacing:-.02em;line-height:1.1}
+.brand-sub{font-size:.7rem;color:var(--muted);font-weight:600;letter-spacing:.03em}
+.primary-nav{display:flex;align-items:center;gap:2px}
+.primary-nav>a,.nav-more>button{
+  padding:9px 13px;border-radius:9px;font-weight:600;font-size:.9rem;color:var(--ink-2);
+  background:none;border:none;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:6px;
+}
+.primary-nav>a:hover,.nav-more>button:hover{background:var(--bg-soft);color:var(--ink)}
+.nav-more{position:relative}
+.nav-more-menu{
+  position:absolute;top:calc(100% + 8px);right:0;width:250px;background:#fff;border:1px solid var(--line);
+  border-radius:var(--radius);box-shadow:var(--shadow-lg);padding:8px;
+  opacity:0;visibility:hidden;transform:translateY(6px);transition:all .18s ease;
+}
+.nav-more-menu.show,.nav-more:hover .nav-more-menu,.nav-more:focus-within .nav-more-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.nav-more-menu a{display:block;padding:9px 12px;border-radius:8px;font-size:.88rem;font-weight:500}
+.nav-more-menu a:hover{background:var(--bg-soft)}
+.nav-more-menu a.current{background:var(--brand-tint);font-weight:700}
+.nav-more-menu hr{border:none;border-top:1px solid var(--line);margin:6px 4px}
+.nav-cta{display:flex;align-items:center;gap:10px}
+.menu-toggle{
+  display:none;width:42px;height:42px;border-radius:10px;border:1.5px solid var(--ink);
+  background:#fff;font-size:1.15rem;cursor:pointer;
+}
 
-    /* ── GRID BG ── */
-    body::after {
-      content: '';
-      position: fixed; inset: 0;
-      background-image:
-        linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none; z-index: 0;
-    }
+/* ---------- HERO ---------- */
+.hero{
+  padding:80px 0 56px;
+  background:
+    radial-gradient(900px 380px at 85% -10%, var(--brand-tint), transparent 70%),
+    linear-gradient(180deg,#fff,var(--bg-soft));
+}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(2.4rem,5.2vw,4rem);letter-spacing:-.035em;margin-bottom:20px}
+.hero h1 em{font-style:normal;background:linear-gradient(transparent 62%,var(--brand) 62%);padding:0 4px}
+.hero .lead{font-size:1.12rem;color:var(--muted);max-width:560px;margin-bottom:26px}
+.badges{display:flex;flex-wrap:wrap;gap:10px}
+.badge{
+  font-size:.78rem;font-weight:700;padding:7px 14px;border-radius:999px;
+  border:1.5px solid var(--ink);background:#fff;color:var(--ink);
+}
+.badge.brand{background:var(--brand);}
+.badge.soft{border-color:var(--line);background:var(--bg-soft);color:var(--ink-2)}
+.glance{
+  background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow-lg);padding:28px;
+}
+.glance h2{font-size:1.1rem;margin-bottom:6px}
+.glance>p{color:var(--muted);font-size:.9rem;margin-bottom:18px}
+.glance li{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--line);font-size:.92rem}
+.glance li span:first-child{
+  width:28px;height:28px;border-radius:8px;background:var(--brand-tint);color:var(--brand-deep);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.8rem;flex-shrink:0;
+}
+.glance li b{display:block;font-size:.92rem}
+.glance li small{color:var(--muted);font-size:.82rem}
 
-    /* ── SCROLLBAR ── */
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--accent2); border-radius: 2px; }
+/* ---------- TRUST STRIP ---------- */
+.trust-strip{border-bottom:1px solid var(--line);background:#fff}
+.trust-strip .container{display:flex;flex-wrap:wrap;gap:10px 34px;justify-content:center;padding-top:18px;padding-bottom:18px}
+.trust-strip span{font-size:.84rem;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:8px}
+.trust-strip span::before{content:'✓';color:var(--brand-deep);font-weight:800}
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 40px;
-      background: rgba(8,11,16,0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-logo {
-      font-family: var(--font-head);
-      font-weight: 800; font-size: 1rem;
-      letter-spacing: 0.08em;
-      color: var(--accent);
-      text-decoration: none;
-    }
-    .nav-logo span { color: var(--muted); font-weight: 400; }
-    .nav-tag {
-      font-size: 0.7rem; letter-spacing: 0.2em;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 4px 12px; border-radius: 20px;
-    }
-    .nav-tag span { color: var(--accent3); }
+/* ---------- CARDS ---------- */
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;
+  box-shadow:var(--shadow);transition:transform .18s ease,box-shadow .18s ease;
+}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.icon{
+  width:44px;height:44px;border-radius:12px;background:var(--brand);display:flex;
+  align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:18px;
+}
+.card h3{font-size:1.15rem;margin-bottom:10px}
+.card p{color:var(--muted);font-size:.94rem}
 
-    /* ── HERO ── */
-    .hero {
-      position: relative; z-index: 1;
-      min-height: 100vh;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: flex-start;
-      padding: 120px 40px 80px;
-      max-width: 1100px; margin: 0 auto;
-    }
-    .hero-eyebrow {
-      font-size: 0.72rem; letter-spacing: 0.3em;
-      color: var(--accent); text-transform: uppercase;
-      display: flex; align-items: center; gap: 10px;
-      margin-bottom: 24px;
-      opacity: 0; animation: fadeUp .6s .2s forwards;
-    }
-    .hero-eyebrow::before {
-      content: ''; display: block;
-      width: 32px; height: 1px; background: var(--accent);
-    }
-    .hero-title {
-      font-family: var(--font-head);
-      font-weight: 800; font-size: clamp(2.8rem, 6vw, 5.5rem);
-      line-height: 1.05; letter-spacing: -0.02em;
-      opacity: 0; animation: fadeUp .6s .35s forwards;
-    }
-    .hero-title .line2 { color: var(--accent); display: block; }
-    .hero-sub {
-      margin-top: 28px; max-width: 560px;
-      color: var(--muted); font-size: 0.92rem;
-      opacity: 0; animation: fadeUp .6s .5s forwards;
-    }
-    .hero-badges {
-      display: flex; flex-wrap: wrap; gap: 10px;
-      margin-top: 36px;
-      opacity: 0; animation: fadeUp .6s .65s forwards;
-    }
-    .badge {
-      font-size: 0.7rem; letter-spacing: 0.12em;
-      padding: 6px 14px; border-radius: 4px;
-      border: 1px solid;
-    }
-    .badge-cyan  { border-color: var(--accent);  color: var(--accent);  background: rgba(0,229,255,.06); }
-    .badge-purple{ border-color: var(--accent2); color: var(--accent2); background: rgba(124,58,237,.06); }
-    .badge-amber { border-color: var(--accent3); color: var(--accent3); background: rgba(245,158,11,.06); }
-    .badge-green { border-color: var(--success); color: var(--success); background: rgba(34,197,94,.06); }
+/* ---------- ROLES TABLE ---------- */
+.table-wrap{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow-x:auto;
+}
+.roles-table{width:100%;border-collapse:collapse;min-width:760px}
+.roles-table thead th{
+  font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;
+  text-align:left;padding:16px 18px;background:var(--bg-soft);border-bottom:1px solid var(--line);
+}
+.roles-table tbody tr{border-bottom:1px solid var(--line);transition:background .15s}
+.roles-table tbody tr:last-child{border-bottom:none}
+.roles-table tbody tr:hover{background:var(--bg-soft)}
+.roles-table td{padding:16px 18px;font-size:.88rem;vertical-align:middle}
+.role-name{font-weight:800;display:flex;align-items:center;gap:10px;letter-spacing:-.01em}
+.dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.perm-tag{
+  display:inline-block;font-size:.74rem;font-weight:700;padding:4px 11px;border-radius:999px;
+  border:1px solid var(--line);color:var(--muted);background:#fff;
+}
+.perm-tag.on{background:var(--brand);border-color:var(--ink);color:var(--ink)}
+.perm-tag.partial{background:var(--brand-tint);border-color:var(--brand-deep);color:#7a5600}
 
-    .hero-scroll {
-      position: absolute; bottom: 40px; left: 40px;
-      font-size: 0.68rem; letter-spacing: 0.2em;
-      color: var(--muted); display: flex; align-items: center; gap: 8px;
-      opacity: 0; animation: fadeUp .6s .9s forwards;
-    }
-    .hero-scroll::after {
-      content: '';
-      display: block; width: 1px; height: 48px;
-      background: linear-gradient(to bottom, var(--muted), transparent);
-    }
+/* ---------- GUIDELINES ---------- */
+.guide-num{
+  font-weight:800;font-size:.8rem;letter-spacing:.08em;color:var(--brand-deep);margin-bottom:10px;
+}
+.guide-card h3{font-size:1.1rem;margin-bottom:14px}
+.guide-card li{
+  font-size:.9rem;color:var(--muted);padding:9px 0;border-top:1px solid var(--line);
+  display:flex;align-items:flex-start;gap:10px;
+}
+.guide-card li::before{content:'→';color:var(--brand-deep);font-weight:800;flex-shrink:0}
 
-    /* ── MAIN WRAPPER ── */
-    .wrapper { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 0 40px 120px; }
+/* ---------- RULES ---------- */
+.rules-list{counter-reset:rule;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.rules-list li{
+  counter-increment:rule;display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:start;
+  padding:24px 28px;border-bottom:1px solid var(--line);transition:background .15s;
+}
+.rules-list li:last-child{border-bottom:none}
+.rules-list li:hover{background:var(--bg-soft)}
+.rules-list li::before{
+  content:counter(rule,decimal-leading-zero);width:44px;height:44px;border-radius:12px;background:var(--brand);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;
+}
+.rule-content h4{font-size:1.02rem;margin-bottom:4px}
+.rule-content p{font-size:.92rem;color:var(--muted)}
+.tag{display:inline-block;margin-top:10px;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 11px;border-radius:999px}
+.tag-strict{background:var(--danger-tint);color:var(--danger);border:1px solid #f3c3a8}
+.tag-warn{background:var(--brand-tint);color:#7a5600;border:1px solid var(--brand-deep)}
+.tag-info{background:var(--bg-soft);color:var(--ink-2);border:1px solid var(--line)}
 
-    /* ── SECTION HEADER ── */
-    .sec-label {
-      font-size: 0.68rem; letter-spacing: 0.3em;
-      color: var(--accent); text-transform: uppercase;
-      display: flex; align-items: center; gap: 10px;
-      margin-bottom: 12px;
-    }
-    .sec-label::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
-    .sec-title {
-      font-family: var(--font-head);
-      font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.4rem);
-      line-height: 1.15; margin-bottom: 40px;
-    }
-    .sec-title em { font-style: normal; color: var(--accent); }
+/* ---------- STATUS ---------- */
+.status-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:56px}
+.status-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;
+  display:flex;align-items:center;gap:14px;box-shadow:var(--shadow);
+}
+.status-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;background:var(--ok);animation:pulse 2s infinite}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(47,143,78,.45)}
+  70%{box-shadow:0 0 0 8px rgba(47,143,78,0)}
+  100%{box-shadow:0 0 0 0 rgba(47,143,78,0)}
+}
+.status-label{font-size:.78rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.status-val{font-weight:800;font-size:.95rem}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.sub-title{font-size:1.1rem;margin-bottom:24px}
+.timeline{position:relative;padding-left:36px}
+.timeline::before{content:'';position:absolute;left:11px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.tl-item{position:relative;margin-bottom:30px}
+.tl-item:last-child{margin-bottom:0}
+.tl-item::before{
+  content:'';position:absolute;left:-31px;top:4px;width:12px;height:12px;border-radius:50%;
+  background:#fff;border:3px solid var(--brand-deep);transition:background .2s;
+}
+.tl-item:hover::before{background:var(--brand)}
+.tl-date{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--brand-deep);text-transform:uppercase;margin-bottom:2px}
+.tl-item h4{font-size:1rem;margin-bottom:4px}
+.tl-item p{font-size:.9rem;color:var(--muted)}
+.link-stack{display:flex;flex-direction:column;gap:14px}
+.link-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 22px;box-shadow:var(--shadow);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.link-card:hover{transform:translateX(4px);box-shadow:var(--shadow-lg)}
+.link-card-left{display:flex;align-items:center;gap:14px}
+.link-card .ic{width:40px;height:40px;border-radius:11px;background:var(--brand);display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.link-card strong{display:block;font-size:.98rem}
+.link-card small{color:var(--muted);font-size:.82rem}
+.link-card .arrow{color:var(--brand-deep);font-weight:800;transition:transform .15s}
+.link-card:hover .arrow{transform:translateX(4px)}
 
-    /* ── SECTION DIVIDER ── */
-    section { margin-bottom: 100px; }
-    .rule {
-      border: none; border-top: 1px solid var(--border);
-      margin: 0 0 80px;
-    }
+/* ---------- CONTACT ---------- */
+.contact-box{
+  background:#fff;border:1px solid var(--line);border-radius:20px;padding:40px;box-shadow:var(--shadow);
+  display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;
+}
+.contact-box h3{font-size:1.5rem;margin-bottom:12px}
+.contact-box>div>p{color:var(--muted);margin-bottom:6px}
+.contact-items{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.contact-item{
+  display:flex;align-items:flex-start;gap:12px;padding:16px;border:1px solid var(--line);
+  border-radius:var(--radius-sm);background:var(--bg-soft);
+}
+.contact-item .ic{width:36px;height:36px;border-radius:10px;background:var(--brand);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-item strong{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:2px}
+.contact-item span{font-size:.9rem;font-weight:600;word-break:break-word}
+.contact-item.alert{background:var(--danger-tint);border-color:#f3c3a8;grid-column:1/-1}
 
-    /* ── OVERVIEW CARDS ── */
-    .overview-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-    }
-    .o-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px; padding: 28px 24px;
-      position: relative; overflow: hidden;
-      transition: border-color .3s, transform .3s;
-    }
-    .o-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: var(--c, var(--accent));
-      transform: scaleX(0); transform-origin: left;
-      transition: transform .4s;
-    }
-    .o-card:hover { border-color: rgba(0,229,255,.2); transform: translateY(-4px); }
-    .o-card:hover::before { transform: scaleX(1); }
-    .o-icon { font-size: 1.8rem; margin-bottom: 14px; }
-    .o-card h3 { font-family: var(--font-head); font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
-    .o-card p  { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+/* ---------- PHILOSOPHY ---------- */
+.philosophy{
+  border:1px solid var(--line);border-radius:20px;padding:48px;background:#fff;box-shadow:var(--shadow);
+  position:relative;overflow:hidden;margin-bottom:24px;
+}
+.philosophy::before{
+  content:'8392';position:absolute;right:20px;top:-14px;font-weight:800;font-size:8rem;
+  color:var(--brand-tint);line-height:1;pointer-events:none;letter-spacing:-.04em;
+}
+.philosophy blockquote{
+  position:relative;font-size:clamp(1.3rem,2.4vw,1.8rem);font-weight:800;line-height:1.35;letter-spacing:-.02em;
+  margin-bottom:20px;max-width:760px;border-left:4px solid var(--brand);padding-left:20px;
+}
+.philosophy blockquote em{font-style:normal;background:linear-gradient(transparent 62%,var(--brand) 62%);padding:0 3px}
+.philosophy cite{position:relative;font-style:normal;color:var(--muted);font-size:.92rem;font-weight:600}
+.philosophy cite b{color:var(--ink)}
 
-    /* ── ACCESS ROLES TABLE ── */
-    .roles-table { width: 100%; border-collapse: collapse; }
-    .roles-table thead th {
-      font-size: 0.68rem; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--muted);
-      text-align: left; padding: 14px 16px;
-      border-bottom: 1px solid var(--border);
-    }
-    .roles-table tbody tr {
-      border-bottom: 1px solid var(--border);
-      transition: background .2s;
-    }
-    .roles-table tbody tr:hover { background: var(--surface); }
-    .roles-table tbody td {
-      padding: 16px; font-size: 0.84rem; vertical-align: middle;
-    }
-    .role-name {
-      font-family: var(--font-head); font-weight: 700;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .perm-tag {
-      display: inline-block;
-      font-size: 0.67rem; letter-spacing: 0.08em;
-      padding: 3px 9px; border-radius: 3px;
-      margin: 2px;
-      border: 1px solid rgba(255,255,255,.07);
-      color: var(--muted);
-    }
-    .perm-tag.on {
-      background: rgba(0,229,255,.08);
-      border-color: rgba(0,229,255,.25);
-      color: var(--accent);
-    }
-    .perm-tag.partial {
-      background: rgba(245,158,11,.08);
-      border-color: rgba(245,158,11,.25);
-      color: var(--accent3);
-    }
+/* ---------- CTA BAND ---------- */
+.cta-band{background:var(--ink);color:#fff;padding:84px 0;text-align:center}
+.cta-band h2{font-size:clamp(1.9rem,3.6vw,2.8rem);margin-bottom:14px}
+.cta-band p{color:#cfcab8;max-width:560px;margin:0 auto 30px}
+.cta-band .row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.cta-band .btn-outline{color:#fff;border-color:#fff}
+.cta-band .btn-outline:hover{background:rgba(255,255,255,.1)}
 
-    /* ── GUIDELINES LIST ── */
-    .guide-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 16px;
-    }
-    .guide-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px; padding: 28px 24px;
-    }
-    .guide-num {
-      font-family: var(--font-head); font-weight: 800;
-      font-size: 2rem; color: var(--border);
-      margin-bottom: 10px; line-height: 1;
-    }
-    .guide-card h3 {
-      font-family: var(--font-head); font-weight: 700;
-      font-size: 1rem; margin-bottom: 10px;
-    }
-    .guide-card ul { list-style: none; padding: 0; }
-    .guide-card ul li {
-      font-size: 0.82rem; color: var(--muted);
-      padding: 6px 0;
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: flex-start; gap: 8px;
-    }
-    .guide-card ul li:last-child { border-bottom: none; }
-    .guide-card ul li::before {
-      content: '→'; color: var(--accent);
-      flex-shrink: 0; margin-top: 1px;
-    }
+/* ---------- FOOTER ---------- */
+.site-footer{background:#0e0d0b;color:#d9d4c3;padding:68px 0 28px;font-size:.9rem}
+.footer-grid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:40px;margin-bottom:48px}
+.footer-brand h3{color:#fff;font-size:1.2rem;margin-bottom:12px}
+.footer-brand p{color:#a9a392;font-size:.88rem;max-width:340px}
+.footer-col h4{color:var(--brand);font-size:.76rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px}
+.footer-col li{margin-bottom:10px}
+.footer-col a{color:#d9d4c3}
+.footer-col a:hover,.footer-bottom a:hover{color:var(--brand)}
+.footer-bottom{
+  border-top:1px solid #2c2a24;padding-top:24px;display:flex;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;font-size:.82rem;color:#928c7a;
+}
 
-    /* ── CONDUCT / RULES ── */
-    .rules-list { list-style: none; padding: 0; counter-reset: rule; }
-    .rules-list li {
-      counter-increment: rule;
-      display: grid; grid-template-columns: 48px 1fr;
-      gap: 20px; align-items: start;
-      padding: 22px 0; border-bottom: 1px solid var(--border);
-      transition: background .2s;
-    }
-    .rules-list li::before {
-      content: counter(rule, decimal-leading-zero);
-      font-family: var(--font-head); font-weight: 800;
-      font-size: 1.4rem; color: var(--border);
-      line-height: 1;
-    }
-    .rule-content h4 {
-      font-family: var(--font-head); font-weight: 700;
-      font-size: 0.95rem; margin-bottom: 4px;
-    }
-    .rule-content p { font-size: 0.82rem; color: var(--muted); }
-    .rule-content .tag {
-      display: inline-block; margin-top: 8px;
-      font-size: 0.65rem; letter-spacing: 0.12em;
-      padding: 3px 9px; border-radius: 3px;
-    }
-    .tag-warn  { background: rgba(245,158,11,.12); color: var(--accent3); border: 1px solid rgba(245,158,11,.3); }
-    .tag-strict{ background: rgba(239,68,68,.12);  color: var(--danger);  border: 1px solid rgba(239,68,68,.3); }
-    .tag-info  { background: rgba(0,229,255,.08);  color: var(--accent);  border: 1px solid rgba(0,229,255,.25); }
+/* ---------- REVEAL ---------- */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
 
-    /* ── TIMELINE ── */
-    .timeline { position: relative; padding-left: 32px; }
-    .timeline::before {
-      content: '';
-      position: absolute; left: 7px; top: 8px; bottom: 8px;
-      width: 1px; background: var(--border);
-    }
-    .tl-item { position: relative; margin-bottom: 36px; }
-    .tl-item::before {
-      content: '';
-      position: absolute; left: -29px; top: 6px;
-      width: 10px; height: 10px; border-radius: 50%;
-      background: var(--bg); border: 2px solid var(--accent);
-      transition: background .3s;
-    }
-    .tl-item:hover::before { background: var(--accent); }
-    .tl-date {
-      font-size: 0.68rem; letter-spacing: 0.18em;
-      color: var(--accent3); text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-    .tl-item h4 {
-      font-family: var(--font-head); font-weight: 700;
-      font-size: 0.95rem; margin-bottom: 4px;
-    }
-    .tl-item p { font-size: 0.82rem; color: var(--muted); }
-
-    /* ── STATUS PANEL ── */
-    .status-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 12px; margin-bottom: 32px;
-    }
-    .status-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 8px; padding: 20px;
-      display: flex; align-items: center; gap: 14px;
-    }
-    .status-dot {
-      width: 10px; height: 10px; border-radius: 50%;
-      flex-shrink: 0; position: relative;
-    }
-    .status-dot.live {
-      background: var(--success);
-      box-shadow: 0 0 0 0 rgba(34,197,94,.5);
-      animation: pulse 2s infinite;
-    }
-    .status-dot.maintenance { background: var(--accent3); }
-    .status-dot.offline { background: var(--danger); }
-    .status-label { font-size: 0.78rem; color: var(--muted); margin-bottom: 2px; }
-    .status-val { font-family: var(--font-head); font-weight: 700; font-size: 0.9rem; }
-
-    @keyframes pulse {
-      0%   { box-shadow: 0 0 0 0 rgba(34,197,94,.5); }
-      70%  { box-shadow: 0 0 0 8px rgba(34,197,94,0); }
-      100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
-    }
-
-    /* ── QUICK LINKS ── */
-    .links-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
-    }
-    .link-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px; padding: 20px 22px;
-      text-decoration: none; color: inherit;
-      display: flex; align-items: center; justify-content: space-between;
-      transition: border-color .3s, transform .2s;
-    }
-    .link-card:hover { border-color: rgba(0,229,255,.3); transform: translateX(4px); }
-    .link-card-left { display: flex; align-items: center; gap: 12px; }
-    .link-card-icon { font-size: 1.2rem; }
-    .link-card-text { font-size: 0.82rem; }
-    .link-card-text strong { display: block; font-family: var(--font-head); font-weight: 700; margin-bottom: 2px; }
-    .link-card-text span { color: var(--muted); font-size: 0.76rem; }
-    .link-arrow { color: var(--accent); font-size: 1rem; }
-
-    /* ── CONTACT ── */
-    .contact-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px; padding: 40px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
-    }
-    .contact-box h3 {
-      font-family: var(--font-head); font-weight: 700;
-      font-size: 1.2rem; margin-bottom: 12px;
-    }
-    .contact-box p { font-size: 0.84rem; color: var(--muted); margin-bottom: 20px; }
-    .contact-items { display: flex; flex-direction: column; gap: 12px; }
-    .contact-item {
-      display: flex; align-items: center; gap: 12px;
-      font-size: 0.82rem;
-    }
-    .contact-item-icon {
-      width: 36px; height: 36px; border-radius: 6px;
-      background: rgba(0,229,255,.08);
-      border: 1px solid rgba(0,229,255,.15);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; flex-shrink: 0;
-    }
-    .contact-item-info strong { display: block; font-size: 0.78rem; color: var(--muted); }
-    .contact-item-info span  { color: var(--text); }
-
-    .input-group { display: flex; flex-direction: column; gap: 12px; }
-    .input-group input,
-    .input-group textarea,
-    .input-group select {
-      width: 100%; padding: 12px 16px;
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: 6px; color: var(--text);
-      font-family: var(--font-mono); font-size: 0.84rem;
-      outline: none; transition: border-color .3s;
-      resize: vertical;
-    }
-    .input-group input:focus,
-    .input-group textarea:focus,
-    .input-group select:focus {
-      border-color: rgba(0,229,255,.4);
-    }
-    .input-group textarea { min-height: 100px; }
-    .btn-submit {
-      padding: 13px 28px; border: none; border-radius: 6px;
-      background: var(--accent); color: var(--bg);
-      font-family: var(--font-head); font-weight: 700;
-      font-size: 0.88rem; letter-spacing: 0.06em;
-      cursor: pointer; transition: opacity .2s, transform .2s;
-    }
-    .btn-submit:hover { opacity: .85; transform: translateY(-2px); }
-    .form-feedback {
-      font-size: 0.8rem; color: var(--success);
-      display: none; margin-top: 8px;
-    }
-
-    /* ── PHILOSOPHY BLOCK ── */
-    .philosophy {
-      border: 1px solid var(--border);
-      border-radius: 12px; padding: 48px;
-      background: linear-gradient(135deg, var(--surface) 0%, rgba(124,58,237,.05) 100%);
-      position: relative; overflow: hidden;
-    }
-    .philosophy::before {
-      content: '8392';
-      position: absolute; right: -10px; top: -10px;
-      font-family: var(--font-head); font-weight: 800;
-      font-size: 8rem; color: rgba(255,255,255,.02);
-      line-height: 1; pointer-events: none;
-    }
-    .philosophy blockquote {
-      font-family: var(--font-head); font-size: 1.3rem;
-      font-weight: 600; line-height: 1.5;
-      margin-bottom: 16px; max-width: 700px;
-    }
-    .philosophy blockquote em { font-style: normal; color: var(--accent); }
-    .philosophy cite {
-      font-size: 0.8rem; color: var(--muted);
-      font-style: normal; letter-spacing: 0.1em;
-    }
-    .philosophy cite span { color: var(--accent3); }
-
-    /* ── FOOTER ── */
-    footer {
-      position: relative; z-index: 1;
-      border-top: 1px solid var(--border);
-      padding: 40px;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 20px;
-      max-width: 1100px; margin: 0 auto;
-    }
-    .footer-left { font-size: 0.78rem; color: var(--muted); }
-    .footer-left strong { color: var(--accent); }
-    .footer-right { display: flex; gap: 24px; }
-    .footer-right a {
-      font-size: 0.78rem; color: var(--muted);
-      text-decoration: none; transition: color .2s;
-      letter-spacing: 0.08em;
-    }
-    .footer-right a:hover { color: var(--accent); }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .reveal {
-      opacity: 0; transform: translateY(24px);
-      transition: opacity .65s, transform .65s;
-    }
-    .reveal.visible { opacity: 1; transform: none; }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      nav { padding: 16px 20px; }
-      .hero, .wrapper { padding-left: 20px; padding-right: 20px; }
-      .contact-box { grid-template-columns: 1fr; }
-      footer { flex-direction: column; }
-    }
-
-    /* ── ANNOUNCEMENT BANNER ── */
-    .banner {
-      position: relative; z-index: 2;
-      background: linear-gradient(90deg, rgba(0,229,255,.08), rgba(124,58,237,.08));
-      border-bottom: 1px solid rgba(0,229,255,.15);
-      padding: 10px 40px;
-      display: flex; align-items: center; gap: 12px;
-      font-size: 0.76rem; letter-spacing: 0.06em;
-      margin-top: 64px; /* nav height */
-    }
-    .banner-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--success); animation: pulse 2s infinite; }
-    .banner span { color: var(--muted); }
-    .banner strong { color: var(--accent); }
-    .banner a { color: var(--accent3); text-decoration: none; margin-left: auto; }
-    .banner a:hover { text-decoration: underline; }
-
-    /* ── SEPARATOR ── */
-    .flex-row { display: flex; gap: 16px; flex-wrap: wrap; }
-    .col-half { flex: 1 1 400px; }
-  </style>
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:1020px){
+  .hero-grid,.two-col,.contact-box{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:900px){
+  .menu-toggle{display:block}
+  .nav-cta .btn{display:none}
+  .primary-nav{
+    display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);
+    flex-direction:column;align-items:stretch;padding:12px 16px 18px;box-shadow:var(--shadow-lg);
+  }
+  .primary-nav.mobile-open{display:flex}
+  .nav-more>button{display:none}
+  .nav-more-menu{
+    position:static;width:100%;opacity:1;visibility:visible;transform:none;box-shadow:none;border:none;
+    border-top:1px solid var(--line);border-radius:0;padding:8px 0 0;margin-top:8px;
+  }
+}
+@media(max-width:700px){
+  .section{padding:60px 0}
+  .hero{padding:52px 0 40px}
+  .contact-box{padding:26px}
+  .contact-items{grid-template-columns:1fr}
+  .philosophy{padding:28px}
+  .rules-list li{grid-template-columns:1fr;padding:20px}
+  .footer-grid{grid-template-columns:1fr;gap:28px}
+  .announce{font-size:.8rem;padding:9px 40px 9px 12px;text-align:left}
+}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none}
+  *{transition:none!important;animation:none!important}
+}
+</style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
-<nav>
-  <a class="nav-logo" href="https://devgameblogpromo.netlify.app/">DGBP <span>/ DevGameBlogPromo</span></a>
-  <span class="nav-tag">Platform Admin <span>v4.0</span></span>
-</nav>
-
-<!-- ── LIVE BANNER ── -->
-<div class="banner">
-  <div class="banner-dot"></div>
-  <strong>Platform Status: Operational</strong>
-  <span>— All systems running normally.</span>
-  <a href="https://devgameblogpromo.vercel.app/announcement%20page" target="_blank">View Announcements →</a>
+<!-- ═══ ANNOUNCEMENT / STATUS BAR ═══ -->
+<div class="announce" id="statusBanner">
+  <span class="live"></span>
+  <span><b>Platform status: Operational</b> — all systems running normally.
+    <a href="https://devgameblogpromo.vercel.app/announcement%20page" target="_blank" rel="noopener">View announcements</a>
+  </span>
+  <button id="closeBanner" type="button" aria-label="Close announcement">✕</button>
 </div>
 
-<!-- ── HERO ── -->
-<div class="hero">
-  <div class="hero-eyebrow">Platform Administration</div>
-  <h1 class="hero-title">
-    Control.<br>
-    <span class="line2">Clarity. Trust.</span>
-  </h1>
-  <p class="hero-sub">
-    The operational backbone of DevGameBlogPromo — defining how we manage members, publish content, enforce policy, and protect the integrity of every lab, course, and initiative under the DGBP ecosystem.
-  </p>
-  <div class="hero-badges">
-    <span class="badge badge-cyan">DUNS Verified : 772660415 </span>
-    <span class="badge badge-purple">50 Active Labs</span>
-    <span class="badge badge-amber">Integrity First</span>
-    <span class="badge badge-green">Human-Led</span>
-  </div>
-  <div class="hero-scroll">Scroll to explore</div>
-</div>
+<!-- ═══ HEADER ═══ -->
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="https://devgameblogpromo.vercel.app/" aria-label="DGBPLabZ home">
+      <div class="brand-mark">DL</div>
+      <div>
+        <div class="brand-name">DGBPLabZ</div>
+        <div class="brand-sub">School of Development &amp; Gaming</div>
+      </div>
+    </a>
 
-<!-- ── MAIN ── -->
-<div class="wrapper">
+  
 
-  <!-- ── 1. OVERVIEW ── -->
-  <section class="reveal">
-    <div class="sec-label">01 — Overview</div>
-    <h2 class="sec-title">What Platform Administration <em>Covers</em></h2>
-    <div class="overview-grid">
-      <div class="o-card" style="--c:var(--accent)">
-        <div class="o-icon">🗂️</div>
-        <h3>Member &amp; Lab Management</h3>
-        <p>Onboarding, role assignment, lab allocation, and member lifecycle management across all 28 DGBP labs.</p>
-      </div>
-      <div class="o-card" style="--c:var(--accent2)">
-        <div class="o-icon">📝</div>
-        <h3>Content Publishing</h3>
-        <p>Rules, review workflows, and approval chains for all blog posts, announcements, lab updates, and public-facing documents.</p>
-      </div>
-      <div class="o-card" style="--c:var(--accent3)">
-        <div class="o-icon">🔐</div>
-        <h3>Roles &amp; Permissions</h3>
-        <p>Granular access control across the platform — who can view, edit, publish, or manage each section.</p>
-      </div>
-      <div class="o-card" style="--c:var(--success)">
-        <div class="o-icon">📋</div>
-        <h3>Policy Enforcement</h3>
-        <p>Upholding DGBP's three pillars — Integrity, Authenticity, and Discipline — across all members and activities.</p>
-      </div>
-      <div class="o-card" style="--c:var(--danger)">
-        <div class="o-icon">📡</div>
-        <h3>Platform Updates</h3>
-        <p>Scheduled maintenance, feature rollouts, AI &amp; BI announcements — published openly and transparently.</p>
-      </div>
-      <div class="o-card" style="--c:#a78bfa">
-        <div class="o-icon">🛡️</div>
-        <h3>Data &amp; Access Control</h3>
-        <p>Protecting member data, securing internal documents, and managing authentication across all DGBP tools.</p>
-      </div>
+   
     </div>
-  </section>
+  </div>
+</header>
 
-  <hr class="rule">
+<main>
 
-  <!-- ── 2. ROLES ── -->
-  <section class="reveal">
-    <div class="sec-label">02 — Access Control</div>
-    <h2 class="sec-title">Roles &amp; <em>Permissions</em></h2>
-    <table class="roles-table">
-      <thead>
-        <tr>
-          <th>Role</th>
-          <th>Publish Content</th>
-          <th>Manage Members</th>
-          <th>Edit Policy</th>
-          <th>View Analytics</th>
-          <th>Admin Panel</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="role-name"><span class="dot" style="background:#00e5ff"></span>Founder / Admin</span></td>
-          <td><span class="perm-tag on">Full Access</span></td>
-          <td><span class="perm-tag on">Full Access</span></td>
-          <td><span class="perm-tag on">Full Access</span></td>
-          <td><span class="perm-tag on">Full Access</span></td>
-          <td><span class="perm-tag on">Full Access</span></td>
-        </tr>
-        <tr>
-          <td><span class="role-name"><span class="dot" style="background:#7c3aed"></span>Core Team</span></td>
-          <td><span class="perm-tag on">Approved</span></td>
-          <td><span class="perm-tag partial">Supervised</span></td>
-          <td><span class="perm-tag partial">Propose Only</span></td>
-          <td><span class="perm-tag on">Full Access</span></td>
-          <td><span class="perm-tag">Restricted</span></td>
-        </tr>
-        <tr>
-          <td><span class="role-name"><span class="dot" style="background:#f59e0b"></span>Lab Lead</span></td>
-          <td><span class="perm-tag partial">Own Lab</span></td>
-          <td><span class="perm-tag partial">Own Lab</span></td>
-          <td><span class="perm-tag">No Access</span></td>
-          <td><span class="perm-tag partial">Own Lab</span></td>
-          <td><span class="perm-tag">No Access</span></td>
-        </tr>
-        <tr>
-          <td><span class="role-name"><span class="dot" style="background:#22c55e"></span>Member</span></td>
-          <td><span class="perm-tag">Submit Only</span></td>
-          <td><span class="perm-tag">No Access</span></td>
-          <td><span class="perm-tag">No Access</span></td>
-          <td><span class="perm-tag">No Access</span></td>
-          <td><span class="perm-tag">No Access</span></td>
-        </tr>
-        <tr>
-          <td><span class="role-name"><span class="dot" style="background:#6b7a99"></span>Guest</span></td>
-          <td><span class="perm-tag">No Access</span></td>
-          <td><span class="perm-tag">No Access</span></td>
-          <td><span class="perm-tag">No Access</span></td>
-          <td><span class="perm-tag">No Access</span></td>
-          <td><span class="perm-tag">No Access</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">Platform Administration</span>
+        <h1>Control. <em>Clarity.</em> Trust.</h1>
+        <p class="lead">The operational backbone of DevGameBlogPromo — defining how we manage members, publish content, enforce policy, and protect the integrity of every lab, course, and initiative under the DGBP ecosystem.</p>
+        <div class="badges">
+          <span class="badge brand">DUNS Verified: 772660415</span>
+          <span class="badge">50 Active Labs</span>
+          <span class="badge soft">Integrity First</span>
+          <span class="badge soft">Human-Led</span>
+        </div>
+      </div>
+      <aside class="glance" aria-label="At a glance">
+        <h2>Three pillars, one standard</h2>
+        <p>Every rule on this page exists to protect the community and keep the mission honest.</p>
+        <ul>
+          <li><span>1</span><div><b>Integrity</b><small>No misleading claims, no shortcuts, no hidden terms.</small></div></li>
+          <li><span>2</span><div><b>Authenticity</b><small>Real work, real credit, accurate representation.</small></div></li>
+          <li><span>3</span><div><b>Discipline</b><small>Clear process, clear review, clear accountability.</small></div></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
 
-  <hr class="rule">
+<div class="trust-strip">
+  <div class="container">
+    <span>D&amp;B DUNS registered</span>
+    <span>Founder-led governance</span>
+    <span>Open maintenance notices</span>
+    <span>Based in Hyderabad, Telangana</span>
+  </div>
+</div>
 
-  <!-- ── 3. CONTENT GUIDELINES ── -->
-  <section class="reveal">
-    <div class="sec-label">03 — Publishing</div>
-    <h2 class="sec-title">Content Publishing <em>Guidelines</em></h2>
-    <div class="guide-grid">
-      <div class="guide-card">
+<!-- ═══ 01 OVERVIEW ═══ -->
+<section class="section reveal" id="overview">
+  <div class="container">
+    <span class="eyebrow">01 — Overview</span>
+    <h2 class="section-title">What Platform Administration covers</h2>
+    <p class="section-lead">Six areas that keep the DGBP ecosystem organised, secure, and accountable.</p>
+    <div class="grid-3">
+      <div class="card"><div class="icon">🗂️</div><h3>Member &amp; Lab Management</h3><p>Onboarding, role assignment, lab allocation, and member lifecycle management across all 28 DGBP labs.</p></div>
+      <div class="card"><div class="icon">📝</div><h3>Content Publishing</h3><p>Rules, review workflows, and approval chains for all blog posts, announcements, lab updates, and public-facing documents.</p></div>
+      <div class="card"><div class="icon">🔐</div><h3>Roles &amp; Permissions</h3><p>Granular access control across the platform — who can view, edit, publish, or manage each section.</p></div>
+      <div class="card"><div class="icon">📋</div><h3>Policy Enforcement</h3><p>Upholding DGBP's three pillars — Integrity, Authenticity, and Discipline — across all members and activities.</p></div>
+      <div class="card"><div class="icon">📡</div><h3>Platform Updates</h3><p>Scheduled maintenance, feature rollouts, AI &amp; BI announcements — published openly and transparently.</p></div>
+      <div class="card"><div class="icon">🛡️</div><h3>Data &amp; Access Control</h3><p>Protecting member data, securing internal documents, and managing authentication across all DGBP tools.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 02 ROLES ═══ -->
+<section class="section soft reveal" id="roles">
+  <div class="container">
+    <span class="eyebrow">02 — Access Control</span>
+    <h2 class="section-title">Roles &amp; permissions</h2>
+    <p class="section-lead">A clear ladder of access, from guests to the founder, with every step visible.</p>
+    <div class="table-wrap">
+      <table class="roles-table">
+        <thead>
+          <tr>
+            <th>Role</th><th>Publish Content</th><th>Manage Members</th><th>Edit Policy</th><th>View Analytics</th><th>Admin Panel</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="role-name"><span class="dot" style="background:#FFCB2E;box-shadow:0 0 0 3px #fff6d6"></span>Founder / Admin</span></td>
+            <td><span class="perm-tag on">Full Access</span></td>
+            <td><span class="perm-tag on">Full Access</span></td>
+            <td><span class="perm-tag on">Full Access</span></td>
+            <td><span class="perm-tag on">Full Access</span></td>
+            <td><span class="perm-tag on">Full Access</span></td>
+          </tr>
+          <tr>
+            <td><span class="role-name"><span class="dot" style="background:#141310"></span>Core Team</span></td>
+            <td><span class="perm-tag on">Approved</span></td>
+            <td><span class="perm-tag partial">Supervised</span></td>
+            <td><span class="perm-tag partial">Propose Only</span></td>
+            <td><span class="perm-tag on">Full Access</span></td>
+            <td><span class="perm-tag">Restricted</span></td>
+          </tr>
+          <tr>
+            <td><span class="role-name"><span class="dot" style="background:#E8A400"></span>Lab Lead</span></td>
+            <td><span class="perm-tag partial">Own Lab</span></td>
+            <td><span class="perm-tag partial">Own Lab</span></td>
+            <td><span class="perm-tag">No Access</span></td>
+            <td><span class="perm-tag partial">Own Lab</span></td>
+            <td><span class="perm-tag">No Access</span></td>
+          </tr>
+          <tr>
+            <td><span class="role-name"><span class="dot" style="background:#2f8f4e"></span>Member</span></td>
+            <td><span class="perm-tag">Submit Only</span></td>
+            <td><span class="perm-tag">No Access</span></td>
+            <td><span class="perm-tag">No Access</span></td>
+            <td><span class="perm-tag">No Access</span></td>
+            <td><span class="perm-tag">No Access</span></td>
+          </tr>
+          <tr>
+            <td><span class="role-name"><span class="dot" style="background:#b9b4a1"></span>Guest</span></td>
+            <td><span class="perm-tag">No Access</span></td>
+            <td><span class="perm-tag">No Access</span></td>
+            <td><span class="perm-tag">No Access</span></td>
+            <td><span class="perm-tag">No Access</span></td>
+            <td><span class="perm-tag">No Access</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 03 PUBLISHING ═══ -->
+<section class="section reveal" id="publishing">
+  <div class="container">
+    <span class="eyebrow">03 — Publishing</span>
+    <h2 class="section-title">Content publishing guidelines</h2>
+    <p class="section-lead">How anything reaches the public — from first draft to sign-off to archive.</p>
+    <div class="grid-3">
+      <div class="card guide-card">
         <div class="guide-num">01</div>
         <h3>Alignment with DGBP Pillars</h3>
         <ul>
@@ -677,7 +520,7 @@
           <li>Founder approval required for statements on behalf of DGBP</li>
         </ul>
       </div>
-      <div class="guide-card">
+      <div class="card guide-card">
         <div class="guide-num">02</div>
         <h3>Submission &amp; Review Process</h3>
         <ul>
@@ -687,7 +530,7 @@
           <li>Published only after admin sign-off</li>
         </ul>
       </div>
-      <div class="guide-card">
+      <div class="card guide-card">
         <div class="guide-num">03</div>
         <h3>AI-Generated Content</h3>
         <ul>
@@ -697,7 +540,7 @@
           <li>AI tools must be listed in post credits</li>
         </ul>
       </div>
-      <div class="guide-card">
+      <div class="card guide-card">
         <div class="guide-num">04</div>
         <h3>Prohibited Content</h3>
         <ul>
@@ -707,7 +550,7 @@
           <li>No content targeting or disparaging individuals</li>
         </ul>
       </div>
-      <div class="guide-card">
+      <div class="card guide-card">
         <div class="guide-num">05</div>
         <h3>Lab Updates &amp; Reports</h3>
         <ul>
@@ -717,7 +560,7 @@
           <li>All reports stored in Official Docs section</li>
         </ul>
       </div>
-      <div class="guide-card">
+      <div class="card guide-card">
         <div class="guide-num">06</div>
         <h3>Archiving &amp; Versioning</h3>
         <ul>
@@ -728,348 +571,202 @@
         </ul>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <hr class="rule">
-
-  <!-- ── 4. PLATFORM RULES ── -->
-  <section class="reveal">
-    <div class="sec-label">04 — Conduct</div>
-    <h2 class="sec-title">Platform Rules &amp; <em>Standards</em></h2>
+<!-- ═══ 04 CONDUCT ═══ -->
+<section class="section soft reveal" id="conduct">
+  <div class="container">
+    <span class="eyebrow">04 — Conduct</span>
+    <h2 class="section-title">Platform rules &amp; standards</h2>
+    <p class="section-lead">Seven standards every member agrees to by being part of DGBP.</p>
     <ul class="rules-list">
-      <li>
-        <div></div>
-        <div class="rule-content">
-          <h4>Respect All Members</h4>
-          <p>Every person in the DGBP ecosystem — learner, creator, or collaborator — deserves respectful, professional treatment. Harassment, discrimination, or personal attacks of any kind are not tolerated.</p>
-          <span class="tag tag-strict">Zero Tolerance</span>
-        </div>
-      </li>
-      <li>
-        <div></div>
-        <div class="rule-content">
-          <h4>No Unsanctioned Promotion</h4>
-          <p>Self-promotion, affiliate links, or external brand plugs are not permitted in community spaces, labs, or content — unless explicitly approved by the Core Team.</p>
-          <span class="tag tag-warn">Requires Approval</span>
-        </div>
-      </li>
-      <li>
-        <div></div>
-        <div class="rule-content">
-          <h4>Confidentiality of Internal Documents</h4>
-          <p>Internal roadmaps, hiring frameworks, financial details, and unpublished lab reports are confidential. Sharing outside DGBP without consent constitutes a serious violation.</p>
-          <span class="tag tag-strict">Strict Enforcement</span>
-        </div>
-      </li>
-      <li>
-        <div></div>
-        <div class="rule-content">
-          <h4>Accurate Representation</h4>
-          <p>Members may not misrepresent their role, credentials, or association with DGBP in any external communication, social media, or professional profile.</p>
-          <span class="tag tag-warn">Monitor &amp; Report</span>
-        </div>
-      </li>
-      <li>
-        <div></div>
-        <div class="rule-content">
-          <h4>Discord &amp; Community Standards</h4>
-          <p>All activity in the official Discord (and any affiliated channels) must follow the DGBP Community Code. Violations are reviewed by the Core Team and may result in removal.</p>
-          <span class="tag tag-info">Community Moderated</span>
-        </div>
-      </li>
-      <li>
-        <div></div>
-        <div class="rule-content">
-          <h4>Intellectual Property</h4>
-          <p>All work created within DGBP Labs, under mentorship, or as part of a course — unless otherwise agreed in writing — remains the intellectual property of the creating member. DGBP retains showcase rights.</p>
-          <span class="tag tag-info">Policy Reference</span>
-        </div>
-      </li>
-      <li>
-        <div></div>
-        <div class="rule-content">
-          <h4>Violation Escalation Process</h4>
-          <p>Minor violations receive a written warning. Repeated or severe violations are escalated to the Core Team for review. Serious misconduct may result in immediate removal with no appeal.</p>
-          <span class="tag tag-strict">Strictly Enforced</span>
-        </div>
-      </li>
+      <li><div class="rule-content"><h4>Respect All Members</h4><p>Every person in the DGBP ecosystem — learner, creator, or collaborator — deserves respectful, professional treatment. Harassment, discrimination, or personal attacks of any kind are not tolerated.</p><span class="tag tag-strict">Zero Tolerance</span></div></li>
+      <li><div class="rule-content"><h4>No Unsanctioned Promotion</h4><p>Self-promotion, affiliate links, or external brand plugs are not permitted in community spaces, labs, or content — unless explicitly approved by the Core Team.</p><span class="tag tag-warn">Requires Approval</span></div></li>
+      <li><div class="rule-content"><h4>Confidentiality of Internal Documents</h4><p>Internal roadmaps, hiring frameworks, financial details, and unpublished lab reports are confidential. Sharing outside DGBP without consent constitutes a serious violation.</p><span class="tag tag-strict">Strict Enforcement</span></div></li>
+      <li><div class="rule-content"><h4>Accurate Representation</h4><p>Members may not misrepresent their role, credentials, or association with DGBP in any external communication, social media, or professional profile.</p><span class="tag tag-warn">Monitor &amp; Report</span></div></li>
+      <li><div class="rule-content"><h4>Discord &amp; Community Standards</h4><p>All activity in the official Discord (and any affiliated channels) must follow the DGBP Community Code. Violations are reviewed by the Core Team and may result in removal.</p><span class="tag tag-info">Community Moderated</span></div></li>
+      <li><div class="rule-content"><h4>Intellectual Property</h4><p>All work created within DGBP Labs, under mentorship, or as part of a course — unless otherwise agreed in writing — remains the intellectual property of the creating member. DGBP retains showcase rights.</p><span class="tag tag-info">Policy Reference</span></div></li>
+      <li><div class="rule-content"><h4>Violation Escalation Process</h4><p>Minor violations receive a written warning. Repeated or severe violations are escalated to the Core Team for review. Serious misconduct may result in immediate removal with no appeal.</p><span class="tag tag-strict">Strictly Enforced</span></div></li>
     </ul>
-  </section>
+  </div>
+</section>
 
-  <hr class="rule">
-
-  <!-- ── 5. UPDATES & MAINTENANCE ── -->
-  <section class="reveal">
-    <div class="sec-label">05 — System Status</div>
-    <h2 class="sec-title">Platform Updates &amp; <em>Maintenance</em></h2>
+<!-- ═══ 05 SYSTEM STATUS ═══ -->
+<section class="section reveal" id="status">
+  <div class="container">
+    <span class="eyebrow">05 — System Status</span>
+    <h2 class="section-title">Platform updates &amp; maintenance</h2>
+    <p class="section-lead">What's running, how changes are announced, and where to find the latest news.</p>
 
     <div class="status-grid">
-      <div class="status-card">
-        <div class="status-dot live"></div>
-        <div>
-          <div class="status-label">Main Website</div>
-          <div class="status-val">Operational</div>
-        </div>
-      </div>
-      <div class="status-card">
-        <div class="status-dot live"></div>
-        <div>
-          <div class="status-label">Blog (Blogspot)</div>
-          <div class="status-val">Operational</div>
-        </div>
-      </div>
-      <div class="status-card">
-        <div class="status-dot live"></div>
-        <div>
-          <div class="status-label"> Community</div>
-          <div class="status-val">Community coming soon</div>
-        </div>
-      </div>
-      <div class="status-card">
-        <div class="status-dot live"></div>
-        <div>
-        
-      </div>
-      <div class="status-card">
-        <div class="status-dot live"></div>
-        <div>
-          <div class="status-label">Policy Portal</div>
-          <div class="status-val">Operational</div>
-        </div>
-      </div>
-      <div class="status-card">
-        <div class="status-dot live"></div>
-        <div>
-          <div class="status-label">Official Docs</div>
-          <div class="status-val">Operational</div>
-        </div>
-      </div>
+      <div class="status-card"><div class="status-dot"></div><div><div class="status-label">Main Website</div><div class="status-val">Operational</div></div></div>
+      <div class="status-card"><div class="status-dot"></div><div><div class="status-label">Blog (Blogspot)</div><div class="status-val">Operational</div></div></div>
+      <div class="status-card"><div class="status-dot"></div><div><div class="status-label">Community</div><div class="status-val">Coming soon</div></div></div>
+      <div class="status-card"><div class="status-dot"></div><div><div class="status-label">Policy Portal</div><div class="status-val">Operational</div></div></div>
+      <div class="status-card"><div class="status-dot"></div><div><div class="status-label">Official Docs</div><div class="status-val">Operational</div></div></div>
     </div>
 
-    <div class="flex-row">
-      <div class="col-half">
-        <h3 style="font-family:var(--font-head);font-weight:700;margin-bottom:24px;font-size:1rem;">Update &amp; Maintenance Protocol</h3>
+    <div class="two-col">
+      <div>
+        <h3 class="sub-title">Update &amp; maintenance protocol</h3>
         <div class="timeline">
-          <div class="tl-item">
-            <div class="tl-date">Step 01</div>
-            <h4>Notice Published</h4>
-            <p>Maintenance windows are announced at least 48 hours in advance on the Announcements Page.</p>
-          </div>
-          <div class="tl-item">
-            <div class="tl-date">Step 02</div>
-            <h4>Status Updated</h4>
-            <p>Platform status on this page is updated in real time during the maintenance window.</p>
-          </div>
-          <div class="tl-item">
-            <div class="tl-date">Step 03</div>
-            <h4>Rollout &amp; Testing</h4>
-            <p>Changes are deployed by the tech team and verified across all subsystems before going live.</p>
-          </div>
-          <div class="tl-item">
-            <div class="tl-date">Step 04</div>
-            <h4>Post-Update Report</h4>
-            <p>A brief changelog is published in the AI &amp; Business Intelligence page within 24 hours of completion.</p>
-          </div>
+          <div class="tl-item"><div class="tl-date">Step 01</div><h4>Notice Published</h4><p>Maintenance windows are announced at least 48 hours in advance on the Announcements Page.</p></div>
+          <div class="tl-item"><div class="tl-date">Step 02</div><h4>Status Updated</h4><p>Platform status on this page is updated in real time during the maintenance window.</p></div>
+          <div class="tl-item"><div class="tl-date">Step 03</div><h4>Rollout &amp; Testing</h4><p>Changes are deployed by the tech team and verified across all subsystems before going live.</p></div>
+          <div class="tl-item"><div class="tl-date">Step 04</div><h4>Post-Update Report</h4><p>A brief changelog is published in the AI &amp; Business Intelligence page within 24 hours of completion.</p></div>
         </div>
       </div>
-      <div class="col-half">
-        <h3 style="font-family:var(--font-head);font-weight:700;margin-bottom:24px;font-size:1rem;">Key Resources</h3>
-        <div class="links-grid" style="grid-template-columns:1fr;">
-          <a class="link-card" href="https://devgameblogpromo.vercel.app/announcement%20page" target="_blank">
-            <div class="link-card-left"><span class="link-card-icon">📢</span><div class="link-card-text"><strong>Announcements</strong><span>Latest platform news</span></div></div>
-            <span class="link-arrow">→</span>
+      <div>
+        <h3 class="sub-title">Key resources</h3>
+        <div class="link-stack">
+          <a class="link-card" href="https://devgameblogpromo.vercel.app/announcement%20page" target="_blank" rel="noopener">
+            <div class="link-card-left"><span class="ic">📢</span><div><strong>Announcements</strong><small>Latest platform news</small></div></div>
+            <span class="arrow">→</span>
           </a>
-          
-           <a class="link-card" href="https://devgameblogpromo.vercel.app/" target="_blank">
-            <div class="link-card-left"><span class="link-card-icon">📢</span><div class="link-card-text"><strong>Home</strong><span>Latest platform news</span></div></div>
-            <span class="link-arrow">→</span>
+          <a class="link-card" href="https://devgameblogpromo.vercel.app/" target="_blank" rel="noopener">
+            <div class="link-card-left"><span class="ic">🏠</span><div><strong>Home</strong><small>Back to the main site</small></div></div>
+            <span class="arrow">→</span>
           </a>
-          
-            <a class="link-card" href="https://devgameblogpromo.vercel.app/" target="_blank">
-            <div class="link-card-left"><span class="link-card-icon">📢</span><div class="link-card-text"><strong>Home</strong><span>Latest platform news</span></div></div>
-            <span class="link-arrow">→</span>
-          </a>
-          
-          <a class="link-card" href="https://devgameblogpromo.vercel.app/" target="_blank">
-            <div class="link-card-left"><span class="link-card-icon">📢</span><div class="link-card-text"><strong>Home</strong><span>Latest platform news</span></div></div>
-            <span class="link-arrow">→</span>
-          </a>
-        
-          <a class="link-card" href="https://devgameblogpromo.vercel.app/" target="_blank">
-            <div class="link-card-left"><span class="link-card-icon">📢</span><div class="link-card-text"><strong>Home</strong><span>Latest platform news</span></div></div>
-            <span class="link-arrow">→</span>
-          </a>
-        
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <hr class="rule">
-
-  <!-- ── 6. CONTACT ── -->
-  <section class="reveal">
-    <div class="sec-label">06 — Support</div>
-    <h2 class="sec-title">Contact &amp; <em>Admin Support</em></h2>
+<!-- ═══ 06 CONTACT ═══ -->
+<section class="section soft reveal" id="support">
+  <div class="container">
+    <span class="eyebrow">06 — Support</span>
+    <h2 class="section-title">Contact &amp; admin support</h2>
     <div class="contact-box">
       <div>
-        <h3>Get in Touch</h3>
-        <p>For access requests, policy clarifications, content submissions, or administrative issues — reach out through the appropriate channel below.</p>
-        <div class="contact-items">
-          <div class="contact-item">
-            <div class="contact-item-icon">💬</div>
-            <div class="contact-item-info">
-              <strong>Community &amp; General Queries</strong>
-              <span>Community coming soon</span>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon">📋</div>
-            <div class="contact-item-info">
-              <strong>Content Submissions</strong>
-              <span>DGBP Board Submission Form</span>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon">👥</div>
-            <div class="contact-item-info">
-              <strong>Mentorship &amp; Labs</strong>
-              <span>Mentorship Intake Form (site)</span>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon">⚖️</div>
-            <div class="contact-item-info">
-              <strong>Policy &amp; Compliance</strong>
-              <span>DGBP India Policy Portal</span>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon">🚨</div>
-            <div class="contact-item-info">
-              <strong>Report a Violation</strong>
-              <span>Core Team — confidential channel</span>
-
-
-
-            </div>
-          <div class="contact-item">
-            <div class="contact-item-icon">🚨</div>
-            <div class="contact-item-info">
-              <strong>Report a Violation</strong>
-              <span>M81434409@gmail.com ,Devgameblogpromo@gmail.com</span>
-          </div>
-        </div>
+        <h3>Get in touch</h3>
+        <p>For access requests, policy clarifications, content submissions, or administrative issues — reach out through the appropriate channel.</p>
       </div>
-  
-  </section>
-
-  <hr class="rule">
-
-  <!-- ── 7. PHILOSOPHY ── -->
-  <section class="reveal">
-    <div class="sec-label">07 — Foundation</div>
-    <h2 class="sec-title">The Philosophy Behind <em>Administration</em></h2>
-    <div class="philosophy">
-      <blockquote>
-        "Administration exists not to <em>control</em> — but to protect the community, maintain the standard, and keep the mission alive."
-      </blockquote>
-      <cite>— <span>Kakarla Manish Reddy</span>, Founder &amp; Chairperson of the Board, DevGameBlogPromo</cite>
-    </div>
-    <div style="margin-top:32px; display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:16px;">
-      <div style="padding:24px; background:var(--surface); border:1px solid var(--border); border-radius:10px;">
-        <div style="font-size:1.6rem; margin-bottom:10px;">⚡</div>
-        <div style="font-family:var(--font-head);font-weight:700;margin-bottom:6px;">8 — Infinity</div>
-        <div style="font-size:0.8rem;color:var(--muted);">Limitless potential. No ceiling on what this community can build.</div>
-      </div>
-      <div style="padding:24px; background:var(--surface); border:1px solid var(--border); border-radius:10px;">
-        <div style="font-size:1.6rem; margin-bottom:10px;">🔺</div>
-        <div style="font-family:var(--font-head);font-weight:700;margin-bottom:6px;">3 — Triangle</div>
-        <div style="font-size:0.8rem;color:var(--muted);">Foundation of logic, innovation, and design. Structure enables freedom.</div>
-      </div>
-      <div style="padding:24px; background:var(--surface); border:1px solid var(--border); border-radius:10px;">
-        <div style="font-size:1.6rem; margin-bottom:10px;">🧱</div>
-        <div style="font-family:var(--font-head);font-weight:700;margin-bottom:6px;">9 — Challenge</div>
-        <div style="font-size:0.8rem;color:var(--muted);">The drive to go beyond boundaries — within a framework of accountability.</div>
-      </div>
-      <div style="padding:24px; background:var(--surface); border:1px solid var(--border); border-radius:10px;">
-        <div style="font-size:1.6rem; margin-bottom:10px;">⚖️</div>
-        <div style="font-family:var(--font-head);font-weight:700;margin-bottom:6px;">2 — Duality</div>
-        <div style="font-size:0.8rem;color:var(--muted);">Vision and execution in harmony. Rules and creativity, balanced.</div>
+      <div class="contact-items">
+        <div class="contact-item"><div class="ic">💬</div><div><strong>Community &amp; General</strong><span>Community coming soon</span></div></div>
+        <div class="contact-item"><div class="ic">📋</div><div><strong>Content Submissions</strong><span>DGBP Board Submission Form</span></div></div>
+        <div class="contact-item"><div class="ic">👥</div><div><strong>Mentorship &amp; Labs</strong><span>Mentorship Intake Form (site)</span></div></div>
+        <div class="contact-item"><div class="ic">⚖️</div><div><strong>Policy &amp; Compliance</strong><span>DGBP India Policy Portal</span></div></div>
+        <div class="contact-item alert"><div class="ic">🚨</div><div><strong>Report a violation</strong><span>Core Team — confidential channel</span><br><span>M81434409@gmail.com, Devgameblogpromo@gmail.com</span></div></div>
       </div>
     </div>
-  </section>
-
-</div><!-- /.wrapper -->
-
-<!-- ── FOOTER ── -->
-<footer>
-  <div class="footer-left">
-    © 2024–2026 <strong>DevGameBlogPromo</strong> · School of Development &amp; Gaming · All rights reserved.
   </div>
-  <div class="footer-right">
-    <a href="https://devgameblogpromo.vercel.app/">Home</a>
-    
+</section>
+
+<!-- ═══ 07 PHILOSOPHY ═══ -->
+<section class="section reveal" id="philosophy">
+  <div class="container">
+    <span class="eyebrow">07 — Foundation</span>
+    <h2 class="section-title">The philosophy behind administration</h2>
+    <div class="philosophy">
+      <blockquote>"Administration exists not to <em>control</em> — but to protect the community, maintain the standard, and keep the mission alive."</blockquote>
+      <cite>— <b>Kakarla Manish Reddy</b>, Founder &amp; Chairperson of the Board, DevGameBlogPromo</cite>
+    </div>
+    <div class="grid-3">
+      <div class="card"><div class="icon">⚡</div><h3>8 — Infinity</h3><p>Limitless potential. No ceiling on what this community can build.</p></div>
+      <div class="card"><div class="icon">🔺</div><h3>3 — Triangle</h3><p>Foundation of logic, innovation, and design. Structure enables freedom.</p></div>
+      <div class="card"><div class="icon">🧱</div><h3>9 — Challenge</h3><p>The drive to go beyond boundaries — within a framework of accountability.</p></div>
+      <div class="card"><div class="icon">⚖️</div><h3>2 — Duality</h3><p>Vision and execution in harmony. Rules and creativity, balanced.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA BAND ═══ -->
+<section class="cta-band">
+  <div class="container">
+    <h2>Questions about policy or access?</h2>
+    <p>Check the Policy Hub, read the public documents, or reach the Core Team directly — we respond within 48 hours.</p>
+    <div class="row">
+      <a class="btn btn-brand" href="DGBP India Policy Portal.html">Open Policy Hub</a>
+      <a class="btn btn-outline" href="Public Documents.html">Public Documents</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>DGBPLabZ</h3>
+        <p>School of Development &amp; Gaming — a founder-led mentorship platform from DevGameBlogPromo, Hyderabad.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Programs</h4>
+        <ul>
+          <li><a href="carrer.html">Labs</a></li>
+          <li><a href="mentorship.html">Mentorship</a></li>
+          <li><a href="Learning Curriculum.html">Curriculum</a></li>
+          <li><a href="Career Paths.html">Career Paths</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="announcement page.html">Announcements</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="FAQ.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Governance</h4>
+        <ul>
+          <li><a href="DGBP India Policy Portal.html">Policy Hub</a></li>
+          <li><a href="Public Documents.html">Public Documents</a></li>
+          <li><a href="Execution.html">Execution Framework</a></li>
+          <li><a href="founder.html">Founder Journey</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2024–2026 <b style="color:#fff">DevGameBlogPromo</b> · School of Development &amp; Gaming · All rights reserved.</div>
+      <div><a href="https://devgameblogpromo.vercel.app/">Home</a></div>
+    </div>
   </div>
 </footer>
 
 <script>
-  // ── SCROLL REVEAL ──
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  reveals.forEach(el => observer.observe(el));
+  // Scroll reveal
+  (function(){
+    var els = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('visible')}); return; }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('visible'); io.unobserve(en.target); }
+      });
+    },{threshold:0.08});
+    els.forEach(function(e){ io.observe(e); });
+  })();
 
-  // ── STATUS: LIVE TIME ──
-  function updateTime() {
-    const now = new Date();
-    const fmt = now.toLocaleString('en-IN', {
-      day:'2-digit', month:'short', year:'numeric',
-      hour:'2-digit', minute:'2-digit', timeZoneName:'short'
-    });
-    const el = document.getElementById('last-updated');
-    if (el) el.textContent = fmt;
-  }
-  updateTime();
-  setInterval(updateTime, 60000);
+  // Close announcement bar
+  document.getElementById('closeBanner').addEventListener('click', function(){
+    document.getElementById('statusBanner').style.display = 'none';
+  });
 
-  // ── CONTACT FORM ──
-  function submitForm() {
-    const name  = document.getElementById('c-name').value.trim();
-    const email = document.getElementById('c-email').value.trim();
-    const type  = document.getElementById('c-type').value;
-    const msg   = document.getElementById('c-msg').value.trim();
-    const fb    = document.getElementById('form-feedback');
+  // Mobile menu
+  var toggle = document.getElementById('menuToggle');
+  var nav = document.getElementById('navMenu');
+  toggle.addEventListener('click', function(){
+    var open = nav.classList.toggle('mobile-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
 
-    if (!name || !email || !type || !msg) {
-      fb.style.display = 'block';
-      fb.style.color = 'var(--danger)';
-      fb.textContent = '⚠ Please fill in all fields before submitting.';
-      return;
-    }
-    fb.style.display = 'block';
-    fb.style.color = 'var(--success)';
-    fb.textContent = '✓ Message noted. We\'ll be in touch within 48 hours.';
-    document.getElementById('c-name').value  = '';
-    document.getElementById('c-email').value = '';
-    document.getElementById('c-type').value  = '';
-    document.getElementById('c-msg').value   = '';
-  }
-
-  // ── NAV ACTIVE HIGHLIGHT ON SCROLL ──
-  window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 40) {
-      nav.style.background = 'rgba(8,11,16,0.97)';
-    } else {
-      nav.style.background = 'rgba(8,11,16,0.85)';
-    }
+  // "More" dropdown (click support for touch devices)
+  var moreBtn = document.getElementById('moreTrigger');
+  var moreMenu = document.getElementById('moreMenu');
+  moreBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    var shown = moreMenu.classList.toggle('show');
+    moreBtn.setAttribute('aria-expanded', shown ? 'true' : 'false');
+  });
+  document.addEventListener('click', function(){
+    moreMenu.classList.remove('show');
+    moreBtn.setAttribute('aria-expanded', 'false');
   });
 </script>
 </body>
