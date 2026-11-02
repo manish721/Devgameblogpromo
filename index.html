@@ -1205,6 +1205,265 @@ gtag("config","G-EX2K2P91Y6");
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "z6sufau09u");
 </script>
- 
+
+
+
+
+
+  
+<!-- DGBP LABZ MINI CLOCK & QUOTE BOX -->
+
+<div class="dgbp-mini-widget">
+
+  <!-- HEADER -->
+  <div class="dgbp-mini-header">
+    <span class="dgbp-mini-brand">DGBP LABZ</span>
+    <span class="dgbp-mini-live">
+      <span class="dgbp-mini-dot"></span>
+      LIVE IST
+    </span>
+  </div>
+
+  <!-- DATE & TIME -->
+  <div class="dgbp-mini-datetime">
+    <span id="dgbpMiniTime">00:00:00 PM</span>
+    <span id="dgbpMiniDate">Loading...</span>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="dgbp-mini-divider"></div>
+
+  <div class="dgbp-mini-quote" id="dgbpMiniQuote">
+    Ideas are cheap; execution is currency.
+  </div>
+
+  <!-- FOOTER -->
+  <div class="dgbp-mini-footer">
+    <span>BUILDER'S MINDSET</span>
+    <span id="dgbpMiniNumber">01 / 04</span>
+  </div>
+
+</div>
+
+<style>
+/* MAIN MINI BOX */
+.dgbp-mini-widget {
+  width: 265px;
+  max-width: calc(100% - 20px);
+  margin: 8px 0 8px 12px;
+  padding: 10px 12px;
+  box-sizing: border-box;
+
+  background: #0f172a;
+  color: #ffffff;
+
+  border: 1px solid rgba(56,189,248,0.25);
+  border-radius: 9px;
+
+  font-family: Arial, sans-serif;
+
+  box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+}
+
+/* HEADER */
+.dgbp-mini-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+
+.dgbp-mini-brand {
+  color: #38bdf8;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.dgbp-mini-live {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9px;
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.dgbp-mini-dot {
+  width: 6px;
+  height: 6px;
+  background: #22c55e;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #22c55e;
+}
+
+/* DATE AND TIME */
+.dgbp-mini-datetime {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+#dgbpMiniTime {
+  font-size: 18px;
+  font-weight: 800;
+  color: #ffffff;
+  font-variant-numeric: tabular-nums;
+}
+
+#dgbpMiniDate {
+  font-size: 9px;
+  color: #94a3b8;
+}
+
+/* DIVIDER */
+.dgbp-mini-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.12);
+  margin: 8px 0;
+}
+
+/* QUOTE */
+.dgbp-mini-quote {
+  min-height: 65px;
+  display: flex;
+  align-items: center;
+
+  color: #e2e8f0;
+  font-size: 11px;
+  line-height: 1.6;
+  font-weight: 500;
+
+  transition: opacity 0.4s ease;
+}
+
+.dgbp-mini-quote.fade {
+  opacity: 0;
+}
+
+/* FOOTER */
+.dgbp-mini-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 5px;
+  padding-top: 7px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+
+  font-size: 8px;
+  color: #64748b;
+  letter-spacing: 0.7px;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .dgbp-mini-widget {
+    width: 245px;
+    margin-left: 8px;
+    padding: 9px 10px;
+  }
+
+  #dgbpMiniTime {
+    font-size: 16px;
+  }
+
+  .dgbp-mini-quote {
+    font-size: 10px;
+    min-height: 60px;
+  }
+}
+</style>
+
+<script>
+(function () {
+
+  const timeElement =
+    document.getElementById("dgbpMiniTime");
+
+  const dateElement =
+    document.getElementById("dgbpMiniDate");
+
+  const quoteElement =
+    document.getElementById("dgbpMiniQuote");
+
+  const numberElement =
+    document.getElementById("dgbpMiniNumber");
+
+  // FOUR ORIGINAL DGBP LABZ QUOTES
+  const quotes = [
+
+    "Ideas are cheap; execution is currency. At dgbplabz, we don’t debate what’s possible—we build it while the rest of the world is still writing the proposal.",
+
+    "Waiting for the perfect moment is just a coward’s excuse for standing still. Ship the build, break the code, fix it live, and keep moving forward.",
+
+    "We aren't here to hold hands or wait for late arrivals. The lab is open, the tools are hot, and the future belongs to the builders who show up to work.",
+
+    "If you’re looking for a comfortable path, you’re in the wrong lab. True development requires friction, failure, and the relentless drive to out-build your past self."
+
+  ];
+
+  let currentQuote = 0;
+
+  // LIVE KOLKATA DATE AND TIME
+  function updateClock() {
+
+    const now = new Date();
+
+    timeElement.textContent =
+      new Intl.DateTimeFormat("en-IN", {
+        timeZone: "Asia/Kolkata",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+      }).format(now);
+
+    dateElement.textContent =
+      new Intl.DateTimeFormat("en-IN", {
+        timeZone: "Asia/Kolkata",
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+      }).format(now);
+
+  }
+
+  // AUTOMATIC QUOTE ROTATION
+  function changeQuote() {
+
+    quoteElement.classList.add("fade");
+
+    setTimeout(function () {
+
+      currentQuote =
+        (currentQuote + 1) % quotes.length;
+
+      quoteElement.textContent =
+        quotes[currentQuote];
+
+      numberElement.textContent =
+        String(currentQuote + 1).padStart(2, "0")
+        + " / 04";
+
+      quoteElement.classList.remove("fade");
+
+    }, 400);
+
+  }
+
+  // INITIALIZE
+  updateClock();
+
+  // UPDATE EVERY SECOND
+  setInterval(updateClock, 1000);
+
+  // CHANGE QUOTE EVERY FIVE SECONDS
+  setInterval(changeQuote, 5000);
+
+})();
+</script>
+
 </body>
 </html>
