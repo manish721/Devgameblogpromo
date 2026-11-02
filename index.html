@@ -349,12 +349,11 @@
 
 <style>
 /* ===================================================================
-   DGBPLabZ — Company homepage  ·  RESTYLED (neo-brutalist / blueprint)
-   Colours are IDENTICAL to the original palette — only style changed:
-   typography, borders, corners, shadows, spacing, layout rhythm, motion.
+   DGBPLabZ — Company homepage  ·  neo-brutalist / blueprint
+   Same colour palette as the original.
+   NEW: side event banner (.event-rail) + widget merged into main CSS
    =================================================================== */
 :root{
-  /* ── same colour tokens as before (untouched) ── */
   --bg:#ffffff;
   --bg-soft:#f7f5ee;
   --ink:#141310;
@@ -364,12 +363,11 @@
   --brand:#FFCB2E;
   --brand-deep:#E8A400;
   --brand-tint:#fff6d6;
-  /* ── new style tokens ── */
   --radius:0px;
   --radius-sm:0px;
   --maxw:1200px;
-  --bw:2px;                               /* border weight */
-  --hard:6px 6px 0 var(--ink);            /* hard offset shadow */
+  --bw:2px;
+  --hard:6px 6px 0 var(--ink);
   --hard-sm:4px 4px 0 var(--ink);
   --shadow:var(--hard-sm);
   --shadow-lg:var(--hard);
@@ -709,6 +707,87 @@ img{max-width:100%;display:block}
 }
 .footer-bottom .links{display:flex;flex-wrap:wrap;gap:6px 22px}
 
+/* ===================================================================
+   DGBP MINI WIDGET (clock + special day + quotes)
+   =================================================================== */
+.dgbp-mini-widget{
+  width:280px;max-width:calc(100% - 20px);margin:18px 0 18px 28px;padding:12px 14px;box-sizing:border-box;
+  background:#0f172a;color:#fff;border:2px solid rgba(56,189,248,0.25);border-radius:0;
+  font-family:'Space Grotesk',Arial,sans-serif;box-shadow:5px 5px 0 rgba(56,189,248,0.25);position:relative;z-index:2;
+}
+.dgbp-mini-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.dgbp-mini-brand{color:#38bdf8;font-size:10px;font-weight:700;letter-spacing:2px}
+.dgbp-mini-live{display:flex;align-items:center;gap:5px;font-size:9px;color:#22c55e;font-weight:bold;letter-spacing:1px}
+.dgbp-mini-dot{width:6px;height:6px;background:#22c55e;border-radius:0;box-shadow:0 0 6px #22c55e}
+.dgbp-mini-datetime{display:flex;align-items:center;justify-content:space-between;gap:5px}
+#dgbpMiniTime{font-size:19px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums;letter-spacing:-.5px}
+#dgbpMiniDate{font-size:9px;color:#94a3b8;letter-spacing:1px;text-transform:uppercase}
+.dgbp-mini-event{
+  margin-top:10px;padding:8px 10px;background:rgba(255,203,46,0.1);
+  border:1px solid #FFCB2E;border-left:5px solid #FFCB2E;
+}
+.dgbp-mini-event-label{font-size:8px;letter-spacing:1.5px;font-weight:700;color:#FFCB2E;margin-bottom:4px}
+.dgbp-mini-event-name{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;line-height:1.3;color:#fff}
+.dgbp-mini-event-name span:first-child{font-size:20px}
+.dgbp-mini-event-next{margin-top:5px;font-size:9px;color:#94a3b8;letter-spacing:.5px}
+.dgbp-mini-divider{height:0;border-top:1px dashed rgba(255,255,255,0.25);margin:9px 0}
+.dgbp-mini-quote{
+  min-height:65px;display:flex;align-items:center;color:#e2e8f0;
+  font-family:'DM Sans',Arial,sans-serif;font-size:11px;line-height:1.6;font-weight:500;transition:opacity .4s ease;
+}
+.dgbp-mini-quote.fade{opacity:0}
+.dgbp-mini-footer{
+  display:flex;justify-content:space-between;align-items:center;margin-top:6px;padding-top:8px;
+  border-top:1px solid rgba(255,255,255,0.1);font-size:8px;color:#64748b;letter-spacing:1.2px;
+}
+
+/* ===================================================================
+   SIDE EVENT BANNER  (fixed to the right edge; tab toggles open/closed)
+   =================================================================== */
+.event-rail{
+  position:fixed;right:0;top:130px;z-index:90;display:flex;align-items:flex-start;
+  transition:transform .28s ease;
+}
+.event-rail.collapsed{transform:translateX(262px)}
+.rail-tab{
+  writing-mode:vertical-rl;text-orientation:mixed;
+  background:var(--brand);color:var(--ink);border:var(--bw) solid var(--ink);border-right:none;
+  padding:16px 10px;font-family:var(--f-head);font-weight:700;font-size:.74rem;letter-spacing:.16em;
+  text-transform:uppercase;cursor:pointer;box-shadow:-4px 4px 0 var(--ink);
+  display:flex;align-items:center;gap:10px;
+}
+.rail-tab .tab-emoji{writing-mode:horizontal-tb;font-size:1.3rem;letter-spacing:0}
+.rail-panel{
+  width:262px;background:#fff;border:var(--bw) solid var(--ink);border-right:none;
+  box-shadow:-6px 6px 0 var(--ink);max-height:calc(100vh - 160px);overflow:auto;
+}
+.rail-head{
+  background:var(--ink);color:var(--brand);font-family:var(--f-head);font-weight:700;
+  font-size:.68rem;letter-spacing:.16em;padding:8px 14px;display:flex;justify-content:space-between;align-items:center;
+}
+.rail-head button{background:none;border:none;color:#f3efe0;cursor:pointer;font-size:.9rem;padding:2px 6px}
+.rail-head button:hover{background:rgba(255,255,255,.14)}
+.rail-body{padding:18px 16px 16px}
+.rail-status{
+  display:inline-block;font-family:var(--f-head);font-size:.64rem;font-weight:700;letter-spacing:.12em;
+  background:var(--brand);border:var(--bw) solid var(--ink);padding:3px 8px;margin-bottom:12px;text-transform:uppercase;
+}
+.rail-emoji{font-size:3rem;line-height:1;margin-bottom:8px}
+.rail-name{font-family:var(--f-head);font-size:1.45rem;font-weight:700;line-height:1.1;letter-spacing:-.03em;margin-bottom:14px}
+.rail-progress{height:10px;border:var(--bw) solid var(--ink);background:#fff;margin-bottom:6px}
+.rail-progress i{display:block;height:100%;width:0;background:var(--brand);transition:width .6s ease}
+.rail-progress-label{font-family:var(--f-head);font-size:.66rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+.rail-up-title{
+  font-family:var(--f-head);font-size:.66rem;font-weight:700;letter-spacing:.14em;color:var(--muted);
+  text-transform:uppercase;padding-top:12px;border-top:var(--bw) dashed var(--line);margin-bottom:8px;
+}
+.rail-up li{display:flex;align-items:center;gap:10px;padding:7px 0;font-size:.84rem;line-height:1.3;border-bottom:1px dashed var(--line)}
+.rail-up li:last-child{border-bottom:none}
+.rail-up .u-emoji{font-size:1.15rem;flex-shrink:0}
+.rail-up .u-name{font-weight:600;font-family:var(--f-head);font-size:.84rem}
+.rail-up .u-date{display:block;font-size:.7rem;color:var(--muted);font-family:var(--f-body)}
+.rail-cta{margin-top:14px;width:100%}
+
 /* ---------- RESPONSIVE ---------- */
 @media(max-width:1020px){
   .hero-grid,.trust-grid{grid-template-columns:1fr}
@@ -744,6 +823,12 @@ img{max-width:100%;display:block}
   .t-card{width:100%}
   .t-card:nth-child(even){transform:none}
   .announce{font-size:.76rem;padding:9px 40px 9px 12px;text-align:left}
+  .dgbp-mini-widget{width:250px;margin-left:14px;padding:10px 11px}
+  #dgbpMiniTime{font-size:16px}
+  .dgbp-mini-quote{font-size:10px;min-height:60px}
+  .event-rail{top:auto;bottom:18px}
+  .event-rail.collapsed{transform:translateX(232px)}
+  .rail-panel{width:232px;max-height:70vh}
 }
 @media(max-width:380px){.partners-grid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){
@@ -780,7 +865,7 @@ img{max-width:100%;display:block}
       <a href="Learning Curriculum.html">Curriculum</a>
       <a href="blog.html">Blog</a>
       <a href="announcement page.html">Announcements</a>
-<a href="gallery.html">Gallery</a>
+      <a href="gallery.html">Gallery</a>
       <div class="nav-more">
         <button id="moreTrigger" type="button" aria-haspopup="true" aria-expanded="false">More ▾</button>
         <div class="nav-more-menu" id="moreMenu">
@@ -799,8 +884,6 @@ img{max-width:100%;display:block}
       </div>
     </nav>
 
-
-    
     <div class="nav-cta">
       <a class="btn btn-brand btn-sm" href="https://forms.gle/LNDC32NR6YsCmeZY8" target="_blank" rel="noopener">Apply now</a>
       <button class="menu-toggle" id="menuToggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
@@ -808,264 +891,59 @@ img{max-width:100%;display:block}
   </div>
 </header>
 
+<!-- ═══ MINI WIDGET (clock · special day · quotes) ═══ -->
 <div class="dgbp-mini-widget">
-
-  <!-- HEADER -->
   <div class="dgbp-mini-header">
     <span class="dgbp-mini-brand">DGBP LABZ</span>
-    <span class="dgbp-mini-live">
-      <span class="dgbp-mini-dot"></span>
-      LIVE IST
-    </span>
+    <span class="dgbp-mini-live"><span class="dgbp-mini-dot"></span>LIVE IST</span>
   </div>
 
-  <!-- DATE & TIME -->
   <div class="dgbp-mini-datetime">
     <span id="dgbpMiniTime">00:00:00 PM</span>
     <span id="dgbpMiniDate">Loading...</span>
   </div>
 
-  <!-- QUOTE -->
-  <div class="dgbp-mini-divider"></div>
-
-  <div class="dgbp-mini-quote" id="dgbpMiniQuote">
-    Ideas are cheap; execution is currency.
+  <div class="dgbp-mini-event">
+    <div class="dgbp-mini-event-label" id="dgbpEventLabel">CURRENT EVENT</div>
+    <div class="dgbp-mini-event-name">
+      <span id="dgbpEventEmoji">🎉</span>
+      <span id="dgbpEventName">Loading...</span>
+    </div>
+    <div class="dgbp-mini-event-next" id="dgbpEventNext"></div>
   </div>
 
-  <!-- FOOTER -->
+  <div class="dgbp-mini-divider"></div>
+
+  <div class="dgbp-mini-quote" id="dgbpMiniQuote">Ideas are cheap; execution is currency.</div>
+
   <div class="dgbp-mini-footer">
     <span>BUILDER'S MINDSET</span>
     <span id="dgbpMiniNumber">01 / 04</span>
   </div>
-
 </div>
 
-<style>
-/* MAIN MINI BOX (restyled: hard edges, offset shadow — same colours) */
-.dgbp-mini-widget {
-  width: 280px;
-  max-width: calc(100% - 20px);
-  margin: 18px 0 18px 28px;
-  padding: 12px 14px;
-  box-sizing: border-box;
+<!-- ═══ SIDE EVENT BANNER ═══ -->
+<aside class="event-rail" id="eventRail" aria-label="DevGameBlogPromo special days">
+  <button class="rail-tab" id="railTab" type="button" aria-expanded="true" aria-controls="railPanel">
+    <span class="tab-emoji" id="railTabEmoji">🎉</span><span>Special Day</span>
+  </button>
+  <div class="rail-panel" id="railPanel">
+    <div class="rail-head">
+      <span>DGBP CALENDAR</span>
+      <button type="button" id="railClose" aria-label="Hide special day banner">✕</button>
+    </div>
+    <div class="rail-body">
+      <span class="rail-status" id="railStatus">Ongoing</span>
+      <div class="rail-emoji" id="railEmoji">🎉</div>
+      <div class="rail-name" id="railName">Loading...</div>
+      <div class="rail-progress"><i id="railBar"></i></div>
+      <div class="rail-progress-label" id="railProgressLabel"></div>
+      <div class="rail-up-title">Coming up</div>
+      <ul class="rail-up" id="railUp"></ul>
+        </div>
+  </div>
+</aside>
 
-  background: #0f172a;
-  color: #ffffff;
-
-  border: 2px solid rgba(56,189,248,0.25);
-  border-radius: 0;
-
-  font-family: 'Space Grotesk', Arial, sans-serif;
-
-  box-shadow: 5px 5px 0 rgba(56,189,248,0.25);
-  position: relative;
-  z-index: 2;
-}
-
-/* HEADER */
-.dgbp-mini-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-
-.dgbp-mini-brand {
-  color: #38bdf8;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 2px;
-}
-
-.dgbp-mini-live {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 9px;
-  color: #22c55e;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-.dgbp-mini-dot {
-  width: 6px;
-  height: 6px;
-  background: #22c55e;
-  border-radius: 0;
-  box-shadow: 0 0 6px #22c55e;
-}
-
-/* DATE AND TIME */
-.dgbp-mini-datetime {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 5px;
-}
-
-#dgbpMiniTime {
-  font-size: 19px;
-  font-weight: 700;
-  color: #ffffff;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.5px;
-}
-
-#dgbpMiniDate {
-  font-size: 9px;
-  color: #94a3b8;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-/* DIVIDER */
-.dgbp-mini-divider {
-  height: 0;
-  border-top: 1px dashed rgba(255,255,255,0.25);
-  margin: 9px 0;
-}
-
-/* QUOTE */
-.dgbp-mini-quote {
-  min-height: 65px;
-  display: flex;
-  align-items: center;
-
-  color: #e2e8f0;
-  font-family: 'DM Sans', Arial, sans-serif;
-  font-size: 11px;
-  line-height: 1.6;
-  font-weight: 500;
-
-  transition: opacity 0.4s ease;
-}
-
-.dgbp-mini-quote.fade {
-  opacity: 0;
-}
-
-/* FOOTER */
-.dgbp-mini-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  margin-top: 6px;
-  padding-top: 8px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-
-  font-size: 8px;
-  color: #64748b;
-  letter-spacing: 1.2px;
-}
-
-/* MOBILE */
-@media (max-width: 600px) {
-  .dgbp-mini-widget {
-    width: 250px;
-    margin-left: 14px;
-    padding: 10px 11px;
-  }
-
-  #dgbpMiniTime {
-    font-size: 16px;
-  }
-
-  .dgbp-mini-quote {
-    font-size: 10px;
-    min-height: 60px;
-  }
-}
-</style>
-
-<script>
-(function () {
-
-  const timeElement =
-    document.getElementById("dgbpMiniTime");
-
-  const dateElement =
-    document.getElementById("dgbpMiniDate");
-
-  const quoteElement =
-    document.getElementById("dgbpMiniQuote");
-
-  const numberElement =
-    document.getElementById("dgbpMiniNumber");
-
-  // FOUR ORIGINAL DGBP LABZ QUOTES
-  const quotes = [
-
-    "Ideas are cheap; execution is currency. At dgbplabz, we don’t debate what’s possible—we build it while the rest of the world is still writing the proposal.",
-
-    "Waiting for the perfect moment is just a coward’s excuse for standing still. Ship the build, break the code, fix it live, and keep moving forward.",
-
-    "We aren't here to hold hands or wait for late arrivals. The lab is open, the tools are hot, and the future belongs to the builders who show up to work.",
-
-    "If you’re looking for a comfortable path, you’re in the wrong lab. True development requires friction, failure, and the relentless drive to out-build your past self."
-
-  ];
-
-  let currentQuote = 0;
-
-  // LIVE KOLKATA DATE AND TIME
-  function updateClock() {
-
-    const now = new Date();
-
-    timeElement.textContent =
-      new Intl.DateTimeFormat("en-IN", {
-        timeZone: "Asia/Kolkata",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: true
-      }).format(now);
-
-    dateElement.textContent =
-      new Intl.DateTimeFormat("en-IN", {
-        timeZone: "Asia/Kolkata",
-        day: "2-digit",
-        month: "short",
-        year: "numeric"
-      }).format(now);
-
-  }
-
-  // AUTOMATIC QUOTE ROTATION
-  function changeQuote() {
-
-    quoteElement.classList.add("fade");
-
-    setTimeout(function () {
-
-      currentQuote =
-        (currentQuote + 1) % quotes.length;
-
-      quoteElement.textContent =
-        quotes[currentQuote];
-
-      numberElement.textContent =
-        String(currentQuote + 1).padStart(2, "0")
-        + " / 04";
-
-      quoteElement.classList.remove("fade");
-
-    }, 400);
-
-  }
-
-  // INITIALIZE
-  updateClock();
-
-  // UPDATE EVERY SECOND
-  setInterval(updateClock, 1000);
-
-  // CHANGE QUOTE EVERY FIVE SECONDS
-  setInterval(changeQuote, 5000);
-
-})();
-</script>
 <main>
 
 <!-- ═══ HERO ═══ -->
@@ -1358,7 +1236,6 @@ img{max-width:100%;display:block}
           <li><a href="labs.html">Labs</a></li>
           <li><a href="mentorship.html">Mentorship</a></li>
           <li><a href="Learning Curriculum.html">Curriculum</a></li>
-        
         </ul>
       </div>
       <div class="footer-col">
@@ -1374,7 +1251,6 @@ img{max-width:100%;display:block}
         <h4>Company</h4>
         <ul>
           <li><a href="founder.html">Founder Journey</a></li>
-        
           <li><a href="https://forms.gle/aoKgfnEavd118qkt5">Partnership</a></li>
           <li><a href="partnership.html">Partnerships | DevGameBlogPromo</a></li>
         </ul>
@@ -1431,6 +1307,146 @@ img{max-width:100%;display:block}
       trigger.setAttribute('aria-expanded','false');
     }
   });
+})();
+
+/* ===== Widget + Side event banner ===== */
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+
+  var timeEl = $("dgbpMiniTime"), dateEl = $("dgbpMiniDate"),
+      quoteEl = $("dgbpMiniQuote"), numEl = $("dgbpMiniNumber"),
+      evLabel = $("dgbpEventLabel"), evEmoji = $("dgbpEventEmoji"),
+      evName = $("dgbpEventName"), evNext = $("dgbpEventNext");
+
+  var rail = $("eventRail"), railTab = $("railTab"), railClose = $("railClose"),
+      railTabEmoji = $("railTabEmoji"), railStatus = $("railStatus"),
+      railEmoji = $("railEmoji"), railName = $("railName"),
+      railBar = $("railBar"), railProgressLabel = $("railProgressLabel"),
+      railUp = $("railUp");
+
+  var quotes = [
+    "Ideas are cheap; execution is currency. At dgbplabz, we don’t debate what’s possible—we build it while the rest of the world is still writing the proposal.",
+    "Waiting for the perfect moment is just a coward’s excuse for standing still. Ship the build, break the code, fix it live, and keep moving forward.",
+    "We aren't here to hold hands or wait for late arrivals. The lab is open, the tools are hot, and the future belongs to the builders who show up to work.",
+    "If you’re looking for a comfortable path, you’re in the wrong lab. True development requires friction, failure, and the relentless drive to out-build your past self."
+  ];
+  var currentQuote = 0;
+
+  /* ── DEVGAMEBLOGPROMO SPECIAL DAYS: [month, day, emoji, name] ── */
+  var EVENTS = [
+    [1,1,"🎉","New Year Celebration"],[1,15,"🚀","Innovation Day"],[1,26,"🇮🇳","Republic Day"],[1,30,"👫","Team Bonding Day"],
+    [2,14,"💙","Dev Appreciation Day"],[2,22,"🚀","Product Launch Day"],[2,28,"🧪","Science & Tech Day"],
+    [3,8,"👩‍💻","Women in Tech Day"],[3,15,"🌿","Sustainability Day"],[3,22,"🧘","Wellness Day"],[3,30,"🎮","Game Night"],
+    [4,2,"📹","Grand Comeback Live Stream"],[4,10,"👩‍🏫","Mentorship Day"],[4,22,"🌎","Earth Day"],[4,28,"📊","Monthly Progress Review"],
+    [5,1,"👷‍♂️","Global Workers’ Day"],[5,5,"💡","Skill Up Day"],[5,15,"🚀","Innovation Showcase"],[5,25,"❤️","Community Support Day"],
+    [6,5,"🌱","World Environment Day"],[6,15,"🖥️","Coding Marathon"],[6,21,"🧘","Wellness Day"],[6,30,"💻","Product Demo Day"],
+    [7,7,"🎂","Founder’s Day"],[7,10,"🎥","Content Creators Day"],[7,20,"🧠","Tech Trivia Challenge"],[7,30,"📊","Annual Review Meet"],
+    [8,1,"🎮","Gaming Innovation Day"],[8,10,"👩‍💻","Mentorship Connect"],[8,15,"🇮🇳","Independence Day"],[8,25,"🏆","DevHackathon"],
+    [9,5,"📚","Teachers’ Day"],[9,10,"🌟","Employee Appreciation Day"],[9,20,"💻","Software Demo Day"],[9,30,"🚀","Product Vision Day"],
+    [10,2,"🌍","Impact Day"],[10,10,"🗣️","Innovation Pitch Day"],[10,20,"🎉","Team Outing Day"],[10,31,"🎃","Halloween Game Jam"],
+    [11,1,"🎥","DevPixel Studio Day"],[11,10,"🏆","Recognition Day"],[11,14,"🚀","Children’s Tech Day"],[11,30,"📅","Year-End Planning"],
+    [12,10,"🏅","Annual Awards Night"],[12,15,"📊","Project Wrap-Up Day"],[12,24,"🎄","Holiday Fest"],[12,31,"🎉","New Year’s Eve Party"]
+  ];
+  var MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var DAY = 86400000;
+
+  function istToday() {
+    var parts = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Asia/Kolkata", year: "numeric", month: "2-digit", day: "2-digit"
+    }).formatToParts(new Date());
+    var o = {};
+    parts.forEach(function (x) { o[x.type] = x.value; });
+    return { y: +o.year, m: +o.month, d: +o.day };
+  }
+  function utc(y, m, d) { return Date.UTC(y, m - 1, d); }
+  function fmt(e) { return e.d + " " + MONTHS[e.m - 1]; }
+  function inDays(n) { return n === 1 ? "tomorrow" : "in " + n + " days"; }
+
+  function updateEvent() {
+    var t = istToday(), today = utc(t.y, t.m, t.d);
+
+    /* 3-year timeline so the Dec → Jan wrap works */
+    var list = [];
+    [t.y - 1, t.y, t.y + 1].forEach(function (yr) {
+      EVENTS.forEach(function (e) {
+        list.push({ time: utc(yr, e[0], e[1]), m: e[0], d: e[1], emoji: e[2], name: e[3] });
+      });
+    });
+
+    var idx = -1;
+    for (var i = 0; i < list.length; i++) { if (list[i].time <= today) idx = i; else break; }
+    if (idx < 0 || idx + 1 >= list.length) return;
+
+    var current = list[idx], next = list[idx + 1];
+    var isToday = current.time === today;
+    var daysToNext = Math.round((next.time - today) / DAY);
+
+    /* ── widget ── */
+    evLabel.textContent = isToday ? "TODAY'S SPECIAL DAY" : "ONGOING SINCE " + current.d + " " + MONTHS[current.m - 1].toUpperCase();
+    evEmoji.textContent = current.emoji;
+    evName.textContent = current.name;
+    evNext.textContent = "NEXT: " + next.emoji + " " + next.name + " · " + fmt(next) + " (" + inDays(daysToNext) + ")";
+
+    /* ── side banner ── */
+    railTabEmoji.textContent = current.emoji;
+    railStatus.textContent = isToday ? "Today" : "Ongoing since " + fmt(current);
+    railEmoji.textContent = current.emoji;
+    railName.textContent = current.name;
+
+    var span = Math.max(1, Math.round((next.time - current.time) / DAY));
+    var done = Math.round((today - current.time) / DAY);
+    railBar.style.width = Math.min(100, Math.max(4, (done / span) * 100)) + "%";
+    railProgressLabel.textContent = "Next special day " + inDays(daysToNext);
+
+    railUp.innerHTML = "";
+    for (var k = 1; k <= 3 && idx + k < list.length; k++) {
+      var ev = list[idx + k];
+      var n = Math.round((ev.time - today) / DAY);
+      var li = document.createElement("li");
+      var em = document.createElement("span"); em.className = "u-emoji"; em.textContent = ev.emoji;
+      var box = document.createElement("div");
+      var nm = document.createElement("span"); nm.className = "u-name"; nm.textContent = ev.name;
+      var dt = document.createElement("span"); dt.className = "u-date"; dt.textContent = fmt(ev) + " · " + inDays(n);
+      box.appendChild(nm); box.appendChild(dt);
+      li.appendChild(em); li.appendChild(box);
+      railUp.appendChild(li);
+    }
+  }
+
+  /* side banner open/close — open by default on wide screens, tab-only on small ones */
+  function setRail(open) {
+    rail.classList.toggle("collapsed", !open);
+    railTab.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+  setRail(window.innerWidth >= 1320);
+  railTab.addEventListener("click", function () { setRail(rail.classList.contains("collapsed")); });
+  railClose.addEventListener("click", function () { setRail(false); });
+
+  function updateClock() {
+    var now = new Date();
+    timeEl.textContent = new Intl.DateTimeFormat("en-IN", {
+      timeZone: "Asia/Kolkata", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true
+    }).format(now);
+    dateEl.textContent = new Intl.DateTimeFormat("en-IN", {
+      timeZone: "Asia/Kolkata", day: "2-digit", month: "short", year: "numeric"
+    }).format(now);
+  }
+
+  function changeQuote() {
+    quoteEl.classList.add("fade");
+    setTimeout(function () {
+      currentQuote = (currentQuote + 1) % quotes.length;
+      quoteEl.textContent = quotes[currentQuote];
+      numEl.textContent = String(currentQuote + 1).padStart(2, "0") + " / 04";
+      quoteEl.classList.remove("fade");
+    }, 400);
+  }
+
+  updateClock();
+  updateEvent();
+  setInterval(updateClock, 1000);
+  setInterval(updateEvent, 60000);  /* flips automatically at midnight IST */
+  setInterval(changeQuote, 5000);
 })();
 
 /* ===== Testimonials ===== */
