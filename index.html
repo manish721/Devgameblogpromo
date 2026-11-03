@@ -352,6 +352,7 @@
    DGBPLabZ — Company homepage  ·  neo-brutalist / blueprint
    Same colour palette as the original.
    NEW: side event banner (.event-rail) + widget merged into main CSS
+   NEW: DGBP company seal (.dgbp-seal) — large rubber-stamp style
    =================================================================== */
 :root{
   --bg:#ffffff;
@@ -675,6 +676,45 @@ img{max-width:100%;display:block}
 .cred li b{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:4px}
 .sign{margin-top:22px;font-size:.92rem}
 
+/* signature + seal row */
+.sign-row{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+  margin-top:26px;padding-top:22px;border-top:var(--bw) dashed var(--line);
+}
+.sign-row .sign{margin:0}
+
+/* ===================================================================
+   DGBP COMPANY SEAL  (rubber-stamp style, large)
+   =================================================================== */
+.dgbp-seal{
+  --seal-size:260px;
+  --seal-ink:#141310;
+  width:var(--seal-size);height:var(--seal-size);
+  display:inline-block;flex-shrink:0;
+  color:var(--seal-ink);
+  transform:rotate(-7deg);
+  mix-blend-mode:multiply;
+  opacity:.92;
+  transition:transform .3s ease;
+}
+.dgbp-seal:hover{transform:rotate(0deg) scale(1.03)}
+.dgbp-seal svg{width:100%;height:100%;display:block;overflow:visible}
+.dgbp-seal .s-ring-a{fill:none;stroke:currentColor;stroke-width:3.2}
+.dgbp-seal .s-ring-b{fill:none;stroke:currentColor;stroke-width:1.3}
+.dgbp-seal .s-ring-c{fill:none;stroke:currentColor;stroke-width:1.3}
+.dgbp-seal .s-ring-d{fill:none;stroke:currentColor;stroke-width:.8;stroke-dasharray:1.5 3}
+.dgbp-seal .s-rule{stroke:currentColor;stroke-width:1.3}
+.dgbp-seal text{fill:currentColor;font-family:'Space Grotesk',Arial,sans-serif;font-weight:700}
+.dgbp-seal .s-top{font-size:17px;letter-spacing:2.6px}
+.dgbp-seal .s-bottom{font-size:12.5px;letter-spacing:2.2px}
+.dgbp-seal .s-name{font-size:20px;letter-spacing:-.5px}
+.dgbp-seal .s-id{font-size:7.6px;letter-spacing:.6px}
+.dgbp-seal .s-est{font-size:8.5px;letter-spacing:2px}
+.dgbp-seal .s-star{font-size:11px}
+
+/* seal sitting on dark footer */
+.dgbp-seal.on-dark{--seal-ink:#FFCB2E;--seal-size:210px;mix-blend-mode:normal;opacity:1;margin:8px 0 22px}
+
 /* ---------- CTA BAND ---------- */
 .cta-band{background:var(--ink);color:#fff;padding:104px 0;text-align:center;border-top:var(--bw) solid var(--ink);position:relative;overflow:hidden}
 .cta-band::before,.cta-band::after{
@@ -829,6 +869,9 @@ img{max-width:100%;display:block}
   .event-rail{top:auto;bottom:18px}
   .event-rail.collapsed{transform:translateX(232px)}
   .rail-panel{width:232px;max-height:70vh}
+  .dgbp-seal{--seal-size:220px}
+  .dgbp-seal.on-dark{--seal-size:190px}
+  .sign-row{justify-content:center}
 }
 @media(max-width:380px){.partners-grid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){
@@ -1199,7 +1242,34 @@ img{max-width:100%;display:block}
         <p>All official communications, agreements, and mentorship programs from our end are conducted strictly through verified corporate channels. We do not demand upfront fees for freelance tasks, nor do we tolerate extortion or defamation.</p>
         <p>We have initiated formal reports with the appropriate cyber crime authorities against the individuals fabricating these false narratives. For any genuine queries or to verify our credentials, please reach out directly through our <strong>official portal</strong>.</p>
         <p>We request that users rely on information shared through our official channels and allow us the opportunity to review any genuine concerns directly.</p>
-        <p class="sign">— <strong>Manish Kakarla</strong><br>Founder, <strong>DGBP Labz</strong></p>
+
+        <!-- signature + company seal -->
+        <div class="sign-row">
+          <p class="sign">— <strong>Manish Kakarla</strong><br>Founder, <strong>DGBP Labz</strong></p>
+
+          <div class="dgbp-seal" role="img"
+               aria-label="DevGameBlogPromo seal, Hyderabad Telangana, Udyam registration UDYAM-TS-20-0184539">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <path id="sealTop1" d="M 32,100 a 68,68 0 1,1 136,0"/>
+                <path id="sealBottom1" d="M 20,100 a 80,80 0 0,0 160,0"/>
+              </defs>
+              <circle class="s-ring-a" cx="100" cy="100" r="96"/>
+              <circle class="s-ring-b" cx="100" cy="100" r="91"/>
+              <circle class="s-ring-c" cx="100" cy="100" r="58"/>
+              <circle class="s-ring-d" cx="100" cy="100" r="54"/>
+              <text class="s-top" text-anchor="middle"><textPath href="#sealTop1" startOffset="50%">DEVGAMEBLOGPROMO</textPath></text>
+              <text class="s-bottom" text-anchor="middle"><textPath href="#sealBottom1" startOffset="50%">HYDERABAD, TELANGANA</textPath></text>
+              <text class="s-star" x="25" y="110" text-anchor="middle">★</text>
+              <text class="s-star" x="176" y="110" text-anchor="middle">★</text>
+              <line class="s-rule" x1="56" y1="78" x2="144" y2="78"/>
+              <text class="s-name" x="100" y="99" text-anchor="middle">DGBPLabZ</text>
+              <text class="s-id" x="100" y="113" text-anchor="middle"> School of Education   </text>
+              <line class="s-rule" x1="56" y1="119" x2="144" y2="119"/>
+              <text class="s-est" x="100" y="133" text-anchor="middle">EST. 2023</text>
+            </svg>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -1228,6 +1298,31 @@ img{max-width:100%;display:block}
         <h3>DGBPLabZ</h3>
         <p>A founder-led mentorship program teaching web development, AI and game development through real projects — not just video lessons.</p>
         <p style="font-size:.82rem">Questions? Write to <a href="mailto:m81434409@gmail.com">m81434409@gmail.com</a></p>
+
+        <!-- footer company seal (yellow ink on dark) -->
+        <div class="dgbp-seal on-dark" role="img"
+             aria-label="DevGameBlogPromo seal, Hyderabad Telangana, Udyam registration UDYAM-TS-20-0184539">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <path id="sealTop2" d="M 32,100 a 68,68 0 1,1 136,0"/>
+              <path id="sealBottom2" d="M 20,100 a 80,80 0 0,0 160,0"/>
+            </defs>
+            <circle class="s-ring-a" cx="100" cy="100" r="96"/>
+            <circle class="s-ring-b" cx="100" cy="100" r="91"/>
+            <circle class="s-ring-c" cx="100" cy="100" r="58"/>
+            <circle class="s-ring-d" cx="100" cy="100" r="54"/>
+            <text class="s-top" text-anchor="middle"><textPath href="#sealTop2" startOffset="50%">DEVGAMEBLOGPROMO</textPath></text>
+            <text class="s-bottom" text-anchor="middle"><textPath href="#sealBottom2" startOffset="50%">HYDERABAD, TELANGANA</textPath></text>
+            <text class="s-star" x="24" y="104" text-anchor="middle">★</text>
+            <text class="s-star" x="176" y="104" text-anchor="middle">★</text>
+            <line class="s-rule" x1="56" y1="78" x2="144" y2="78"/>
+            <text class="s-name" x="100" y="99" text-anchor="middle">DGBPLabZ</text>
+            <text class="s-id" x="100" y="113" text-anchor="middle">UDYAM-TS-20-0184539</text>
+            <line class="s-rule" x1="56" y1="119" x2="144" y2="119"/>
+            <text class="s-est" x="100" y="133" text-anchor="middle">EST. 2023</text>
+          </svg>
+        </div>
+
         <button swg-standard-button="contribution"></button>
       </div>
       <div class="footer-col">
