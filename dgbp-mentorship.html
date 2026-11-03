@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DGBP – Free Personal Mentorship Programme</title>
+<meta name="description" content="DevGameBlogPromo (DGBP) offers completely free one-on-one personal mentorship for every student. Book a session within the next 30 days.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0d14; --panel:#131724; --panel2:#1a2030; --line:#262e44;
+  --text:#e9ecf5; --muted:#98a1b8;
+  --a:#7c5cff; --b:#00e0b8;
+  --r:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font:16px/1.6 Inter,system-ui,sans-serif;
+  background-image:radial-gradient(900px 400px at 80% -5%,rgba(124,92,255,.18),transparent),
+                   radial-gradient(700px 400px at 0% 10%,rgba(0,224,184,.10),transparent);
+  background-repeat:no-repeat}
+h1,h2,h3,.brand,.stats strong{font-family:"Space Grotesk",Inter,sans-serif}
+a{color:inherit;text-decoration:none}
+
+.nav{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;
+  padding:14px 5vw;background:rgba(11,13,20,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.brand{font-weight:700;font-size:1.3rem;letter-spacing:.5px}
+.brand-mark{background:linear-gradient(135deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav nav{display:flex;gap:22px;align-items:center;font-size:.95rem;color:var(--muted)}
+.nav nav a:hover{color:var(--text)}
+
+.btn{display:inline-block;padding:12px 24px;border-radius:999px;border:0;cursor:pointer;font:600 1rem Inter,sans-serif;
+  color:#06130f;background:linear-gradient(135deg,var(--b),#6df0d6);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,224,184,.25)}
+.btn-sm{padding:8px 16px;font-size:.9rem;color:#06130f!important}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--a);box-shadow:none}
+.btn-block{width:100%;margin-top:8px}
+
+main{max-width:1100px;margin:0 auto;padding:0 5vw}
+.hero{text-align:center;padding:90px 0 60px}
+.eyebrow{color:var(--b);font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem}
+h1{font-size:clamp(2.4rem,7vw,4.6rem);line-height:1.05;margin:14px 0 18px}
+.grad{background:linear-gradient(135deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{max-width:640px;margin:0 auto 28px;color:var(--muted);font-size:1.1rem}
+.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:56px}
+.stats div{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:20px 10px}
+.stats strong{display:block;font-size:2rem;color:var(--b)}
+.stats span{color:var(--muted);font-size:.85rem}
+
+.section{padding:56px 0}
+h2{font-size:clamp(1.6rem,4vw,2.2rem);margin-bottom:8px}
+.sub{color:var(--muted);margin-bottom:26px}
+.sub b{color:var(--b)}
+
+.rules{list-style:none;display:grid;gap:12px}
+.rules li{display:flex;gap:16px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);
+  border-radius:var(--r);padding:16px 18px}
+.rules .n{font:700 .95rem "Space Grotesk";color:var(--a);background:rgba(124,92,255,.14);border-radius:8px;padding:2px 9px;flex:none}
+
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.card b{display:block;margin-bottom:6px}
+.card p{color:var(--muted);font-size:.92rem}
+
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.cal-nav button{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--panel2);
+  color:var(--text);font-size:1.2rem;cursor:pointer}
+.cal-nav button:disabled{opacity:.3;cursor:not-allowed}
+.cal-week,.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-week span{text-align:center;font-size:.75rem;color:var(--muted);padding-bottom:6px}
+.day{aspect-ratio:1;border-radius:10px;border:1px solid transparent;background:transparent;color:var(--muted);
+  font:500 .95rem Inter;display:flex;align-items:center;justify-content:center;opacity:.35}
+.day.blank{visibility:hidden}
+.day.open{opacity:1;color:var(--text);background:rgba(0,224,184,.1);border-color:rgba(0,224,184,.35);cursor:pointer}
+.day.open:hover{background:rgba(0,224,184,.22)}
+.day.sel{background:linear-gradient(135deg,var(--a),#a18bff);border-color:transparent;color:#fff;font-weight:700}
+.day.today{outline:1px dashed var(--muted);outline-offset:-3px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:16px;font-size:.8rem;color:var(--muted)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px}
+.dot.open{background:rgba(0,224,184,.5)}.dot.sel{background:var(--a)}.dot.off{background:#333b52}
+
+form label,.field{display:block;margin-bottom:14px;font-size:.85rem;color:var(--muted);font-weight:500}
+.lbl{display:block;margin-bottom:6px}
+input,select,textarea{width:100%;margin-top:6px;padding:11px 12px;border-radius:10px;border:1px solid var(--line);
+  background:var(--panel2);color:var(--text);font:400 .95rem Inter,sans-serif}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--a);outline-offset:1px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.slots{display:flex;flex-wrap:wrap;gap:8px}
+.slot{padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--panel2);color:var(--text);
+  cursor:pointer;font:500 .85rem Inter}
+.slot.sel{background:var(--a);border-color:var(--a)}
+.slot:disabled{opacity:.3;cursor:not-allowed;text-decoration:line-through}
+.slots .hint{color:var(--muted);font-size:.85rem}
+.check{display:flex!important;gap:10px;align-items:flex-start}
+.check input{width:auto;margin-top:4px}
+.error{color:#ff7b8a;font-size:.88rem;min-height:1.2em}
+
+.success{margin-top:20px;text-align:center;border-color:var(--b)}
+.success p{margin:10px 0 18px;color:var(--muted)}
+
+.commit{text-align:center;border-top:1px solid var(--line)}
+.commit p{max-width:680px;margin:10px auto;color:var(--muted)}
+.commit .tag{font:700 1.4rem "Space Grotesk";background:linear-gradient(135deg,var(--a),var(--b));
+  -webkit-background-clip:text;background-clip:text;color:transparent;margin-top:20px}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:30px 5vw;border-top:1px solid var(--line)}
+
+@media(max-width:860px){
+  .book-grid{grid-template-columns:1fr}
+  .stats,.steps{grid-template-columns:repeat(2,1fr)}
+  .nav nav a:not(.btn){display:none}
+}
+@media(max-width:480px){.row{grid-template-columns:1fr}}
+.one-click{text-align:center;padding:40px 22px}.next{margin:8px 0 22px;color:var(--muted)}.next b{color:var(--text)}.btn-big{padding:16px 44px;font-size:1.15rem}
+.book-cta{text-align:center}.btn-lg{padding:16px 40px;font-size:1.15rem}.note{margin-top:14px;color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <a class="brand" href="#top"><span class="brand-mark">DG</span>BP</a>
+  <nav>
+    <a href="#rules">Eligibility</a>
+    <a href="#how">How it works</a>
+    <a href="#book" class="btn btn-sm js-book">Book a session</a>
+  </nav>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <p class="eyebrow">DevGameBlogPromo · Monthly Programme</p>
+    <h1>Free Personal <span class="grad">Mentorship</span></h1>
+    <p class="lead">One-on-one guidance for your learning, projects and career. Pick any open date in the next 30 days. Enrolled in a DGBP course or not, it is free for everyone.</p>
+    <div class="hero-cta">
+      <a href="#book" class="btn js-book">Book a session</a>
+      <a href="#rules" class="btn btn-ghost">Read the rules</a>
+    </div>
+    <div class="stats">
+      <div><strong>₹0</strong><span>Mentorship fee</span></div>
+      <div><strong>30</strong><span>Day booking window</span></div>
+      <div><strong>20 min</strong><span>Per 1:1 session</span></div>
+      <div><strong>∞</strong><span>No session limit</span></div>
+    </div>
+  </section>
+
+  <!-- RULES -->
+  <section id="rules" class="section">
+    <h2>Eligibility &amp; Access Rules</h2>
+    <p class="sub">Mentorship Fee: <b>₹0 (Completely Free)</b></p>
+    <ul class="rules">
+      <li><span class="n">01</span>Students enrolled in DGBP courses can access personal mentorship completely free of charge.</li>
+      <li><span class="n">02</span>Students who have not enrolled in any DGBP course can also access personal mentorship completely free of charge.</li>
+      <li><span class="n">03</span>All students must follow the official DGBP mentorship guidelines and code of conduct.</li>
+      <li><span class="n">04</span>One-on-one mentorship is provided on selected dates only and is subject to mentor availability.</li>
+      <li><span class="n">05</span>There are no fixed session limits. Students may request mentorship whenever required, subject to available dates and scheduling.</li>
+      <li><span class="n">06</span>One-on-one sessions must be scheduled and confirmed in advance.</li>
+      <li><span class="n">07</span>DGBP reserves the right to modify mentorship schedules based on mentor availability and programme requirements.</li>
+    </ul>
+  </section>
+
+  <!-- HOW -->
+  <section id="how" class="section">
+    <h2>How it works</h2>
+    <div class="steps">
+      <div class="card"><b>1. Click Book a session</b><p>Mentorship days repeat on the same dates every month (15th, 17th, 19th, 21st). Open dates in the next 30 days are highlighted.</p></div>
+      <div class="card"><b>2. Fill the email</b><p>Select a 20-minute time slot (IST) and tell us what you want to work on.</p></div>
+      <div class="card"><b>3. Get confirmed</b><p>We confirm your session in advance by email or WhatsApp.</p></div>
+      <div class="card"><b>4. Learn &amp; build</b><p>Join your one-on-one session. Request another whenever you need.</p></div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section id="book" class="section book-cta">
+    <h2>Book your session</h2>
+    <p class="sub">Open on the <b>15th, 17th, 19th &amp; 21st of every month</b> · 20-minute sessions · 6:00 – 8:00 PM IST · ₹0</p>
+    <a class="btn btn-lg" href="mailto:kakarlamanish46@gmail.com?subject=Book%20a%20Session%20-%20DGBP%20Free%20Personal%20Mentorship&body=Hello%20DGBP%20Team%2C%0A%0AI%20would%20like%20to%20book%20a%20free%20personal%20mentorship%20session.%0A%0AName%3A%0APhone%20/%20WhatsApp%3A%0ADGBP%20course%20status%20%28Enrolled%20/%20Not%20enrolled%29%3A%0ATopic%20%28Game%20dev%20/%20Web%20dev%20/%20Career%20/%20Project%20review%20/%20Blogging%20/%20Other%29%3A%0APreferred%20date%20%2815th%20/%2017th%20/%2019th%20/%2021st%29%3A%0APreferred%20time%20%286%3A00%20PM%20-%208%3A00%20PM%20IST%2C%2020%20min%29%3A%0AWhat%20I%20need%20help%20with%3A%0A%0AI%20agree%20to%20follow%20the%20DGBP%20mentorship%20guidelines%20and%20code%20of%20conduct.">Book a session</a>
+    <p class="note">One click opens an email to DGBP. Fill in the details and press send.</p>
+  </section>
+
+  <!-- COMMITMENT -->
+  <section class="section commit">
+    <h2>Our Commitment</h2>
+    <p>DGBP aims to make personalised learning guidance, technical support and mentorship accessible to everyone, regardless of whether they purchase a course.</p>
+    <p class="tag">Learn. Build. Grow. Together with DGBP.</p>
+  </section>
+</main>
+
+<footer>© <span id="yr"></span> DevGameBlogPromo (DGBP). Mentorship schedules are subject to change.</footer>
+
+<script>document.getElementById("yr").textContent = new Date().getFullYear();</script>
+</body>
+</html>
