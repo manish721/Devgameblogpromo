@@ -796,6 +796,24 @@ img{max-width:100%;display:block}
 .ais-foot{margin-top:34px;font-size:.82rem;color:var(--muted);font-family:var(--f-head);letter-spacing:.03em}
 .ais-foot a{border-bottom:2px solid var(--brand)}
 
+/* ---- yes / no answer box ---- */
+.ais-answer{display:flex;align-items:stretch;background:#fff;border:var(--bw) solid var(--ink);box-shadow:var(--hard);margin-bottom:28px}
+.ais-verdict{
+  flex:0 0 150px;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px 12px;
+  font-family:var(--f-head);font-weight:700;font-size:2.2rem;letter-spacing:-.03em;line-height:1;border-right:var(--bw) solid var(--ink);
+}
+.ais-ans-yes .ais-verdict{background:var(--brand);color:var(--ink)}
+.ais-ans-no .ais-verdict{background:var(--ink);color:#fff}
+.ais-ans-maybe .ais-verdict{background:#fff;color:var(--ink);font-size:1.3rem;letter-spacing:.02em;background-image:repeating-linear-gradient(45deg,transparent 0 8px,var(--brand-tint) 8px 16px)}
+.ais-ans-body{padding:18px 22px;flex:1;min-width:0}
+.ais-ans-label{font-family:var(--f-head);font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.ais-ans-body p{color:var(--ink-2);font-size:.98rem;margin:0}
+.ais-ans-body a{border-bottom:2px solid var(--brand);font-weight:700}
+@media(max-width:700px){
+  .ais-answer{flex-direction:column}
+  .ais-verdict{flex-basis:auto;border-right:none;border-bottom:var(--bw) solid var(--ink);font-size:1.8rem;padding:14px}
+}
+
 /* ---- course price card inside search ---- */
 .ais-prices{background:#fff;border:var(--bw) solid var(--ink);box-shadow:var(--hard);margin-bottom:28px;position:relative}
 .ais-prices-head{
@@ -1167,6 +1185,7 @@ img{max-width:100%;display:block}
       <div class="ais-chips" aria-label="Quick searches">
         <span class="ais-chips-label">Try:</span>
         <button type="button" class="ais-chip" data-q="course price">Course prices</button>
+        <button type="button" class="ais-chip" data-q="Do I get a certificate?">Do I get a certificate?</button>
         <button type="button" class="ais-chip" data-q="courses">Courses</button>
         <button type="button" class="ais-chip" data-q="mentorship">Mentorship</button>
         <button type="button" class="ais-chip" data-q="labs">Labs</button>
@@ -1993,13 +2012,119 @@ img{max-width:100%;display:block}
     return { html: html, count: total };
   }
 
+  /* ---- Yes / No answers for questions ---- */
+  var YN_START = /^(?:(?:hey|hi|hello|please|so|and|also|ok|okay)[,\s]+)*(is|are|am|was|were|do|does|did|can|could|will|would|should|shall|have|has|had|may|might)\b/;
+  var QSTOP = new Set(("is are am was were do does did can could will would should shall have has had may might you your yours i me my we us our it its " +
+    "this that these those there they them a an the any anything something someone anyone offer offers offering provide provides teach teaches taught " +
+    "cover covers include includes available get got able learn about to of for in on at with from if so please dgbplabz dgbp labz devgameblogpromo school be been being").split(" "));
+  var KB = [
+    {k:["online only","only online","offline only","onsite only"], v:"no", only:true,
+      t:"No — learning happens both online and onsite. Based in Hyderabad, with online sessions and project reviews for students elsewhere."},
+    {k:["free","no cost","without paying","zero cost"], v:"no",
+      t:"No — courses are paid. The core tracks start at ₹499 (Frontend ₹499, AI/ML ₹799, Cloud & DevOps ₹999)."},
+    {k:["upfront","up-front"], v:"no",
+      t:"No — DGBPLabZ states it does not demand upfront fees for freelance tasks. Official communication goes through verified corporate channels only."},
+    {k:["hidden","hidden fee","hidden fees","hidden charges","extra charges","extra cost","locked"], v:"no",
+      t:"No — nothing is locked behind stages or hidden until you pay more. There are three core tracks, three price points and one application form."},
+    {k:["exam","exams","examination","test","tests"], v:"no",
+      t:"No — the approach is project-first with no exam pressure. You build real projects and finish with a portfolio."},
+    {k:["community"], v:"soon",
+      t:"Not yet — the online community is marked “coming soon” on the homepage. You can already apply for the mentorship tracks through the application form."},
+    {k:["certificate","certificates","certification","certified"], v:"yes",
+      t:"Students who complete a course receive a completion certificate from DevGameBlogPromo. It documents your project work and skills, and can be verified on employer request."},
+    {k:["beginner","beginners","fresher","freshers","newbie","no experience","zero experience","no coding","never coded","school student"], v:"yes",
+      t:"The Frontend track is designed for absolute beginners with no prior coding experience — you learn by building from day one, with mentor support."},
+    {k:["hyderabad","telangana"], v:"yes",
+      t:"DGBPLabZ (DevGameBlogPromo) is based in Hyderabad, Telangana, India, and serves students across India and internationally."},
+    {k:["online","onsite","offline","in-person","in person","remote"], v:"yes",
+      t:"Both are offered — online sessions, project reviews and community support, plus onsite learning in Hyderabad. The online community itself is marked “coming soon” on the homepage."},
+    {k:["registered","registration","udyam","msme","duns","legal","legit","legitimate","genuine","recognized","compliant"], v:"yes",
+      t:"DGBPLabZ states it is registered under Government of India MSME (Udyam No. UDYAM-TS-20-0184539) and holds D&B DUNS 772660415. See the Trust & verification section for details."},
+    {k:["mentorship","mentor","mentors","project reviews","1-on-1","one-on-one"], v:"yes",
+      t:"Courses include mentorship access, project reviews and a completion certificate, led by Kakarla Manish Reddy and senior mentors."},
+    {k:["portfolio"], v:"yes",
+      t:"You finish with real project work for a live portfolio, plus completion letters."},
+    {k:["telugu","hindi","english","language","languages"], v:"yes",
+      t:"Programs are available in English, Telugu and Hindi."},
+    {k:["apply","join","enroll","enrol","enrolment","admission","sign up","signup","application"], v:"yes", link:true,
+      t:"You can apply through the application form and the team will guide you through course selection."}
+  ];
+  function kwHit(kw, s, toks) {
+    if (/[\s-]/.test(kw)) return s.indexOf(kw) >= 0;
+    return toks.some(function (t) { return t === kw || (kw.length >= 4 && t.indexOf(kw) === 0); });
+  }
+  function detectYesNo(q, terms) {
+    var s = q.toLowerCase().replace(/\s+/g, " ").trim();
+    if (!YN_START.test(s)) return null;
+    return { q: s, terms: terms.filter(function (t) { return !QSTOP.has(t); }) };
+  }
+  function answerHtml(v, label, text, link) {
+    var cls = v === "yes" ? "ais-ans-yes" : v === "no" ? "ais-ans-no" : "ais-ans-maybe";
+    return '<div class="ais-answer ' + cls + '" role="status"><div class="ais-verdict">' + escapeHtml(label) + '</div>' +
+      '<div class="ais-ans-body"><div class="ais-ans-label">Quick answer</div><p>' + escapeHtml(text) +
+      (link ? ' <a href="https://forms.gle/LNDC32NR6YsCmeZY8" target="_blank" rel="noopener">Apply now →</a>' : '') + '</p></div></div>';
+  }
+  function buildAnswer(yn) {
+    var s = yn.q, toks = s.split(/[^a-z0-9\u20b9]+/).filter(Boolean);
+    var hasOnly = toks.indexOf("only") >= 0;
+    var best = null;
+    KB.forEach(function (e) {
+      if (hasOnly && !e.only) return;
+      var sc = 0;
+      e.k.forEach(function (k) { if (kwHit(k, s, toks)) sc += k.split(/[\s-]+/).length; });
+      if (sc > (best ? best.sc : 0)) best = { e: e, sc: sc };
+    });
+    if (best) {
+      var e = best.e;
+      var label = e.v === "yes" ? "YES" : e.v === "no" ? "NO" : "NOT YET";
+      return answerHtml(e.v, label, e.t, e.link);
+    }
+    /* is it a course that exists? */
+    var key = [];
+    yn.terms.forEach(function (t) {
+      if (PRICE_STOP.has(t)) return;
+      t.split(/[+#.]+/).forEach(function (x) { if (x.length > 1) key.push(x); });
+    });
+    if (key.length) {
+      var hits = [];
+      COURSE_GROUPS.forEach(function (g) {
+        g.items.forEach(function (c) {
+          var tk = courseTokens(c[0]);
+          if (key.every(function (k) { return tokenHit(k, tk); })) hits.push(c);
+        });
+      });
+      if (hits.length) {
+        var names = hits.slice(0, 3).map(function (c) { return c[0]; }).join(", ");
+        var more = hits.length > 3 ? " and " + (hits.length - 3) + " more" : "";
+        return answerHtml("yes", "YES", "DGBPLabZ lists " + names + more + ". Basic, Standard and Advanced prices are shown below.");
+      }
+      if (!pages.length) {
+        return answerHtml("maybe", "CHECKING…", "I'm still building the website index — this answer will update when it finishes.");
+      }
+      var found = pages.some(function (p) {
+        var tx = p.text.toLowerCase();
+        return key.every(function (k) { return tx.indexOf(k) >= 0; });
+      });
+      if (found) return answerHtml("maybe", "NOT SURE", "I found mentions of that on the pages below, but no clear yes/no statement. Please open the best match to confirm.");
+      if (/\b(course|courses|class|classes|training|teach|teaches|learn|program|programs)\b/.test(s)) {
+        return answerHtml("no", "NO", "I couldn't find that in the current course list or on the indexed site pages. Ask the team through the application form if you need something specific.");
+      }
+    }
+    return answerHtml("maybe", "NOT SURE", "I couldn't find a clear yes/no answer for that. Any matching pages are listed below.");
+  }
+
   function search(q) {
     var terms = termsOf(q);
+    var yn = detectYesNo(q, terms);
+    if (yn && yn.terms.length) terms = yn.terms;
     var resultsEl = $("aisResults");
     $("aisResultsSection").hidden = false;
     $("aisResultsTitle").textContent = "Results for “" + q + "”";
     resultsEl.innerHTML = "";
+    var answerBox = yn ? buildAnswer(yn) : null;
+    if (answerBox) resultsEl.insertAdjacentHTML("beforeend", answerBox);
     var priceBox = terms.length ? renderPrices(terms) : null;
+    var hasTop = !!(priceBox || answerBox);
     var coursePart = priceBox ? priceBox.count + " course" + (priceBox.count === 1 ? "" : "s") : "";
     if (priceBox) resultsEl.insertAdjacentHTML("beforeend", priceBox.html);
     if (!terms.length) {
@@ -2007,7 +2132,7 @@ img{max-width:100%;display:block}
       $("aisCount").textContent = ""; return;
     }
     if (!pages.length) {
-      if (!priceBox) {
+      if (!hasTop) {
         resultsEl.innerHTML = '<div class="ais-empty"><strong>Website index is not ready</strong>' + (scanning ? "Still scanning — results will appear when it finishes." : "Use “Scan / refresh website index” first.") + '</div>';
       } else {
         resultsEl.insertAdjacentHTML("beforeend", '<p class="ais-sub-title">Page results will appear when the website index finishes…</p>');
@@ -2025,10 +2150,10 @@ img{max-width:100%;display:block}
     var pagePart = matches.length + " matching page" + (matches.length === 1 ? "" : "s");
     $("aisCount").textContent = coursePart ? coursePart + " · " + pagePart : pagePart;
     if (!matches.length) {
-      if (!priceBox) resultsEl.innerHTML = '<div class="ais-empty"><strong>No matching pages found</strong>Try different words or a shorter search phrase.</div>';
+      if (!hasTop) resultsEl.innerHTML = '<div class="ais-empty"><strong>No matching pages found</strong>Try different words or a shorter search phrase.</div>';
       return;
     }
-    if (priceBox) resultsEl.insertAdjacentHTML("beforeend", '<p class="ais-sub-title">Related pages</p>');
+    if (hasTop) resultsEl.insertAdjacentHTML("beforeend", '<p class="ais-sub-title">Related pages</p>');
     matches.forEach(function (m) {
       var p = m.page;
       var snippet = makeSnippet(p.text, terms);
