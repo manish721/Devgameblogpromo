@@ -353,6 +353,7 @@
    Same colour palette as the original.
    NEW: side event banner (.event-rail) + widget merged into main CSS
    NEW: DGBP company seal (.dgbp-seal) — large rubber-stamp style
+   NEW: AI Search section (#ai-search, .ais-*)
    =================================================================== */
 :root{
   --bg:#ffffff;
@@ -715,6 +716,86 @@ img{max-width:100%;display:block}
 /* seal sitting on dark footer */
 .dgbp-seal.on-dark{--seal-ink:#FFCB2E;--seal-size:210px;mix-blend-mode:normal;opacity:1;margin:8px 0 22px}
 
+/* ===================================================================
+   AI SEARCH SECTION
+   =================================================================== */
+.ais-wrap{max-width:860px;margin:0 auto;text-align:left}
+.ais-form{
+  display:flex;background:#fff;border:var(--bw) solid var(--ink);box-shadow:var(--hard);
+  transition:box-shadow .12s ease,transform .12s ease;
+}
+.ais-form:focus-within{outline:3px solid var(--brand);outline-offset:3px}
+.ais-form input{
+  flex:1;min-width:0;border:0;outline:0;background:transparent;color:var(--ink);
+  padding:20px 22px;font-family:var(--f-body);font-size:1.05rem;
+}
+.ais-form input::placeholder{color:#8a877a}
+.ais-form input::-webkit-search-cancel-button{cursor:pointer}
+.ais-form button{
+  border:0;border-left:var(--bw) solid var(--ink);background:var(--brand);color:var(--ink);cursor:pointer;
+  font-family:var(--f-head);font-weight:700;font-size:.92rem;text-transform:uppercase;letter-spacing:.06em;
+  padding:0 32px;transition:background .12s ease,color .12s ease;
+}
+.ais-form button:hover{background:var(--ink);color:var(--brand)}
+.ais-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;align-items:center}
+.ais-chips-label{
+  font-family:var(--f-head);font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-right:4px;
+}
+.ais-chip{
+  background:#fff;border:var(--bw) solid var(--ink);padding:6px 14px;cursor:pointer;
+  font-family:var(--f-head);font-weight:600;font-size:.8rem;color:var(--ink);box-shadow:3px 3px 0 var(--ink);
+  transition:transform .12s ease,box-shadow .12s ease,background .12s ease;
+}
+.ais-chip:hover{background:var(--brand-tint);transform:translate(3px,3px);box-shadow:0 0 0 var(--ink)}
+.ais-tools{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.ais-tool{
+  background:transparent;border:var(--bw) dashed var(--ink);padding:8px 14px;cursor:pointer;
+  font-family:var(--f-head);font-weight:700;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);
+}
+.ais-tool:hover:not(:disabled){background:var(--ink);color:var(--brand);border-style:solid}
+.ais-tool:disabled{opacity:.5;cursor:not-allowed}
+.ais-status{
+  margin-top:22px;font-family:var(--f-head);font-size:.8rem;font-weight:600;letter-spacing:.04em;color:var(--muted);
+  display:flex;align-items:center;gap:10px;min-height:24px;
+}
+.ais-status::before{content:'';width:10px;height:10px;background:var(--brand);border:var(--bw) solid var(--ink);flex-shrink:0}
+.ais-status.busy::before{animation:aisPulse .9s steps(2) infinite}
+@keyframes aisPulse{50%{background:var(--ink)}}
+.ais-progress{height:12px;border:var(--bw) solid var(--ink);background:#fff;margin-top:10px;display:none}
+.ais-progress span{display:block;height:100%;width:0;background:var(--brand);transition:width .2s ease}
+.ais-results-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  margin:44px 0 18px;padding-bottom:12px;border-bottom:var(--bw) solid var(--ink);
+}
+.ais-results-head h3{font-size:1.25rem}
+.ais-count{
+  font-family:var(--f-head);font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  background:var(--brand);border:var(--bw) solid var(--ink);padding:3px 10px;
+}
+.ais-results{display:grid;gap:20px}
+.ais-result{
+  background:#fff;border:var(--bw) solid var(--ink);padding:22px 24px;box-shadow:var(--hard-sm);
+  transition:transform .14s ease,box-shadow .14s ease;
+}
+.ais-result:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--ink)}
+.ais-result a.ais-title{
+  font-family:var(--f-head);font-weight:700;font-size:1.12rem;letter-spacing:-.02em;
+  border-bottom:3px solid var(--brand);padding-bottom:1px;
+}
+.ais-result a.ais-title:hover{border-color:var(--ink)}
+.ais-url{
+  display:inline-block;margin:10px 0 8px;font-family:var(--f-head);font-size:.68rem;font-weight:700;letter-spacing:.1em;
+  color:var(--ink);background:var(--brand-tint);border:1px solid var(--ink);padding:2px 8px;overflow-wrap:anywhere;
+}
+.ais-snippet{color:var(--muted);font-size:.92rem;margin:0}
+.ais-snippet mark,.ais-title mark{background:var(--brand);color:var(--ink);padding:0 2px}
+.ais-empty{
+  background:#fff;border:var(--bw) dashed var(--ink);padding:32px;text-align:center;color:var(--muted);font-size:.93rem;
+}
+.ais-empty strong{display:block;font-family:var(--f-head);font-size:1.05rem;color:var(--ink);margin-bottom:6px}
+.ais-foot{margin-top:34px;font-size:.82rem;color:var(--muted);font-family:var(--f-head);letter-spacing:.03em}
+.ais-foot a{border-bottom:2px solid var(--brand)}
+
 /* ---------- CTA BAND ---------- */
 .cta-band{background:var(--ink);color:#fff;padding:104px 0;text-align:center;border-top:var(--bw) solid var(--ink);position:relative;overflow:hidden}
 .cta-band::before,.cta-band::after{
@@ -872,6 +953,10 @@ img{max-width:100%;display:block}
   .dgbp-seal{--seal-size:220px}
   .dgbp-seal.on-dark{--seal-size:190px}
   .sign-row{justify-content:center}
+  .ais-form{flex-direction:column}
+  .ais-form input{padding:16px 16px;font-size:1rem}
+  .ais-form button{border-left:none;border-top:var(--bw) solid var(--ink);padding:14px}
+  .ais-result{padding:18px}
 }
 @media(max-width:380px){.partners-grid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){
@@ -909,6 +994,7 @@ img{max-width:100%;display:block}
       <a href="blog.html">Blog</a>
       <a href="announcement page.html">Announcements</a>
       <a href="gallery.html">Gallery</a>
+      <a href="#ai-search">Search</a>
       <div class="nav-more">
         <button id="moreTrigger" type="button" aria-haspopup="true" aria-expanded="false">More ▾</button>
         <div class="nav-more-menu" id="moreMenu">
@@ -1033,8 +1119,52 @@ img{max-width:100%;display:block}
   </div>
 </div>
 
+<!-- ═══ AI SEARCH ═══ -->
+<section class="section" id="ai-search" aria-labelledby="aisTitle">
+  <div class="container center">
+    <span class="eyebrow">AI Search · Whole ecosystem</span>
+    <h2 class="section-title" id="aisTitle">Find it across <span style="background:var(--brand);padding:0 8px;border:var(--bw) solid var(--ink);display:inline-block;transform:rotate(-1.5deg);box-shadow:4px 4px 0 var(--ink)">DGBP</span></h2>
+    <p class="section-lead">Search the pages of DevGameBlogPromo — courses, labs, mentorship, policies and more. Every result links straight to the page where the information appears.</p>
+
+    <div class="ais-wrap">
+      <form class="ais-form" id="aisForm" role="search" autocomplete="off">
+        <input id="aisQuery" type="search" placeholder="Search courses, labs, mentorship, policies…" aria-label="Search all DGBP pages">
+        <button id="aisSearchBtn" type="submit">Search</button>
+      </form>
+
+      <div class="ais-chips" aria-label="Quick searches">
+        <span class="ais-chips-label">Try:</span>
+        <button type="button" class="ais-chip" data-q="courses">Courses</button>
+        <button type="button" class="ais-chip" data-q="mentorship">Mentorship</button>
+        <button type="button" class="ais-chip" data-q="labs">Labs</button>
+        <button type="button" class="ais-chip" data-q="policy">Policies</button>
+        <button type="button" class="ais-chip" data-q="certificate">Certificate</button>
+        <button type="button" class="ais-chip" data-q="founder">Founder</button>
+      </div>
+
+      <div class="ais-tools">
+        <button class="ais-tool" id="aisScanBtn" type="button">↻ Scan / refresh website index</button>
+        <button class="ais-tool" id="aisClearBtn" type="button">Clear results</button>
+      </div>
+
+      <div class="ais-status" id="aisStatus" role="status" aria-live="polite">Search index will prepare when you scroll here…</div>
+      <div class="ais-progress" id="aisProgress"><span id="aisProgressBar"></span></div>
+
+      <div id="aisResultsSection" hidden>
+        <div class="ais-results-head">
+          <h3 id="aisResultsTitle">Search results</h3>
+          <span class="ais-count" id="aisCount"></span>
+        </div>
+        <div class="ais-results" id="aisResults"></div>
+      </div>
+
+      <p class="ais-foot">Search covers pages on this website only. Pages must be publicly accessible to your browser.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ WHAT YOU GET ═══ -->
-<section class="section" id="clarity">
+<section class="section soft" id="clarity">
   <div class="container center">
     <span class="eyebrow">What you actually get</span>
     <h2 class="section-title">What will I learn — and how does it help me grow?</h2>
@@ -1048,7 +1178,7 @@ img{max-width:100%;display:block}
 </section>
 
 <!-- ═══ PROGRAMS ═══ -->
-<section class="section soft" id="tracks">
+<section class="section" id="tracks">
   <div class="container">
     <span class="eyebrow">Programs</span>
     <h2 class="section-title">Courses &amp; mentorship tracks</h2>
@@ -1079,7 +1209,7 @@ img{max-width:100%;display:block}
 </section>
 
 <!-- ═══ LABS ═══ -->
-<section class="section" id="labs">
+<section class="section soft" id="labs">
   <div class="container">
     <span class="eyebrow">Labs</span>
     <h2 class="section-title">Innovation labs &amp; growth tiers</h2>
@@ -1098,7 +1228,7 @@ img{max-width:100%;display:block}
 </section>
 
 <!-- ═══ LEADERSHIP / PHILOSOPHY ═══ -->
-<section class="section soft" id="philosophy">
+<section class="section" id="philosophy">
   <div class="container">
     <span class="eyebrow">Mentorship philosophy</span>
     <h2 class="section-title">What we actually believe</h2>
@@ -1121,7 +1251,7 @@ img{max-width:100%;display:block}
 </section>
 
 <!-- ═══ SOCIAL PROOF ═══ -->
-<section class="section" id="social-proof">
+<section class="section soft" id="social-proof">
   <div class="container">
     <div class="proof">
       <div>
@@ -1138,7 +1268,7 @@ img{max-width:100%;display:block}
 </section>
 
 <!-- ═══ REACH ═══ -->
-<section class="section soft" id="map">
+<section class="section" id="map">
   <div class="container">
     <span class="eyebrow">Reach</span>
     <h2 class="section-title">Where our students are</h2>
@@ -1314,6 +1444,7 @@ img{max-width:100%;display:block}
       <div class="footer-col">
         <h4>Resources</h4>
         <ul>
+          <li><a href="#ai-search">AI Search</a></li>
           <li><a href="blog.html">Blog</a></li>
           <li><a href="announcement page.html">Announcements</a></li>
           <li><a href="FAQ.html">FAQ</a></li>
@@ -1373,6 +1504,15 @@ img{max-width:100%;display:block}
     var open=nav.classList.toggle('mobile-open');
     btn.textContent=open?'✕':'☰';
     btn.setAttribute('aria-expanded',open?'true':'false');
+  });
+  /* close the mobile menu after tapping an in-page link such as Search */
+  nav.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href^="#"]');
+    if(a&&nav.classList.contains('mobile-open')){
+      nav.classList.remove('mobile-open');
+      btn.textContent='☰';
+      btn.setAttribute('aria-expanded','false');
+    }
   });
 })();
 
@@ -1532,6 +1672,306 @@ img{max-width:100%;display:block}
   setInterval(updateClock, 1000);
   setInterval(updateEvent, 60000);  /* flips automatically at midnight IST */
   setInterval(changeQuote, 5000);
+})();
+
+/* ===== AI Search (site-wide index, runs in the browser) ===== */
+(function () {
+  "use strict";
+
+  /* Use the current origin so it works on the live site, previews and localhost.
+     Falls back to the production domain if opened from a file. */
+  var FALLBACK = "https://devgameblogpromo.vercel.app";
+  var ORIGIN = /^https?:$/.test(location.protocol) ? location.origin : FALLBACK;
+  var START = ORIGIN + "/";
+  var MAX_PAGES = 350;
+  var CONCURRENCY = 5;
+  var CACHE_KEY = "dgbp_site_search_index_v2";
+  var CACHE_TTL = 24 * 60 * 60 * 1000; /* auto-refresh after 24h */
+  var SKIP_EXT = /\.(?:jpg|jpeg|png|gif|webp|svg|ico|css|js|mjs|map|woff2?|ttf|eot|pdf|zip|rar|mp4|webm|mp3|xml)(?:$|[?#])/i;
+  var NOISE = "script,style,noscript,svg,nav,footer,header,form,button,iframe,[aria-hidden='true'],#ai-search,.dgbp-mini-widget,.event-rail,.announce,.marquee-outer";
+
+  var $ = function (id) { return document.getElementById(id); };
+  var section = $("ai-search");
+  if (!section) return;
+
+  var pages = [];
+  var scanning = false;
+  var autoStarted = false;
+
+  function normalizeUrl(raw, base) {
+    try {
+      var u = new URL(raw, base || START);
+      if (u.origin !== ORIGIN || !/^https?:$/.test(u.protocol)) return null;
+      u.hash = "";
+      u.search = "";
+      if (SKIP_EXT.test(u.pathname)) return null;
+      if (u.pathname === "/index.html") u.pathname = "/";
+      if (u.pathname !== "/" && u.pathname.slice(-1) === "/") u.pathname = u.pathname.slice(0, -1);
+      return u.href;
+    } catch (e) { return null; }
+  }
+  function cleanText(s) { return (s || "").replace(/\s+/g, " ").trim(); }
+  function setStatus(s, busy) {
+    var el = $("aisStatus");
+    el.textContent = s;
+    el.classList.toggle("busy", !!busy);
+  }
+  function setProgress(done, total) {
+    $("aisProgress").style.display = "block";
+    $("aisProgressBar").style.width = total ? Math.min(100, done / total * 100) + "%" : "0%";
+  }
+  function hideProgress() { $("aisProgress").style.display = "none"; }
+
+  function extractPage(doc, url) {
+    /* collect links BEFORE stripping nav/header/footer, so the crawl can discover every page */
+    var links = [];
+    doc.querySelectorAll("a[href]").forEach(function (a) {
+      var n = normalizeUrl(a.getAttribute("href"), url);
+      if (n) links.push(n);
+    });
+    doc.querySelectorAll(NOISE).forEach(function (el) { el.remove(); });
+    var t = doc.querySelector("title");
+    var h1 = doc.querySelector("h1");
+    var title = cleanText(t && t.textContent) || cleanText(h1 && h1.textContent) || new URL(url).pathname;
+    var md = doc.querySelector('meta[name="description"]');
+    var description = cleanText(md && md.content);
+    var headings = [];
+    doc.querySelectorAll("h1,h2,h3,h4").forEach(function (x) {
+      var s = cleanText(x.textContent);
+      if (s) headings.push(s);
+    });
+    var root = doc.querySelector("main,article,[role='main']") || doc.body || doc.documentElement;
+    var content = cleanText(root.textContent);
+    var text = [title, description, headings.join(". "), content].filter(Boolean).join(". ").slice(0, 60000);
+    return { url: url, title: title, description: description, headings: headings, text: text, links: links };
+  }
+
+  function fetchText(url) {
+    return fetch(url, { credentials: "same-origin", redirect: "follow" }).then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      var type = r.headers.get("content-type") || "";
+      if (type.indexOf("text/html") < 0 && type.indexOf("application/xhtml+xml") < 0) throw new Error("Not HTML");
+      return r.text();
+    });
+  }
+
+  function getSitemapUrls() {
+    var found = [];
+    var candidates = [ORIGIN + "/sitemap.xml", ORIGIN + "/sitemap_index.xml"];
+    return candidates.reduce(function (chain, sm) {
+      return chain.then(function () {
+        if (found.length) return;
+        return fetch(sm, { credentials: "same-origin" })
+          .then(function (r) { return r.ok ? r.text() : ""; })
+          .then(function (txt) {
+            if (!txt) return;
+            var xml = new DOMParser().parseFromString(txt, "application/xml");
+            if (xml.querySelector("parsererror")) return;
+            xml.querySelectorAll("loc").forEach(function (loc) {
+              var u = normalizeUrl(loc.textContent, ORIGIN);
+              if (u) found.push(u);
+            });
+          })
+          .catch(function () {});
+      });
+    }, Promise.resolve()).then(function () { return found; });
+  }
+
+  async function scanWebsite() {
+    if (scanning) return;
+    scanning = true;
+    $("aisScanBtn").disabled = true;
+    setStatus("Discovering pages on the website…", true);
+    var discovered = new Set([START]);
+    var queue = [START];
+    var sitemap = await getSitemapUrls();
+    sitemap.forEach(function (u) { if (!discovered.has(u)) { discovered.add(u); queue.push(u); } });
+    var indexed = new Map();
+    var done = 0, failures = 0;
+    setProgress(0, Math.min(MAX_PAGES, queue.length));
+
+    while (queue.length && indexed.size < MAX_PAGES) {
+      var batch = [];
+      while (batch.length < CONCURRENCY && queue.length && indexed.size + batch.length < MAX_PAGES) batch.push(queue.shift());
+      var fetched = await Promise.all(batch.map(async function (url) {
+        try {
+          var html = await fetchText(url);
+          var doc = new DOMParser().parseFromString(html, "text/html");
+          return extractPage(doc, url);
+        } catch (e) { failures++; return null; }
+      }));
+      fetched.forEach(function (page) {
+        done++;
+        if (!page) return;
+        indexed.set(page.url, page);
+        page.links.forEach(function (link) {
+          if (!discovered.has(link) && discovered.size < MAX_PAGES) { discovered.add(link); queue.push(link); }
+        });
+      });
+      setProgress(done, Math.max(done + queue.length, 1));
+      setStatus("Scanning website… " + indexed.size + " pages indexed" + (failures ? " · " + failures + " unavailable" : ""), true);
+    }
+
+    pages = Array.from(indexed.values()).map(function (p) { delete p.links; return p; });
+    try { localStorage.setItem(CACHE_KEY, JSON.stringify({ savedAt: Date.now(), origin: ORIGIN, pages: pages })); } catch (e) {}
+    hideProgress();
+    scanning = false;
+    $("aisScanBtn").disabled = false;
+
+    if (pages.length) {
+      setStatus("Website index ready · " + pages.length + " pages indexed" + (failures ? " · " + failures + " pages could not be read" : ""));
+      var q = $("aisQuery").value.trim();
+      if (q) search(q);
+    } else {
+      setStatus("No pages could be indexed. Check that the site allows same-origin page requests, then try again.");
+      $("aisResultsSection").hidden = false;
+      $("aisResultsTitle").textContent = "Search results";
+      $("aisCount").textContent = "";
+      $("aisResults").innerHTML = '<div class="ais-empty"><strong>Could not build the index</strong>Your browser could not fetch the site pages. If you opened this file directly from disk, host it on a server first, then try again.</div>';
+    }
+  }
+
+  function loadCache() {
+    try {
+      var data = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
+      if (data && data.origin === ORIGIN && Array.isArray(data.pages) && data.pages.length) {
+        pages = data.pages;
+        var age = Math.round((Date.now() - data.savedAt) / 60000);
+        setStatus("Loaded saved index · " + pages.length + " pages" + (age > 0 ? " · " + age + " min old" : "") + ". Rescan to refresh.");
+        return Date.now() - data.savedAt < CACHE_TTL ? "fresh" : "stale";
+      }
+    } catch (e) {}
+    return "none";
+  }
+
+  function termsOf(q) {
+    return q.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .split(/[^a-z0-9+#.]+/).filter(function (w) { return w.length > 1; });
+  }
+  function escRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+  function scorePage(page, terms) {
+    var title = page.title.toLowerCase();
+    var heads = (page.headings || []).join(" ").toLowerCase();
+    var body = page.text.toLowerCase();
+    var score = 0, matched = 0;
+    terms.forEach(function (term) {
+      var ts = 0;
+      if (title.indexOf(term) >= 0) ts += 12;
+      if (heads.indexOf(term) >= 0) ts += 6;
+      var count = (body.match(new RegExp(escRe(term), "g")) || []).length;
+      ts += Math.min(count, 8) * 1.3;
+      if (ts > 0) matched++;
+      score += ts;
+    });
+    if (matched < terms.length) score *= matched / terms.length;
+    return { score: score, matched: matched };
+  }
+  function makeSnippet(text, terms) {
+    var lower = text.toLowerCase();
+    var at = -1;
+    terms.forEach(function (t) {
+      var i = lower.indexOf(t);
+      if (i >= 0 && (at < 0 || i < at)) at = i;
+    });
+    if (at < 0) at = 0;
+    var start = Math.max(0, at - 105), end = Math.min(text.length, at + 260);
+    return (start ? "…" : "") + text.slice(start, end) + (end < text.length ? "…" : "");
+  }
+  /* highlight on raw text, then escape each piece — avoids corrupting HTML entities */
+  function highlight(s, terms) {
+    var unique = Array.from(new Set(terms)).filter(Boolean).sort(function (a, b) { return b.length - a.length; });
+    if (!unique.length) return escapeHtml(s);
+    var re = new RegExp("(" + unique.map(escRe).join("|") + ")", "ig");
+    return s.split(re).map(function (part, i) {
+      return i % 2 ? "<mark>" + escapeHtml(part) + "</mark>" : escapeHtml(part);
+    }).join("");
+  }
+
+  function search(q) {
+    var terms = termsOf(q);
+    var resultsEl = $("aisResults");
+    $("aisResultsSection").hidden = false;
+    $("aisResultsTitle").textContent = "Results for “" + q + "”";
+    resultsEl.innerHTML = "";
+    if (!terms.length) {
+      resultsEl.innerHTML = '<div class="ais-empty"><strong>Enter a search term</strong>Try a topic, course name, policy, or phrase.</div>';
+      $("aisCount").textContent = ""; return;
+    }
+    if (!pages.length) {
+      resultsEl.innerHTML = '<div class="ais-empty"><strong>Website index is not ready</strong>' + (scanning ? "Still scanning — results will appear when it finishes." : "Use “Scan / refresh website index” first.") + '</div>';
+      $("aisCount").textContent = "";
+      if (!scanning) scanWebsite();
+      return;
+    }
+    var matches = pages.map(function (p) {
+      var s = scorePage(p, terms);
+      return { page: p, score: s.score };
+    }).filter(function (m) { return m.score > 0; })
+      .sort(function (a, b) { return b.score - a.score; }).slice(0, 30);
+
+    $("aisCount").textContent = matches.length + " matching page" + (matches.length === 1 ? "" : "s");
+    if (!matches.length) {
+      resultsEl.innerHTML = '<div class="ais-empty"><strong>No matching pages found</strong>Try different words or a shorter search phrase.</div>';
+      return;
+    }
+    matches.forEach(function (m) {
+      var p = m.page;
+      var snippet = makeSnippet(p.text, terms);
+      var path = new URL(p.url).pathname;
+      var card = document.createElement("article");
+      card.className = "ais-result";
+      card.innerHTML =
+        '<a class="ais-title" href="' + escapeHtml(p.url) + '">' + highlight(p.title, terms) + '</a>' +
+        '<div><span class="ais-url">' + escapeHtml(decodeURIComponent(path)) + '</span></div>' +
+        '<p class="ais-snippet">' + highlight(snippet, terms) + '</p>';
+      resultsEl.appendChild(card);
+    });
+  }
+
+  function runSearch(q) {
+    $("aisQuery").value = q;
+    search(q.trim());
+    $("aisResultsSection").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  /* events */
+  $("aisForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    search($("aisQuery").value.trim());
+  });
+  $("aisScanBtn").addEventListener("click", function () { scanWebsite(); });
+  $("aisClearBtn").addEventListener("click", function () {
+    $("aisQuery").value = "";
+    $("aisResultsSection").hidden = true;
+    $("aisResults").innerHTML = "";
+    $("aisCount").textContent = "";
+    $("aisQuery").focus();
+  });
+  $("aisQuery").addEventListener("keydown", function (e) { if (e.key === "Escape") $("aisQuery").value = ""; });
+  section.querySelectorAll(".ais-chip").forEach(function (chip) {
+    chip.addEventListener("click", function () { runSearch(chip.getAttribute("data-q")); });
+  });
+
+  /* load cache now; build the index lazily when the section comes into view
+     (avoids crawling the whole site for visitors who never use search) */
+  var cacheState = loadCache();
+  function autoStart() {
+    if (autoStarted) return;
+    autoStarted = true;
+    if (cacheState !== "fresh") scanWebsite();
+  }
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      if (entries.some(function (en) { return en.isIntersecting; })) { io.disconnect(); autoStart(); }
+    }, { rootMargin: "300px 0px" });
+    io.observe(section);
+  } else { autoStart(); }
+  $("aisQuery").addEventListener("focus", autoStart);
 })();
 
 /* ===== Testimonials ===== */
