@@ -796,6 +796,38 @@ img{max-width:100%;display:block}
 .ais-foot{margin-top:34px;font-size:.82rem;color:var(--muted);font-family:var(--f-head);letter-spacing:.03em}
 .ais-foot a{border-bottom:2px solid var(--brand)}
 
+/* ---- course price card inside search ---- */
+.ais-prices{background:#fff;border:var(--bw) solid var(--ink);box-shadow:var(--hard);margin-bottom:28px;position:relative}
+.ais-prices-head{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  background:var(--ink);color:#f3efe0;padding:10px 18px;font-family:var(--f-head);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;
+}
+.ais-prices-tag{background:var(--brand);color:var(--ink);border:var(--bw) solid var(--brand);padding:2px 10px}
+.ais-pgroup{padding:18px 18px 4px}
+.ais-pgroup h4{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-family:var(--f-head)}
+.ais-ptable{width:100%;border-collapse:collapse;margin-bottom:14px;font-size:.92rem}
+.ais-ptable th{
+  text-align:left;font-family:var(--f-head);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  background:var(--brand);border:var(--bw) solid var(--ink);padding:8px 12px;
+}
+.ais-ptable td{border:var(--bw) solid var(--ink);padding:10px 12px;font-variant-numeric:tabular-nums}
+.ais-ptable td:first-child{font-family:var(--f-head);font-weight:700;letter-spacing:-.01em}
+.ais-ptable td:not(:first-child){font-family:var(--f-head);font-weight:700;white-space:nowrap}
+.ais-ptable tbody tr:hover td{background:var(--brand-tint)}
+.ais-pfoot{padding:4px 18px 16px;font-size:.8rem;color:var(--muted);font-family:var(--f-head)}
+.ais-pfoot a{border-bottom:2px solid var(--brand);color:var(--ink);font-weight:700}
+.ais-sub-title{
+  font-family:var(--f-head);font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:6px 0 14px;
+}
+@media(max-width:700px){
+  .ais-ptable thead{display:none}
+  .ais-ptable,.ais-ptable tbody,.ais-ptable tr,.ais-ptable td{display:block;width:100%}
+  .ais-ptable tr{border:var(--bw) solid var(--ink);margin-bottom:12px;box-shadow:3px 3px 0 var(--ink)}
+  .ais-ptable td{border:none;border-top:1px dashed var(--line);display:flex;justify-content:space-between;gap:12px}
+  .ais-ptable td:first-child{border-top:none;background:var(--brand-tint)}
+  .ais-ptable td:not(:first-child)::before{content:attr(data-label);font-weight:600;color:var(--muted);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase}
+}
+
 /* ---------- CTA BAND ---------- */
 .cta-band{background:var(--ink);color:#fff;padding:104px 0;text-align:center;border-top:var(--bw) solid var(--ink);position:relative;overflow:hidden}
 .cta-band::before,.cta-band::after{
@@ -1134,6 +1166,7 @@ img{max-width:100%;display:block}
 
       <div class="ais-chips" aria-label="Quick searches">
         <span class="ais-chips-label">Try:</span>
+        <button type="button" class="ais-chip" data-q="course price">Course prices</button>
         <button type="button" class="ais-chip" data-q="courses">Courses</button>
         <button type="button" class="ais-chip" data-q="mentorship">Mentorship</button>
         <button type="button" class="ais-chip" data-q="labs">Labs</button>
@@ -1892,19 +1925,94 @@ img{max-width:100%;display:block}
     }).join("");
   }
 
+  /* ---- Course price list (Basic = base price; Standard; Advanced) ---- */
+  var COURSE_GROUPS = [
+    {group:"Domain services", items:[
+      ["Custom Domain Recommendation",1500,3000,5250],["Expired Domain Research",1500,3000,5250],
+      ["Competitor Domain Analysis",1500,3000,5250],["Domain Authority Boosting",1500,3000,5250],
+      ["Domain Flipping Guidance",1500,3000,5250]]},
+    {group:"Career", items:[["Resume to Recruitment Masterclass",20000,40000,70000]]},
+    {group:"Frontend plans", items:[
+      ["Basic Frontend Plan",6000,12000,21000],["Standard Frontend Plan",8500,17000,29750],["Premium Frontend Plan",12000,24000,42000]]},
+    {group:"Core tracks", items:[
+      ["Frontend + JS + Git",499,998,1746],["AI + ML + Python",799,1598,2796],
+      ["Cloud + DevOps",999,1998,3497],["Stock Market + Algo Trading",1199,2398,4196]]},
+    {group:"Specialist tracks", items:[
+      ["Cybersecurity & Ethical Hacking",1499,2998,5247],["Game Dev + Blockchain Games",1699,3398,5947],
+      ["NLP + Chatbots + LLM",1999,3998,6997],["Deep Learning + GANs",2199,4398,7697],
+      ["Data Science + Visualization",2399,4798,8397],["Quantum Computing (Qiskit)",2699,5398,9447],
+      ["Quantum Cloud + Hybrid AI",2999,5998,10497]]},
+    {group:"Professional programs", items:[
+      ["Web3 + Smart Contracts",3199,6398,11197],["Startup Leadership Program",3499,6998,12247],
+      ["SpaceTech + IoT + Drone AI",3699,7398,12947],["Tech Ethics & Responsible AI",3999,7998,13997]]},
+    {group:"Lab & mentor programs", items:[
+      ["Innovation Lab Projects",4499,8998,15747],["Mentor Training Program",4799,9598,16797],
+      ["Humanitarian Tech Projects",4999,9998,17497]]},
+    {group:"Frontier tech", items:[
+      ["AR/VR + Metaverse Dev",5499,10998,19247],["AGI & Advanced AI Research",5999,11998,20997],
+      ["AI Law & Tech Policy",6499,12998,22747]]}
+  ];
+  var PRICE_INTENT = /^(price|prices|pricing|cost|costs|fee|fees|course|courses|plan|plans|program|programs|tier|tiers|basic|standard|advanced|advance|rs|inr|rupees|rupee)$/;
+  var PRICE_STOP = new Set(("price prices pricing cost costs fee fees course courses plan plans program programs of the for what is are " +
+    "how much and an in rs inr rupees rupee list all show me tell about tier tiers basic standard advanced advance").split(" "));
+  function inr(n) { return "₹" + n.toLocaleString("en-IN"); }
+  function courseTokens(name) { return name.toLowerCase().split(/[^a-z0-9]+/).filter(Boolean); }
+  function tokenHit(term, tokens) {
+    return tokens.some(function (t) {
+      return t === term || (term.length >= 3 && (t.indexOf(term) === 0 || (t.length >= 3 && term.indexOf(t) === 0)));
+    });
+  }
+  /* returns {html, count} or null. Shows every course for price-type queries,
+     or just the courses whose names match what was typed. */
+  function renderPrices(terms) {
+    var flat = [];
+    terms.forEach(function (t) { t.split(/[+#.]+/).forEach(function (x) { if (x.length > 1) flat.push(x); }); });
+    var key = flat.filter(function (t) { return !PRICE_STOP.has(t); });
+    var intent = flat.some(function (t) { return PRICE_INTENT.test(t); });
+    if (!key.length && !intent) return null;
+    var out = "", total = 0;
+    COURSE_GROUPS.forEach(function (g) {
+      var items = g.items.filter(function (c) {
+        if (!key.length) return true;
+        var tk = courseTokens(c[0]);
+        return key.every(function (k) { return tokenHit(k, tk); });
+      });
+      if (!items.length) return;
+      total += items.length;
+      out += '<div class="ais-pgroup"><h4>' + escapeHtml(g.group) + '</h4><table class="ais-ptable"><thead><tr>' +
+        '<th>Course</th><th>Basic</th><th>Standard</th><th>Advanced</th></tr></thead><tbody>' +
+        items.map(function (c) {
+          return '<tr><td>' + escapeHtml(c[0]) + '</td><td data-label="Basic">' + inr(c[1]) +
+            '</td><td data-label="Standard">' + inr(c[2]) + '</td><td data-label="Advanced">' + inr(c[3]) + '</td></tr>';
+        }).join("") + '</tbody></table></div>';
+    });
+    if (!total) return null;
+    var html = '<section class="ais-prices" aria-label="Course prices"><div class="ais-prices-head"><span class="ais-prices-tag">Course prices</span>' +
+      '<span>' + total + ' course' + (total === 1 ? "" : "s") + ' · Basic / Standard / Advanced</span></div>' + out +
+      '<p class="ais-pfoot">Prices in Indian Rupees (INR). Ready to join? <a href="https://forms.gle/LNDC32NR6YsCmeZY8" target="_blank" rel="noopener">Apply now →</a></p></section>';
+    return { html: html, count: total };
+  }
+
   function search(q) {
     var terms = termsOf(q);
     var resultsEl = $("aisResults");
     $("aisResultsSection").hidden = false;
     $("aisResultsTitle").textContent = "Results for “" + q + "”";
     resultsEl.innerHTML = "";
+    var priceBox = terms.length ? renderPrices(terms) : null;
+    var coursePart = priceBox ? priceBox.count + " course" + (priceBox.count === 1 ? "" : "s") : "";
+    if (priceBox) resultsEl.insertAdjacentHTML("beforeend", priceBox.html);
     if (!terms.length) {
       resultsEl.innerHTML = '<div class="ais-empty"><strong>Enter a search term</strong>Try a topic, course name, policy, or phrase.</div>';
       $("aisCount").textContent = ""; return;
     }
     if (!pages.length) {
-      resultsEl.innerHTML = '<div class="ais-empty"><strong>Website index is not ready</strong>' + (scanning ? "Still scanning — results will appear when it finishes." : "Use “Scan / refresh website index” first.") + '</div>';
-      $("aisCount").textContent = "";
+      if (!priceBox) {
+        resultsEl.innerHTML = '<div class="ais-empty"><strong>Website index is not ready</strong>' + (scanning ? "Still scanning — results will appear when it finishes." : "Use “Scan / refresh website index” first.") + '</div>';
+      } else {
+        resultsEl.insertAdjacentHTML("beforeend", '<p class="ais-sub-title">Page results will appear when the website index finishes…</p>');
+      }
+      $("aisCount").textContent = coursePart;
       if (!scanning) scanWebsite();
       return;
     }
@@ -1914,11 +2022,13 @@ img{max-width:100%;display:block}
     }).filter(function (m) { return m.score > 0; })
       .sort(function (a, b) { return b.score - a.score; }).slice(0, 30);
 
-    $("aisCount").textContent = matches.length + " matching page" + (matches.length === 1 ? "" : "s");
+    var pagePart = matches.length + " matching page" + (matches.length === 1 ? "" : "s");
+    $("aisCount").textContent = coursePart ? coursePart + " · " + pagePart : pagePart;
     if (!matches.length) {
-      resultsEl.innerHTML = '<div class="ais-empty"><strong>No matching pages found</strong>Try different words or a shorter search phrase.</div>';
+      if (!priceBox) resultsEl.innerHTML = '<div class="ais-empty"><strong>No matching pages found</strong>Try different words or a shorter search phrase.</div>';
       return;
     }
+    if (priceBox) resultsEl.insertAdjacentHTML("beforeend", '<p class="ais-sub-title">Related pages</p>');
     matches.forEach(function (m) {
       var p = m.page;
       var snippet = makeSnippet(p.text, terms);
