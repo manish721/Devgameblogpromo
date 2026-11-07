@@ -796,6 +796,11 @@ img{max-width:100%;display:block}
 .ais-foot{margin-top:34px;font-size:.82rem;color:var(--muted);font-family:var(--f-head);letter-spacing:.03em}
 .ais-foot a{border-bottom:2px solid var(--brand)}
 
+.ais-evidence{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
+.ais-evidence li{border-left:6px solid var(--brand);background:var(--bg-soft);padding:8px 12px;font-size:.88rem;color:var(--ink-2)}
+.ais-evidence a{display:inline-block;margin-top:4px;font-family:var(--f-head);font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-bottom:2px solid var(--brand)}
+.ais-ev-note{margin-top:10px;font-family:var(--f-head);font-size:.68rem;letter-spacing:.06em;color:var(--muted)}
+
 /* ---- yes / no answer box ---- */
 .ais-answer{display:flex;align-items:stretch;background:#fff;border:var(--bw) solid var(--ink);box-shadow:var(--hard);margin-bottom:28px}
 .ais-verdict{
@@ -1737,7 +1742,7 @@ img{max-width:100%;display:block}
   var START = ORIGIN + "/";
   var MAX_PAGES = 350;
   var CONCURRENCY = 5;
-  var CACHE_KEY = "dgbp_site_search_index_v2";
+  var CACHE_KEY = "dgbp_site_search_index_v3";
   var CACHE_TTL = 24 * 60 * 60 * 1000; /* auto-refresh after 24h */
   var SKIP_EXT = /\.(?:jpg|jpeg|png|gif|webp|svg|ico|css|js|mjs|map|woff2?|ttf|eot|pdf|zip|rar|mp4|webm|mp3|xml)(?:$|[?#])/i;
   var NOISE = "script,style,noscript,svg,nav,footer,header,form,button,iframe,[aria-hidden='true'],#ai-search,.dgbp-mini-widget,.event-rail,.announce,.marquee-outer";
@@ -1782,6 +1787,9 @@ img{max-width:100%;display:block}
       if (n) links.push(n);
     });
     doc.querySelectorAll(NOISE).forEach(function (el) { el.remove(); });
+    /* mark block boundaries so sentences do not run together when text is flattened */
+    doc.querySelectorAll("h1,h2,h3,h4,h5,h6,p,li,td,th,tr,blockquote,dt,dd,figcaption,label,summary").forEach(function (el) { el.after(doc.createTextNode(" \u00b6 ")); });
+    doc.querySelectorAll("div,section,article,small,a,span,b,strong,em").forEach(function (el) { el.after(doc.createTextNode(" ")); });
     var t = doc.querySelector("title");
     var h1 = doc.querySelector("h1");
     var title = cleanText(t && t.textContent) || cleanText(h1 && h1.textContent) || new URL(url).pathname;
@@ -1924,6 +1932,7 @@ img{max-width:100%;display:block}
     return { score: score, matched: matched };
   }
   function makeSnippet(text, terms) {
+    text = text.replace(/\s*\u00b6\s*/g, " · ");
     var lower = text.toLowerCase();
     var at = -1;
     terms.forEach(function (t) {
@@ -2016,7 +2025,7 @@ img{max-width:100%;display:block}
   var YN_START = /^(?:(?:hey|hi|hello|please|so|and|also|ok|okay)[,\s]+)*(is|are|am|was|were|do|does|did|can|could|will|would|should|shall|have|has|had|may|might)\b/;
   var QSTOP = new Set(("is are am was were do does did can could will would should shall have has had may might you your yours i me my we us our it its " +
     "this that these those there they them a an the any anything something someone anyone offer offers offering provide provides teach teaches taught " +
-    "cover covers include includes available get got able learn about to of for in on at with from if so please dgbplabz dgbp labz devgameblogpromo school be been being").split(" "));
+    "cover covers include includes available get got able learn give gives giving take takes run runs conduct conducts need needs allow allows allowed  about to of for in on at with from if so please dgbplabz dgbp labz devgameblogpromo school be been being").split(" "));
   var KB = [
     {k:["online only","only online","offline only","onsite only"], v:"no", only:true,
       t:"No — learning happens both online and onsite. Based in Hyderabad, with online sessions and project reviews for students elsewhere."},
@@ -2058,12 +2067,55 @@ img{max-width:100%;display:block}
     if (!YN_START.test(s)) return null;
     return { q: s, terms: terms.filter(function (t) { return !QSTOP.has(t); }) };
   }
-  function answerHtml(v, label, text, link) {
+  function answerHtml(v, label, text, link, extra) {
     var cls = v === "yes" ? "ais-ans-yes" : v === "no" ? "ais-ans-no" : "ais-ans-maybe";
     return '<div class="ais-answer ' + cls + '" role="status"><div class="ais-verdict">' + escapeHtml(label) + '</div>' +
       '<div class="ais-ans-body"><div class="ais-ans-label">Quick answer</div><p>' + escapeHtml(text) +
-      (link ? ' <a href="https://forms.gle/LNDC32NR6YsCmeZY8" target="_blank" rel="noopener">Apply now →</a>' : '') + '</p></div></div>';
+      (link ? ' <a href="https://forms.gle/LNDC32NR6YsCmeZY8" target="_blank" rel="noopener">Apply now →</a>' : '') + '</p>' + (extra || '') + '</div></div>';
   }
+  /* ---- read the indexed pages sentence by sentence ---- */
+  var NEG = /\b(no|not|never|cannot|can't|cant|don't|dont|doesn't|doesnt|isn't|aren't|won't|without|none|neither|nor|unavailable)\b|n't|coming soon/i;
+  var sentCache = new Map();
+  function sentencesOf(p) {
+    var key = p.url + "|" + p.text.length;
+    var got = sentCache.get(key);
+    if (got) return got;
+    var list = p.text.replace(/([.!?])\s+/g, "$1\u00b6").split("\u00b6").map(function (x) { return x.trim(); })
+      .filter(function (x) { return x.length >= 12 && x.length <= 450; });
+    sentCache.set(key, list);
+    return list;
+  }
+  function keyHit(k, tk) { return /\d/.test(k) ? tk.indexOf(k) >= 0 : tokenHit(k, tk); }
+  function findEvidence(key) {
+    var numKeys = key.filter(function (k) { return /\d/.test(k); });
+    var out = [], seen = new Set();
+    pages.forEach(function (p) {
+      sentencesOf(p).forEach(function (sent) {
+        var tk = sent.toLowerCase().split(/[^a-z0-9\u20b9]+/).filter(Boolean);
+        var hit = 0;
+        key.forEach(function (k) { if (keyHit(k, tk)) hit++; });
+        if (!hit) return;
+        var cov = hit / key.length;
+        if (cov < 0.6) return;
+        if (numKeys.some(function (n) { return tk.indexOf(n) < 0; })) return;
+        var norm = sent.toLowerCase();
+        if (seen.has(norm)) return;
+        seen.add(norm);
+        out.push({ p: p, s: sent, cov: cov, neg: NEG.test(sent), score: cov * 10 - sent.length / 200 });
+      });
+    });
+    out.sort(function (a, b) { return b.score - a.score; });
+    return out.slice(0, 3);
+  }
+  function evidenceHtml(ev) {
+    return '<ul class="ais-evidence">' + ev.map(function (e) {
+      var path = "";
+      try { path = decodeURIComponent(new URL(e.p.url).pathname); } catch (x) { path = e.p.url; }
+      var text = e.s.length > 240 ? e.s.slice(0, 237) + "…" : e.s;
+      return '<li>“' + escapeHtml(text) + '”<br><a href="' + escapeHtml(e.p.url) + '">' + escapeHtml(path === "/" ? "Home page" : path) + ' →</a></li>';
+    }).join("") + '</ul><div class="ais-ev-note">Read automatically from the website pages — open the link to confirm.</div>';
+  }
+
   function buildAnswer(yn) {
     var s = yn.q, toks = s.split(/[^a-z0-9\u20b9]+/).filter(Boolean);
     var hasOnly = toks.indexOf("only") >= 0;
@@ -2097,6 +2149,15 @@ img{max-width:100%;display:block}
         var names = hits.slice(0, 3).map(function (c) { return c[0]; }).join(", ");
         var more = hits.length > 3 ? " and " + (hits.length - 3) + " more" : "";
         return answerHtml("yes", "YES", "DGBPLabZ lists " + names + more + ". Basic, Standard and Advanced prices are shown below.");
+      }
+      var qNeg = NEG.test(s);
+      var evid = pages.length ? findEvidence(key) : [];
+      if (evid.length) {
+        var top = evid[0];
+        if (top.cov === 1 && !qNeg) {
+          return answerHtml(top.neg ? "no" : "yes", top.neg ? "NO" : "YES", "Based on what the pages say:", false, evidenceHtml(evid));
+        }
+        return answerHtml("maybe", "NOT SURE", "The pages mention related things but don't clearly confirm this. Closest statements:", false, evidenceHtml(evid));
       }
       if (!pages.length) {
         return answerHtml("maybe", "CHECKING…", "I'm still building the website index — this answer will update when it finishes.");
