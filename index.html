@@ -354,6 +354,7 @@
    NEW: side event banner (.event-rail) + widget merged into main CSS
    NEW: DGBP company seal (.dgbp-seal) — large rubber-stamp style
    NEW: AI Search section (#ai-search, .ais-*)
+   NEW: Credential registry section (.credential-*)
    =================================================================== */
 :root{
   --bg:#ffffff;
@@ -717,6 +718,33 @@ img{max-width:100%;display:block}
 .dgbp-seal.on-dark{--seal-ink:#FFCB2E;--seal-size:210px;mix-blend-mode:normal;opacity:1;margin:8px 0 22px}
 
 /* ===================================================================
+   CREDENTIAL REGISTRY SECTION
+   =================================================================== */
+.credential-section{padding:104px 0;background:var(--bg-soft);border-top:var(--bw) solid var(--ink)}
+.credential-content{
+  max-width:860px;margin:0 auto;padding:48px 46px;background:#fff;text-align:center;
+  border:var(--bw) solid var(--ink);box-shadow:var(--hard);position:relative;
+}
+.credential-content::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:12px;
+  background:var(--brand);border-right:var(--bw) solid var(--ink);
+}
+.credential-tag{
+  display:inline-block;font-family:var(--f-head);font-size:.74rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-bottom:20px;
+  background:var(--brand);border:var(--bw) solid var(--ink);padding:5px 12px;
+}
+.credential-content h2{font-size:clamp(1.8rem,3.4vw,2.6rem);margin-bottom:16px}
+.credential-content p{color:var(--muted);font-size:1.02rem;max-width:620px;margin:0 auto 32px}
+.credential-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 28px;background:var(--ink);color:#fff;border:var(--bw) solid var(--ink);
+  font-family:var(--f-head);font-weight:700;font-size:.92rem;letter-spacing:.02em;text-transform:uppercase;
+  box-shadow:var(--hard-sm);transition:transform .12s ease,box-shadow .12s ease;
+}
+.credential-btn:hover{transform:translate(4px,4px);box-shadow:0 0 0 var(--ink);background:var(--brand);color:var(--ink)}
+
+/* ===================================================================
    AI SEARCH SECTION
    =================================================================== */
 .ais-wrap{max-width:860px;margin:0 auto;text-align:left}
@@ -986,6 +1014,8 @@ img{max-width:100%;display:block}
 }
 @media(max-width:700px){
   .section{padding:68px 0}
+  .credential-section{padding:68px 0}
+  .credential-content{padding:34px 24px 34px 32px}
   .hero{padding:60px 0 48px}
   .hero::before{display:none}
   .stats{grid-template-columns:1fr}
@@ -1124,11 +1154,11 @@ img{max-width:100%;display:block}
       <div class="rail-progress-label" id="railProgressLabel"></div>
       <div class="rail-up-title">Coming up</div>
       <ul class="rail-up" id="railUp"></ul>
-        </div>
+    </div>
   </div>
 </aside>
-  
- 
+
+
 <main>
 
 <!-- ═══ HERO ═══ -->
@@ -1464,6 +1494,29 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
+<!-- ═══ CREDENTIAL VERIFICATION ═══ -->
+<section class="credential-section" id="credential-registry" aria-labelledby="credTitle">
+  <div class="container">
+    <div class="credential-content">
+
+      <span class="credential-tag">DGBPLabZ REGISTRY</span>
+
+      <h2 id="credTitle">Credential Verification Portal</h2>
+
+      <p>
+        Access the DevGameBlogPromo credential registry.
+        Verify registered Master Charter, Identity,
+        Root Trust and Authorization identifiers.
+      </p>
+
+      <a href="verify.html" class="credential-btn">
+        VERIFY CREDENTIALS →
+      </a>
+
+    </div>
+  </div>
+</section>
+
 <!-- ═══ CTA BAND ═══ -->
 <section class="cta-band" id="cta">
   <div class="container">
@@ -1487,7 +1540,7 @@ img{max-width:100%;display:block}
         <p>A founder-led mentorship program teaching web development, AI and game development through real projects — not just video lessons.</p>
         <p style="font-size:.82rem">Questions? Write to <a href="mailto:m81434409@gmail.com">m81434409@gmail.com</a></p>
 
-        
+
         <button swg-standard-button="contribution"></button>
       </div>
       <div class="footer-col">
@@ -1512,6 +1565,7 @@ img{max-width:100%;display:block}
         <h4>Company</h4>
         <ul>
           <li><a href="founder.html">Founder Journey</a></li>
+          <li><a href="#credential-registry">Verify Credentials</a></li>
           <li><a href="https://forms.gle/aoKgfnEavd118qkt5">Partnership</a></li>
           <li><a href="partnership.html">Partnerships | DevGameBlogPromo</a></li>
         </ul>
@@ -1538,7 +1592,7 @@ img{max-width:100%;display:block}
   Qualys SSL A+ Certified
 </div>
 
-      
+
       <span>© 2023–2026 DGBPLabZ / DevGameBlogPromo. Founder-led. Built with real intent.</span>
     </div>
   </div>
