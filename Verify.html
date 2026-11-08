@@ -1,0 +1,1195 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080c14">
+
+<title>DGBPLabZ | Secure Credential Verification</title>
+
+<style>
+:root {
+  --bg: #080c14;
+  --panel: #111a29;
+  --gold: #d9ad51;
+  --gold-light: #ffe3a0;
+  --green: #36e99a;
+  --red: #ff7272;
+  --muted: #8996aa;
+  --white: #f5f6fa;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  padding: 45px 18px;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  color: var(--white);
+  background:
+    radial-gradient(ellipse at top, #1b2940, transparent 60%),
+    var(--bg);
+}
+
+button, input {
+  font: inherit;
+}
+
+.container {
+  width: min(100%, 1050px);
+  margin: auto;
+}
+
+/* HEADER */
+
+.header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.brand {
+  color: var(--gold);
+  font-size: clamp(22px, 4vw, 34px);
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.subtitle {
+  margin-top: 12px;
+  color: #b9c4d5;
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 22px;
+  padding: 10px 17px;
+  color: var(--green);
+  background: #10271f;
+  border: 1px solid #286a50;
+  border-radius: 30px;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--green);
+}
+
+/* TERMINAL */
+
+.terminal {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(22px, 5vw, 42px);
+  border: 1px solid #806438;
+  border-radius: 13px;
+  background: linear-gradient(145deg, #172235, #0b111c);
+  box-shadow: 0 20px 70px #0009;
+}
+
+.terminal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(#ffffff06 1px, transparent 1px),
+    linear-gradient(90deg, #ffffff06 1px, transparent 1px);
+  background-size: 35px 35px;
+}
+
+.terminal-content {
+  position: relative;
+  z-index: 1;
+}
+
+.terminal-top {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ffffff20;
+}
+
+.terminal-label {
+  color: var(--gold-light);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.node {
+  color: var(--green);
+  font-size: 10px;
+}
+
+h1 {
+  margin: 35px 0 13px;
+  text-align: center;
+  font-size: clamp(25px, 5vw, 39px);
+}
+
+.description {
+  max-width: 620px;
+  margin: auto;
+  color: var(--muted);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* INPUT */
+
+.input-area {
+  max-width: 570px;
+  margin: 35px auto 0;
+}
+
+.input-area label {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--gold-light);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.input-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.input-wrapper input {
+  width: 100%;
+  min-width: 0;
+  padding: 17px;
+  color: white;
+  background: #080e18;
+  border: 1px solid #45536b;
+  border-radius: 7px;
+  outline: none;
+  letter-spacing: 1px;
+}
+
+.input-wrapper input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px #d9ad5120;
+}
+
+.query-btn {
+  flex-shrink: 0;
+  padding: 0 22px;
+  color: #161008;
+  background: linear-gradient(135deg, #ffe4a0, #bd8732);
+  border: none;
+  border-radius: 7px;
+  font-weight: 900;
+  font-size: 11px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.query-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px #d9ad5140;
+}
+
+.query-btn:disabled {
+  opacity: .6;
+  cursor: wait;
+  transform: none;
+}
+
+.message {
+  min-height: 25px;
+  margin-top: 15px;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+.message.success { color: var(--green); }
+.message.error { color: var(--red); }
+
+.security-note {
+  margin-top: 25px;
+  color: #748197;
+  font-size: 10px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+/* REGISTRY INFORMATION */
+
+.registry-list {
+  max-width: 700px;
+  margin: 35px auto 0;
+  padding: 22px;
+  border: 1px solid #344158;
+  border-radius: 9px;
+  background: #0b111c;
+}
+
+.registry-list h3 {
+  margin-bottom: 18px;
+  color: var(--gold);
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.registry-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 12px 0;
+  border-bottom: 1px solid #ffffff12;
+  font-size: 11px;
+}
+
+.registry-item:last-child {
+  border: 0;
+}
+
+.registry-item span {
+  color: var(--muted);
+}
+
+.registry-item code {
+  color: var(--gold-light);
+  overflow-wrap: anywhere;
+  text-align: right;
+}
+
+/* CERTIFICATE */
+
+.certificate-section {
+  display: none;
+  margin-top: 40px;
+}
+
+.certificate-section.show {
+  display: block;
+  animation: reveal .7s ease;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.certificate {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(24px, 5vw, 42px);
+  color: white;
+  background-color: #0b101b;
+  background-image:
+    linear-gradient(#ffffff08 1px, transparent 1px),
+    linear-gradient(90deg, #ffffff08 1px, transparent 1px);
+  background-size: 25px 25px;
+  border: 5px double var(--gold);
+  outline: 1px solid #a47b36;
+  outline-offset: -12px;
+  box-shadow: 0 15px 55px #0008;
+}
+
+.cert-brand {
+  color: var(--gold);
+  text-align: center;
+  font-size: clamp(18px, 3vw, 30px);
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.cert-subtitle {
+  margin-top: 12px;
+  color: #c7d0dc;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 3px;
+}
+
+.cert-divider {
+  width: 80%;
+  height: 1px;
+  margin: 25px auto;
+  background: linear-gradient(
+    90deg, transparent, var(--gold), transparent
+  );
+}
+
+.verified {
+  width: fit-content;
+  margin: 20px auto;
+  padding: 10px 17px;
+  color: var(--green);
+  background: #0c261e;
+  border: 1px solid #258e65;
+  border-radius: 5px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.cert-eyebrow {
+  color: #aeb9c9;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+.cert-title {
+  margin: 22px 0;
+  color: var(--gold-light);
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: clamp(25px, 5vw, 44px);
+  line-height: 1.25;
+}
+
+.cert-role {
+  max-width: 700px;
+  margin: auto;
+  color: white;
+  text-align: center;
+  font-family: Georgia, serif;
+  font-size: clamp(15px, 2.5vw, 22px);
+  line-height: 1.5;
+}
+
+.cert-description {
+  max-width: 670px;
+  margin: 25px auto;
+  color: #b7c1d0;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+/* DYNAMIC RECORD */
+
+.record-details {
+  max-width: 700px;
+  margin: 25px auto;
+  padding: 20px;
+  background: #111925;
+  border: 1px solid #98763b;
+}
+
+.record-details h3 {
+  margin-bottom: 15px;
+  color: var(--gold);
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.record-details p {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 11px 0;
+  border-bottom: 1px solid #ffffff15;
+  color: #aeb9c9;
+  font-size: 12px;
+}
+
+.record-details strong {
+  color: var(--gold-light);
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.record-status {
+  color: var(--green) !important;
+}
+
+/* COMPETENCIES */
+
+.competencies {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 30px 0;
+  border-top: 1px solid #9b783d;
+  border-bottom: 1px solid #9b783d;
+}
+
+.competency {
+  padding: 23px 12px;
+  text-align: center;
+}
+
+.competency + .competency {
+  border-left: 1px solid #9b783d;
+}
+
+.symbol {
+  color: var(--gold);
+  font-size: 29px;
+}
+
+.competency h3 {
+  margin: 12px 0;
+  color: #f2e6ca;
+  font-family: Georgia, serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.competency p {
+  color: #9ca9bc;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.motto {
+  margin: 28px 0;
+  padding: 20px;
+  color: var(--gold-light);
+  background: #181b22;
+  border: 1px solid #9c783d;
+  font-family: Georgia, serif;
+  font-size: clamp(14px, 2.5vw, 20px);
+  font-style: italic;
+  text-align: center;
+}
+
+.signatures {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-top: 45px;
+}
+
+.signature {
+  padding-top: 15px;
+  border-top: 1px solid var(--gold);
+  color: #e7eaf0;
+  font-size: 11px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.signature strong {
+  display: block;
+  color: var(--gold-light);
+}
+
+.hash {
+  margin-top: 35px;
+  color: var(--gold);
+  font-size: 10px;
+  line-height: 2;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+/* BUTTONS */
+
+.actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 25px 0;
+}
+
+.action-btn {
+  padding: 13px 20px;
+  color: var(--gold-light);
+  background: transparent;
+  border: 1px solid var(--gold);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.action-btn.primary {
+  color: #15100a;
+  background: var(--gold);
+}
+
+.action-btn:hover {
+  opacity: .8;
+}
+
+/* FOOTER */
+
+.footer {
+  margin-top: 45px;
+  color: #748197;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.9;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:650px) {
+  body {
+    padding: 25px 12px;
+  }
+
+  .input-wrapper {
+    flex-direction: column;
+  }
+
+  .query-btn {
+    min-height: 48px;
+  }
+
+  .competencies {
+    grid-template-columns: 1fr;
+  }
+
+  .competency + .competency {
+    border-left: 0;
+    border-top: 1px solid #9b783d;
+  }
+
+  .signatures {
+    grid-template-columns: 1fr;
+  }
+
+  .registry-item {
+    flex-direction: column;
+  }
+
+  .registry-item code {
+    text-align: left;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* PRINT */
+
+@media print {
+  @page {
+    size: landscape;
+    margin: 10mm;
+  }
+
+  body {
+    padding: 0;
+    background: white;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .header,
+  .terminal,
+  .footer,
+  .actions {
+    display: none !important;
+  }
+
+  .certificate-section {
+    display: block !important;
+    margin: 0;
+  }
+
+  .certificate {
+    min-height: 175mm;
+    box-shadow: none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<main class="container">
+
+  <!-- HEADER -->
+
+  <header class="header">
+
+    <div class="brand">
+      DEVGAMEBLOGPROMO
+    </div>
+
+    <div class="subtitle">
+      DGBPLabZ · OFFICIAL CREDENTIAL REGISTRY
+    </div>
+
+    <div class="status">
+      <span class="dot"></span>
+      VERIFICATION INTERFACE ONLINE
+    </div>
+
+  </header>
+
+
+  <!-- VERIFICATION TERMINAL -->
+
+  <section class="terminal">
+
+    <div class="terminal-content">
+
+      <div class="terminal-top">
+
+        <span class="terminal-label">
+          DGBPLabZ / SECURE TERMINAL
+        </span>
+
+        <span class="node">
+          ● REGISTRY NODE ACTIVE
+        </span>
+
+      </div>
+
+      <h1>Credential Verification</h1>
+
+      <p class="description">
+        Enter any registered DGBPLabZ identifier to
+        retrieve its corresponding issuer-declared
+        credential record.
+      </p>
+
+
+      <form class="input-area" id="verifyForm">
+
+        <label for="masterId">
+          ENTER MASTER / SECURITY IDENTIFIER
+        </label>
+
+        <div class="input-wrapper">
+
+          <input
+            type="text"
+            id="masterId"
+            placeholder="Enter your registry ID"
+            autocomplete="off"
+            spellcheck="false"
+            maxlength="45"
+            required
+          >
+
+          <button
+            class="query-btn"
+            id="queryBtn"
+            type="submit"
+          >
+            QUERY LEDGER →
+          </button>
+
+        </div>
+
+        <div
+          class="message"
+          id="message"
+          role="status"
+          aria-live="polite"
+        >
+          Awaiting credential identification...
+        </div>
+
+      </form>
+
+
+      <!-- PUBLIC ID DIRECTORY -->
+
+      <div class="registry-list">
+
+        <h3>REGISTERED IDENTIFIER CATEGORIES</h3>
+
+        <div class="registry-item">
+          <span>Master Charter ID</span>
+          <code>7285-31253641</code>
+        </div>
+
+        <div class="registry-item">
+          <span>System Authorization Code</span>
+          <code>2775-31253641</code>
+        </div>
+
+        <div class="registry-item">
+          <span>System Root Certificate / ID-ROOT</span>
+          <code>ROOT-7285-31253641-X9</code>
+        </div>
+
+        <div class="registry-item">
+          <span>Verification Site SSL / ID-SEC-SSL</span>
+          <code>SSL-2775-31253641-SECURE</code>
+        </div>
+
+        <div class="registry-item">
+          <span>Profile Identity / ID-IDENT</span>
+          <code>CERT-7285-31253641-0001</code>
+        </div>
+
+        <div class="registry-item">
+          <span>Authorization Certificate / ID-AUTH-AC</span>
+          <code>AC-2775-31253641-AUTH</code>
+        </div>
+
+      </div>
+
+
+      <div class="security-note">
+        DGBPLabZ CREDENTIAL REGISTRY · ISSUER-DECLARED RECORD<br>
+        Identifier matching does not independently authenticate
+        certificates, ownership or permissions.
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CERTIFICATE -->
+
+  <section
+    class="certificate-section"
+    id="certificateSection"
+  >
+
+    <div class="certificate" id="certificate">
+
+      <div class="cert-brand">
+        DEVGAMEBLOGPROMO (DGBPLabZ)
+      </div>
+
+      <div class="cert-subtitle">
+        SYSTEM GOVERNANCE & ACADEMIC AUDIT BLOCK
+      </div>
+
+      <div class="cert-divider"></div>
+
+      <div class="verified">
+        ✓ ISSUER RECORD MATCH
+      </div>
+
+      <div class="cert-eyebrow">
+        FOUNDER CREDENTIAL RECORD
+      </div>
+
+      <h2 class="cert-title">
+        THE FOUNDER & CHIEF ARCHITECT
+      </h2>
+
+      <div class="cert-role">
+        MASTER MENTOR IN INFORMATION TECHNOLOGY
+        & SYSTEM ENGINEERING
+      </div>
+
+      <p class="cert-description">
+        This issuer-declared credential record identifies
+        the founder and chief architect associated with
+        DevGameBlogPromo and its educational and
+        engineering initiatives.
+      </p>
+
+
+      <!-- DYNAMIC REGISTRY DETAILS -->
+
+      <div class="record-details">
+
+        <h3>VERIFIED REGISTRY RECORD</h3>
+
+        <p>
+          <span>QUERY CATEGORY</span>
+          <strong id="recordCategory">MASTER CHARTER ID</strong>
+        </p>
+
+        <p>
+          <span>IDENTIFIER</span>
+          <strong id="recordID">7285-31253641</strong>
+        </p>
+
+        <p>
+          <span>SECURITY LAYER</span>
+          <strong id="recordLayer">MASTER CHARTER</strong>
+        </p>
+
+        <p>
+          <span>RECORD STATUS</span>
+          <strong class="record-status">MATCH FOUND</strong>
+        </p>
+
+      </div>
+
+
+      <div class="cert-divider"></div>
+
+
+      <!-- TECHNICAL COMPETENCIES -->
+
+      <div class="competencies">
+
+        <div class="competency">
+
+          <div class="symbol">⌘</div>
+
+          <h3>
+            Full-Stack Web Architecture
+          </h3>
+
+          <p>
+            Frontend, backend and web systems architecture.
+          </p>
+
+        </div>
+
+
+        <div class="competency">
+
+          <div class="symbol">◈</div>
+
+          <h3>
+            Game Engineering
+          </h3>
+
+          <p>
+            Interactive applications and game development systems.
+          </p>
+
+        </div>
+
+
+        <div class="competency">
+
+          <div class="symbol">▤</div>
+
+          <h3>
+            SID & PID Tracking Architectures
+          </h3>
+
+          <p>
+            Custom identification and tracking frameworks.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- MOTTO -->
+
+      <div class="motto">
+        "Stop Learning Only to Know.
+        Start Learning to Build."
+      </div>
+
+
+      <!-- SIGNATURES -->
+
+      <div class="signatures">
+
+        <div class="signature">
+          <strong>
+            DGBPLabZ Global Education Council
+          </strong>
+          Issuer-designated signature authority
+        </div>
+
+        <div class="signature">
+          <strong>
+            DevGameBlogPromo Engineering LabZ
+          </strong>
+          Issuer-designated engineering authority
+        </div>
+
+      </div>
+
+
+      <!-- HASH -->
+
+      <div class="hash">
+
+        MASTER ID: 7285-31253641<br>
+
+        REGISTRY REFERENCE:
+        DGBPLABZ-MASTER-001<br>
+
+        RECORD TYPE:
+        ISSUER-DECLARED CREDENTIAL
+
+      </div>
+
+    </div>
+
+
+    <!-- ACTIONS -->
+
+    <div class="actions">
+
+      <button
+        class="action-btn primary"
+        onclick="window.print()"
+      >
+        ↓ PRINT / SAVE PDF
+      </button>
+
+      <button
+        class="action-btn"
+        onclick="resetVerification()"
+      >
+        NEW QUERY
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+    © 2026 DevGameBlogPromo · DGBPLabZ<br>
+
+    TECHNOLOGY · EDUCATION · ENGINEERING · INNOVATION
+
+  </footer>
+
+</main>
+
+
+<script>
+"use strict";
+
+/*
+  DGBPLabZ REGISTRY
+
+  DEMONSTRATION VERSION:
+  All identifiers are public lookup identifiers.
+  This JavaScript is visible to visitors.
+
+  Do not use client-side matching as real authentication.
+*/
+
+const REGISTRY = Object.freeze({
+
+  "7285-31253641": {
+    category: "MASTER CHARTER ID",
+    layer: "MASTER CHARTER",
+    description: "Primary founder credential record"
+  },
+
+  "2775-31253641": {
+    category: "SYSTEM AUTHORIZATION CODE",
+    layer: "SYSTEM AUTHORIZATION",
+    description: "Issuer-declared system authorization record"
+  },
+
+  "ROOT-7285-31253641-X9": {
+    category: "SYSTEM ROOT CERTIFICATE",
+    layer: "ROOT TRUST / ID-ROOT",
+    description: "Root trust reference identifier"
+  },
+
+  "SSL-2775-31253641-SECURE": {
+    category: "VERIFICATION SITE SSL CERTIFICATE",
+    layer: "PUBLIC WEB SECURITY / ID-SEC-SSL",
+    description: "SSL reference identifier"
+  },
+
+  "CERT-7285-31253641-0001": {
+    category: "MASTER IDENTITY CERTIFICATE",
+    layer: "PROFILE IDENTITY / ID-IDENT",
+    description: "Master identity reference"
+  },
+
+  "AC-2775-31253641-AUTH": {
+    category: "AUTHORIZATION CERTIFICATE",
+    layer: "PRIVILEGE / PERMISSION / ID-AUTH-AC",
+    description: "Authorization reference"
+  }
+
+});
+
+
+/* DOM ELEMENTS */
+
+const form = document.getElementById("verifyForm");
+
+const input = document.getElementById("masterId");
+
+const button = document.getElementById("queryBtn");
+
+const message = document.getElementById("message");
+
+const certificate =
+  document.getElementById("certificateSection");
+
+const recordCategory =
+  document.getElementById("recordCategory");
+
+const recordID =
+  document.getElementById("recordID");
+
+const recordLayer =
+  document.getElementById("recordLayer");
+
+
+/* VERIFICATION ENGINE */
+
+form.addEventListener("submit", function(event) {
+
+  event.preventDefault();
+
+  const enteredID = input.value.trim();
+
+  certificate.classList.remove("show");
+
+  message.className = "message";
+
+  if (!enteredID) {
+
+    showMessage(
+      "Please enter a valid registry identifier.",
+      "error"
+    );
+
+    input.focus();
+
+    return;
+  }
+
+  button.disabled = true;
+
+  button.textContent = "QUERYING...";
+
+  showMessage(
+    "Searching DGBPLabZ issuer-declared registry...",
+    ""
+  );
+
+
+  // Simulated terminal response delay.
+  // This is not a server-side verification request.
+
+  window.setTimeout(function() {
+
+    const record = REGISTRY[enteredID];
+
+    if (record) {
+
+      displayCertificate(enteredID, record);
+
+      showMessage(
+        "✓ Matching issuer-declared record found.",
+        "success"
+      );
+
+      certificate.classList.add("show");
+
+      certificate.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    } else {
+
+      showMessage(
+        "✕ No matching record found. Please check your ID.",
+        "error"
+      );
+
+    }
+
+    button.disabled = false;
+
+    button.textContent = "QUERY LEDGER →";
+
+  }, 900);
+
+});
+
+
+/* DISPLAY MATCHING RECORD */
+
+function displayCertificate(id, record) {
+
+  recordCategory.textContent = record.category;
+
+  recordID.textContent = id;
+
+  recordLayer.textContent = record.layer;
+
+}
+
+
+/* STATUS MESSAGE */
+
+function showMessage(text, type) {
+
+  message.textContent = text;
+
+  message.className = "message";
+
+  if (type) {
+    message.classList.add(type);
+  }
+
+}
+
+
+/* INPUT RESET */
+
+input.addEventListener("input", function() {
+
+  message.textContent = "Ready for registry query.";
+
+  message.className = "message";
+
+});
+
+
+/* NEW QUERY */
+
+function resetVerification() {
+
+  certificate.classList.remove("show");
+
+  input.value = "";
+
+  showMessage(
+    "Awaiting credential identification...",
+    ""
+  );
+
+  input.focus();
+
+  document.querySelector(".terminal").scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+
+}
+
+</script>
+
+</body>
+</html>
