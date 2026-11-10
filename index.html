@@ -1417,6 +1417,55 @@ img{max-width:100%;display:block}
 .site-header:not(.docked) .nav-more>button::before{display:none}
 .site-header:not(.docked) .primary-nav>a,.site-header:not(.docked) .nav-more>button{padding:10px 9px}
 .site-header .container.nav-wrap{padding-right:12px}
+
+/* ===================================================================
+   WIDGET ROW — timer + School banner side by side
+   =================================================================== */
+.widget-row{display:flex;align-items:stretch;gap:20px;margin:18px 28px;position:relative;z-index:2;flex-wrap:wrap}
+.widget-row .dgbp-mini-widget{margin:0;flex:0 0 280px}
+.school-banner{
+  flex:1 1 420px;min-width:0;display:flex;align-items:center;gap:20px;
+  background:var(--brand);color:var(--ink);border:var(--bw) solid var(--ink);box-shadow:var(--hard);
+  padding:18px 22px;position:relative;overflow:hidden;
+}
+.school-banner::before{
+  content:'';position:absolute;right:-50px;top:-50px;width:170px;height:170px;
+  border:var(--bw) solid var(--ink);background:var(--brand-tint);transform:rotate(14deg);opacity:.55;pointer-events:none;
+}
+.sb-icon{
+  position:relative;flex:0 0 68px;width:68px;height:68px;display:flex;align-items:center;justify-content:center;
+  background:#fff;border:var(--bw) solid var(--ink);box-shadow:4px 4px 0 var(--ink);font-size:2rem;transform:rotate(-4deg);
+}
+.sb-text{position:relative;flex:1;min-width:0}
+.sb-eyebrow{
+  display:inline-block;font-family:var(--f-head);font-size:.64rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  background:var(--ink);color:var(--brand);padding:3px 9px;margin-bottom:8px;
+}
+.sb-title{font-size:clamp(1.15rem,2.2vw,1.6rem);letter-spacing:-.03em;line-height:1.1;margin-bottom:6px}
+.sb-title span{background:#fff;border:var(--bw) solid var(--ink);padding:0 6px;display:inline-block;transform:rotate(-3deg)}
+.sb-sub{font-size:.86rem;color:var(--ink-2);max-width:640px;margin-bottom:10px;line-height:1.5}
+.sb-tags{display:flex;flex-wrap:wrap;gap:6px}
+.sb-tags span{
+  font-family:var(--f-head);font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  background:#fff;border:var(--bw) solid var(--ink);padding:2px 8px;
+}
+.sb-cta{
+  position:relative;flex-shrink:0;align-self:center;background:var(--ink);color:#fff;border:var(--bw) solid var(--ink);
+  padding:11px 18px;font-family:var(--f-head);font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;
+  box-shadow:4px 4px 0 #fff;transition:transform .12s ease,box-shadow .12s ease;white-space:nowrap;
+}
+.sb-cta:hover{transform:translate(4px,4px);box-shadow:0 0 0 #fff}
+@media (max-width:900px){
+  .widget-row{margin:14px 14px;gap:14px}
+  .widget-row .dgbp-mini-widget{flex:1 1 100%;width:auto;max-width:none}
+  .school-banner{flex:1 1 100%;flex-wrap:wrap;padding:16px}
+  .sb-cta{width:100%;text-align:center}
+}
+@media (max-width:480px){
+  .sb-icon{flex-basis:54px;width:54px;height:54px;font-size:1.6rem}
+}
+
+@media (min-width:901px){.school-banner{max-width:800px}}
 </style>
 </head>
 
@@ -1477,6 +1526,7 @@ img{max-width:100%;display:block}
   </div>
 </header>
 
+<div class="widget-row">
 <!-- ═══ MINI WIDGET (clock · special day · quotes) ═══ -->
 <div class="dgbp-mini-widget">
   <div class="dgbp-mini-header">
@@ -1506,6 +1556,18 @@ img{max-width:100%;display:block}
     <span>BUILDER'S MINDSET</span>
     <span id="dgbpMiniNumber">01 / 04</span>
   </div>
+</div>
+
+  <!-- ═══ SCHOOL BANNER (beside the timer) ═══ -->
+  <section class="school-banner" aria-label="School of Education and Development of Gaming">
+    <div class="sb-icon" aria-hidden="true">🎮</div>
+    <div class="sb-text">
+      <span class="sb-eyebrow">DGBPLabZ · Est. 2023</span>
+      <h2 class="sb-title">School of Education <span>&amp;</span> Development of Gaming</h2>
+      <p class="sb-sub">We don't teach you how to follow the rules of the game; we engineer the minds that write them. This is the death of passive consumption and the birth of raw execution—transforming systemic learning into production-ready reality.</p>
+      <div class="sb-tags"><span>Web Dev</span><span>AI / ML</span><span>Game Dev</span><span>Mentorship</span></div>
+    </div>
+  </section>
 </div>
 
 <!-- ═══ SIDE EVENT BANNER ═══ -->
