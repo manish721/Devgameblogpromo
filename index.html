@@ -355,7 +355,7 @@
    NEW: DGBP company seal (.dgbp-seal) — large rubber-stamp style
    NEW: AI Search section (#ai-search, .ais-*)
    NEW: Credential registry section (.credential-*)
-   NEW: Floating pill navbar that docks to the left on scroll
+   NEW: Windows-taskbar navbar that docks to the left on scroll
    =================================================================== */
 :root{
   --bg:#ffffff;
@@ -1051,135 +1051,372 @@ img{max-width:100%;display:block}
 }
 
 /* ===================================================================
-   FLOATING PILL NAVBAR  →  docks to the LEFT when you scroll
+   WINDOWS-TASKBAR NAVBAR
+   - Top of page : dark acrylic taskbar bar (icons + labels + clock + Apply)
+   - After scroll: full-height taskbar docked on the LEFT edge
+                   (icons only; hover/focus expands labels)
    =================================================================== */
 
-/* ---------- PILL (top / not scrolled) ---------- */
+/* ---------- TASKBAR (top / not scrolled) ---------- */
 .site-header{
-  position:sticky;
-  top:14px;
-  z-index:200;
-  width:min(1180px,calc(100% - 32px));
-  margin:14px auto 0;
-  background:#fff;
-  border:var(--bw) solid var(--ink);
-  border-radius:999px;
-  box-shadow:var(--hard-sm);
-  transition:width .3s ease,box-shadow .3s ease;
+  position:sticky;top:10px;z-index:200;
+  width:min(1180px,calc(100% - 32px));margin:10px auto 0;
+  background:rgba(26,25,21,.94);color:#f3efe0;
+  -webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:14px;
+  box-shadow:0 12px 32px rgba(0,0,0,.35);
+  transition:width .25s ease;
 }
-.site-header .container.nav-wrap{max-width:none;padding:0 14px 0 14px;min-height:64px}
-.site-header .brand-mark{border-radius:50%}
-.site-header .primary-nav>a,
-.site-header .nav-more>button{padding:10px 11px}
-.site-header .primary-nav>a::after,
-.site-header .nav-more>button::after{left:11px;right:11px}
-.site-header .btn-sm{border-radius:999px}
-.site-header .menu-toggle{border-radius:50%}
-.site-header .nav-ico{display:none}
+.site-header .container.nav-wrap{max-width:none;min-height:56px;padding:0 10px;gap:12px}
 
-/* ---------- DOCKED (scrolled, desktop) ---------- */
-.site-header.docked{
-  position:fixed;
-  top:50%;
-  left:16px;
-  margin:0;
-  width:68px;
-  transform:translateY(-50%);
-  border-radius:36px;
-  box-shadow:var(--hard);
-  animation:navDockIn .35s ease both;
+/* brand = "start button" */
+.site-header .brand{gap:10px}
+.site-header .brand-mark{width:36px;height:36px;border-radius:9px;border:0;box-shadow:none;font-size:.9rem}
+.site-header .brand-name{color:#fff;font-size:1rem}
+.site-header .brand-sub{color:#a9a392;font-size:.58rem}
+
+/* taskbar buttons */
+.site-header .primary-nav{gap:2px}
+.site-header .primary-nav>a,
+.site-header .nav-more>button{
+  padding:8px 11px;border-radius:9px;gap:7px;color:#e9e5d3;
+  font-size:.8rem;font-weight:500;text-transform:none;letter-spacing:0;
+  position:relative;transition:background .15s ease,color .15s ease;
 }
-@keyframes navDockIn{
-  from{opacity:0;transform:translateY(-50%) translateX(-40px) scale(.96)}
-  to{opacity:1;transform:translateY(-50%) translateX(0) scale(1)}
+.site-header .primary-nav>a:hover,
+.site-header .nav-more>button:hover,
+.site-header .nav-more:focus-within>button{background:rgba(255,255,255,.1);color:#fff}
+.site-header .primary-nav>a.is-active{background:rgba(255,255,255,.08);color:#fff}
+
+/* little indicator pill (like the running-app mark on Windows) */
+.site-header .primary-nav>a::after,
+.site-header .nav-more>button::after{
+  content:'';position:absolute;left:50%;right:auto;bottom:2px;top:auto;
+  width:0;height:3px;border-radius:3px;background:var(--brand);
+  transform:translateX(-50%);transition:width .18s ease,height .18s ease;
+}
+.site-header .primary-nav>a:hover::after,
+.site-header .nav-more>button:hover::after{width:12px;transform:translateX(-50%)}
+.site-header .primary-nav>a.is-active::after{width:22px}
+
+.site-header .nav-ico{
+  display:flex;align-items:center;justify-content:center;width:22px;font-size:1.05rem;line-height:1;
+}
+.site-header .nav-more>button::before{
+  content:'⋯';display:flex;align-items:center;justify-content:center;width:22px;font-size:1.3rem;line-height:1;font-weight:700;
+}
+
+/* "More" flyout */
+.site-header .nav-more-menu{
+  background:rgba(26,25,21,.97);color:#f3efe0;border:1px solid rgba(255,255,255,.16);
+  border-radius:12px;box-shadow:0 16px 36px rgba(0,0,0,.4);top:calc(100% + 14px);padding:8px;
+}
+.site-header .nav-more-menu::before{content:'';position:absolute;left:0;right:0;top:-16px;height:16px}
+.site-header .nav-more-menu a{border-radius:8px;border-left:0;color:#e9e5d3;padding:9px 12px}
+.site-header .nav-more-menu a:hover{background:rgba(255,255,255,.1);color:#fff}
+.site-header .nav-more-menu hr{border:none;border-top:1px solid rgba(255,255,255,.14);margin:6px 4px}
+
+/* system tray clock */
+.site-header .nav-cta{gap:6px}
+.site-header .tray-clock{
+  display:flex;flex-direction:column;align-items:flex-end;justify-content:center;line-height:1.15;
+  padding:4px 10px;border-radius:9px;color:#e9e5d3;font-family:var(--f-head);font-size:.74rem;font-weight:600;
+  white-space:nowrap;cursor:default;
+}
+.site-header .tray-clock:hover{background:rgba(255,255,255,.1)}
+.site-header .tray-clock small{font-size:.62rem;color:#a9a392;font-weight:500}
+
+.site-header .btn-sm{border-radius:9px;border:0;box-shadow:none;padding:9px 16px}
+.site-header .btn-sm:hover{transform:none;box-shadow:none;background:#ffd95e}
+.site-header .menu-toggle{border-radius:9px;border:0;box-shadow:none}
+
+/* ---------- DOCKED: vertical taskbar on the LEFT ---------- */
+.site-header.docked{
+  position:fixed;top:0;left:0;bottom:0;margin:0;width:64px;height:100vh;
+  border-radius:0 16px 16px 0;border-left:0;
+  background:rgba(26,25,21,.96);
+  box-shadow:6px 0 28px rgba(0,0,0,.35);
+  animation:taskbarDock .35s ease both;
+}
+@keyframes taskbarDock{
+  from{transform:translateX(-100%);opacity:.4}
+  to{transform:translateX(0);opacity:1}
 }
 .site-header.docked:hover,
-.site-header.docked:focus-within{width:224px}
+.site-header.docked:focus-within{width:220px}
 
 .site-header.docked .container.nav-wrap{
   flex-direction:column;align-items:stretch;justify-content:flex-start;
-  gap:8px;padding:12px 10px;min-height:0;
+  height:100%;gap:6px;padding:12px 9px;min-height:0;
 }
-.site-header.docked .brand{gap:12px;padding-bottom:10px;border-bottom:var(--bw) dashed var(--line)}
+.site-header.docked .brand{gap:12px;padding:0 0 10px 5px;border-bottom:1px solid rgba(255,255,255,.12)}
 .site-header.docked .brand > div:last-child{
   max-width:0;opacity:0;overflow:hidden;white-space:nowrap;transition:max-width .3s ease,opacity .2s ease;
 }
 .site-header.docked:hover .brand > div:last-child,
 .site-header.docked:focus-within .brand > div:last-child{max-width:150px;opacity:1}
 
-.site-header.docked .primary-nav{
-  flex-direction:column;align-items:stretch;gap:4px;
-}
+.site-header.docked .primary-nav{flex-direction:column;align-items:stretch;gap:3px}
 .site-header.docked .primary-nav>a,
 .site-header.docked .nav-more>button{
-  width:100%;padding:0;height:46px;gap:12px;align-items:center;justify-content:flex-start;
-  font-size:.82rem;border-radius:999px;
+  width:100%;height:44px;padding:0;gap:0;border-radius:10px;
+  align-items:center;justify-content:flex-start;font-size:.82rem;
 }
-.site-header.docked .primary-nav>a::after,
-.site-header.docked .nav-more>button::after{display:none}
-.site-header.docked .primary-nav>a:hover,
-.site-header.docked .nav-more>button:hover{background:var(--brand-tint)}
-.site-header.docked .nav-ico{
-  display:flex;align-items:center;justify-content:center;flex:0 0 46px;width:46px;height:46px;
-  font-size:1.2rem;line-height:1;
-}
+.site-header.docked .nav-ico{flex:0 0 46px;width:46px;height:44px;font-size:1.2rem}
 .site-header.docked .nav-label{
   max-width:0;opacity:0;overflow:hidden;white-space:nowrap;transition:max-width .3s ease,opacity .2s ease;
 }
 .site-header.docked:hover .nav-label,
 .site-header.docked:focus-within .nav-label{max-width:140px;opacity:1}
 
-/* "More ▾" button → icon */
+/* indicator moves to the left edge, like a left-docked Windows taskbar */
+.site-header.docked .primary-nav>a::after,
+.site-header.docked .nav-more>button::after{
+  left:0;right:auto;top:50%;bottom:auto;width:3px;height:0;transform:translateY(-50%);
+}
+.site-header.docked .primary-nav>a:hover::after,
+.site-header.docked .nav-more>button:hover::after{width:3px;height:16px;transform:translateY(-50%)}
+.site-header.docked .primary-nav>a.is-active::after{width:3px;height:22px}
+
+/* "More" in the dock */
 .site-header.docked .nav-more{width:100%}
 .site-header.docked .nav-more>button{font-size:0}
-.site-header.docked .nav-more>button::before{
-  content:'⋯';font-size:1.5rem;font-weight:700;display:flex;align-items:center;justify-content:center;
-  flex:0 0 46px;width:46px;height:46px;line-height:1;
-}
+.site-header.docked .nav-more>button::before{flex:0 0 46px;width:46px;height:44px;font-size:1.5rem}
 .site-header.docked:hover .nav-more>button,
 .site-header.docked:focus-within .nav-more>button{font-size:.82rem}
-.site-header.docked:hover .nav-more>button::before,
-.site-header.docked:focus-within .nav-more>button::before{font-size:1.5rem}
 
-/* flyout opens to the right of the dock, growing upward */
 .site-header.docked .nav-more-menu{
-  left:calc(100% + 14px);right:auto;top:auto;bottom:-8px;width:260px;
-  max-height:72vh;overflow:auto;
+  left:calc(100% + 14px);right:auto;top:auto;bottom:-8px;width:260px;max-height:72vh;overflow:auto;
 }
-.site-header.docked .nav-more-menu::before{
-  content:'';position:absolute;left:-16px;top:0;bottom:0;width:16px;
-}
+.site-header.docked .nav-more-menu::before{left:-16px;right:auto;top:0;bottom:0;width:16px;height:auto}
 
-/* Apply button → round icon button */
-.site-header.docked .nav-cta{width:100%;padding-top:10px;border-top:var(--bw) dashed var(--line)}
+/* tray + Apply sit at the bottom of the dock */
+.site-header.docked .nav-cta{
+  margin-top:auto;flex-direction:column;align-items:stretch;gap:6px;
+  padding-top:10px;border-top:1px solid rgba(255,255,255,.12);
+}
+.site-header.docked .tray-clock{align-items:center;padding:6px 0}
+.site-header.docked .tc-ap,
+.site-header.docked .tc-date{display:none}
+.site-header.docked:hover .tc-date,
+.site-header.docked:focus-within .tc-date{display:block}
 .site-header.docked .nav-cta .btn{
-  width:100%;height:46px;padding:0;font-size:0;border-radius:999px;justify-content:flex-start;gap:0;
+  width:100%;height:44px;padding:0;font-size:0;border-radius:10px;justify-content:flex-start;gap:0;
 }
 .site-header.docked .nav-cta .btn::before{
-  content:'✍';font-size:1.1rem;display:flex;align-items:center;justify-content:center;flex:0 0 42px;width:42px;
+  content:'✍';font-size:1.15rem;display:flex;align-items:center;justify-content:center;flex:0 0 46px;width:46px;
 }
 .site-header.docked:hover .nav-cta .btn,
 .site-header.docked:focus-within .nav-cta .btn{font-size:.8rem}
 .site-header.docked .menu-toggle{display:none}
 
-/* short screens: tighten the dock */
-@media (max-height:640px){
+/* short screens */
+@media (max-height:700px){
+  .site-header.docked .container.nav-wrap{gap:3px;padding:8px 9px}
   .site-header.docked .primary-nav>a,
   .site-header.docked .nav-more>button,
   .site-header.docked .nav-cta .btn{height:38px}
-  .site-header.docked .nav-ico{height:38px;flex-basis:40px;width:40px;font-size:1.05rem}
-  .site-header.docked .container.nav-wrap{gap:4px;padding:8px 10px}
+  .site-header.docked .nav-ico,
+  .site-header.docked .nav-more>button::before{height:38px}
+  .site-header.docked .tray-clock{padding:2px 0}
 }
 
-/* ---------- MOBILE / TABLET: stays a top pill ---------- */
+/* ---------- narrower desktop: keep the top bar tidy ---------- */
+@media (max-width:1240px){
+  .site-header .tray-clock{display:none}
+  .site-header .primary-nav>a,.site-header .nav-more>button{padding:8px 9px}
+}
+@media (max-width:1100px){
+  .site-header .brand > div:last-child{display:none}
+  .site-header .nav-ico{display:none}
+}
+
+/* ---------- MOBILE / TABLET: taskbar stays on top ---------- */
 @media (max-width:900px){
-  .site-header{width:calc(100% - 20px);top:10px;margin-top:10px}
+  .site-header{width:calc(100% - 20px);top:8px;margin-top:8px}
   .site-header .container.nav-wrap{padding:0 10px}
-  .site-header .primary-nav{border:var(--bw) solid var(--ink);border-radius:24px;top:calc(100% + 10px);box-shadow:var(--hard-sm)}
+  .site-header .nav-ico{display:flex}
+  .site-header .primary-nav{
+    background:rgba(26,25,21,.98);border:1px solid rgba(255,255,255,.16);border-radius:14px;
+    top:calc(100% + 8px);padding:10px;box-shadow:0 16px 36px rgba(0,0,0,.4);gap:2px;
+  }
+  .site-header .primary-nav>a{padding:10px 12px}
+  .site-header .nav-more-menu{
+    background:transparent;border:0;border-top:1px solid rgba(255,255,255,.14);border-radius:0;
+    box-shadow:none;padding:8px 0 0;margin-top:8px;top:auto;
+  }
+  .site-header .nav-more-menu::before{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   .site-header.docked{animation:none}
 }
+
+/* ===================================================================
+   ALL DEVICES (phone / iPad / desktop)
+   Same behaviour everywhere: taskbar on top -> docks LEFT on scroll.
+   Desktop  : full-height taskbar, expands on hover.
+   Tablet / phone : slim floating taskbar on the left, TAP the logo to expand.
+   =================================================================== */
+@keyframes taskbarDockSm{
+  from{transform:translateY(-50%) translateX(-120%);opacity:.4}
+  to{transform:translateY(-50%) translateX(0);opacity:1}
+}
+@media (max-width:1279px){
+  .site-header.docked{
+    top:50%;bottom:auto;left:max(6px,env(safe-area-inset-left));
+    height:auto;max-height:calc(100vh - 16px);max-height:calc(100dvh - 16px);
+    width:54px;border-radius:18px;border:1px solid rgba(255,255,255,.16);
+    transform:translateY(-50%);overflow:visible;
+    animation:taskbarDockSm .35s ease both;
+  }
+  /* hover is unreliable on touch: width/labels follow the .expanded class only */
+  .site-header.docked:hover,
+  .site-header.docked:focus-within{width:54px}
+  .site-header.docked.expanded{width:210px}
+  .site-header.docked:hover .nav-label,
+  .site-header.docked:focus-within .nav-label,
+  .site-header.docked:hover .brand > div:last-child,
+  .site-header.docked:focus-within .brand > div:last-child{max-width:0;opacity:0}
+  .site-header.docked.expanded .nav-label{max-width:130px;opacity:1}
+  .site-header.docked.expanded .brand > div:last-child{max-width:140px;opacity:1}
+  .site-header.docked .nav-more>button,
+  .site-header.docked:hover .nav-more>button,
+  .site-header.docked:focus-within .nav-more>button{font-size:0}
+  .site-header.docked.expanded .nav-more>button{font-size:.82rem}
+  .site-header.docked .nav-cta .btn,
+  .site-header.docked:hover .nav-cta .btn,
+  .site-header.docked:focus-within .nav-cta .btn{font-size:0}
+  .site-header.docked.expanded .nav-cta .btn{font-size:.8rem}
+
+  .site-header.docked .container.nav-wrap{height:auto;padding:8px 6px;gap:4px}
+  .site-header.docked .brand{padding-left:2px}
+  .site-header.docked .brand-mark{cursor:pointer}
+
+  /* undo the "mobile dropdown menu" styling while docked */
+  .site-header.docked .primary-nav{
+    display:flex !important;position:static;flex-direction:column;align-items:stretch;
+    background:none;border:0;box-shadow:none;padding:0;gap:2px;border-radius:0;
+  }
+  .site-header.docked .primary-nav>a{padding:0}
+  .site-header.docked .nav-ico{display:flex}
+  .site-header.docked .nav-more>button{display:flex}
+  .site-header.docked .nav-cta .btn{display:inline-flex}
+  .site-header.docked .nav-cta{margin-top:4px}
+  .site-header.docked .tray-clock{display:none}
+  .site-header.docked .menu-toggle{display:none}
+
+  /* "More" flyout: opens to the right of the dock, tap to open */
+  .site-header.docked .nav-more-menu{
+    position:absolute;left:calc(100% + 10px);right:auto;top:auto;bottom:-6px;
+    width:min(250px,calc(100vw - 96px));max-height:60vh;max-height:60dvh;overflow:auto;
+    background:rgba(26,25,21,.98);border:1px solid rgba(255,255,255,.16);border-radius:12px;
+    box-shadow:0 16px 36px rgba(0,0,0,.4);padding:8px;margin:0;
+    opacity:0;visibility:hidden;transform:translateX(-6px);
+  }
+  .site-header.docked .nav-more-menu.show{opacity:1;visibility:visible;transform:none}
+  .site-header.docked .nav-more:hover .nav-more-menu:not(.show),
+  .site-header.docked .nav-more:focus-within .nav-more-menu:not(.show){opacity:0;visibility:hidden}
+  .site-header.docked .nav-more-menu::before{display:none}
+  .site-header.docked .nav-more-menu a{padding:10px 12px}
+}
+/* phones in landscape / very short screens */
+@media (max-height:560px){
+  .site-header.docked .primary-nav>a,
+  .site-header.docked .nav-more>button,
+  .site-header.docked .nav-cta .btn{height:34px}
+  .site-header.docked .nav-ico,
+  .site-header.docked .nav-more>button::before{height:34px;font-size:1rem}
+  .site-header.docked .brand{display:none}
+  .site-header.docked .container.nav-wrap{padding:6px}
+}
+@media (prefers-reduced-motion:reduce){
+  .site-header.docked{animation:none}
+}
+
+/* ===================================================================
+   ORIGINAL COLOURS RESTORED (white · black ink · yellow, hard shadow)
+   Layout stays the same; only the dark colours are replaced.
+   =================================================================== */
+.site-header{
+  background:#fff;color:var(--ink);
+  -webkit-backdrop-filter:none;backdrop-filter:none;
+  border:var(--bw) solid var(--ink);box-shadow:var(--hard-sm);
+}
+.site-header .brand-mark{border:var(--bw) solid var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.site-header .brand-name{color:var(--ink)}
+.site-header .brand-sub{color:var(--muted)}
+.site-header .primary-nav>a,
+.site-header .nav-more>button{color:var(--ink-2);text-transform:uppercase;letter-spacing:.04em;font-weight:600;font-size:.78rem}
+.site-header .primary-nav>a:hover,
+.site-header .nav-more>button:hover,
+.site-header .nav-more:focus-within>button{background:var(--brand-tint);color:var(--ink)}
+.site-header .primary-nav>a.is-active{background:var(--brand-tint);color:var(--ink)}
+.site-header .primary-nav>a::after,
+.site-header .nav-more>button::after{background:var(--brand-deep)}
+.site-header .nav-more-menu{
+  background:#fff;color:var(--ink);border:var(--bw) solid var(--ink);box-shadow:var(--hard);
+}
+.site-header .nav-more-menu a{color:var(--ink);border-left:4px solid transparent;border-radius:0}
+.site-header .nav-more-menu a:hover{background:var(--brand-tint);border-left-color:var(--brand);color:var(--ink)}
+.site-header .nav-more-menu hr{border-top:var(--bw) solid var(--ink)}
+.site-header .tray-clock{color:var(--ink)}
+.site-header .tray-clock:hover{background:var(--brand-tint)}
+.site-header .tray-clock small{color:var(--muted)}
+.site-header .btn-sm{
+  background:var(--brand);color:var(--ink);border:var(--bw) solid var(--ink);box-shadow:var(--hard-sm);
+}
+.site-header .btn-sm:hover{background:var(--brand);transform:translate(4px,4px);box-shadow:0 0 0 var(--ink)}
+.site-header .menu-toggle{background:var(--brand);border:var(--bw) solid var(--ink);box-shadow:3px 3px 0 var(--ink)}
+
+/* docked */
+.site-header.docked{background:#fff;box-shadow:var(--hard);border:var(--bw) solid var(--ink)}
+.site-header.docked .brand{border-bottom:var(--bw) dashed var(--line)}
+.site-header.docked .nav-cta{border-top:var(--bw) dashed var(--line)}
+.site-header.docked .primary-nav>a:hover,
+.site-header.docked .nav-more>button:hover{background:var(--brand-tint)}
+.site-header.docked .nav-cta .btn:hover{transform:none;box-shadow:var(--hard-sm)}
+
+/* tablet / phone */
+@media (max-width:900px){
+  .site-header .primary-nav{background:#fff;border:var(--bw) solid var(--ink);box-shadow:var(--hard-sm)}
+  .site-header .nav-more-menu{background:transparent;border:0;border-top:var(--bw) solid var(--ink);box-shadow:none}
+}
+@media (max-width:1279px){
+  .site-header.docked{border:var(--bw) solid var(--ink)}
+  .site-header.docked .primary-nav{background:none;border:0;box-shadow:none}
+  .site-header.docked .nav-more-menu{
+    background:#fff;border:var(--bw) solid var(--ink);box-shadow:var(--hard);
+  }
+}
+
+/* ===================================================================
+   POLISH — tidy top bar (no wrapping), brand name on phone/iPad
+   =================================================================== */
+.site-header .brand-name,.site-header .brand-sub,
+.site-header .primary-nav>a,.site-header .nav-more>button,
+.site-header .nav-cta .btn,.site-header .tray-clock{white-space:nowrap}
+.site-header:not(.docked) .brand-sub{display:none}
+.site-header .brand-name{font-size:1.05rem;letter-spacing:-.02em}
+.site-header .primary-nav{flex:1;justify-content:center}
+.site-header .nav-cta .btn{flex-shrink:0}
+.site-header .brand{flex-shrink:0}
+@media (max-width:900px){
+  .site-header .brand > div:last-child{display:block}
+  .site-header:not(.docked) .brand-name{font-size:1.05rem}
+  .site-header .nav-wrap{justify-content:space-between}
+}
+@media (max-width:1279px){
+  .site-header.docked .brand > div:last-child{display:block}
+  .site-header.docked .brand-sub{display:block}
+}
+
+.site-header:not(.docked) .tray-clock{display:none}
+.site-header .primary-nav>a,.site-header .nav-more>button{padding:10px 10px}
+
+.site-header:not(.docked) .nav-more>button::before{display:none}
+.site-header:not(.docked) .primary-nav>a,.site-header:not(.docked) .nav-more>button{padding:10px 9px}
+.site-header .container.nav-wrap{padding-right:12px}
 </style>
 </head>
 
@@ -1193,7 +1430,7 @@ img{max-width:100%;display:block}
   <button id="closeBanner" type="button" aria-label="Close announcement">✕</button>
 </div>
 
-<!-- ═══ HEADER (floating pill → left dock on scroll) ═══ -->
+<!-- ═══ HEADER (Windows-style taskbar → docks left on scroll) ═══ -->
 <header class="site-header">
   <div class="container nav-wrap">
     <a class="brand" href="index.html" aria-label="DGBPLabZ home">
@@ -1780,13 +2017,13 @@ img{max-width:100%;display:block}
   });
 })();
 
-/* ===== Floating pill navbar → docks LEFT on scroll ===== */
+/* ===== Windows-taskbar navbar → docks LEFT on scroll ===== */
 (function () {
   var header = document.querySelector('.site-header');
   var nav = document.getElementById('navMenu');
   if (!header || !nav) return;
 
-  /* 1) give every top-level link an icon + label (icon shows only when docked) */
+  /* 1) icon + label for every top-level link */
   var ICONS = {
     'carrer.html': '🧪',
     'mentorship.html': '🎓',
@@ -1796,8 +2033,11 @@ img{max-width:100%;display:block}
     'gallery.html': '🖼️',
     '#ai-search': '🔍'
   };
+  var current = '';
+  try { current = decodeURIComponent(location.pathname.split('/').pop()); } catch (e) {}
   Array.prototype.forEach.call(nav.children, function (a) {
     if (a.tagName !== 'A') return;
+    var href = a.getAttribute('href');
     var label = a.textContent.trim();
     a.setAttribute('title', label);
     a.setAttribute('aria-label', label);
@@ -1805,24 +2045,57 @@ img{max-width:100%;display:block}
     var ico = document.createElement('span');
     ico.className = 'nav-ico';
     ico.setAttribute('aria-hidden', 'true');
-    ico.textContent = ICONS[a.getAttribute('href')] || '•';
+    ico.textContent = ICONS[href] || '•';
     var lab = document.createElement('span');
     lab.className = 'nav-label';
     lab.textContent = label;
     a.appendChild(ico);
     a.appendChild(lab);
+    if (current && href === current) {
+      a.classList.add('is-active');
+      a.setAttribute('aria-current', 'page');
+    }
   });
   var moreBtn = document.getElementById('moreTrigger');
   if (moreBtn) moreBtn.setAttribute('title', 'More');
 
-  /* 2) spacer keeps the page from jumping when the header leaves normal flow */
+  /* 2) system-tray clock (IST) */
+  var cta = header.querySelector('.nav-cta');
+  var clock = document.createElement('div');
+  clock.className = 'tray-clock';
+  clock.innerHTML = '<span class="tc-time"><span class="tc-hm"></span> <span class="tc-ap"></span></span><small class="tc-date"></small>';
+  if (cta) cta.insertBefore(clock, cta.firstChild);
+  var hm = clock.querySelector('.tc-hm'), ap = clock.querySelector('.tc-ap'), dt = clock.querySelector('.tc-date');
+  function tick() {
+    var now = new Date();
+    var parts = new Intl.DateTimeFormat('en-IN', {
+      timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', hour12: true
+    }).formatToParts(now);
+    var h = '', m = '', p = '';
+    parts.forEach(function (x) {
+      if (x.type === 'hour') h = x.value;
+      else if (x.type === 'minute') m = x.value;
+      else if (x.type === 'dayPeriod') p = x.value.toUpperCase();
+    });
+    hm.textContent = h + ':' + m;
+    ap.textContent = p;
+    dt.textContent = new Intl.DateTimeFormat('en-IN', {
+      timeZone: 'Asia/Kolkata', day: '2-digit', month: 'short', year: 'numeric'
+    }).format(now);
+    clock.setAttribute('title', 'India Standard Time');
+  }
+  tick();
+  setInterval(tick, 15000);
+
+  /* 3) spacer keeps the page from jumping when the bar leaves normal flow */
   var spacer = document.createElement('div');
   spacer.style.display = 'none';
   header.parentNode.insertBefore(spacer, header);
 
-  /* 3) dock on scroll (with hysteresis so it doesn't flicker) */
+  /* 4) dock to the left on scroll (hysteresis avoids flicker).
+        Works on every screen size (phone, iPad, desktop). */
   var docked = false, ticking = false;
-  var DOCK_AT = 90, UNDOCK_AT = 20, MIN_WIDTH = 1100;
+  var DOCK_AT = 90, UNDOCK_AT = 20, MIN_WIDTH = 0;
 
   function update() {
     ticking = false;
@@ -1831,11 +2104,12 @@ img{max-width:100%;display:block}
     var should = canDock && (docked ? y > UNDOCK_AT : y > DOCK_AT);
     if (should === docked) return;
     if (should) {
-      spacer.style.height = (header.offsetHeight + 14) + 'px';
+      spacer.style.height = (header.offsetHeight + 10) + 'px';
       spacer.style.display = 'block';
       header.classList.add('docked');
     } else {
       header.classList.remove('docked');
+      header.classList.remove('expanded');
       spacer.style.display = 'none';
     }
     docked = should;
@@ -1846,6 +2120,35 @@ img{max-width:100%;display:block}
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
   update();
+
+  /* 5) tablet / phone: tap the logo to expand or collapse the docked taskbar */
+  var brand = header.querySelector('.brand');
+  function setExpanded(on) {
+    header.classList.toggle('expanded', !!on);
+    if (!on) {
+      var mm = document.getElementById('moreMenu');
+      if (mm && header.classList.contains('docked') && window.innerWidth < 1280) mm.classList.remove('show');
+    }
+  }
+  if (brand) {
+    brand.addEventListener('click', function (e) {
+      if (header.classList.contains('docked') && window.innerWidth < 1280) {
+        e.preventDefault();
+        setExpanded(!header.classList.contains('expanded'));
+      }
+    });
+  }
+  nav.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('a')) setExpanded(false);
+  });
+  document.addEventListener('click', function (e) {
+    if (!header.contains(e.target)) setExpanded(false);
+  });
+  window.addEventListener('scroll', function () {
+    if (header.classList.contains('expanded') && window.innerWidth < 1280) {
+      /* keep it open while scrolling only if the user is touching it */
+    }
+  }, { passive: true });
 })();
 
 /* ===== Widget + Side event banner ===== */
