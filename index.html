@@ -355,6 +355,7 @@
    NEW: DGBP company seal (.dgbp-seal) — large rubber-stamp style
    NEW: AI Search section (#ai-search, .ais-*)
    NEW: Credential registry section (.credential-*)
+   NEW: Floating pill navbar that docks to the left on scroll
    =================================================================== */
 :root{
   --bg:#ffffff;
@@ -1048,6 +1049,137 @@ img{max-width:100%;display:block}
   .marquee-track{animation:none!important}
   *{transition:none!important}
 }
+
+/* ===================================================================
+   FLOATING PILL NAVBAR  →  docks to the LEFT when you scroll
+   =================================================================== */
+
+/* ---------- PILL (top / not scrolled) ---------- */
+.site-header{
+  position:sticky;
+  top:14px;
+  z-index:200;
+  width:min(1180px,calc(100% - 32px));
+  margin:14px auto 0;
+  background:#fff;
+  border:var(--bw) solid var(--ink);
+  border-radius:999px;
+  box-shadow:var(--hard-sm);
+  transition:width .3s ease,box-shadow .3s ease;
+}
+.site-header .container.nav-wrap{max-width:none;padding:0 14px 0 14px;min-height:64px}
+.site-header .brand-mark{border-radius:50%}
+.site-header .primary-nav>a,
+.site-header .nav-more>button{padding:10px 11px}
+.site-header .primary-nav>a::after,
+.site-header .nav-more>button::after{left:11px;right:11px}
+.site-header .btn-sm{border-radius:999px}
+.site-header .menu-toggle{border-radius:50%}
+.site-header .nav-ico{display:none}
+
+/* ---------- DOCKED (scrolled, desktop) ---------- */
+.site-header.docked{
+  position:fixed;
+  top:50%;
+  left:16px;
+  margin:0;
+  width:68px;
+  transform:translateY(-50%);
+  border-radius:36px;
+  box-shadow:var(--hard);
+  animation:navDockIn .35s ease both;
+}
+@keyframes navDockIn{
+  from{opacity:0;transform:translateY(-50%) translateX(-40px) scale(.96)}
+  to{opacity:1;transform:translateY(-50%) translateX(0) scale(1)}
+}
+.site-header.docked:hover,
+.site-header.docked:focus-within{width:224px}
+
+.site-header.docked .container.nav-wrap{
+  flex-direction:column;align-items:stretch;justify-content:flex-start;
+  gap:8px;padding:12px 10px;min-height:0;
+}
+.site-header.docked .brand{gap:12px;padding-bottom:10px;border-bottom:var(--bw) dashed var(--line)}
+.site-header.docked .brand > div:last-child{
+  max-width:0;opacity:0;overflow:hidden;white-space:nowrap;transition:max-width .3s ease,opacity .2s ease;
+}
+.site-header.docked:hover .brand > div:last-child,
+.site-header.docked:focus-within .brand > div:last-child{max-width:150px;opacity:1}
+
+.site-header.docked .primary-nav{
+  flex-direction:column;align-items:stretch;gap:4px;
+}
+.site-header.docked .primary-nav>a,
+.site-header.docked .nav-more>button{
+  width:100%;padding:0;height:46px;gap:12px;align-items:center;justify-content:flex-start;
+  font-size:.82rem;border-radius:999px;
+}
+.site-header.docked .primary-nav>a::after,
+.site-header.docked .nav-more>button::after{display:none}
+.site-header.docked .primary-nav>a:hover,
+.site-header.docked .nav-more>button:hover{background:var(--brand-tint)}
+.site-header.docked .nav-ico{
+  display:flex;align-items:center;justify-content:center;flex:0 0 46px;width:46px;height:46px;
+  font-size:1.2rem;line-height:1;
+}
+.site-header.docked .nav-label{
+  max-width:0;opacity:0;overflow:hidden;white-space:nowrap;transition:max-width .3s ease,opacity .2s ease;
+}
+.site-header.docked:hover .nav-label,
+.site-header.docked:focus-within .nav-label{max-width:140px;opacity:1}
+
+/* "More ▾" button → icon */
+.site-header.docked .nav-more{width:100%}
+.site-header.docked .nav-more>button{font-size:0}
+.site-header.docked .nav-more>button::before{
+  content:'⋯';font-size:1.5rem;font-weight:700;display:flex;align-items:center;justify-content:center;
+  flex:0 0 46px;width:46px;height:46px;line-height:1;
+}
+.site-header.docked:hover .nav-more>button,
+.site-header.docked:focus-within .nav-more>button{font-size:.82rem}
+.site-header.docked:hover .nav-more>button::before,
+.site-header.docked:focus-within .nav-more>button::before{font-size:1.5rem}
+
+/* flyout opens to the right of the dock, growing upward */
+.site-header.docked .nav-more-menu{
+  left:calc(100% + 14px);right:auto;top:auto;bottom:-8px;width:260px;
+  max-height:72vh;overflow:auto;
+}
+.site-header.docked .nav-more-menu::before{
+  content:'';position:absolute;left:-16px;top:0;bottom:0;width:16px;
+}
+
+/* Apply button → round icon button */
+.site-header.docked .nav-cta{width:100%;padding-top:10px;border-top:var(--bw) dashed var(--line)}
+.site-header.docked .nav-cta .btn{
+  width:100%;height:46px;padding:0;font-size:0;border-radius:999px;justify-content:flex-start;gap:0;
+}
+.site-header.docked .nav-cta .btn::before{
+  content:'✍';font-size:1.1rem;display:flex;align-items:center;justify-content:center;flex:0 0 42px;width:42px;
+}
+.site-header.docked:hover .nav-cta .btn,
+.site-header.docked:focus-within .nav-cta .btn{font-size:.8rem}
+.site-header.docked .menu-toggle{display:none}
+
+/* short screens: tighten the dock */
+@media (max-height:640px){
+  .site-header.docked .primary-nav>a,
+  .site-header.docked .nav-more>button,
+  .site-header.docked .nav-cta .btn{height:38px}
+  .site-header.docked .nav-ico{height:38px;flex-basis:40px;width:40px;font-size:1.05rem}
+  .site-header.docked .container.nav-wrap{gap:4px;padding:8px 10px}
+}
+
+/* ---------- MOBILE / TABLET: stays a top pill ---------- */
+@media (max-width:900px){
+  .site-header{width:calc(100% - 20px);top:10px;margin-top:10px}
+  .site-header .container.nav-wrap{padding:0 10px}
+  .site-header .primary-nav{border:var(--bw) solid var(--ink);border-radius:24px;top:calc(100% + 10px);box-shadow:var(--hard-sm)}
+}
+@media (prefers-reduced-motion:reduce){
+  .site-header.docked{animation:none}
+}
 </style>
 </head>
 
@@ -1061,7 +1193,7 @@ img{max-width:100%;display:block}
   <button id="closeBanner" type="button" aria-label="Close announcement">✕</button>
 </div>
 
-<!-- ═══ HEADER ═══ -->
+<!-- ═══ HEADER (floating pill → left dock on scroll) ═══ -->
 <header class="site-header">
   <div class="container nav-wrap">
     <a class="brand" href="index.html" aria-label="DGBPLabZ home">
@@ -1646,6 +1778,74 @@ img{max-width:100%;display:block}
       trigger.setAttribute('aria-expanded','false');
     }
   });
+})();
+
+/* ===== Floating pill navbar → docks LEFT on scroll ===== */
+(function () {
+  var header = document.querySelector('.site-header');
+  var nav = document.getElementById('navMenu');
+  if (!header || !nav) return;
+
+  /* 1) give every top-level link an icon + label (icon shows only when docked) */
+  var ICONS = {
+    'carrer.html': '🧪',
+    'mentorship.html': '🎓',
+    'Learning Curriculum.html': '📚',
+    'blog.html': '✍️',
+    'announcement page.html': '📢',
+    'gallery.html': '🖼️',
+    '#ai-search': '🔍'
+  };
+  Array.prototype.forEach.call(nav.children, function (a) {
+    if (a.tagName !== 'A') return;
+    var label = a.textContent.trim();
+    a.setAttribute('title', label);
+    a.setAttribute('aria-label', label);
+    a.textContent = '';
+    var ico = document.createElement('span');
+    ico.className = 'nav-ico';
+    ico.setAttribute('aria-hidden', 'true');
+    ico.textContent = ICONS[a.getAttribute('href')] || '•';
+    var lab = document.createElement('span');
+    lab.className = 'nav-label';
+    lab.textContent = label;
+    a.appendChild(ico);
+    a.appendChild(lab);
+  });
+  var moreBtn = document.getElementById('moreTrigger');
+  if (moreBtn) moreBtn.setAttribute('title', 'More');
+
+  /* 2) spacer keeps the page from jumping when the header leaves normal flow */
+  var spacer = document.createElement('div');
+  spacer.style.display = 'none';
+  header.parentNode.insertBefore(spacer, header);
+
+  /* 3) dock on scroll (with hysteresis so it doesn't flicker) */
+  var docked = false, ticking = false;
+  var DOCK_AT = 90, UNDOCK_AT = 20, MIN_WIDTH = 1100;
+
+  function update() {
+    ticking = false;
+    var y = window.pageYOffset || document.documentElement.scrollTop;
+    var canDock = window.innerWidth >= MIN_WIDTH;
+    var should = canDock && (docked ? y > UNDOCK_AT : y > DOCK_AT);
+    if (should === docked) return;
+    if (should) {
+      spacer.style.height = (header.offsetHeight + 14) + 'px';
+      spacer.style.display = 'block';
+      header.classList.add('docked');
+    } else {
+      header.classList.remove('docked');
+      spacer.style.display = 'none';
+    }
+    docked = should;
+  }
+  function onScroll() {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
 })();
 
 /* ===== Widget + Side event banner ===== */
