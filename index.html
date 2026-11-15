@@ -1466,12 +1466,62 @@ img{max-width:100%;display:block}
 }
 
 @media (min-width:901px){.school-banner{max-width:800px}}
+
+/* ===================================================================
+   SWAPPED SIDES:  navbar dock -> RIGHT   |   Special Day panel -> LEFT
+   =================================================================== */
+@keyframes taskbarDockR{from{transform:translateX(100%);opacity:.4}to{transform:translateX(0);opacity:1}}
+@keyframes taskbarDockSmR{
+  from{transform:translateY(-50%) translateX(120%);opacity:.4}
+  to{transform:translateY(-50%) translateX(0);opacity:1}
+}
+
+/* ---- navbar dock on the right (desktop) ---- */
+.site-header.docked{
+  left:auto;right:0;border-radius:16px 0 0 16px;
+  box-shadow:-6px 6px 0 var(--ink);animation:taskbarDockR .35s ease both;
+}
+.site-header.docked .primary-nav>a::after,
+.site-header.docked .nav-more>button::after{left:auto;right:0}
+.site-header.docked .nav-more-menu{left:auto;right:calc(100% + 14px)}
+.site-header.docked .nav-more-menu::before{left:auto;right:-16px}
+
+/* ---- tablet / phone dock on the right ---- */
+@media (max-width:1279px){
+  .site-header.docked{
+    left:auto;right:max(6px,env(safe-area-inset-right));border-radius:18px;
+    box-shadow:var(--hard-sm);animation:taskbarDockSmR .35s ease both;
+  }
+  .site-header.docked .nav-more-menu{left:auto;right:calc(100% + 10px)}
+}
+@media (prefers-reduced-motion:reduce){.site-header.docked{animation:none}}
+
+/* ---- Special Day panel on the left ---- */
+.event-rail{right:auto;left:0;flex-direction:row-reverse}
+.event-rail.collapsed{transform:translateX(-262px)}
+.rail-tab{
+  border-left:var(--bw) solid var(--ink);border-right:var(--bw) solid var(--ink);
+  border-left-width:0;box-shadow:4px 4px 0 var(--ink);
+}
+.rail-panel{
+  border-right:var(--bw) solid var(--ink);border-left:none;box-shadow:6px 6px 0 var(--ink);
+}
+@media (max-width:700px){
+  .event-rail.collapsed{transform:translateX(-232px)}
+}
+
+/* keep the timer + banner clear of the open Special Day panel */
+@media (min-width:1320px){
+  .widget-row{transition:margin-left .28s ease}
+  body.rail-open .widget-row{margin-left:300px}
+}
+@media (min-width:901px){.school-banner{max-width:900px}}
+
+.event-rail.collapsed .rail-panel{box-shadow:none}
 </style>
 </head>
 
 <body>
-
-
 
 <!-- ═══ ANNOUNCEMENT BAR ═══ -->
 <div class="announce" id="termsBanner">
@@ -2322,6 +2372,7 @@ img{max-width:100%;display:block}
   /* side banner open/close — open by default on wide screens, tab-only on small ones */
   function setRail(open) {
     rail.classList.toggle("collapsed", !open);
+    document.body.classList.toggle("rail-open", !!open);
     railTab.setAttribute("aria-expanded", open ? "true" : "false");
   }
   setRail(window.innerWidth >= 1320);
