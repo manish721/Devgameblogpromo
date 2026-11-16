@@ -2407,19 +2407,17 @@ img{max-width:100%;display:block}
   setInterval(changeQuote, 5000);
 })();
 
-/* ===== AI Search (site-wide index, runs in the browser) ===== */
+/* ===== AI Search v4 (site-wide index, runs in the browser) ===== */
 (function () {
   "use strict";
 
-  /* Use the current origin so it works on the live site, previews and localhost.
-     Falls back to the production domain if opened from a file. */
   var FALLBACK = "https://devgameblogpromo.vercel.app";
   var ORIGIN = /^https?:$/.test(location.protocol) ? location.origin : FALLBACK;
   var START = ORIGIN + "/";
   var MAX_PAGES = 350;
   var CONCURRENCY = 5;
-  var CACHE_KEY = "dgbp_site_search_index_v3";
-  var CACHE_TTL = 24 * 60 * 60 * 1000; /* auto-refresh after 24h */
+  var CACHE_KEY = "dgbp_site_search_index_v4";
+  var CACHE_TTL = 24 * 60 * 60 * 1000;
   var SKIP_EXT = /\.(?:jpg|jpeg|png|gif|webp|svg|ico|css|js|mjs|map|woff2?|ttf|eot|pdf|zip|rar|mp4|webm|mp3|xml)(?:$|[?#])/i;
   var NOISE = "script,style,noscript,svg,nav,footer,header,form,button,iframe,[aria-hidden='true'],#ai-search,.dgbp-mini-widget,.event-rail,.announce,.marquee-outer";
 
@@ -2430,7 +2428,9 @@ img{max-width:100%;display:block}
   var pages = [];
   var scanning = false;
   var autoStarted = false;
+  var indexedFor = null, vocab = new Map(), vocabList = [], pool = [];
 
+  /* ---------- crawl ---------- */
   function normalizeUrl(raw, base) {
     try {
       var u = new URL(raw, base || START);
@@ -2438,7 +2438,8 @@ img{max-width:100%;display:block}
       u.hash = "";
       u.search = "";
       if (SKIP_EXT.test(u.pathname)) return null;
-      if (u.pathname === "/index.html") u.pathname = "/";
+      u.pathname = u.pathname.replace(/\.html$/i, "");          /* /Report.html and /Report are one page */
+      if (u.pathname === "/index") u.pathname = "/";
       if (u.pathname !== "/" && u.pathname.slice(-1) === "/") u.pathname = u.pathname.slice(0, -1);
       return u.href;
     } catch (e) { return null; }
@@ -2456,14 +2457,12 @@ img{max-width:100%;display:block}
   function hideProgress() { $("aisProgress").style.display = "none"; }
 
   function extractPage(doc, url) {
-    /* collect links BEFORE stripping nav/header/footer, so the crawl can discover every page */
     var links = [];
     doc.querySelectorAll("a[href]").forEach(function (a) {
       var n = normalizeUrl(a.getAttribute("href"), url);
       if (n) links.push(n);
     });
     doc.querySelectorAll(NOISE).forEach(function (el) { el.remove(); });
-    /* mark block boundaries so sentences do not run together when text is flattened */
     doc.querySelectorAll("h1,h2,h3,h4,h5,h6,p,li,td,th,tr,blockquote,dt,dd,figcaption,label,summary").forEach(function (el) { el.after(doc.createTextNode(" \u00b6 ")); });
     doc.querySelectorAll("div,section,article,small,a,span,b,strong,em").forEach(function (el) { el.after(doc.createTextNode(" ")); });
     var t = doc.querySelector("title");
@@ -2513,6 +2512,16 @@ img{max-width:100%;display:block}
     }, Promise.resolve()).then(function () { return found; });
   }
 
+  function saveCache() {
+    [15000, 5000].some(function (cap) {
+      try {
+        localStorage.setItem(CACHE_KEY, JSON.stringify({ savedAt: Date.now(), origin: ORIGIN,
+          pages: pages.map(function (p) { return { url: p.url, title: p.title, description: p.description, headings: p.headings, text: p.text.slice(0, cap) }; }) }));
+        return true;
+      } catch (e) { return false; }
+    });
+  }
+
   async function scanWebsite() {
     if (scanning) return;
     scanning = true;
@@ -2533,7 +2542,8 @@ img{max-width:100%;display:block}
         try {
           var html = await fetchText(url);
           var doc = new DOMParser().parseFromString(html, "text/html");
-          return extractPage(doc, url);
+          var pg = extractPage(doc, url);
+          return /\b404\b|page not found/i.test(pg.title) ? null : pg;   /* skip deleted pages */
         } catch (e) { failures++; return null; }
       }));
       fetched.forEach(function (page) {
@@ -2549,7 +2559,7 @@ img{max-width:100%;display:block}
     }
 
     pages = Array.from(indexed.values()).map(function (p) { delete p.links; return p; });
-    try { localStorage.setItem(CACHE_KEY, JSON.stringify({ savedAt: Date.now(), origin: ORIGIN, pages: pages })); } catch (e) {}
+    saveCache();
     hideProgress();
     scanning = false;
     $("aisScanBtn").disabled = false;
@@ -2580,6 +2590,7 @@ img{max-width:100%;display:block}
     return "none";
   }
 
+  /* ---------- helpers ---------- */
   function termsOf(q) {
     return q.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
       .split(/[^a-z0-9+#.]+/).filter(function (w) { return w.length > 1; });
@@ -2590,46 +2601,8 @@ img{max-width:100%;display:block}
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
   }
-  function scorePage(page, terms) {
-    var title = page.title.toLowerCase();
-    var heads = (page.headings || []).join(" ").toLowerCase();
-    var body = page.text.toLowerCase();
-    var score = 0, matched = 0;
-    terms.forEach(function (term) {
-      var ts = 0;
-      if (title.indexOf(term) >= 0) ts += 12;
-      if (heads.indexOf(term) >= 0) ts += 6;
-      var count = (body.match(new RegExp(escRe(term), "g")) || []).length;
-      ts += Math.min(count, 8) * 1.3;
-      if (ts > 0) matched++;
-      score += ts;
-    });
-    if (matched < terms.length) score *= matched / terms.length;
-    return { score: score, matched: matched };
-  }
-  function makeSnippet(text, terms) {
-    text = text.replace(/\s*\u00b6\s*/g, " · ");
-    var lower = text.toLowerCase();
-    var at = -1;
-    terms.forEach(function (t) {
-      var i = lower.indexOf(t);
-      if (i >= 0 && (at < 0 || i < at)) at = i;
-    });
-    if (at < 0) at = 0;
-    var start = Math.max(0, at - 105), end = Math.min(text.length, at + 260);
-    return (start ? "…" : "") + text.slice(start, end) + (end < text.length ? "…" : "");
-  }
-  /* highlight on raw text, then escape each piece — avoids corrupting HTML entities */
-  function highlight(s, terms) {
-    var unique = Array.from(new Set(terms)).filter(Boolean).sort(function (a, b) { return b.length - a.length; });
-    if (!unique.length) return escapeHtml(s);
-    var re = new RegExp("(" + unique.map(escRe).join("|") + ")", "ig");
-    return s.split(re).map(function (part, i) {
-      return i % 2 ? "<mark>" + escapeHtml(part) + "</mark>" : escapeHtml(part);
-    }).join("");
-  }
 
-  /* ---- Course price list (Basic = base price; Standard; Advanced) ---- */
+  /* ---------- course price list ---------- */
   var COURSE_GROUPS = [
     {group:"Domain services", items:[
       ["Custom Domain Recommendation",1500,3000,5250],["Expired Domain Research",1500,3000,5250],
@@ -2666,8 +2639,6 @@ img{max-width:100%;display:block}
       return t === term || (term.length >= 3 && (t.indexOf(term) === 0 || (t.length >= 3 && term.indexOf(t) === 0)));
     });
   }
-  /* returns {html, count} or null. Shows every course for price-type queries,
-     or just the courses whose names match what was typed. */
   function renderPrices(terms) {
     var flat = [];
     terms.forEach(function (t) { t.split(/[+#.]+/).forEach(function (x) { if (x.length > 1) flat.push(x); }); });
@@ -2697,7 +2668,7 @@ img{max-width:100%;display:block}
     return { html: html, count: total };
   }
 
-  /* ---- Yes / No answers for questions ---- */
+  /* ---------- yes / no answers ---------- */
   var YN_START = /^(?:(?:hey|hi|hello|please|so|and|also|ok|okay)[,\s]+)*(is|are|am|was|were|do|does|did|can|could|will|would|should|shall|have|has|had|may|might)\b/;
   var QSTOP = new Set(("is are am was were do does did can could will would should shall have has had may might you your yours i me my we us our it its " +
     "this that these those there they them a an the any anything something someone anyone offer offers offering provide provides teach teaches taught " +
@@ -2749,7 +2720,6 @@ img{max-width:100%;display:block}
       '<div class="ais-ans-body"><div class="ais-ans-label">Quick answer</div><p>' + escapeHtml(text) +
       (link ? ' <a href="https://forms.gle/LNDC32NR6YsCmeZY8" target="_blank" rel="noopener">Apply now →</a>' : '') + '</p>' + (extra || '') + '</div></div>';
   }
-  /* ---- read the indexed pages sentence by sentence ---- */
   var NEG = /\b(no|not|never|cannot|can't|cant|don't|dont|doesn't|doesnt|isn't|aren't|won't|without|none|neither|nor|unavailable)\b|n't|coming soon/i;
   var sentCache = new Map();
   function sentencesOf(p) {
@@ -2791,7 +2761,6 @@ img{max-width:100%;display:block}
       return '<li>“' + escapeHtml(text) + '”<br><a href="' + escapeHtml(e.p.url) + '">' + escapeHtml(path === "/" ? "Home page" : path) + ' →</a></li>';
     }).join("") + '</ul><div class="ais-ev-note">Read automatically from the website pages — open the link to confirm.</div>';
   }
-
   function buildAnswer(yn) {
     var s = yn.q, toks = s.split(/[^a-z0-9\u20b9]+/).filter(Boolean);
     var hasOnly = toks.indexOf("only") >= 0;
@@ -2807,7 +2776,6 @@ img{max-width:100%;display:block}
       var label = e.v === "yes" ? "YES" : e.v === "no" ? "NO" : "NOT YET";
       return answerHtml(e.v, label, e.t, e.link);
     }
-    /* is it a course that exists? */
     var key = [];
     yn.terms.forEach(function (t) {
       if (PRICE_STOP.has(t)) return;
@@ -2850,58 +2818,190 @@ img{max-width:100%;display:block}
     return answerHtml("maybe", "NOT SURE", "I couldn't find a clear yes/no answer for that. Any matching pages are listed below.");
   }
 
+  /* ---------- UPGRADED ENGINE: whole-word BM25-style ranking, typos, synonyms ---------- */
+  var SYN = {
+    cost:["price","fee","fees"], price:["cost","fee","fees","pricing"], fee:["price","cost"], fees:["price","cost"],
+    pricing:["price","cost"], cheap:["price","cost"], certificate:["certification","certified"], cert:["certificate"],
+    teacher:["mentor","mentorship"], teachers:["mentor","mentorship"], class:["course","curriculum"],
+    classes:["course","curriculum"], syllabus:["curriculum"], job:["career","careers"], jobs:["career","careers"],
+    placement:["career","careers"], coding:["programming","development"], game:["gaming"], games:["gaming","game"],
+    ai:["artificial","machine"], ml:["machine","learning"], contact:["email","reach"], location:["hyderabad","address"],
+    founder:["manish","kakarla"], hiring:["lab","careers"], legal:["policy","terms"], terms:["policy","legal"]
+  };
+  function tok(s) {
+    return (s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").match(/[a-z0-9\u20b9][a-z0-9+#]*/g) || [];
+  }
+  function prepare(p) {
+    if (p._tf) return;
+    var tf = {}, w = tok(p.text.replace(/\u00b6/g, " "));
+    w.forEach(function (x) { if (x.length > 1) tf[x] = (tf[x] || 0) + 1; });
+    p._tf = tf; p._len = w.length || 1;
+    p._title = new Set(tok(p.title));
+    p._head = new Set(tok((p.headings || []).join(" ")));
+    var path = ""; try { path = decodeURIComponent(new URL(p.url).pathname); } catch (e) {}
+    p._path = new Set(tok(path));
+  }
+  function ensureIndex() {
+    if (indexedFor === pages) return;
+    vocab = new Map(); var seen = new Set(), P = [];
+    function addPool(t) { var k = t.toLowerCase(); if (t && !seen.has(k)) { seen.add(k); P.push(t); } }
+    pages.forEach(function (p) {
+      prepare(p);
+      Object.keys(p._tf).forEach(function (w) { vocab.set(w, (vocab.get(w) || 0) + 1); });
+      addPool(p.title.split(/\s[|\u2014\u2013-]\s/)[0].trim());
+      (p.headings || []).forEach(function (h) { if (h.length > 3 && h.length <= 60) addPool(h); });
+    });
+    COURSE_GROUPS.forEach(function (g) { g.items.forEach(function (c) { addPool(c[0]); }); });
+    pool = P.slice(0, 1500); vocabList = Array.from(vocab.keys()); indexedFor = pages;
+  }
+  function lev(a, b, max) {
+    if (Math.abs(a.length - b.length) > max) return max + 1;
+    var prev = [], i, j;
+    for (j = 0; j <= b.length; j++) prev[j] = j;
+    for (i = 1; i <= a.length; i++) {
+      var cur = [i], min = i;
+      for (j = 1; j <= b.length; j++) {
+        var v = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+        cur[j] = v; if (v < min) min = v;
+      }
+      if (min > max) return max + 1;
+      prev = cur;
+    }
+    return prev[b.length];
+  }
+  function expandTerms(terms) {
+    var fixed = [];
+    var groups = terms.map(function (t) {
+      var vars = [{ w: t, wt: 1 }], have = new Set([t]);
+      function add(w, wt) { if (!have.has(w) && vocab.has(w)) { have.add(w); vars.push({ w: w, wt: wt }); } }
+      if (t.length >= 3) {
+        vocabList.filter(function (w) { return w.length > t.length && w.indexOf(t) === 0; })
+          .sort(function (a, b) { return vocab.get(b) - vocab.get(a); }).slice(0, 5).forEach(function (w) { add(w, .8); });
+      }
+      (SYN[t] || []).forEach(function (w) { add(w, .6); });
+      if (!vocab.has(t) && vars.length === 1 && t.length >= 4) {
+        var max = t.length <= 6 ? 1 : 2, best = [];
+        vocabList.forEach(function (w) {
+          if (w[0] !== t[0]) return;
+          var d = lev(t, w, max);
+          if (d <= max) best.push([d, -vocab.get(w), w]);
+        });
+        best.sort(function (a, b) { return a[0] - b[0] || a[1] - b[1]; });
+        best.slice(0, 3).forEach(function (b) { add(b[2], .5); });
+        if (best.length) fixed.push([t, best[0][2]]);
+      }
+      return { term: t, vars: vars };
+    });
+    return { groups: groups, fixed: fixed };
+  }
+  function rank(ex, q) {
+    var N = pages.length, n = ex.groups.length, ql = q.toLowerCase().trim();
+    var avg = pages.reduce(function (s, p) { return s + p._len; }, 0) / N || 1;
+    var idf = ex.groups.map(function (g) {
+      var df = 0;
+      pages.forEach(function (p) { if (g.vars.some(function (v) { return p._tf[v.w]; })) df++; });
+      return Math.log(1 + (N - df + .5) / (df + .5));
+    });
+    var out = [];
+    pages.forEach(function (p) {
+      var total = 0, matched = 0, words = [];
+      ex.groups.forEach(function (g, i) {
+        var best = 0;
+        g.vars.forEach(function (v) {
+          var f = p._tf[v.w]; if (!f) return;
+          var s = f * 2.2 / (f + 1.2 * (.5 + .5 * p._len / avg));
+          if (p._title.has(v.w)) s += 5;
+          if (p._head.has(v.w)) s += 2.5;
+          if (p._path.has(v.w)) s += 3;
+          s *= v.wt; if (s > best) best = s;
+          words.push(v.w);
+        });
+        if (best > 0) { matched++; total += best * idf[i]; }
+      });
+      if (!matched) return;
+      total *= Math.pow(matched / n, 2);
+      if (n > 1 && matched === n) {
+        if (p.title.toLowerCase().indexOf(ql) >= 0) total += 10;
+        else if (p.text.toLowerCase().indexOf(ql) >= 0) total += 5;
+      }
+      out.push({ page: p, score: total, words: words });
+    });
+    return out.sort(function (a, b) { return b.score - a.score; }).slice(0, 20);
+  }
+  function bestSnippet(p, words) {
+    var ws = new Set(words), best = "", bs = 0;
+    var sents = p.text.replace(/([.!?])\s+/g, "$1\u00b6").split(/\s*\u00b6\s*/).filter(function (x) { return x.length >= 25; });
+    sents.forEach(function (s) {
+      var t = new Set(tok(s)), c = 0;
+      ws.forEach(function (w) { if (t.has(w)) c++; });
+      if (c > bs || (c === bs && c > 0 && s.length < best.length)) { bs = c; best = s; }
+    });
+    if (!best) best = p.description || sents[0] || "";
+    return best.length > 300 ? best.slice(0, 297) + "…" : best;
+  }
+  function highlight(s, words) {
+    var u = Array.from(new Set(words)).filter(Boolean).sort(function (a, b) { return b.length - a.length; });
+    if (!u.length) return escapeHtml(s);
+    var re = new RegExp("\\b(" + u.map(escRe).join("|") + ")", "ig");
+    return s.split(re).map(function (part, i) {
+      return i % 2 ? "<mark>" + escapeHtml(part) + "</mark>" : escapeHtml(part);
+    }).join("");
+  }
+
   function search(q) {
-    var terms = termsOf(q);
-    var yn = detectYesNo(q, terms);
-    if (yn && yn.terms.length) terms = yn.terms;
-    var resultsEl = $("aisResults");
+    var raw = termsOf(q), yn = detectYesNo(q, raw);
+    var terms = (yn && yn.terms.length) ? yn.terms : raw;
+    var res = $("aisResults");
     $("aisResultsSection").hidden = false;
     $("aisResultsTitle").textContent = "Results for “" + q + "”";
-    resultsEl.innerHTML = "";
-    var answerBox = yn ? buildAnswer(yn) : null;
-    if (answerBox) resultsEl.insertAdjacentHTML("beforeend", answerBox);
-    var priceBox = terms.length ? renderPrices(terms) : null;
-    var hasTop = !!(priceBox || answerBox);
-    var coursePart = priceBox ? priceBox.count + " course" + (priceBox.count === 1 ? "" : "s") : "";
-    if (priceBox) resultsEl.insertAdjacentHTML("beforeend", priceBox.html);
-    if (!terms.length) {
-      resultsEl.innerHTML = '<div class="ais-empty"><strong>Enter a search term</strong>Try a topic, course name, policy, or phrase.</div>';
-      $("aisCount").textContent = ""; return;
+    res.innerHTML = "";
+    var ans = yn ? buildAnswer(yn) : null;
+    if (ans) res.insertAdjacentHTML("beforeend", ans);
+    var pb = terms.length ? renderPrices(terms) : null;
+    var hasTop = !!(pb || ans);
+    var cp = pb ? pb.count + " course" + (pb.count === 1 ? "" : "s") : "";
+    if (pb) res.insertAdjacentHTML("beforeend", pb.html);
+
+    var tt = Array.from(new Set(tok(terms.join(" "))));
+    if (!tt.length) {
+      if (!hasTop) res.innerHTML = '<div class="ais-empty"><strong>Enter a search term</strong>Try a topic, course name, policy, or phrase.</div>';
+      $("aisCount").textContent = cp; return;
     }
     if (!pages.length) {
-      if (!hasTop) {
-        resultsEl.innerHTML = '<div class="ais-empty"><strong>Website index is not ready</strong>' + (scanning ? "Still scanning — results will appear when it finishes." : "Use “Scan / refresh website index” first.") + '</div>';
-      } else {
-        resultsEl.insertAdjacentHTML("beforeend", '<p class="ais-sub-title">Page results will appear when the website index finishes…</p>');
-      }
-      $("aisCount").textContent = coursePart;
+      res.insertAdjacentHTML("beforeend", hasTop
+        ? '<p class="ais-sub-title">Page results will appear when the website index finishes…</p>'
+        : '<div class="ais-empty"><strong>Website index is not ready</strong>' + (scanning ? "Still scanning — results will appear when it finishes." : "Use “Scan / refresh website index” first.") + '</div>');
+      $("aisCount").textContent = cp;
       if (!scanning) scanWebsite();
       return;
     }
-    var matches = pages.map(function (p) {
-      var s = scorePage(p, terms);
-      return { page: p, score: s.score };
-    }).filter(function (m) { return m.score > 0; })
-      .sort(function (a, b) { return b.score - a.score; }).slice(0, 30);
-
+    ensureIndex();
+    var ex = expandTerms(tt), matches = rank(ex, q);
     var pagePart = matches.length + " matching page" + (matches.length === 1 ? "" : "s");
-    $("aisCount").textContent = coursePart ? coursePart + " · " + pagePart : pagePart;
+    $("aisCount").textContent = cp ? cp + " · " + pagePart : pagePart;
+
+    if (ex.fixed.length) {
+      res.insertAdjacentHTML("beforeend", '<p class="ais-fix">Also matching ' + ex.fixed.map(function (f) {
+        return "<b>" + escapeHtml(f[1]) + "</b> (you typed <s>" + escapeHtml(f[0]) + "</s>)";
+      }).join(", ") + ".</p>");
+    }
     if (!matches.length) {
-      if (!hasTop) resultsEl.innerHTML = '<div class="ais-empty"><strong>No matching pages found</strong>Try different words or a shorter search phrase.</div>';
+      if (!hasTop) res.insertAdjacentHTML("beforeend", '<div class="ais-empty"><strong>No matching pages found</strong>Try different words, or one of the quick searches above.</div>');
       return;
     }
-    if (hasTop) resultsEl.insertAdjacentHTML("beforeend", '<p class="ais-sub-title">Related pages</p>');
-    matches.forEach(function (m) {
-      var p = m.page;
-      var snippet = makeSnippet(p.text, terms);
-      var path = new URL(p.url).pathname;
+    if (hasTop) res.insertAdjacentHTML("beforeend", '<p class="ais-sub-title">Related pages</p>');
+    matches.forEach(function (m, i) {
+      var p = m.page, path = "";
+      try { path = decodeURIComponent(new URL(p.url).pathname); } catch (e) {}
+      var top = i === 0 && matches.length > 1;
       var card = document.createElement("article");
-      card.className = "ais-result";
+      card.className = "ais-result" + (top ? " ais-top" : "");
       card.innerHTML =
-        '<a class="ais-title" href="' + escapeHtml(p.url) + '">' + highlight(p.title, terms) + '</a>' +
-        '<div><span class="ais-url">' + escapeHtml(decodeURIComponent(path)) + '</span></div>' +
-        '<p class="ais-snippet">' + highlight(snippet, terms) + '</p>';
-      resultsEl.appendChild(card);
+        (top ? '<span class="ais-badge">Best match</span>' : "") +
+        '<a class="ais-title" href="' + escapeHtml(p.url) + '">' + highlight(p.title, m.words) + '</a>' +
+        '<div><span class="ais-url">' + escapeHtml(path === "/" ? "Home page" : path) + '</span></div>' +
+        '<p class="ais-snippet">' + highlight(bestSnippet(p, m.words), m.words) + '</p>';
+      res.appendChild(card);
     });
   }
 
@@ -2911,26 +3011,75 @@ img{max-width:100%;display:block}
     $("aisResultsSection").scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 
-  /* events */
+  /* ---------- suggestions + live search ---------- */
+  var sugEl = document.createElement("ul");
+  sugEl.className = "ais-suggest"; sugEl.setAttribute("role", "listbox"); sugEl.hidden = true;
+  $("aisForm").appendChild(sugEl);
+  var sugList = [], sugIdx = -1, liveT = null;
+  function closeSug() { sugEl.hidden = true; sugIdx = -1; }
+  function markSug() {
+    Array.prototype.forEach.call(sugEl.children, function (li, i) { li.classList.toggle("on", i === sugIdx); });
+  }
+  function showSug(q) {
+    if (!pages.length || q.length < 2) return closeSug();
+    ensureIndex();
+    var qt = tok(q), ql = q.toLowerCase();
+    sugList = pool.filter(function (c) {
+      if (c.toLowerCase() === ql) return false;
+      var ct = tok(c);
+      return qt.length && qt.every(function (t) { return ct.some(function (x) { return x.indexOf(t) === 0; }); });
+    }).sort(function (a, b) {
+      return (b.toLowerCase().indexOf(ql) === 0) - (a.toLowerCase().indexOf(ql) === 0) || a.length - b.length;
+    }).slice(0, 6);
+    if (!sugList.length) return closeSug();
+    sugEl.innerHTML = sugList.map(function (c, i) { return '<li role="option" data-i="' + i + '">' + escapeHtml(c) + '</li>'; }).join("");
+    sugIdx = -1; sugEl.hidden = false;
+  }
+  sugEl.addEventListener("mousedown", function (e) {
+    var li = e.target.closest("li"); if (!li) return;
+    e.preventDefault(); closeSug(); runSearch(sugList[+li.dataset.i]);
+  });
+
+  /* ---------- events ---------- */
   $("aisForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+    e.preventDefault(); clearTimeout(liveT); closeSug();
     search($("aisQuery").value.trim());
   });
+  $("aisQuery").addEventListener("input", function () {
+    var q = this.value.trim();
+    showSug(q); clearTimeout(liveT);
+    if (q.length >= 2 && pages.length) liveT = setTimeout(function () { search(q); }, 300);
+  });
+  $("aisQuery").addEventListener("keydown", function (e) {
+    if (e.key === "Escape") { closeSug(); $("aisQuery").value = ""; return; }
+    if (sugEl.hidden) return;
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      e.preventDefault();
+      sugIdx = (sugIdx + (e.key === "ArrowDown" ? 1 : -1) + sugList.length) % sugList.length; markSug();
+    } else if (e.key === "Enter" && sugIdx >= 0) {
+      e.preventDefault(); var c = sugList[sugIdx]; closeSug(); runSearch(c);
+    }
+  });
+  $("aisQuery").addEventListener("blur", function () { setTimeout(closeSug, 150); });
   $("aisScanBtn").addEventListener("click", function () { scanWebsite(); });
   $("aisClearBtn").addEventListener("click", function () {
     $("aisQuery").value = "";
     $("aisResultsSection").hidden = true;
     $("aisResults").innerHTML = "";
     $("aisCount").textContent = "";
+    closeSug();
     $("aisQuery").focus();
   });
-  $("aisQuery").addEventListener("keydown", function (e) { if (e.key === "Escape") $("aisQuery").value = ""; });
   section.querySelectorAll(".ais-chip").forEach(function (chip) {
     chip.addEventListener("click", function () { runSearch(chip.getAttribute("data-q")); });
   });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "/" && !/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName || "")) {
+      e.preventDefault(); section.scrollIntoView({ behavior: "smooth" }); $("aisQuery").focus();
+    }
+  });
 
-  /* load cache now; build the index lazily when the section comes into view
-     (avoids crawling the whole site for visitors who never use search) */
+  /* ---------- start ---------- */
   var cacheState = loadCache();
   function autoStart() {
     if (autoStarted) return;
@@ -2944,6 +3093,10 @@ img{max-width:100%;display:block}
     io.observe(section);
   } else { autoStart(); }
   $("aisQuery").addEventListener("focus", autoStart);
+
+  /* deep link: /?q=fees#ai-search */
+  var qp = new URLSearchParams(location.search).get("q");
+  if (qp) { $("aisQuery").value = qp; autoStart(); if (pages.length) search(qp); }
 })();
 
 /* ===== Testimonials ===== */
