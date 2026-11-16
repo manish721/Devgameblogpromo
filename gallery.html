@@ -1,56 +1,752 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Unacademy Fest Talk | DevGameBlogPromo</title>
-<meta name="robots" content="index, follow">
-<meta name="description" content="Presenting DevGameBlogPromo at the Unacademy Fest: thinking like a human first, built on integrity, authenticity and discipline.">
-<meta property="og:title" content="Unacademy Fest Talk | DevGameBlogPromo">
-<meta property="og:description" content="The mindset of being human, and the 3 core principles of business: integrity, authenticity and discipline.">
-<meta property="og:image" content="IMG-20251126-WA0002.jpg">
-<style>
-  :root { --bg:#faf8f5; --ink:#1d2a2f; --muted:#5b6b70; --accent:#1f6f6b; --card:#ffffff; }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg:#141b1d; --ink:#eef2f1; --muted:#9db0b3; --accent:#5fc4bd; --card:#1c2629; }
-  }
-  * { box-sizing: border-box; }
-  body { margin:0; background:var(--bg); color:var(--ink); font-family:Georgia, 'Times New Roman', serif; line-height:1.7; }
-  main { max-width:760px; margin:0 auto; padding:32px 20px 64px; }
-  h1 { font-size:clamp(1.8rem, 5vw, 2.6rem); line-height:1.2; margin:0 0 8px; }
-  .sub { color:var(--muted); margin:0 0 24px; font-family:system-ui, sans-serif; }
-  figure { margin:0 0 28px; }
-  figure img { width:100%; height:auto; display:block; border-radius:6px; }
-  figcaption { color:var(--muted); font-size:.95rem; margin-top:8px; font-family:system-ui, sans-serif; }
-  .principles { display:grid; gap:12px; padding:0; list-style:none; margin:24px 0; }
-  .principles li { background:var(--card); border-left:4px solid var(--accent); padding:14px 16px; border-radius:4px; }
-  .principles strong { color:var(--accent); }
-  .cta { display:inline-block; background:var(--accent); color:#fff; padding:12px 22px; border-radius:6px; text-decoration:none; font-family:system-ui, sans-serif; font-weight:600; }
-  .cta:focus-visible { outline:3px solid var(--ink); outline-offset:3px; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Unacademy Fest 2025 | DevGameBlogPromo</title>
+
+  <meta name="description" content="DevGameBlogPromo at Unacademy Fest 2025. A presentation on human values, business principles, integrity, authenticity and discipline, delivered to an audience of 400+ students.">
+
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#101c20">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Unacademy Fest 2025 | DevGameBlogPromo">
+  <meta property="og:description" content="A speaking engagement exploring human values and the principles behind meaningful business: integrity, authenticity and discipline.">
+  <meta property="og:image" content="IMG-20251126-WA0002.jpg">
+  <meta property="og:site_name" content="DevGameBlogPromo">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Unacademy Fest 2025 | DevGameBlogPromo">
+  <meta name="twitter:description" content="Presenting DevGameBlogPromo to 400+ students.">
+  <meta name="twitter:image" content="IMG-20251126-WA0002.jpg">
+
+  <style>
+    :root {
+      --bg: #f6f7f5;
+      --surface: #ffffff;
+      --ink: #172629;
+      --muted: #687779;
+      --accent: #16756d;
+      --accent-light: #e5f1ee;
+      --border: #e5eae7;
+      --dark: #101c20;
+      --max: 1120px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 48px));
+      margin: auto;
+    }
+
+    /* Navigation */
+
+    .navbar {
+      background: var(--dark);
+      color: white;
+      border-bottom: 1px solid #293638;
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      text-decoration: none;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .brand span {
+      color: #65c6b8;
+    }
+
+    .nav-label {
+      font-size: 12px;
+      color: #b2c2c1;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    /* Hero */
+
+    .hero {
+      background: var(--dark);
+      color: white;
+      padding: 85px 0 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border: 1px solid rgba(101, 198, 184, .13);
+      border-radius: 50%;
+      right: -140px;
+      top: -180px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #7bd0c1;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      height: 2px;
+      width: 27px;
+      background: #65c6b8;
+    }
+
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(42px, 7vw, 76px);
+      font-weight: 400;
+      letter-spacing: -2.5px;
+      line-height: 1.08;
+      max-width: 850px;
+      margin-bottom: 25px;
+    }
+
+    h1 span {
+      color: #75cdbd;
+      font-style: italic;
+    }
+
+    .hero-description {
+      color: #b7c6c4;
+      font-size: 17px;
+      max-width: 650px;
+      line-height: 1.9;
+    }
+
+    .event-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 38px;
+    }
+
+    .meta-item {
+      border-left: 2px solid #4b9f93;
+      padding-left: 13px;
+    }
+
+    .meta-item small {
+      display: block;
+      color: #91a5a3;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .meta-item strong {
+      display: block;
+      color: white;
+      font-size: 14px;
+      margin-top: 3px;
+    }
+
+    /* Main */
+
+    main {
+      padding-bottom: 90px;
+    }
+
+    .event-image {
+      margin-top: -48px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .event-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 650px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 25px 70px rgba(12, 35, 35, .15);
+    }
+
+    .image-caption {
+      color: var(--muted);
+      font-size: 12px;
+      padding-top: 13px;
+      text-align: right;
+    }
+
+    /* Intro */
+
+    .intro {
+      max-width: 800px;
+      margin: 90px auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+      font-size: clamp(30px, 5vw, 45px);
+      line-height: 1.2;
+      letter-spacing: -1px;
+      margin-bottom: 24px;
+    }
+
+    .intro p {
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 18px;
+    }
+
+    .intro strong {
+      color: var(--ink);
+    }
+
+    /* Principles */
+
+    .principles-section {
+      padding: 75px 0;
+      background: #edf2ef;
+    }
+
+    .section-heading {
+      max-width: 670px;
+      margin-bottom: 45px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      margin-top: 12px;
+    }
+
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .principle {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 32px 27px;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .principle:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(20, 50, 45, .07);
+    }
+
+    .principle-number {
+      font-family: Georgia, serif;
+      color: #a2c9bd;
+      font-size: 36px;
+      margin-bottom: 22px;
+    }
+
+    .principle h3 {
+      font-family: Georgia, serif;
+      font-size: 25px;
+      font-weight: 400;
+      margin-bottom: 12px;
+      color: var(--accent);
+    }
+
+    .principle p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    /* Impact */
+
+    .impact {
+      padding: 90px 0;
+    }
+
+    .impact-card {
+      background: var(--dark);
+      color: white;
+      border-radius: 12px;
+      padding: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .impact-copy {
+      max-width: 570px;
+    }
+
+    .impact-copy .section-label {
+      color: #79cbbc;
+    }
+
+    .impact-copy h2 {
+      margin-bottom: 16px;
+    }
+
+    .impact-copy p {
+      color: #b4c3c1;
+      font-size: 15px;
+    }
+
+    .impact-number {
+      min-width: 190px;
+      text-align: center;
+    }
+
+    .impact-number strong {
+      display: block;
+      font-family: Georgia, serif;
+      font-size: clamp(55px, 7vw, 80px);
+      color: #75cdbd;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .impact-number span {
+      color: #c0cecc;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* Closing */
+
+    .closing {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 30px 24px 75px;
+    }
+
+    .closing blockquote {
+      font-family: Georgia, serif;
+      font-size: clamp(24px, 4vw, 35px);
+      line-height: 1.5;
+      color: var(--ink);
+      margin-bottom: 25px;
+    }
+
+    .closing p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Footer */
+
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 35px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .footer-inner p {
+      color: #a9b8b6;
+      font-size: 12px;
+    }
+
+    .footer-brand {
+      font-weight: 800;
+      font-size: 16px;
+    }
+
+    .footer-brand span {
+      color: #75cdbd;
+    }
+
+    .footer-link {
+      color: #75cdbd;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .footer-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 32px, var(--max));
+      }
+
+      .hero {
+        padding: 65px 0 85px;
+      }
+
+      h1 {
+        letter-spacing: -1.5px;
+      }
+
+      .principles {
+        grid-template-columns: 1fr;
+      }
+
+      .principle {
+        padding: 27px;
+      }
+
+      .impact-card {
+        padding: 35px 25px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .impact-number {
+        text-align: left;
+      }
+
+      .intro {
+        margin: 65px auto;
+      }
+
+      .principles-section,
+      .impact {
+        padding: 65px 0;
+      }
+
+      .event-meta {
+        gap: 20px;
+      }
+
+      .image-caption {
+        text-align: left;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<main>
-  <h1>Unacademy Fest: Talk and Presentation</h1>
-  <p class="sub">Presenting DevGameBlogPromo | Nov 26 2025</p>
 
-  <!-- Put your photo in the same folder and name it event.jpg -->
-  <figure>
-    <img src="IMG-20251126-WA0002.jpg" alt="Presenting DevGameBlogPromo at the Unacademy Fest">
-    <figcaption>Speaking at the Unacademy Fest.</figcaption>
-  </figure>
+  <!-- Navigation -->
 
-  <p>I presented <strong>DevGameBlogPromo</strong> at the Unacademy Fest and talked about the mindset of being human, and how it shapes everything we build. I shared the three core principles of business:</p>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="https://devgameblogpromo.vercel.app/"
+         class="brand">
+        DevGame<span>BlogPromo</span>
+      </a>
 
-  <ul class="principles">
-    <li><strong>Integrity:</strong> do the right thing, even when no one is watching.</li>
-    <li><strong>Authenticity:</strong> stay true to who you are. People connect with what is real.</li>
-    <li><strong>Discipline:</strong> show up consistently. Success comes from habit, not luck.</li>
-  </ul>
+      <span class="nav-label">Events & Presentations</span>
+    </div>
+  </header>
 
-  <p>This is one of many events I do at schools, colleges and fests. I promote my business this way: by inspiring students with real ideas, not just theory.</p>
-<figcaption>Live at the Unacademy Fest, in front of 400+ students.</figcaption>
- 
-</main>
+  <!-- Hero -->
+
+  <section class="hero">
+    <div class="container">
+
+      <div class="eyebrow">
+        Speaking Engagement · 2025
+      </div>
+
+      <h1>
+        Unacademy Fest:
+        <span>Ideas Beyond the Stage.</span>
+      </h1>
+
+      <p class="hero-description">
+        Representing DevGameBlogPromo through a presentation
+        on human values, meaningful business and the principles
+        that shape the way we think, work and build.
+      </p>
+
+      <div class="event-meta">
+
+        <div class="meta-item">
+          <small>Event</small>
+          <strong>Unacademy Fest</strong>
+        </div>
+
+        <div class="meta-item">
+          <small>Date</small>
+          <strong>26 November 2025</strong>
+        </div>
+
+        <div class="meta-item">
+          <small>Organization</small>
+          <strong>DevGameBlogPromo</strong>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <main>
+
+    <!-- Event Photograph -->
+
+    <section class="container event-image">
+
+      <figure>
+        <img
+          src="IMG-20251126-WA0002.jpg"
+          alt="DevGameBlogPromo presentation at Unacademy Fest, November 2025"
+          loading="eager"
+        >
+
+        <figcaption class="image-caption">
+          A moment from the Unacademy Fest presentation · 2025
+        </figcaption>
+      </figure>
+
+    </section>
+
+    <!-- Event Introduction -->
+
+    <section class="container intro">
+
+      <div class="section-label">
+        The Presentation
+      </div>
+
+      <h2>
+        Business begins with being human.
+      </h2>
+
+      <p>
+        At the Unacademy Fest, I had the opportunity to present
+        <strong>DevGameBlogPromo</strong> and share a perspective
+        that goes beyond products, services and business strategies.
+      </p>
+
+      <p>
+        The central idea of the presentation was simple:
+        before building an organization, a business or a career,
+        we must first understand the importance of being human.
+      </p>
+
+      <p>
+        I spoke about how the way we think, the values we follow
+        and the decisions we make influence everything we build.
+        The presentation focused on three principles that form
+        an important part of the business philosophy of
+        DevGameBlogPromo.
+      </p>
+
+    </section>
+
+    <!-- Three Principles -->
+
+    <section class="principles-section">
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div class="section-label">
+            Our Core Principles
+          </div>
+
+          <h2>
+            Three principles.
+            One foundation.
+          </h2>
+
+          <p>
+            The values that guide how we approach business,
+            relationships and long-term growth.
+          </p>
+
+        </div>
+
+        <div class="principles">
+
+          <article class="principle">
+
+            <div class="principle-number">01</div>
+
+            <h3>Integrity</h3>
+
+            <p>
+              Doing what is right, even when nobody is watching.
+              Building trust through honest decisions, accountability
+              and consistency between words and actions.
+            </p>
+
+          </article>
+
+          <article class="principle">
+
+            <div class="principle-number">02</div>
+
+            <h3>Authenticity</h3>
+
+            <p>
+              Staying true to our identity, beliefs and purpose.
+              Genuine relationships are built through transparency,
+              honesty and being real.
+            </p>
+
+          </article>
+
+          <article class="principle">
+
+            <div class="principle-number">03</div>
+
+            <h3>Discipline</h3>
+
+            <p>
+              Showing up consistently and taking responsibility
+              for progress. Meaningful results are built through
+              repeated effort, commitment and habits.
+            </p>
+
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Audience Impact -->
+
+    <section class="container impact">
+
+      <div class="impact-card">
+
+        <div class="impact-copy">
+
+          <div class="section-label">
+            Audience & Engagement
+          </div>
+
+          <h2>
+            Sharing ideas with the next generation.
+          </h2>
+
+          <p>
+            The presentation was delivered in front of an audience
+            of more than 400 students. Opportunities like these
+            allow DevGameBlogPromo to share perspectives, encourage
+            critical thinking and connect with students beyond
+            traditional learning environments.
+          </p>
+
+        </div>
+
+        <div class="impact-number">
+          <strong>400+</strong>
+          <span>Students in attendance</span>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Closing -->
+
+    <section class="closing">
+
+      <div class="section-label">
+        A Thought to Remember
+      </div>
+
+      <blockquote>
+        "What we build matters. But the values with which we build
+        it matter even more."
+      </blockquote>
+
+      <p>
+        DevGameBlogPromo · Learning, building and creating impact.
+      </p>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+
+  <footer>
+    <div class="container footer-inner">
+
+      <div class="footer-brand">
+        DevGame<span>BlogPromo</span>
+      </div>
+
+      <p>
+        © 2026 DevGameBlogPromo. All rights reserved.
+      </p>
+
+      <a
+        class="footer-link"
+        href="https://devgameblogpromo.vercel.app/"
+      >
+        Visit Official Website →
+      </a>
+
+    </div>
+  </footer>
+
 </body>
 </html>
