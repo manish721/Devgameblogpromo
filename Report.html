@@ -456,7 +456,7 @@ footer {
 
     <div class="stats">
       <div class="stat">
-        <strong id="totalReports">9</strong>
+        <strong id="totalReports">10</strong>
         <span>Unique documents received</span>
       </div>
       <div class="stat">
@@ -495,6 +495,7 @@ footer {
         <button class="filter" data-filter="data">Data & Privacy</button>
         <button class="filter" data-filter="governance">Governance & Risk</button>
         <button class="filter" data-filter="deployment">Deployment</button>
+        <button class="filter" data-filter="research">Market Research</button>
       </div>
     </div>
 
@@ -537,6 +538,10 @@ footer {
       <div class="category">
         <h3>Impact Measurement</h3>
         <p>Performance, social impact, trust and long-term value indicators.</p>
+      </div>
+      <div class="category">
+        <h3>Market Research</h3>
+        <p>EdTech market analysis, venture capital perspective and AI-driven outlook.</p>
       </div>
       <div class="category">
         <h3>Governance & Risk</h3>
@@ -1391,8 +1396,8 @@ function renderReports() {
  grid.innerHTML = filtered.map(report => `
    <article class="report-card">
      <div class="card-top">
-       <span class="doc-id">${report.id === "SECTOR-FRAMEWORK" ? "DGBP FRAMEWORK" : report.id}</span>
-       <span class="tag">${report.version ? "Version " + report.version : "Framework"}</span>
+       <span class="doc-id">${report.label || (report.id === "SECTOR-FRAMEWORK" ? "DGBP FRAMEWORK" : report.id)}</span>
+       <span class="tag">${report.version ? "Version " + report.version : "Report"}</span>
      </div>
      <h3>${report.title}</h3>
      <p>${report.description}</p>
@@ -1420,8 +1425,8 @@ function openReport(id) {
    <div class="eyebrow">${report.categoryName}</div>
    <h1>${report.title}</h1>
    <p style="color:var(--muted)">
-     ${report.id === "SECTOR-FRAMEWORK" ? "DGBP Sector Framework" : report.id}
-     · Version ${report.version}
+     ${report.label || (report.id === "SECTOR-FRAMEWORK" ? "DGBP Sector Framework" : report.id)}
+     ${report.version ? "· Version " + report.version : "· Version not supplied"}
    </p>
    ${report.content}
    <div class="disclaimer">
@@ -1489,7 +1494,7 @@ function openReportFromHistory(id) {
  document.getElementById("readerContent").innerHTML = `
    <div class="eyebrow">${report.categoryName}</div>
    <h1>${report.title}</h1>
-   <p style="color:var(--muted)">${report.id} · Version ${report.version}</p>
+   <p style="color:var(--muted)">${report.label || report.id} ${report.version ? "· Version " + report.version : "· Version not supplied"}</p>
    ${report.content}
    <div class="disclaimer">
      Source: document supplied by DevGameBlogPromo.
