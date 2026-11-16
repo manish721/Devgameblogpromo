@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Explore DevGameBlogPromo's AI governance, responsible AI, fairness, and sector deployment reference frameworks.">
+<title>Reports & Frameworks | DevGameBlogPromo</title>
+
+<style>
+:root {
+  --bg: #080d19;
+  --surface: #101a2c;
+  --surface2: #142139;
+  --text: #edf4ff;
+  --muted: #9eacc2;
+  --accent: #39c5f3;
+  --accent2: #7974ff;
+  --border: rgba(255,255,255,.1);
+  --green: #55d6a3;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: Inter, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+.container { width: min(1180px, 92%); margin: auto; }
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(8,13,25,.94);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--border);
+}
+.nav {
+  min-height: 76px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.logo {
+  font-size: 20px;
+  font-weight: 850;
+  letter-spacing: -.7px;
+}
+.logo span { color: var(--accent); }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 27px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.nav-links a:hover { color: var(--accent); }
+.menu-btn {
+  display: none;
+  background: none;
+  border: 1px solid var(--border);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+.hero {
+  padding: 90px 0 65px;
+  background:
+    radial-gradient(ellipse at 80% 10%, rgba(57,197,243,.13), transparent 45%),
+    radial-gradient(ellipse at 10% 90%, rgba(121,116,255,.12), transparent 40%);
+}
+.eyebrow {
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  font-weight: 800;
+}
+.hero h1 {
+  font-size: clamp(38px, 6vw, 66px);
+  line-height: 1.12;
+  max-width: 850px;
+  margin: 18px 0;
+  letter-spacing: -2px;
+}
+.hero h1 span {
+  background: linear-gradient(90deg,var(--accent),#9a9aff);
+  color: transparent;
+  background-clip: text;
+}
+.hero p {
+  color: var(--muted);
+  max-width: 690px;
+  font-size: 17px;
+}
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  font-weight: 750;
+  font-size: 14px;
+}
+.btn-primary {
+  background: var(--accent);
+  color: #06111c;
+  border-color: var(--accent);
+}
+.btn-secondary { background: var(--surface); }
+.btn:hover { transform: translateY(-2px); }
+
+.notice {
+  border: 1px solid rgba(57,197,243,.25);
+  background: rgba(57,197,243,.055);
+  padding: 17px 20px;
+  border-radius: 12px;
+  color: #c8d9ed;
+  font-size: 13px;
+  margin-top: 30px;
+}
+.notice strong { color: var(--accent); }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 15px;
+  margin-top: 38px;
+}
+.stat {
+  padding: 22px;
+  background: rgba(16,26,44,.8);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.stat strong {
+  font-size: 30px;
+  display: block;
+  color: var(--accent);
+}
+.stat span { font-size: 13px; color: var(--muted); }
+
+.section { padding: 65px 0; }
+.section-heading { margin-bottom: 27px; }
+.section-heading h2 { font-size: 30px; letter-spacing: -.7px; }
+.section-heading p { color: var(--muted); margin-top: 7px; }
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 23px;
+}
+.search {
+  flex: 1;
+  min-width: 220px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  color: white;
+  padding: 13px 15px;
+  outline: none;
+}
+.search:focus { border-color: var(--accent); }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.filter {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+.filter.active {
+  color: #06111c;
+  background: var(--accent);
+  border-color: var(--accent);
+  font-weight: 800;
+}
+
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 17px;
+}
+.report-card {
+  background: linear-gradient(145deg,var(--surface),#0d1627);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 25px;
+  transition: .2s;
+  display: flex;
+  flex-direction: column;
+}
+.report-card:hover {
+  border-color: rgba(57,197,243,.55);
+  transform: translateY(-3px);
+}
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.doc-id {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: .7px;
+}
+.tag {
+  font-size: 10px;
+  padding: 5px 9px;
+  border-radius: 20px;
+  border: 1px solid rgba(85,214,163,.25);
+  color: var(--green);
+  background: rgba(85,214,163,.07);
+}
+.report-card h3 {
+  font-size: 21px;
+  line-height: 1.35;
+  margin: 19px 0 9px;
+}
+.report-card p {
+  font-size: 13px;
+  color: var(--muted);
+  flex: 1;
+}
+.card-meta {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 17px 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+.read-btn {
+  border: 1px solid rgba(57,197,243,.3);
+  background: rgba(57,197,243,.08);
+  color: var(--accent);
+  padding: 11px;
+  border-radius: 8px;
+  font-weight: 800;
+}
+.read-btn:hover { background: rgba(57,197,243,.17); }
+.empty {
+  display: none;
+  padding: 45px;
+  text-align: center;
+  color: var(--muted);
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+}
+
+.reader {
+  display: none;
+  padding: 55px 0 90px;
+}
+.reader-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.back-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+}
+.reader-content {
+  max-width: 900px;
+  margin: auto;
+  padding: clamp(20px,5vw,48px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+}
+.reader-content h1 {
+  font-size: clamp(28px,5vw,43px);
+  line-height: 1.2;
+  margin: 12px 0;
+}
+.reader-content h2 {
+  color: var(--accent);
+  font-size: 22px;
+  margin: 35px 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.reader-content h3 {
+  font-size: 17px;
+  margin: 23px 0 9px;
+  color: #dceaff;
+}
+.reader-content p {
+  color: #c1ccdc;
+  margin: 9px 0 14px;
+}
+.reader-content ul, .reader-content ol {
+  padding-left: 24px;
+  color: #c1ccdc;
+  margin: 10px 0 17px;
+}
+.reader-content li { padding: 3px 0; }
+.reader-content strong { color: white; }
+.reader-content .metadata {
+  padding: 17px;
+  background: #0a1425;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin: 20px 0;
+}
+.reader-content .metadata p { margin: 5px 0; }
+.reader-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0 22px;
+  font-size: 13px;
+}
+.reader-content th, .reader-content td {
+  border: 1px solid var(--border);
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+.reader-content th {
+  background: #0a1425;
+  color: var(--accent);
+}
+.reader-content .callout {
+  padding: 15px;
+  border-left: 3px solid var(--accent);
+  background: rgba(57,197,243,.06);
+  margin: 18px 0;
+  color: #c8d9ed;
+}
+.reader-content .disclaimer {
+  color: var(--muted);
+  font-size: 12px;
+  border-top: 1px solid var(--border);
+  margin-top: 35px;
+  padding-top: 17px;
+}
+
+.categories {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 15px;
+}
+.category {
+  padding: 21px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.category h3 { font-size: 15px; margin-bottom: 5px; }
+.category p { color: var(--muted); font-size: 12px; }
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 35px 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+@media(max-width:750px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 76px;
+    left: 0;
+    right: 0;
+    background: #0c1526;
+    padding: 20px 5%;
+    flex-direction: column;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-links.open { display: flex; }
+  .menu-btn { display: block; }
+  .hero { padding: 65px 0 45px; }
+  .stats { grid-template-columns: 1fr; }
+  .report-grid { grid-template-columns: 1fr; }
+  .categories { grid-template-columns: 1fr; }
+  .section { padding: 45px 0; }
+  .reader-content table { display: block; overflow-x: auto; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+    <a class="logo" href="https://devgameblogpromo.vercel.app/">
+      DGBP<span>.</span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="https://devgameblogpromo.vercel.app/">Home</a>
+      <a href="#reports" onclick="closeMenu()">Reports</a>
+      <a href="#categories" onclick="closeMenu()">Categories</a>
+      <a href="#about" onclick="closeMenu()">About</a>
+    </nav>
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="Toggle navigation">☰</button>
+  </div>
+</header>
+
+<main id="mainPage">
+
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow">DevGameBlogPromo · Knowledge & Documentation</div>
+    <h1>Reports, Research & <span>Frameworks.</span></h1>
+    <p>
+      Explore the reference frameworks and documentation provided by
+      DevGameBlogPromo. Discover our work on responsible AI, ethical design,
+      fairness testing, governance and sector-specific AI deployment.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#reports">Explore all reports</a>
+      <a class="btn btn-secondary" href="https://devgameblogpromo.vercel.app/">Main website ↗</a>
+    </div>
+
+    <div class="notice">
+      <strong>Documentation transparency:</strong>
+      The reports presented here are materials supplied by DGBP.
+      Their publication on this website does not imply independent
+      verification, external endorsement, legal certification or regulatory approval.
+      Each document's original status is preserved where provided.
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <strong id="totalReports">9</strong>
+        <span>Unique documents received</span>
+      </div>
+      <div class="stat">
+        <strong>8</strong>
+        <span>Responsible AI principles in DGBP-AI-01</span>
+      </div>
+      <div class="stat">
+        <strong>7</strong>
+        <span>Sectors in the deployment framework</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="reports">
+  <div class="container">
+    <div class="section-heading">
+      <div class="eyebrow">Documentation library</div>
+      <h2>Explore DGBP Reports</h2>
+      <p>Search and read the documents supplied to this library.</p>
+    </div>
+
+    <div class="toolbar">
+      <input
+        class="search"
+        type="search"
+        id="searchInput"
+        placeholder="Search reports, topics, document IDs..."
+        aria-label="Search reports"
+      >
+      <div class="filters" id="filters">
+        <button class="filter active" data-filter="all">All reports</button>
+        <button class="filter" data-filter="principles">Principles</button>
+        <button class="filter" data-filter="design">Design</button>
+        <button class="filter" data-filter="fairness">Fairness</button>
+        <button class="filter" data-filter="data">Data & Privacy</button>
+        <button class="filter" data-filter="governance">Governance & Risk</button>
+        <button class="filter" data-filter="deployment">Deployment</button>
+      </div>
+    </div>
+
+    <div class="report-grid" id="reportGrid"></div>
+    <div class="empty" id="emptyState">
+      No reports match your search. Try another keyword.
+    </div>
+  </div>
+</section>
+
+<section class="section" id="categories">
+  <div class="container">
+    <div class="section-heading">
+      <div class="eyebrow">Browse by subject</div>
+      <h2>Documentation Categories</h2>
+      <p>Topics represented in the documents currently supplied.</p>
+    </div>
+
+    <div class="categories">
+      <div class="category">
+        <h3>Responsible AI Principles</h3>
+        <p>Human oversight, safety, privacy, transparency and accountability.</p>
+      </div>
+      <div class="category">
+        <h3>Ethical AI Design</h3>
+        <p>Purpose limitation, human-centered design and auditability.</p>
+      </div>
+      <div class="category">
+        <h3>Fairness & Bias</h3>
+        <p>Bias identification, mitigation and fairness testing methodologies.</p>
+      </div>
+      <div class="category">
+        <h3>Data & Privacy</h3>
+        <p>Data collection principles, consent, retention and deletion policies.</p>
+      </div>
+      <div class="category">
+        <h3>AI Deployment</h3>
+        <p>Readiness assessments, deployment lifecycles and sector applications.</p>
+      </div>
+      <div class="category">
+        <h3>Impact Measurement</h3>
+        <p>Performance, social impact, trust and long-term value indicators.</p>
+      </div>
+      <div class="category">
+        <h3>Governance & Risk</h3>
+        <p>Risk classification, human oversight, lab standards and continuous review.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-heading">
+      <div class="eyebrow">About this library</div>
+      <h2>Documentation with transparency</h2>
+    </div>
+    <p style="color:var(--muted);max-width:800px">
+      This library organizes the reference frameworks and documentation
+      provided by DevGameBlogPromo. Document IDs, versions, titles and
+      statuses are retained as supplied. Missing identifiers or metadata
+      are not invented. Related documents mentioned inside a report are
+      references, not automatically published documents.
+    </p>
+  </div>
+</section>
+</main>
+
+<section class="reader" id="reader">
+  <div class="container">
+    <div class="reader-top">
+      <button class="back-btn" onclick="showLibrary()">← Back to all reports</button>
+      <a class="btn btn-secondary" href="https://devgameblogpromo.vercel.app/">DGBP Home ↗</a>
+    </div>
+    <article class="reader-content" id="readerContent"></article>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <div>© <span id="year"></span> DevGameBlogPromo. All rights reserved.</div>
+    <div><a href="https://devgameblogpromo.vercel.app/">Visit main website ↗</a></div>
+  </div>
+</footer>
+
+<script>
+const reports = [
+
+{
+ id:"DGBP-AI-01",
+ title:"Responsible AI Principles",
+ version:"1.0",
+ category:"principles",
+ categoryName:"Responsible AI · Core Principles",
+ status:"Reference / Voluntary Adoption",
+ description:"The foundational DGBP framework defining eight principles for responsible AI design, development, education, experimentation and evaluation.",
+ keywords:"human oversight safety fairness transparency privacy educational integrity accountability continuous improvement",
+ content:`
+ <div class="metadata">
+ <p><strong>Document ID:</strong> DGBP-AI-01</p>
+ <p><strong>Layer:</strong> 1 — Core Principles</p>
+ <p><strong>Applies to:</strong> All AI systems, labs, curricula, tools, and experiments under DGBP</p>
+ <p><strong>Status:</strong> Reference / Voluntary Adoption</p>
+ <p><strong>Audience:</strong> Schools, students, developers, mentors, partners</p>
+ </div>
+
+ <h2>1. Purpose</h2>
+ <p>This document defines the <strong>foundational principles</strong> that guide how artificial intelligence is <strong>designed, developed, used, taught, and evaluated</strong> within the DGBP ecosystem.</p>
+ <p>These principles exist to:</p>
+ <ul>
+ <li>Protect learners and users</li>
+ <li>Reduce harm and misuse</li>
+ <li>Promote transparency and accountability</li>
+ <li>Ensure AI remains a <strong>tool for learning and progress</strong>, not control or exploitation</li>
+ </ul>
+ <p>All other documents in this framework <strong>derive authority from these principles</strong>.</p>
+
+ <h2>2. Scope</h2>
+ <p>These principles apply to:</p>
+ <ul>
+ <li>Educational AI projects</li><li>Student labs and sandboxes</li>
+ <li>Research experiments</li><li>AI-assisted software tools</li>
+ <li>Mentorship and evaluation workflows</li>
+ </ul>
+ <p>They do <strong>not</strong> claim legal or regulatory authority.</p>
+
+ <h2>3. Core Responsible AI Principles</h2>
+
+ <h3>Principle 1: Human Oversight</h3>
+ <p>AI systems must remain under <strong>meaningful human supervision</strong> at all stages.</p>
+ <ul>
+ <li>Humans retain final decision-making authority</li>
+ <li>AI must not operate autonomously in high-risk contexts</li>
+ <li>Clear escalation paths must exist</li>
+ </ul>
+ <p><strong>Linked documents:</strong> Doc 3 — Human Oversight & Accountability Policy; Doc 16 — Human-in-the-Loop Review Framework.</p>
+
+ <h3>Principle 2: Safety First</h3>
+ <p>AI systems must be designed to <strong>prevent foreseeable harm</strong>.</p>
+ <ul>
+ <li>Risk must be assessed before deployment</li>
+ <li>Safety controls must exist for misuse scenarios</li>
+ <li>Experiments must be sandboxed</li>
+ </ul>
+ <p><strong>Linked documents:</strong> Doc 9 — AI Risk Classification Framework; Doc 14 — Misuse Prevention & Safeguards Policy.</p>
+
+ <h3>Principle 3: Fairness & Non-Discrimination</h3>
+ <p>AI systems should not unfairly disadvantage individuals or groups.</p>
+ <ul>
+ <li>Bias risks must be acknowledged and tested</li>
+ <li>Training data limitations must be documented</li>
+ <li>Outputs should be reviewed for harmful patterns</li>
+ </ul>
+ <p><strong>Linked documents:</strong> Doc 12 — Bias Identification & Mitigation Guide; Doc 17 — Ethics Review & Escalation Process.</p>
+
+ <h3>Principle 4: Transparency</h3>
+ <p>Users should understand <strong>what the AI is</strong>, <strong>what it does</strong>, and <strong>what it cannot do</strong>.</p>
+ <ul>
+ <li>Purpose and limitations must be disclosed</li>
+ <li>AI-generated outputs must not be misrepresented as human</li>
+ <li>Documentation should be accessible</li>
+ </ul>
+ <p><strong>Linked documents:</strong> Doc 22 — Model Card Documentation Standard; Doc 23 — Explainability & Limitations Disclosure Guide.</p>
+
+ <h3>Principle 5: Privacy & Data Respect</h3>
+ <p>AI systems must respect personal data and user consent.</p>
+ <ul>
+ <li>Data collection must be purposeful</li>
+ <li>Retention must be limited</li>
+ <li>Sensitive data requires extra safeguards</li>
+ </ul>
+ <p><strong>Linked documents:</strong> Doc 18 — Data Collection & Usage Principles; Doc 20 — Data Retention & Deletion Policy.</p>
+
+ <h3>Principle 6: Educational Integrity</h3>
+ <p>AI must <strong>support learning</strong>, not replace thinking or mislead assessment.</p>
+ <ul>
+ <li>AI use in education must be disclosed</li>
+ <li>Academic honesty must be preserved</li>
+ <li>Skill development takes priority over automation</li>
+ </ul>
+ <p><strong>Linked documents:</strong> Doc 28 — Student & Developer AI Ethics Guide; Doc 29 — Responsible AI Curriculum Framework.</p>
+
+ <h3>Principle 7: Accountability</h3>
+ <p>Clear responsibility must exist for AI behavior and outcomes.</p>
+ <ul>
+ <li>Owners and reviewers must be identifiable</li>
+ <li>Issues must be reportable</li>
+ <li>Corrections must be traceable</li>
+ </ul>
+ <p><strong>Linked documents:</strong> Doc 14 — AI Incident Reporting & Response Guide; Doc 35 — Internal Audit & Readiness Checklist.</p>
+
+ <h3>Principle 8: Continuous Improvement</h3>
+ <p>Responsible AI is an <strong>ongoing process</strong>, not a one-time checklist.</p>
+ <ul>
+ <li>Feedback must be collected</li>
+ <li>Systems must be reviewed regularly</li>
+ <li>Documentation must evolve</li>
+ </ul>
+ <p><strong>Linked documents:</strong> Doc 40 — Continuous Improvement & Review Cycle; Doc 37 — Version Control & Change Management Policy.</p>
+
+ <h2>4. Enforcement Model (Non-Binding)</h2>
+ <p>These principles are:</p>
+ <ul>
+ <li><strong>Guiding standards</strong>, not rules</li>
+ <li><strong>Voluntarily adopted</strong> by participants</li>
+ <li><strong>Reviewed internally</strong> through documentation and mentorship</li>
+ </ul>
+ <p>They do not replace laws, institutional policies, or regulations.</p>
+
+ <h2>5. Review & Updates</h2>
+ <ul>
+ <li>Reviewed annually or after major framework changes</li>
+ <li>Updates recorded in change logs</li>
+ <li>Superseded versions archived</li>
+ </ul>
+ `
+},
+
+{
+ id:"DGBP-AI-02",
+ title:"Ethical AI Design Guidelines",
+ version:"1.0",
+ category:"design",
+ categoryName:"Responsible AI · Design-Level",
+ status:"Reference / Voluntary Adoption",
+ description:"Practical ethical design guidelines translating DGBP's Responsible AI Principles into actions for AI tools, educational systems, research prototypes and experiments.",
+ keywords:"purpose limited human centered minimal data bias fail safe deceptive design educational integrity auditability",
+ content:`
+ <div class="metadata">
+ <p><strong>Document ID:</strong> DGBP-AI-02</p>
+ <p><strong>Layer:</strong> 1 — Core Principles (Design-Level)</p>
+ <p><strong>Applies to:</strong> AI tools, models, workflows, curricula, labs, and experiments</p>
+ <p><strong>Status:</strong> Reference / Voluntary Adoption</p>
+ <p><strong>Audience:</strong> Developers, mentors, educators, reviewers</p>
+ </div>
+
+ <h2>1. Purpose</h2>
+ <p>This document defines <strong>how AI systems should be ethically designed</strong>, not just what they should achieve.</p>
+ <p>Its goal is to ensure AI within DGBP:</p>
+ <ul>
+ <li>Is intentionally designed, not accidentally harmful</li>
+ <li>Aligns with human values and educational integrity</li>
+ <li>Avoids unethical shortcuts during development</li>
+ </ul>
+ <p>These guidelines translate <strong>Responsible AI Principles (Doc 1)</strong> into <strong>practical design actions</strong>.</p>
+
+ <h2>2. Scope</h2>
+ <p>Applies to:</p>
+ <ul><li>Student-built AI projects</li><li>Educational AI tools</li><li>Research prototypes</li><li>Internal AI-assisted platforms</li></ul>
+ <p>Does <strong>not</strong> grant legal authority or certification.</p>
+
+ <h2>3. Ethical Design Foundations</h2>
+
+ <h3>Guideline 1: Purpose-Limited Design</h3>
+ <p>Every AI system must have a <strong>clearly defined, documented purpose</strong>.</p>
+ <ul><li>No “general-use” AI without boundaries</li><li>Purpose must align with learning, safety, or productivity</li><li>Scope creep must be reviewed</li></ul>
+ <p><strong>Linked documents:</strong> Doc 1 — Responsible AI Principles; Doc 16 — AI System Overview Documentation Standard.</p>
+
+ <h3>Guideline 2: Human-Centered Design</h3>
+ <p>AI must be designed <strong>around human needs</strong>, not technical novelty.</p>
+ <ul><li>Users must understand system behavior</li><li>Interfaces must avoid manipulation or dark patterns</li><li>Human override must be possible</li></ul>
+ <p><strong>Linked documents:</strong> Doc 3 — Human Oversight & Accountability Policy; Doc 23 — Explainability & Limitations Disclosure Guide.</p>
+
+ <h3>Guideline 3: Minimal Data Dependency</h3>
+ <p>AI should use <strong>only the data necessary</strong> to achieve its purpose.</p>
+ <ul><li>Avoid excessive data collection</li><li>Prefer synthetic or simulated data where possible</li><li>Sensitive data requires explicit justification</li></ul>
+ <p><strong>Linked documents:</strong> Doc 18 — Data Collection & Usage Principles; Doc 21 — Synthetic & Simulated Data Usage Guide.</p>
+
+ <h3>Guideline 4: Bias-Aware Architecture</h3>
+ <p>Bias must be considered <strong>at design time</strong>, not after deployment.</p>
+ <ul><li>Data sources must be documented</li><li>Known limitations must be declared</li><li>High-impact outputs require human review</li></ul>
+ <p><strong>Linked documents:</strong> Doc 12 — Bias Identification & Mitigation Guide; Doc 17 — Ethics Review & Escalation Process.</p>
+
+ <h3>Guideline 5: Fail-Safe Defaults</h3>
+ <p>When uncertain, AI systems must <strong>default to safer behavior</strong>.</p>
+ <ul><li>Conservative outputs over risky ones</li><li>Graceful degradation over silent failure</li><li>Clear error messaging</li></ul>
+ <p><strong>Linked documents:</strong> Doc 9 — AI Risk Classification Framework; Doc 14 — Misuse Prevention & Safeguards Policy.</p>
+
+ <h3>Guideline 6: No Deceptive Design</h3>
+ <p>AI must never intentionally mislead users.</p>
+ <ul><li>No impersonation without disclosure</li><li>No fake authority or false certainty</li><li>No hidden automated decisions</li></ul>
+ <p><strong>Linked documents:</strong> Doc 22 — Model Card Documentation Standard; Doc 24 — Transparency & Disclosure Guidelines.</p>
+
+ <h3>Guideline 7: Educational Integrity by Design</h3>
+ <p>AI must <strong>support learning</strong>, not bypass it.</p>
+ <ul><li>Assessment assistance must be declared</li><li>Skill-building takes priority over automation</li><li>AI must not replace evaluation</li></ul>
+ <p><strong>Linked documents:</strong> Doc 28 — Student & Developer AI Ethics Guide; Doc 29 — Responsible AI Curriculum Framework.</p>
+
+ <h3>Guideline 8: Auditability</h3>
+ <p>Design choices must be traceable.</p>
+ <ul><li>Decisions documented</li><li>Version history maintained</li><li>Changes reviewable</li></ul>
+ <p><strong>Linked documents:</strong> Doc 35 — Internal Audit & Review Checklist; Doc 37 — Version Control & Change Management Policy.</p>
+
+ <h2>4. Ethical Design Review (Non-Binding)</h2>
+ <p>Before deployment or showcase:</p>
+ <ul><li>Purpose documented</li><li>Risk category identified</li><li>Data sources declared</li><li>Oversight assigned</li></ul>
+ <p>This review is <strong>educational, not punitive</strong>.</p>
+
+ <h2>5. Review & Updates</h2>
+ <ul><li>Reviewed annually</li><li>Updated when new risks emerge</li><li>Archived versions retained</li></ul>
+ `
+},
+
+{
+ id:"DGBP-AI-04",
+ title:"Bias Identification & Mitigation Guide",
+ version:"1.0",
+ category:"fairness",
+ categoryName:"Responsible AI · Fairness",
+ status:"Reference / Voluntary Adoption",
+ description:"A practical guide to identifying, documenting and reducing bias in AI datasets, models, tools and educational experiments.",
+ keywords:"bias identification mitigation data review assumptions output testing human review data balancing monitoring fairness",
+ content:`
+ <div class="metadata">
+ <p><strong>Document ID:</strong> DGBP-AI-04</p>
+ <p><strong>Layer:</strong> 1 — Core Principles (Fairness)</p>
+ <p><strong>Applies to:</strong> AI models, datasets, tools, evaluations, and educational labs</p>
+ <p><strong>Status:</strong> Reference / Voluntary Adoption</p>
+ <p><strong>Audience:</strong> Developers, students, mentors, reviewers</p>
+ </div>
+
+ <h2>1. Purpose</h2>
+ <p>This document provides a <strong>practical framework</strong> to identify, document, and reduce bias in AI systems used within DGBP.</p>
+ <p>Bias is treated as a <strong>technical and design risk</strong>, not a moral accusation. The goal is <strong>awareness, transparency, and correction</strong>, not punishment.</p>
+
+ <h2>2. Scope</h2>
+ <p>Applies to:</p>
+ <ul><li>Training datasets</li><li>Model design choices</li><li>Output evaluation</li><li>Educational and research AI projects</li></ul>
+ <p>Does <strong>not</strong> claim compliance with any specific law or regulation.</p>
+
+ <h2>3. Understanding Bias (Baseline)</h2>
+ <p>Bias may arise from:</p>
+ <ul><li>Data imbalance</li><li>Historical patterns</li><li>Design assumptions</li><li>Limited testing environments</li></ul>
+ <p>Bias <strong>cannot always be eliminated</strong>, but it <strong>must be acknowledged and managed</strong>.</p>
+
+ <h2>4. Bias Identification Process</h2>
+
+ <h3>Step 1: Data Review</h3>
+ <p>Before training or use:</p>
+ <ul><li>Identify data sources</li><li>Check for over/under-representation</li><li>Note missing or synthetic data</li></ul>
+ <p><strong>Linked documents:</strong> Doc 18 — Data Collection & Usage Principles; Doc 21 — Synthetic & Simulated Data Usage Guide.</p>
+
+ <h3>Step 2: Design Assumption Audit</h3>
+ <p>Ask:</p>
+ <ul><li>Who is this system designed for?</li><li>Who might be excluded unintentionally?</li><li>What assumptions are embedded in logic or thresholds?</li></ul>
+ <p><strong>Linked documents:</strong> Doc 2 — Ethical AI Design Guidelines; Doc 16 — AI System Overview Documentation Standard.</p>
+
+ <h3>Step 3: Output Testing</h3>
+ <p>Test outputs across:</p>
+ <ul><li>Different input scenarios</li><li>Edge cases</li><li>Diverse user profiles (simulated where needed)</li></ul>
+ <p><strong>Linked documents:</strong> Doc 9 — AI Risk Classification Framework; Doc 23 — Explainability & Limitations Disclosure Guide.</p>
+
+ <h3>Step 4: Human Review</h3>
+ <p>High-impact outputs must be reviewed by:</p>
+ <ul><li>Mentors</li><li>Educators</li><li>Project reviewers</li></ul>
+ <p><strong>Linked documents:</strong> Doc 3 — Human Oversight & Accountability Policy; Doc 17 — Ethics Review & Escalation Process.</p>
+
+ <h2>5. Bias Mitigation Strategies</h2>
+
+ <h3>Strategy 1: Documentation First</h3>
+ <p>If bias cannot be removed:</p>
+ <ul><li>Document it clearly</li><li>Disclose limitations</li><li>Warn users</li></ul>
+ <p><strong>Linked document:</strong> Doc 22 — Model Card Documentation Standard.</p>
+
+ <h3>Strategy 2: Data Balancing</h3>
+ <p>Where feasible:</p>
+ <ul><li>Add missing data</li><li>Use synthetic augmentation</li><li>Avoid overfitting dominant patterns</li></ul>
+
+ <h3>Strategy 3: Design Constraints</h3>
+ <ul><li>Limit automated decisions</li><li>Require human confirmation</li><li>Use conservative thresholds</li></ul>
+ <p><strong>Linked document:</strong> Doc 14 — Misuse Prevention & Safeguards Policy.</p>
+
+ <h3>Strategy 4: Continuous Monitoring</h3>
+ <p>Bias may evolve over time.</p>
+ <ul><li>Periodic review required</li><li>Feedback mechanisms encouraged</li><li>Re-evaluation after major updates</li></ul>
+ <p><strong>Linked document:</strong> Doc 40 — Continuous Improvement & Review Cycle.</p>
+
+ <h2>6. What This Guide Does NOT Do</h2>
+ <ul><li>It does <strong>not certify fairness</strong></li><li>It does <strong>not guarantee neutrality</strong></li><li>It does <strong>not replace human judgment</strong></li></ul>
+ <p>Bias management is an <strong>ongoing responsibility</strong>, not a checkbox.</p>
+
+ <h2>7. Review & Updates</h2>
+ <ul><li>Reviewed annually</li><li>Updated as new risks are identified</li><li>Previous versions archived</li></ul>
+ `
+},
+
+{
+ id:"DGBP-AI-05",
+ title:"Fairness Testing Methodology",
+ version:"1.0",
+ category:"fairness",
+ categoryName:"Responsible AI · Fairness / Quality Control",
+ status:"Reference / Voluntary Adoption",
+ description:"A step-by-step methodology for evaluating AI systems for bias, unequal treatment and fairness risks using representative test data, measurable metrics and human review.",
+ keywords:"fairness testing representative datasets scenario testing metrics output parity error rates human review",
+ content:`
+ <div class="metadata">
+ <p><strong>Document ID:</strong> DGBP-AI-05</p>
+ <p><strong>Layer:</strong> 1 — Core Principles (Fairness / Quality Control)</p>
+ <p><strong>Applies to:</strong> AI models, tools, datasets, and student projects</p>
+ <p><strong>Status:</strong> Reference / Voluntary Adoption</p>
+ <p><strong>Audience:</strong> Developers, mentors, reviewers, educators</p>
+ </div>
+
+ <h2>1. Purpose</h2>
+ <p>This document provides a <strong>step-by-step methodology</strong> to <strong>test AI systems for fairness</strong> within DGBP labs and projects.</p>
+ <p>Goals:</p>
+ <ul><li>Detect bias and unequal treatment</li><li>Ensure transparency in outputs</li><li>Promote accountability for AI-assisted learning</li></ul>
+
+ <h2>2. Scope</h2>
+ <p>Applies to:</p>
+ <ul><li>AI-assisted educational tools</li><li>Student AI projects</li><li>Internal AI models</li><li>DGBP sandbox labs</li></ul>
+ <p>Excludes:</p>
+ <ul><li>Non-AI systems</li><li>Human-only evaluation workflows</li></ul>
+
+ <h2>3. Fairness Testing Principles</h2>
+
+ <h3>Principle 1: Representative Test Sets</h3>
+ <ul><li>Use datasets reflecting <strong>diverse populations</strong> or use synthetic data to simulate diversity</li><li>Avoid over-reliance on majority-group data</li></ul>
+ <p><strong>Linked documents:</strong> Doc 4 — Bias Identification & Mitigation Guide; Doc 21 — Synthetic & Simulated Data Usage Guide.</p>
+
+ <h3>Principle 2: Scenario-Based Testing</h3>
+ <ul><li>Define test cases for <strong>edge situations</strong></li><li>Include minority, low-resource, or extreme scenarios</li><li>Document results clearly</li></ul>
+
+ <h3>Principle 3: Metric-Based Assessment</h3>
+ <p>Use measurable fairness metrics such as:</p>
+ <ul><li>Output parity</li><li>Error rate differences</li><li>False positive / negative rate comparison</li></ul>
+ <p>Keep a log of <strong>metrics over time</strong>.</p>
+ <p><strong>Linked documents:</strong> Doc 9 — AI Risk Classification Framework; Doc 23 — Explainability & Limitations Disclosure Guide.</p>
+
+ <h3>Principle 4: Human Review Overlay</h3>
+ <ul><li>Mentor or reviewer must check flagged outputs</li><li>Confirm outputs do not discriminate or mislead</li><li>Add human validation as final step</li></ul>
+ <p><strong>Linked documents:</strong> Doc 3 — Human Oversight & Accountability Policy; Doc 17 — Ethics Review & Escalation Process.</p>
+
+ <h3>Principle 5: Documentation and Transparency</h3>
+ <ul><li>Document all testing steps, assumptions, and results</li><li>Include disclaimers for limitations or known biases</li><li>Make documentation <strong>accessible for internal review</strong></li></ul>
+ <p><strong>Linked documents:</strong> Doc 22 — Model Card Documentation Standard; Doc 24 — Transparency & Disclosure Guidelines.</p>
+
+ <h2>4. Testing Workflow (Step-by-Step)</h2>
+ <ol>
+ <li><strong>Define scope:</strong> Identify which outputs, users, and contexts need testing.</li>
+ <li><strong>Assemble datasets:</strong> Include diversity and edge cases.</li>
+ <li><strong>Run model:</strong> Collect outputs for each test case.</li>
+ <li><strong>Calculate fairness metrics:</strong> Compare across groups and scenarios.</li>
+ <li><strong>Human review:</strong> Validate flagged results.</li>
+ <li><strong>Document findings:</strong> Record, disclose, and propose mitigation.</li>
+ <li><strong>Iterate:</strong> Update model or dataset and re-test.</li>
+ </ol>
+
+ <h2>5. Limitations</h2>
+ <ul><li>Testing cannot guarantee <strong>absolute fairness</strong></li><li>Metrics and human review provide <strong>risk reduction, not elimination</strong></li><li>Continuous monitoring required</li></ul>
+ <p><strong>Linked documents:</strong> Doc 40 — Continuous Improvement & Review Cycle; Doc 14 — Misuse Prevention & Safeguards Policy.</p>
+
+ <h2>6. Review & Updates</h2>
+ <ul><li>Reviewed <strong>annually</strong> or after significant changes</li><li>Updates recorded in version history</li><li>Archived versions retained</li></ul>
+ `
+},
+
+{
+ id:"DGBP-AI-06",
+ title:"Data Collection & Usage Principles",
+ version:"1.0",
+ category:"data",
+ categoryName:"Responsible AI · Data & Privacy",
+ status:"Reference / Voluntary Adoption",
+ description:"Principles for safe, ethical and educationally responsible data collection and usage: purpose limitation, minimal collection, transparency, consent, security, retention and educational focus.",
+ keywords:"data collection usage purpose limitation minimal transparency consent security retention deletion educational use privacy",
+ content:`
+ <div class="metadata">
+ <p><strong>Document ID:</strong> DGBP-AI-06</p>
+ <p><strong>Layer:</strong> 1 — Core Principles (Data & Privacy)</p>
+ <p><strong>Applies to:</strong> All AI models, labs, student projects, internal tools</p>
+ <p><strong>Status:</strong> Reference / Voluntary Adoption</p>
+ <p><strong>Audience:</strong> Developers, mentors, educators, reviewers</p>
+ </div>
+
+ <h2>1. Purpose</h2>
+ <p>This document defines principles for <strong>safe, ethical, and educationally responsible</strong> data collection and usage within DGBP.</p>
+ <p>It ensures that:</p>
+ <ul><li>Learner data is protected</li><li>Only necessary data is collected</li><li>Transparency and consent are maintained</li></ul>
+
+ <h2>2. Scope</h2>
+ <p>Applies to:</p>
+ <ul><li>Educational AI projects</li><li>Lab datasets</li><li>Internal DGBP systems</li><li>Mentorship and student evaluation tools</li></ul>
+ <p>Excludes:</p>
+ <ul><li>Publicly available datasets used without modifications</li><li>Anonymous or fully synthetic datasets</li></ul>
+
+ <h2>3. Core Data Principles</h2>
+
+ <h3>Principle 1: Purpose Limitation</h3>
+ <ul><li>Collect data only for explicitly stated educational or research purposes</li><li>Avoid secondary or unrelated uses without disclosure</li></ul>
+ <p><strong>Linked documents:</strong> Doc 2 — Ethical AI Design Guidelines; Doc 5 — Fairness Testing Methodology.</p>
+
+ <h3>Principle 2: Minimal Data Collection</h3>
+ <ul><li>Only collect what is strictly necessary</li><li>Avoid over-collection for convenience</li><li>Use aggregation or anonymization when possible</li></ul>
+ <p><strong>Linked documents:</strong> Doc 21 — Synthetic & Simulated Data Usage Guide; Doc 4 — Bias Identification & Mitigation Guide.</p>
+
+ <h3>Principle 3: Transparency & Disclosure</h3>
+ <ul><li>Students, mentors, and users must be aware of what data is collected</li><li>Explain how data will be used, stored, and shared</li></ul>
+ <p><strong>Linked documents:</strong> Doc 22 — Model Card Documentation Standard; Doc 24 — Transparency & Disclosure Guidelines.</p>
+
+ <h3>Principle 4: Consent & Authorization</h3>
+ <ul><li>Collect explicit consent where personal or sensitive data is involved</li><li>Provide clear opt-in/opt-out mechanisms</li></ul>
+
+ <h3>Principle 5: Security & Protection</h3>
+ <ul><li>Store data securely using access controls</li><li>Avoid unnecessary exposure</li><li>Limit access to authorized users only</li></ul>
+ <p><strong>Linked documents:</strong> Doc 14 — Misuse Prevention & Safeguards Policy; Doc 35 — Internal Audit & Review Checklist.</p>
+
+ <h3>Principle 6: Retention & Deletion</h3>
+ <ul><li>Define clear retention periods</li><li>Delete or anonymize data after purpose is fulfilled</li><li>Maintain a record of deletion requests</li></ul>
+ <p><strong>Linked document:</strong> Doc 20 — Data Retention & Deletion Policy.</p>
+
+ <h3>Principle 7: Educational Use Focus</h3>
+ <ul><li>Data must support learning outcomes</li><li>Avoid using student data for profit, publicity, or external benchmarking without consent</li></ul>
+ <p><strong>Linked documents:</strong> Doc 28 — Student & Developer AI Ethics Guide; Doc 29 — Responsible AI Curriculum Framework.</p>
+
+ <h2>4. Review & Updates</h2>
+ <ul><li>Reviewed annually or when new data types are introduced</li><li>Updates logged in version history</li><li>Archived versions maintained</li></ul>
+ `
+},
+
+{
+ id:"DGBP-AI-07",
+ title:"Data Retention & Deletion Policy",
+ version:"1.0",
+ category:"data",
+ categoryName:"Responsible AI · Data & Privacy",
+ status:"Reference / Voluntary Adoption",
+ description:"Defines how data collected within DGBP should be stored, retained, deleted and anonymized, with retention periods by dataset type and audit requirements.",
+ keywords:"data retention deletion anonymization storage audit student project data mentorship logs lab datasets synthetic deletion log",
+ content:`
+ <div class="metadata">
+ <p><strong>Document ID:</strong> DGBP-AI-07</p>
+ <p><strong>Layer:</strong> 1 — Core Principles (Data & Privacy)</p>
+ <p><strong>Applies to:</strong> AI datasets, student projects, lab systems, internal platforms</p>
+ <p><strong>Status:</strong> Reference / Voluntary Adoption</p>
+ <p><strong>Audience:</strong> Developers, mentors, educators, reviewers, data custodians</p>
+ </div>
+
+ <h2>1. Purpose</h2>
+ <p>This document defines how data collected within DGBP should be <strong>stored, retained, and deleted</strong> to ensure:</p>
+ <ul><li>Compliance with educational ethics</li><li>Protection of student and mentor privacy</li><li>Support for auditability and accountability</li></ul>
+
+ <h2>2. Scope</h2>
+ <p>Applies to:</p>
+ <ul><li>Student data collected in labs and projects</li><li>AI model training datasets</li><li>Internal project documentation</li><li>Mentorship records</li></ul>
+ <p>Excludes:</p>
+ <ul><li>Public datasets used without modification</li><li>Fully anonymized or synthetic data</li></ul>
+
+ <h2>3. Retention Principles</h2>
+
+ <h3>Principle 1: Purpose-Based Retention</h3>
+ <ul><li>Keep data only as long as needed for learning, assessment, or audit purposes</li><li>Define retention periods for each dataset type</li></ul>
+ <p><strong>Linked documents:</strong> Doc 6 — Data Collection & Usage Principles; Doc 35 — Internal Audit & Review Checklist.</p>
+
+ <h3>Principle 2: Minimal Storage</h3>
+ <ul><li>Avoid storing unnecessary copies</li><li>Use secure, central repositories</li><li>Enforce access controls</li></ul>
+
+ <h3>Principle 3: Retention Categories</h3>
+ <table>
+ <thead><tr><th>Data Type</th><th>Retention Period</th><th>Notes</th></tr></thead>
+ <tbody>
+ <tr><td>Student Project Data</td><td>2 years after project completion</td><td>For learning evaluation</td></tr>
+ <tr><td>Mentorship Logs</td><td>5 years</td><td>For reference and audits</td></tr>
+ <tr><td>Lab AI Datasets</td><td>3 years</td><td>Subject to anonymization review</td></tr>
+ <tr><td>Synthetic Datasets</td><td>Indefinite</td><td>Non-identifiable</td></tr>
+ </tbody>
+ </table>
+
+ <h2>4. Deletion & Anonymization</h2>
+
+ <h3>Principle 4: Timely Deletion</h3>
+ <ul><li>Delete data after its retention period</li><li>Confirm deletion with system logs</li></ul>
+
+ <h3>Principle 5: Anonymization Where Needed</h3>
+ <ul><li>Personal identifiers removed when retention is required for long-term analysis</li><li>Ensures continued learning insights without privacy risks</li></ul>
+ <p><strong>Linked documents:</strong> Doc 6 — Data Collection & Usage Principles; Doc 21 — Synthetic & Simulated Data Usage Guide.</p>
+
+ <h3>Principle 6: Documentation & Audit</h3>
+ <ul><li>Maintain a deletion log for accountability</li><li>Audits ensure compliance with policy</li></ul>
+
+ <h2>5. Review & Updates</h2>
+ <ul><li>Reviewed annually or upon introduction of new data types</li><li>Updates recorded and archived</li><li>Older versions maintained for audit purposes</li></ul>
+ `
+},
+
+{
+ id:"DGBP-AI-08",
+ title:"AI Risk Classification Framework",
+ version:"1.0",
+ category:"governance",
+ categoryName:"Responsible AI · Risk & Safety",
+ status:"Reference / Voluntary Adoption",
+ description:"A structured methodology to identify, classify and manage AI risks in DGBP projects, with six risk categories, four risk levels and a six-step assessment process.",
+ keywords:"risk classification ethical privacy security operational compliance reputation low moderate high critical assessment mitigation",
+ content:`
+ <div class="metadata">
+ <p><strong>Document ID:</strong> DGBP-AI-08</p>
+ <p><strong>Layer:</strong> 1 — Core Principles (Risk & Safety)</p>
+ <p><strong>Applies to:</strong> All AI models, tools, student projects, and lab deployments</p>
+ <p><strong>Status:</strong> Reference / Voluntary Adoption</p>
+ <p><strong>Audience:</strong> Developers, mentors, reviewers, educators, project leads</p>
+ </div>
+
+ <h2>1. Purpose</h2>
+ <p>This document provides a <strong>structured methodology</strong> to identify, classify, and manage AI risks in DGBP projects.</p>
+ <p>Goals:</p>
+ <ul><li>Prevent misuse of AI tools</li><li>Protect learners, mentors, and third parties</li><li>Ensure accountability and safe innovation</li></ul>
+
+ <h2>2. Scope</h2>
+ <p>Applies to:</p>
+ <ul><li>AI-assisted educational tools</li><li>Lab and student AI projects</li><li>Internal AI systems</li><li>AI model deployment in educational environments</li></ul>
+ <p>Excludes:</p>
+ <ul><li>Non-AI systems</li><li>Purely theoretical research without applied outputs</li></ul>
+
+ <h2>3. Risk Categories</h2>
+ <table>
+ <thead><tr><th>Risk Type</th><th>Description</th><th>Examples</th><th>Mitigation</th></tr></thead>
+ <tbody>
+ <tr><td>Ethical Risk</td><td>Potential harm due to bias, unfair outcomes</td><td>Discriminatory grading, biased recommendations</td><td>Doc 4 — Bias Identification & Mitigation Guide</td></tr>
+ <tr><td>Privacy Risk</td><td>Unauthorized exposure of sensitive data</td><td>Student personal data leaks</td><td>Doc 6 — Data Collection & Usage Principles; Doc 7 — Retention & Deletion Policy</td></tr>
+ <tr><td>Security Risk</td><td>System vulnerabilities</td><td>Hackable AI lab tools, unprotected cloud datasets</td><td>Doc 14 — Misuse Prevention & Safeguards Policy</td></tr>
+ <tr><td>Operational Risk</td><td>AI fails to perform as intended</td><td>Crashes, misclassifications</td><td>Doc 5 — Fairness Testing Methodology; Doc 23 — Explainability & Limitations Disclosure Guide</td></tr>
+ <tr><td>Compliance Risk</td><td>Failure to follow internal DGBP policies</td><td>Ignoring human oversight, no review logs</td><td>Doc 3 — Human Oversight & Accountability Policy; Doc 17 — Ethics Review & Escalation Process</td></tr>
+ <tr><td>Reputation Risk</td><td>Negative impact on DGBP or learner perception</td><td>Misleading outputs, improper claims</td><td>Doc 28 — Student & Developer AI Ethics Guide</td></tr>
+ </tbody>
+ </table>
+
+ <h2>4. Risk Classification Levels</h2>
+ <table>
+ <thead><tr><th>Level</th><th>Description</th><th>Action Required</th></tr></thead>
+ <tbody>
+ <tr><td>Low</td><td>Minimal impact, minor learning disruption</td><td>Routine monitoring, documentation</td></tr>
+ <tr><td>Moderate</td><td>Potential harm to learners or system performance</td><td>Human review, mitigation plan, test rerun</td></tr>
+ <tr><td>High</td><td>Likely significant negative impact</td><td>Immediate suspension of AI output, escalation to mentors and reviewers</td></tr>
+ <tr><td>Critical</td><td>Potential legal, ethical, or physical harm</td><td>Stop deployment, full audit, corrective action, senior review</td></tr>
+ </tbody>
+ </table>
+ <p><strong>Linked documents:</strong> Doc 3 — Human Oversight & Accountability Policy; Doc 5 — Fairness Testing Methodology; Doc 14 — Misuse Prevention & Safeguards Policy.</p>
+
+ <h2>5. Risk Assessment Process</h2>
+ <ol>
+ <li>Identify AI systems or modules in use</li>
+ <li>Classify potential risks according to categories</li>
+ <li>Assign risk levels (Low → Critical)</li>
+ <li>Document mitigation strategies</li>
+ <li>Implement controls and human oversight</li>
+ <li>Review periodically or after updates</li>
+ </ol>
+
+ <h2>6. Review & Updates</h2>
+ <ul>
+ <li>Reviewed annually or after major incidents</li>
+ <li>Version history maintained for accountability</li>
+ <li>Linked to internal audit cycles (Doc 35 — Internal Audit & Review Checklist)</li>
+ </ul>
+ `
+},
+
+{
+ id:"DGBP-ALL-2-5",
+ title:"AI & Digital Labs Governance — Layers 2–5",
+ version:"1.0",
+ category:"governance",
+ categoryName:"Governance · Layers 2–5 Combined",
+ status:"Reference / Voluntary Adoption",
+ description:"Combined document covering Layer 2 (Operational & Lab Standards), Layer 3 (Human Oversight & Governance), Layer 4 (Data Management & Privacy) and Layer 5 (Continuous Improvement & Review).",
+ keywords:"governance layers operational lab standards human in the loop escalation data management privacy continuous improvement monitoring feedback KPI",
+ content:`
+ <div class="metadata">
+ <p><strong>Document ID:</strong> DGBP-ALL-2-5</p>
+ <p><strong>Layers Covered:</strong> 2 (Operational & Lab Standards) → 5 (Continuous Improvement & Review)</p>
+ <p><strong>Applies to:</strong> All DGBP labs, AI systems, student projects, internal operations, and mentorship programs</p>
+ <p><strong>Status:</strong> Reference / Voluntary Adoption</p>
+ <p><strong>Audience:</strong> Developers, lab coordinators, mentors, educators, reviewers</p>
+ </div>
+
+ <h2>Layer 2: Operational & Lab Standards</h2>
+ <p>Covers lab safety, AI system standards, equipment use, and lab access protocols.</p>
+
+ <h3>2.1 Lab Setup & Infrastructure</h3>
+ <ul><li>Physical labs, hardware, and software requirements</li><li>Standardized lab configurations for AI, Game Development, and Digital Media</li></ul>
+
+ <h3>2.2 Operational Protocols</h3>
+ <ul><li>Opening & closing procedures, access rights, supervision</li><li>Safety, backup, and system maintenance</li></ul>
+
+ <h3>2.3 AI Tool Deployment Standards</h3>
+ <ul><li>Approved AI frameworks</li><li>Version control and sandboxed environments</li><li>Documentation requirements</li></ul>
+ <p><strong>Linked documents:</strong> Doc 16 — AI System Overview Documentation Standard; Doc 35 — Internal Audit & Review Checklist.</p>
+
+ <h2>Layer 3: Human Oversight & Governance</h2>
+ <p>Covers accountability, human-in-the-loop, mentoring oversight, and risk escalation.</p>
+
+ <h3>3.1 Human-in-the-Loop (HITL)</h3>
+ <ul><li>All AI outputs reviewed by assigned humans</li><li>Role definitions: Owner, Reviewer, Operator</li></ul>
+
+ <h3>3.2 Escalation & Intervention</h3>
+ <ul><li>Immediate response to critical issues</li><li>Authority to pause or rollback AI systems</li></ul>
+
+ <h3>3.3 Governance & Compliance</h3>
+ <ul><li>Adherence to DGBP ethics & internal rules</li><li>Review logs and mentorship validation</li></ul>
+ <p><strong>Linked documents:</strong> Doc 3 — Human Oversight & Accountability Policy; Doc 17 — Ethics Review & Escalation Process.</p>
+
+ <h2>Layer 4: Data Management & Privacy</h2>
+ <p>Covers data collection, retention, deletion, security, and transparency.</p>
+
+ <h3>4.1 Data Collection Principles</h3>
+ <ul><li>Purpose limitation, minimal data, transparency, and consent</li></ul>
+
+ <h3>4.2 Data Retention & Deletion</h3>
+ <ul><li>Defined retention periods per dataset type</li><li>Timely deletion and anonymization</li></ul>
+
+ <h3>4.3 Security & Access Control</h3>
+ <ul><li>Secure storage, restricted access, logging</li><li>Regular audit and review</li></ul>
+ <p><strong>Linked documents:</strong> Doc 6 — Data Collection & Usage Principles; Doc 7 — Data Retention & Deletion Policy.</p>
+
+ <h2>Layer 5: Continuous Improvement & Review</h2>
+ <p>Covers audits, monitoring, feedback, performance metrics, and iteration cycles.</p>
+
+ <h3>5.1 Risk & Performance Monitoring</h3>
+ <ul><li>Regular review of AI outputs, lab safety, and operational standards</li><li>Use of KPIs and performance dashboards</li></ul>
+
+ <h3>5.2 Feedback Loops & Reporting</h3>
+ <ul><li>Student, mentor, and staff feedback captured and analyzed</li><li>Incident and grievance portal for issues</li></ul>
+
+ <h3>5.3 Iterative Updates & Training</h3>
+ <ul><li>Curriculum updates based on industry trends</li><li>Mentor upskilling and certification</li><li>Continuous improvement cycle for AI systems and labs</li></ul>
+ <p><strong>Linked documents:</strong> Doc 40 — Continuous Improvement & Review Cycle; Doc 23 — Explainability & Limitations Disclosure Guide.</p>
+
+ <h2>Appendix</h2>
+ <ul><li>Cross-layer document references</li><li>Standard operating definitions</li><li>Glossary of AI, lab, and governance terms</li></ul>
+ <p><em>The appendix items are listed as headings only in the supplied document; their content was not provided.</em></p>
+ `
+},
+
+{
+ id:"SECTOR-FRAMEWORK",
+ title:"Sector AI Deployment & Impact Framework",
+ version:"1.0",
+ category:"deployment",
+ categoryName:"AI Deployment · Sector Strategy",
+ status:"Status not specified in supplied document",
+ description:"A sector-oriented framework for assessing AI readiness, guiding deployment lifecycles, mapping risk and ethics, and measuring impact.",
+ keywords:"sector deployment impact readiness education healthcare gaming media public systems business developer tools lifecycle",
+ content:`
+ <div class="metadata">
+ <p><strong>Document title:</strong> DGBP Sector AI Deployment & Impact Framework</p>
+ <p><strong>Version:</strong> 1.0</p>
+ <p><strong>Prepared by:</strong> DevGameBlogPromo (DGBP)</p>
+ <p><strong>Audience:</strong> DGBP Labs, Mentors, Startups, Institutions, Internal Teams</p>
+ <p><strong>Document ID:</strong> Not supplied</p>
+ <p><strong>Layer:</strong> Not specified</p>
+ <p><strong>Status:</strong> Not specified in supplied document</p>
+ </div>
+
+ <h2>1. Executive Overview</h2>
+ <p>The DGBP Sector AI Deployment & Impact Framework (v1.0) provides a structured, actionable roadmap for deploying artificial intelligence (AI) solutions across sectors with measurable impact.</p>
+ <p>This framework:</p>
+ <ul>
+ <li>Completes the logical DGBP documentation stack by moving from principles and governance to execution-ready guidance.</li>
+ <li>Positions DGBP as a ground-level implementation partner, enabling labs, startups, and institutions to deploy AI responsibly and effectively.</li>
+ <li>Integrates risk management, ethical considerations, and impact assessment to ensure safe, scalable, and sustainable AI adoption.</li>
+ </ul>
+ <p>The purpose of this framework is not to theorize, but to provide actionable steps for sector-specific AI deployment that can be taught, audited, and replicated.</p>
+
+ <h2>2. Sector Classification Model</h2>
+ <p>DGBP classifies AI deployment into sectors to focus risk management, ethical oversight, and measurable outcomes. Each sector includes data sensitivity, operational risk, and human oversight requirements.</p>
+
+ <table>
+ <thead><tr><th>Sector</th><th>Sensitivity Level</th><th>Risk Exposure</th><th>Data Criticality</th><th>Example Use Cases</th></tr></thead>
+ <tbody>
+ <tr><td>Education</td><td>Medium</td><td>Moderate</td><td>Medium</td><td>AI tutoring, personalized learning</td></tr>
+ <tr><td>Healthcare</td><td>High</td><td>High</td><td>High</td><td>Diagnostic AI, patient monitoring</td></tr>
+ <tr><td>Gaming & Entertainment</td><td>Low</td><td>Medium</td><td>Low</td><td>Game AI, content recommendation</td></tr>
+ <tr><td>Media & Content</td><td>Medium</td><td>Medium</td><td>Medium</td><td>Content moderation, audience analysis</td></tr>
+ <tr><td>Business Operations</td><td>Medium</td><td>Medium</td><td>Medium</td><td>Workflow automation, predictive analytics</td></tr>
+ <tr><td>Public Systems</td><td>High</td><td>High</td><td>High</td><td>Governance AI, service delivery</td></tr>
+ <tr><td>Developer Tools & Platforms</td><td>Medium</td><td>Medium</td><td>Medium</td><td>AI-assisted coding, DevOps support</td></tr>
+ </tbody>
+ </table>
+ <p><strong>Note:</strong> This model is living and may evolve as sectors grow and AI technologies advance.</p>
+
+ <h2>3. AI Readiness Assessment</h2>
+ <p>Before deploying AI in any sector, DGBP recommends assessing four key readiness areas:</p>
+ <ul>
+ <li><strong>Data Availability & Quality</strong> – Ensure sufficient, accurate, and ethical data is available.</li>
+ <li><strong>Infrastructure Readiness</strong> – Confirm computational, network, and storage capacity.</li>
+ <li><strong>Human Oversight Capability</strong> – Verify that domain experts are present to guide and monitor AI.</li>
+ <li><strong>Ethical & Legal Risk Assessment</strong> – Identify potential ethical conflicts, bias risks, and compliance requirements.</li>
+ </ul>
+ <p>Each project must pass the readiness assessment before moving to deployment to mitigate failure, bias, and reputational risk.</p>
+
+ <h2>4. AI Deployment Lifecycle</h2>
+ <p>The framework defines a sector-agnostic lifecycle for AI projects:</p>
+ <ol>
+ <li><strong>Problem Definition</strong><br>Identify the sector-specific challenge. Define objectives and expected outcomes.</li>
+ <li><strong>Data Collection & Validation</strong><br>Gather sector-relevant datasets. Perform cleaning, validation, and bias checks.</li>
+ <li><strong>Model Selection & Build</strong><br>Choose appropriate AI models (ML, generative AI, or hybrid). Conduct sector-specific risk analysis.</li>
+ <li><strong>Bias & Risk Review</strong><br>Audit for fairness, accountability, and safety. Document findings for traceability.</li>
+ <li><strong>Controlled Deployment</strong><br>Implement AI in a limited, monitored environment. Collect live metrics and user feedback.</li>
+ <li><strong>Monitoring & Feedback</strong><br>Continuous oversight of outputs, performance, and risks. Implement rollback procedures if necessary.</li>
+ <li><strong>Iteration & Scaling</strong><br>Optimize models based on monitoring. Gradually scale to wider deployment while maintaining compliance.</li>
+ </ol>
+
+ <h2>5. Impact Measurement Framework</h2>
+ <p>DGBP defines AI impact using measurable indicators:</p>
+ <ul>
+ <li><strong>Performance Metrics</strong> – Accuracy, efficiency, error rates.</li>
+ <li><strong>Social Impact</strong> – Beneficiary reach, inclusion, accessibility.</li>
+ <li><strong>Trust & Acceptance</strong> – User adoption, satisfaction, reliability.</li>
+ <li><strong>Failure Scenarios & Risk Mitigation</strong> – Lessons learned and improvements.</li>
+ <li><strong>Sustainability & Long-term Value</strong> – Alignment with sector goals and ecosystem scalability.</li>
+ </ul>
+ <p>Standardized metrics ensure AI deployment is verifiable, accountable, and teachable.</p>
+
+ <h2>6. Risk, Ethics & Compliance Mapping</h2>
+ <p>This framework integrates DGBP’s core governance documents:</p>
+ <ul>
+ <li>Responsible AI Principles</li>
+ <li>Ethical AI Design Guidelines</li>
+ <li>Human Oversight & Accountability Policy</li>
+ <li>Bias Identification & Mitigation Guide</li>
+ </ul>
+ <p>Every deployment aligns with Layered Governance & AI Principles (Layers 1–5) ensuring legal, ethical, and societal compliance.</p>
+
+ <h2>7. Sector Case Templates</h2>
+ <p>For rapid adoption and training, DGBP provides sector-specific templates (not live case studies):</p>
+
+ <h3>Example Template: Healthcare AI Deployment</h3>
+ <ul>
+ <li><strong>Data type required:</strong> Patient records, anonymized</li>
+ <li><strong>Oversight team:</strong> Medical experts + AI engineers</li>
+ <li><strong>Ethical checkpoints:</strong> Bias, fairness, privacy</li>
+ <li><strong>Risk mitigation:</strong> Stepwise rollout, live monitoring</li>
+ </ul>
+
+ <h3>Example Template: Education AI Deployment</h3>
+ <ul>
+ <li><strong>Data type:</strong> Student performance data, engagement metrics</li>
+ <li><strong>Oversight team:</strong> Educators + AI mentors</li>
+ <li><strong>Ethical checkpoints:</strong> Inclusivity, bias, transparency</li>
+ <li><strong>Risk mitigation:</strong> Controlled testing in pilot classrooms</li>
+ </ul>
+ <p>Templates enable consistent, safe deployment and can be used for mentorship, teaching, and audits.</p>
+
+ <h2>8. Internal Usage Rules</h2>
+ <ul>
+ <li>Only authorized DGBP Labs or mentorship programs may implement AI using this framework.</li>
+ <li>All deployments must document outcomes, risks, and improvements.</li>
+ <li>Compliance with internal review & approval workflow is mandatory.</li>
+ <li>Deviations require explicit approval from DGBP Governance Layer.</li>
+ </ul>
+
+ <h2>9. Versioning & Evolution Plan</h2>
+ <ul>
+ <li><strong>Current Version:</strong> 1.0</li>
+ <li><strong>Revision Policy:</strong> Updated annually or upon major AI or sectoral changes.</li>
+ <li><strong>Feedback Mechanism:</strong> Mentors, labs, and industry partners may submit revisions.</li>
+ <li><strong>Teaching Integration:</strong> Incorporated into DGBP Policy Portal for workshops, courses, and mentorship programs.</li>
+ </ul>
+ <p>This ensures the framework is future-ready, iterative, and reflective of sector advancements.</p>
+
+ <h2>10. Conclusion</h2>
+ <p>The DGBP Sector AI Deployment & Impact Framework (v1.0) positions DevGameBlogPromo as a credible, execution-oriented AI partner. It empowers labs, startups, and educational institutions to implement AI responsibly, measurably, and sustainably, bridging the gap between theory and practice.</p>
+ <p>This document completes DGBP’s documentation stack, providing a ground-level, teachable, and auditable AI deployment blueprint.</p>
+ `
+}
+
+];
+
+let activeFilter = "all";
+
+const grid = document.getElementById("reportGrid");
+const searchInput = document.getElementById("searchInput");
+const emptyState = document.getElementById("emptyState");
+
+function renderReports() {
+ const query = searchInput.value.toLowerCase().trim();
+
+ const filtered = reports.filter(report => {
+   const matchesFilter = activeFilter === "all" ||
+                         report.category === activeFilter;
+   const searchable = (
+     report.id + " " +
+     report.title + " " +
+     report.description + " " +
+     report.categoryName + " " +
+     report.keywords
+   ).toLowerCase();
+
+   return matchesFilter && searchable.includes(query);
+ });
+
+ grid.innerHTML = filtered.map(report => `
+   <article class="report-card">
+     <div class="card-top">
+       <span class="doc-id">${report.id === "SECTOR-FRAMEWORK" ? "DGBP FRAMEWORK" : report.id}</span>
+       <span class="tag">${report.version ? "Version " + report.version : "Framework"}</span>
+     </div>
+     <h3>${report.title}</h3>
+     <p>${report.description}</p>
+     <div class="card-meta">
+       <span>${report.categoryName}</span>
+       <span>${report.status}</span>
+     </div>
+     <button class="read-btn" onclick="openReport('${report.id}')">
+       Read full report →
+     </button>
+   </article>
+ `).join("");
+
+ emptyState.style.display = filtered.length ? "none" : "block";
+}
+
+function openReport(id) {
+ const report = reports.find(item => item.id === id);
+ if (!report) return;
+
+ document.getElementById("mainPage").style.display = "none";
+ document.getElementById("reader").style.display = "block";
+
+ document.getElementById("readerContent").innerHTML = `
+   <div class="eyebrow">${report.categoryName}</div>
+   <h1>${report.title}</h1>
+   <p style="color:var(--muted)">
+     ${report.id === "SECTOR-FRAMEWORK" ? "DGBP Sector Framework" : report.id}
+     · Version ${report.version}
+   </p>
+   ${report.content}
+   <div class="disclaimer">
+     <strong>Source and verification note:</strong>
+     This page presents the document content supplied by DevGameBlogPromo.
+     Publication here does not independently verify its claims, establish
+     external endorsement, or grant legal or regulatory certification.
+     The document's original status and limitations are preserved as supplied.
+   </div>
+ `;
+
+ history.pushState({report:id}, "", "#report-" + id);
+ window.scrollTo(0,0);
+ closeMenu();
+}
+
+function showLibrary() {
+ document.getElementById("reader").style.display = "none";
+ document.getElementById("mainPage").style.display = "block";
+ history.pushState({}, "", "#reports");
+ window.scrollTo(0,0);
+}
+
+document.getElementById("filters").addEventListener("click", event => {
+ const button = event.target.closest("[data-filter]");
+ if (!button) return;
+
+ activeFilter = button.dataset.filter;
+
+ document.querySelectorAll(".filter").forEach(item =>
+   item.classList.toggle("active", item === button)
+ );
+
+ renderReports();
+});
+
+searchInput.addEventListener("input", renderReports);
+
+function toggleMenu() {
+ document.getElementById("navLinks").classList.toggle("open");
+}
+function closeMenu() {
+ document.getElementById("navLinks").classList.remove("open");
+}
+
+window.addEventListener("popstate", () => {
+ const id = location.hash.startsWith("#report-")
+   ? location.hash.slice(8)
+   : null;
+
+ if (id) {
+   openReportFromHistory(id);
+ } else {
+   document.getElementById("reader").style.display = "none";
+   document.getElementById("mainPage").style.display = "block";
+ }
+});
+
+function openReportFromHistory(id) {
+ const report = reports.find(item => item.id === id);
+ if (!report) return;
+
+ document.getElementById("mainPage").style.display = "none";
+ document.getElementById("reader").style.display = "block";
+ document.getElementById("readerContent").innerHTML = `
+   <div class="eyebrow">${report.categoryName}</div>
+   <h1>${report.title}</h1>
+   <p style="color:var(--muted)">${report.id} · Version ${report.version}</p>
+   ${report.content}
+   <div class="disclaimer">
+     Source: document supplied by DevGameBlogPromo.
+     Independent verification and external certification are not implied.
+   </div>
+ `;
+ window.scrollTo(0,0);
+}
+
+document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("totalReports").textContent = reports.length;
+
+renderReports();
+</script>
+</body>
+</html>
