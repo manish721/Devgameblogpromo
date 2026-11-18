@@ -1537,14 +1537,7 @@ body::before{
   mix-blend-mode:multiply;   /* blends the logo into the white / yellow page */
 }
 
-/* Special Day panel: visible only while the hero section is on screen */
-.event-rail{transition:transform .28s ease,opacity .25s ease,visibility .25s}
-.event-rail.out-of-section{opacity:0;visibility:hidden;pointer-events:none}
 
-/* the panel no longer sits beside the timer/banner, so don't push them aside */
-body.rail-open .widget-row{margin-left:28px!important}
-@media (max-width:900px){body.rail-open .widget-row{margin-left:14px!important}}
-  
 </style>
 </head>
 
