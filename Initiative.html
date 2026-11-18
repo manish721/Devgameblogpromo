@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DevGameBlogPromo Learning Research Initiative: studying learning, assessment performance, topic-level progress, education research and evidence from global technology companies.">
+  <meta name="theme-color" content="#080e1d">
+  <title>DGBP | Learning Research Initiative</title>
+  <style>
+    :root{--bg:#080e1d;--panel:#101a30;--panel2:#14213b;--text:#edf3ff;--muted:#a4b1c9;--cyan:#48d9ee;--blue:#6d8cff;--purple:#a68bff;--line:rgba(170,195,240,.15);--gold:#ffc36c;--green:#75e0b0;--shadow:0 18px 50px rgba(0,0,0,.22)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:radial-gradient(ellipse at 15% 0%,rgba(53,91,168,.18),transparent 34%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}a{color:inherit;text-decoration:none}.container{width:min(1160px,calc(100% - 40px));margin:auto}.topbar{position:sticky;top:0;z-index:100;background:rgba(8,14,29,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:11px;font-weight:850;letter-spacing:.2px}.brand-mark{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--cyan),var(--blue),var(--purple));display:grid;place-items:center;color:#07101d;font-weight:950}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:1.6px;text-transform:uppercase}.nav-links{display:flex;align-items:center;gap:18px}.nav-links a{font-size:.82rem;color:#c5d0e5;transition:.2s}.nav-links a:hover,.nav-links a.active{color:var(--cyan)}.nav-cta,.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(72,217,238,.4);background:linear-gradient(110deg,rgba(72,217,238,.15),rgba(109,140,255,.15));color:var(--text);padding:11px 17px;border-radius:12px;font-weight:750;font-size:.9rem}.menu-btn{display:none;background:none;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:8px 11px;font-size:1.2rem}
+    .hero{padding:100px 0 85px;position:relative;overflow:hidden}.eyebrow{display:inline-flex;color:var(--cyan);font-size:.76rem;letter-spacing:2px;text-transform:uppercase;font-weight:850;margin-bottom:15px}.hero h1{font-size:clamp(2.7rem,7vw,5.5rem);line-height:1.03;letter-spacing:-.055em;max-width:900px;margin:0 0 24px}.gradient{background:linear-gradient(90deg,var(--cyan),#8ea5ff,var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{max-width:760px;color:var(--muted);font-size:1.1rem}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn.primary{background:linear-gradient(100deg,#39cfe8,#718bff);color:#07101d;border:0}.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:55px}.stat{padding:19px;border:1px solid var(--line);border-radius:16px;background:rgba(17,29,52,.72)}.stat strong{display:block;font-size:1.55rem;color:var(--cyan)}.stat span{font-size:.82rem;color:var(--muted)}
+    section{padding:76px 0;border-top:1px solid rgba(170,195,240,.07)}.section-head{max-width:790px;margin-bottom:32px}.section-head h2,.heading h2{font-size:clamp(2rem,4vw,3.2rem);line-height:1.1;letter-spacing:-.035em;margin:0 0 15px}.section-head p,.heading p{color:var(--muted);margin:0}.eyebrow{display:inline-block}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}.card{background:linear-gradient(145deg,rgba(20,33,59,.95),rgba(13,21,39,.95));border:1px solid var(--line);border-radius:18px;padding:23px;box-shadow:var(--shadow)}.card h3{margin:0 0 10px;font-size:1.08rem}.card p{margin:0;color:var(--muted);font-size:.94rem}.number{font-size:1.8rem;font-weight:900;color:var(--cyan);margin-bottom:8px}.banner,.callout{border:1px solid rgba(72,217,238,.2);background:linear-gradient(110deg,rgba(72,217,238,.08),rgba(109,140,255,.07));padding:25px;border-radius:18px;margin:22px 0}.banner h3,.callout h3{margin:0 0 8px}.banner p,.callout p{margin:0;color:var(--muted)}.pill{display:inline-block;padding:5px 10px;border:1px solid rgba(72,217,238,.28);background:rgba(72,217,238,.07);border-radius:99px;color:var(--cyan);font-size:.72rem;font-weight:800;letter-spacing:.5px;margin-bottom:12px}.muted{color:var(--muted)}.list{padding-left:20px;color:var(--muted)}.list li{margin:8px 0}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}.score-row{display:grid;grid-template-columns:150px 1fr 75px;gap:12px;align-items:center;margin:14px 0;color:var(--muted);font-size:.88rem}.bar{height:11px;background:#25324b;border-radius:99px;overflow:hidden}.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--blue));border-radius:99px}.score-value{color:var(--text);font-weight:800;text-align:right;font-variant-numeric:tabular-nums}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:15px;margin-top:18px}.data-table{width:100%;border-collapse:collapse;min-width:650px}.data-table th,.data-table td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line);font-size:.9rem}.data-table th{color:var(--cyan);background:rgba(72,217,238,.06)}.data-table td{color:var(--muted)}.data-table tr:last-child td{border-bottom:0}.notice{padding:19px;border-radius:14px;border:1px solid rgba(255,195,108,.25);background:rgba(255,195,108,.06);margin-top:20px}.notice strong{color:var(--gold)}.notice p{color:var(--muted);margin:7px 0 0}.strategy-card{position:relative;padding-top:58px}.strategy-num{position:absolute;top:20px;left:23px;color:var(--cyan);font-weight:900;font-size:1.15rem}.topic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.topic{padding:15px;background:rgba(17,29,52,.7);border:1px solid var(--line);border-radius:13px}.topic-top{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px;font-size:.87rem}.topic-top strong{color:var(--text)}.topic-top span{color:var(--cyan);font-weight:800}.topic .bar{height:8px}.research-card{background:linear-gradient(145deg,#16223d,#0d1428);border:1px solid var(--line);border-radius:18px;padding:24px;transition:.22s}.research-card:hover{transform:translateY(-3px);border-color:rgba(72,217,238,.45)}.research-meta{color:var(--cyan);font-size:.74rem;font-weight:850;letter-spacing:1px;text-transform:uppercase;margin-bottom:9px}.research-card h3{margin:0 0 10px}.research-card p{color:var(--muted);font-size:.91rem}.research-stat{font-size:2rem;color:var(--cyan);font-weight:900;line-height:1.2;margin:12px 0 5px}.source{display:inline-block;color:var(--cyan);font-weight:800;font-size:.86rem;text-decoration:underline;text-underline-offset:4px;margin-top:10px}.source:hover{color:var(--purple)}.evidence-type{display:inline-block;padding:4px 9px;border:1px solid rgba(72,217,238,.25);border-radius:30px;color:#a9eefa;font-size:.7rem;margin:0 0 10px}.research-note{margin-top:25px;padding:22px;border:1px solid rgba(255,195,108,.25);background:rgba(255,195,108,.055);border-radius:16px}.research-note strong{color:var(--gold)}.faq-item{border-bottom:1px solid var(--line)}.faq-question{width:100%;padding:18px 0;background:none;border:0;color:var(--text);font:inherit;font-weight:800;text-align:left;display:flex;justify-content:space-between;cursor:pointer}.faq-answer{display:none;color:var(--muted);padding:0 0 18px;max-width:850px}.faq-item.open .faq-answer{display:block}.footer{padding:38px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.86rem}.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.footer a{color:var(--cyan)}.small-note{font-size:.8rem;color:#8292ae;margin-top:12px}
+    @media(max-width:980px){.nav-links{display:none;position:absolute;top:72px;left:0;right:0;padding:20px;background:#0b1427;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start}.nav-links.show{display:flex}.menu-btn{display:block}.nav-cta{display:none}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-stats{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:650px){.container{width:min(100% - 28px,1160px)}.hero{padding:72px 0 60px}.hero-stats,.grid,.grid.two,.two-col,.topic-grid{grid-template-columns:1fr}.score-row{grid-template-columns:105px 1fr 60px;gap:8px;font-size:.78rem}section{padding:58px 0}.card,.research-card{padding:19px}.footer-inner{display:block}}
+  </style>
+</head>
+<body>
+<header class="topbar">
+  <div class="container nav">
+    <a class="brand" href="https://devgameblogpromo.vercel.app/" aria-label="DGBP home">
+      <span class="brand-mark">D</span><span>DevGameBlogPromo<small>Learning Research Initiative</small></span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+      <a href="#about">Research</a><a href="#why-dgbp">Why DGBP</a><a href="#framework">Framework</a><a href="#assessment">Assessment</a><a href="#pilot">Pilot Data</a><a href="#industry-research">Industry Research</a><a href="#faq">FAQ</a>
+    </nav>
+    <a class="nav-cta" href="https://devgameblogpromo.vercel.app/">DGBP Home ↗</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open navigation" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="top" style="border:0">
+    <div class="container">
+      <span class="eyebrow">DevGameBlogPromo · Learning Research</span>
+      <h1>Beyond Education.<br><span class="gradient">Towards Understanding.</span></h1>
+      <p>We want to understand how people learn, where learners struggle, why progress changes and which learning approaches may help. DGBP brings assessment observations, topic-level analysis and published research together to ask better questions about education.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#about">Explore the research</a>
+        <a class="btn" href="#pilot">View pilot observations</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>3</strong><span>Main assessment levels in the pilot framework</span></div>
+        <div class="stat"><strong>195</strong><span>Main assessment questions across three levels</span></div>
+        <div class="stat"><strong>900</strong><span>Total possible marks across the three levels</span></div>
+        <div class="stat"><strong>2</strong><span>Analysis strategies used by DGBP</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">01 · Research Initiative</span><h2>Learning should be <span class="gradient">understood, not just measured.</span></h2><p>Marks can show an outcome, but they do not always explain what happened during learning. Our initiative looks beyond a final score to examine topic-level strengths, repeated errors, unanswered questions and changes in performance.</p></div>
+      <div class="grid">
+        <article class="card"><div class="number">01</div><h3>Observe</h3><p>Record assessment outcomes, question-level responses and the conditions under which the assessment was completed.</p></article>
+        <article class="card"><div class="number">02</div><h3>Analyse</h3><p>Map responses to topics, identify patterns and compare performance across assessment stages.</p></article>
+        <article class="card"><div class="number">03</div><h3>Investigate</h3><p>Develop research questions about understanding, memory, study practices, reasoning and independent application.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="why-dgbp">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">02 · Purpose</span><h2>Why is <span class="gradient">DGBP here?</span></h2><p>DGBP is here to investigate learning challenges and explore ways to make learning more effective. We are not here merely to test students or label them by marks.</p></div>
+      <div class="banner"><h3>Our central question</h3><p>When a learner struggles, what exactly is happening? Is the difficulty related to a topic, a missing prerequisite, the way a question is understood, the learning method, recall, application or something else? We want to investigate these possibilities instead of assuming a cause.</p></div>
+      <div class="grid">
+        <article class="card"><h3>Identify where learners struggle</h3><p>Use question and topic-level records to locate areas that may need further attention.</p></article>
+        <article class="card"><h3>Understand how people learn</h3><p>Explore learning, practice, feedback, recall, comprehension and application.</p></article>
+        <article class="card"><h3>Understand stalled progress</h3><p>Investigate why a learner's performance may change between assessments.</p></article>
+        <article class="card"><h3>Examine education challenges</h3><p>Study learning barriers and differences between classroom exposure and demonstrated understanding.</p></article>
+        <article class="card"><h3>Explore study techniques</h3><p>Review methods and ask whether they help learners understand and retain material.</p></article>
+        <article class="card"><h3>Support better outcomes</h3><p>Use evidence to guide improvements rather than relying on assumptions or promises.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="mission">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">03 · Direction</span><h2>Mission & <span class="gradient">Vision</span></h2></div>
+      <div class="grid two">
+        <article class="card"><span class="pill">MISSION</span><h3>Investigate learning with evidence</h3><p>To observe learning challenges, analyse assessment responses, explore learning methods and share clear, honest findings that can inform better educational practice.</p></article>
+        <article class="card"><span class="pill">VISION</span><h3>A more thoughtful learning ecosystem</h3><p>To contribute to an education environment where learners are understood as individuals, learning is evaluated across multiple dimensions and decisions are informed by evidence.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="questions">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">04 · Research Questions</span><h2>Questions that guide <span class="gradient">our investigation</span></h2><p>These are questions to investigate, not conclusions already established by DGBP.</p></div>
+      <div class="grid">
+        <article class="card"><h3>Understanding</h3><p>Can learners explain a concept in their own words and use it in a new situation?</p></article>
+        <article class="card"><h3>Memory & recall</h3><p>What can learners recall after a period of time, and how does practice relate to recall?</p></article>
+        <article class="card"><h3>Reasoning</h3><p>Can learners identify the steps needed to solve unfamiliar problems?</p></article>
+        <article class="card"><h3>Study approaches</h3><p>How do different study approaches relate to accuracy, comprehension and retention?</p></article>
+        <article class="card"><h3>Progress over time</h3><p>What patterns appear when the same learner completes multiple assessments?</p></article>
+        <article class="card"><h3>Independent learning</h3><p>Can learners demonstrate what they know without hints, tools or external assistance?</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="dimensions">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">05 · Learning Dimensions</span><h2>Learning is <span class="gradient">multidimensional</span></h2><p>A score is one signal. A broader picture may require several different observations.</p></div>
+      <div class="grid">
+        <article class="card"><h3>Knowledge</h3><p>Recognising and recalling concepts, definitions, facts and procedures.</p></article>
+        <article class="card"><h3>Comprehension</h3><p>Explaining meaning, relationships and underlying ideas.</p></article>
+        <article class="card"><h3>Application</h3><p>Using learned ideas to solve problems or complete practical tasks.</p></article>
+        <article class="card"><h3>Reasoning</h3><p>Connecting evidence, selecting methods and explaining decisions.</p></article>
+        <article class="card"><h3>Retention</h3><p>Recalling and applying knowledge after a delay, not only immediately after study.</p></article>
+        <article class="card"><h3>Independent performance</h3><p>Demonstrating learning without outside help or answer-generating tools.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">06 · Research Process</span><h2>From observation to <span class="gradient">informed questions</span></h2></div>
+      <div class="grid">
+        <article class="card"><div class="number">1</div><h3>Define the learning area</h3><p>Identify the subject, topics, learning objectives and assessment scope.</p></article>
+        <article class="card"><div class="number">2</div><h3>Collect responses</h3><p>Record marks, correct answers, incorrect answers and unanswered questions.</p></article>
+        <article class="card"><div class="number">3</div><h3>Map topics</h3><p>Organise questions by topic and calculate topic-level performance where records permit.</p></article>
+        <article class="card"><div class="number">4</div><h3>Compare stages</h3><p>Review changes between tests while considering differences in question count and difficulty.</p></article>
+        <article class="card"><div class="number">5</div><h3>Investigate patterns</h3><p>Check question wording, recurring errors and possible prerequisite gaps before interpreting results.</p></article>
+        <article class="card"><div class="number">6</div><h3>Report limitations</h3><p>State what the data can show, what it cannot show and what further evidence is needed.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="profiles">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">07 · Proposed Learning Profiles</span><h2>Patterns to explore, <span class="gradient">not labels</span></h2><p>These are descriptive possibilities for analysing evidence. They are not diagnoses, fixed student categories or validated psychological profiles.</p></div>
+      <div class="grid">
+        <article class="card"><h3>Consistent performance</h3><p>Similar performance across topics or repeated assessments.</p></article>
+        <article class="card"><h3>Topic-specific difficulty</h3><p>Stronger results in some topics and weaker results in others.</p></article>
+        <article class="card"><h3>Recall difficulty</h3><p>Possible difference between recent learning and delayed recall, requiring a suitable retention assessment.</p></article>
+        <article class="card"><h3>Application gap</h3><p>Correct recognition of concepts but difficulty applying them to unfamiliar questions.</p></article>
+        <article class="card"><h3>Variable performance</h3><p>Large changes across rounds or assessments that need further investigation.</p></article>
+        <article class="card"><h3>Developing performance</h3><p>Evidence of improvement across comparable tasks, interpreted with care.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="assessment">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">08 · DGBP Assessment Framework</span><h2>A structured <span class="gradient">assessment plan</span></h2><p>The framework below records the assessment structure used in the current pilot plan. It is not presented as a nationally validated examination or universal learning standard.</p></div>
+      <div class="table-wrap">
+        <table class="data-table"><thead><tr><th>Assessment</th><th>Questions</th><th>Maximum marks</th><th>Structure</th></tr></thead>
+        <tbody>
+          <tr><td>Level 1</td><td>75</td><td>300</td><td>Main assessment</td></tr>
+          <tr><td>Level 2</td><td>60</td><td>300</td><td>Main assessment</td></tr>
+          <tr><td>Level 3</td><td>60</td><td>300</td><td>Main assessment</td></tr>
+          <tr><td><strong>Main total</strong></td><td><strong>195</strong></td><td><strong>900</strong></td><td>Three levels</td></tr>
+          <tr><td>Exemption test</td><td>20</td><td>Not specified</td><td>Separate from the 900-mark total</td></tr>
+        </tbody></table>
+      </div>
+      <div class="grid two" style="margin-top:20px">
+        <article class="card"><h3>Proposed reference baseline</h3><div class="research-stat">60%</div><p>For the current framework, 60% is used as a proposed project reference point: 180/300 per level or 540/900 overall. It is not a universal or externally validated standard.</p></article>
+        <article class="card"><h3>Exemption test</h3><div class="research-stat">20 questions</div><p>The exemption test is separate from the three-level, 900-mark total. Marks per question and the qualifying threshold have not been confirmed, so no total score is assumed.</p></article>
+      </div>
+      <div class="notice"><strong>Assessment conditions to document</strong><p>Four-option MCQs with one correct answer; no partial marks; no negative marking; unanswered questions receive zero; no external assistance or hints; answer key hidden until submission; explanations shared after evaluation; and different but equivalent question sets where applicable. Duration, breaks and permitted materials must be specified before a formal comparison. The current plan proposes completing all three main assessments on one day.</p></div>
+    </div>
+  </section>
+
+  <section id="strategies">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">09 · Analysis Strategies</span><h2>Two strategies we <span class="gradient">follow</span></h2><p>DGBP uses question-paper analysis and document-based topic percentage mapping to examine performance at more than one level.</p></div>
+      <div class="grid two">
+        <article class="card strategy-card"><span class="strategy-num">STRATEGY 01</span><h3>Question paper analysis</h3><p>Inspect each question and the learner's response to understand where errors or omissions occur.</p><ul class="list"><li>Identify correct, incorrect and unanswered responses.</li><li>Review question types and wording.</li><li>Look for repeated errors or misconceptions.</li><li>Check whether the error appears topic-specific or question-specific.</li><li>Use the answer key and explanations after submission.</li></ul></article>
+        <article class="card strategy-card"><span class="strategy-num">STRATEGY 02</span><h3>Document-based topic percentage mapping</h3><p>Maintain a structured record linking each question to a topic and calculating performance where the underlying counts are available.</p><ul class="list"><li>Record topic name and number of questions.</li><li>Record correct answers and total attempted/available questions.</li><li>Calculate topic percentage transparently.</li><li>Compare topic patterns between tests when comparable data exists.</li><li>Use the document to identify areas for further review.</li></ul></article>
+      </div>
+      <div class="callout"><h3>Percentage calculation</h3><p><strong>Topic accuracy = (correct answers ÷ total recorded questions for that topic) × 100.</strong> Always display the number of questions alongside the percentage, because a result based on one or two questions is much less stable than a result based on a larger sample.</p></div>
+    </div>
+  </section>
+
+  <section id="pilot">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">10 · Personal Pilot Assessment Performance Record</span><h2>Observed performance <span class="gradient">across assessments</span></h2><p>The following figures are the recorded personal pilot results supplied for this page. They describe one learner's assessment record and should not be generalised to all students.</p></div>
+      <div class="grid">
+        <article class="card"><h3>Test 1</h3><div class="research-stat">61.33%</div><p>184 / 300 marks · 75 questions</p></article>
+        <article class="card"><h3>Test 2</h3><div class="research-stat">55.00%</div><p>165 / 300 marks · 60 questions · three rounds of 20</p></article>
+        <article class="card"><h3>Test 3</h3><div class="research-stat">33.33%</div><p>100 / 300 marks · 60 questions · three rounds of 20</p></article>
+      </div>
+      <div class="card" style="margin-top:20px">
+        <h3>Assessment score comparison</h3>
+        <div class="score-row"><span>Test 1</span><div class="bar"><span style="width:61.33%"></span></div><span class="score-value">61.33%</span></div>
+        <div class="score-row"><span>Test 2</span><div class="bar"><span style="width:55%"></span></div><span class="score-value">55.00%</span></div>
+        <div class="score-row"><span>Test 3</span><div class="bar"><span style="width:33.33%"></span></div><span class="score-value">33.33%</span></div>
+        <div class="score-row"><span>Overall</span><div class="bar"><span style="width:49.89%"></span></div><span class="score-value">49.89%</span></div>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table"><thead><tr><th>Assessment</th><th>Score</th><th>Questions</th><th>Round results</th></tr></thead><tbody>
+          <tr><td>Test 1</td><td>184 / 300 (61.33%)</td><td>75</td><td>Not separately recorded here</td></tr>
+          <tr><td>Test 2</td><td>165 / 300 (55%)</td><td>60</td><td>50/100 · 60/100 · 55/100</td></tr>
+          <tr><td>Test 3</td><td>100 / 300 (33.33%)</td><td>60</td><td>0/100 · 30/100 · 70/100</td></tr>
+          <tr><td><strong>Aggregate</strong></td><td><strong>449 / 900 (49.89%)</strong></td><td><strong>195</strong></td><td>Three main assessments</td></tr>
+        </tbody></table>
+      </div>
+      <div class="callout">
+        <h3>Recorded percentage-point changes</h3>
+        <div class="score-row"><span>Test 1 → 2</span><div class="bar"><span style="width:6.33%"></span></div><span class="score-value">−6.33 pp</span></div>
+        <div class="score-row"><span>Test 2 → 3</span><div class="bar"><span style="width:21.67%"></span></div><span class="score-value">−21.67 pp</span></div>
+        <div class="score-row"><span>Test 3 → Exemption</span><div class="bar"><span style="width:3.33%"></span></div><span class="score-value">−3.33 pp</span></div>
+        <p class="small-note">The first two changes are calculated from the recorded scores: 61.33% to 55%, then 55% to 33.33%. The 3.33 percentage-point exemption-test decrease is a separately reported observation; the exemption test's raw score and denominator have not been supplied here. “Percentage points” describes the difference between percentages, not a relative percentage reduction.</p>
+      </div>
+      <div class="section-head" style="margin-top:48px"><span class="eyebrow">Test 3 · Topic-level record</span><h2>Topic percentage <span class="gradient">mapping</span></h2><p>This breakdown covers only the 40 recorded questions from Test 3, questions 21–60. It is not a complete breakdown of all 60 questions or all assessments.</p></div>
+      <div class="topic-grid" id="topicGrid">
+        <div class="topic"><div class="topic-top"><strong>AI Fundamentals</strong><span>0%</span></div><div class="bar"><span style="width:0%"></span></div><small class="small-note">0 / 1 correct</small></div>
+        <div class="topic"><div class="topic-top"><strong>Mathematics & Statistics</strong><span>50%</span></div><div class="bar"><span style="width:50%"></span></div><small class="small-note">1 / 2 correct</small></div>
+        <div class="topic"><div class="topic-top"><strong>Python & Data Science</strong><span>0%</span></div><div class="bar"><span style="width:0%"></span></div><small class="small-note">0 / 3 correct</small></div>
+        <div class="topic"><div class="topic-top"><strong>Machine Learning</strong><span>40%</span></div><div class="bar"><span style="width:40%"></span></div><small class="small-note">4 / 10 correct</small></div>
+        <div class="topic"><div class="topic-top"><strong>Deep Learning</strong><span>25%</span></div><div class="bar"><span style="width:25%"></span></div><small class="small-note">1 / 4 correct</small></div>
+        <div class="topic"><div class="topic-top"><strong>NLP</strong><span>100%</span></div><div class="bar"><span style="width:100%"></span></div><small class="small-note">2 / 2 correct</small></div>
+        <div class="topic"><div class="topic-top"><strong>Computer Vision</strong><span>0%</span></div><div class="bar"><span style="width:0%"></span></div><small class="small-note">0 / 2 correct</small></div>
+        <div class="topic"><div class="topic-top"><strong>Generative AI</strong><span>75%</span></div><div class="bar"><span style="width:75%"></span></div><small class="small-note">3 / 4 correct</small></div>
+        <div class="topic"><div class="topic-top"><strong>Transformers & LLMs</strong><span>66.67%</span></div><div class="bar"><span style="width:66.67%"></span></div><small class="small-note">2 / 3 correct</small></div>
+        <div class="topic"><div class="topic-top"><strong>RAG & AI Agents</strong><span>66.67%</span></div><div class="bar"><span style="width:66.67%"></span></div><small class="small-note">2 / 3 correct</small></div>
+        <div class="topic"><div class="topic-top"><strong>AI Engineering</strong><span>50%</span></div><div class="bar"><span style="width:50%"></span></div><small class="small-note">1 / 2 correct</small></div>
+        <div class="topic"><div class="topic-top"><strong>MLOps</strong><span>100%</span></div><div class="bar"><span style="width:100%"></span></div><small class="small-note">2 / 2 correct</small></div>
+        <div class="topic"><div class="topic-top"><strong>AI Security & Ethics</strong><span>100%</span></div><div class="bar"><span style="width:100%"></span></div><small class="small-note">2 / 2 correct</small></div>
+      </div>
+      <div class="notice"><strong>Interpretation limitation</strong><p>Several topic percentages are based on very small question counts. For example, 100% on two questions does not establish mastery of an entire subject. These figures are descriptive observations only. Question-level review and larger comparable samples are needed before drawing conclusions about causes or ability.</p></div>
+    </div>
+  </section>
+
+  <section id="industry-research">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">11 · Global Industry Research & Verified Evidence</span><h2>What does the <span class="gradient">global industry</span> say?</h2><p>DGBP reviews published research, company surveys, educational programmes and independent academic experiments. Each type of evidence is labelled so that company-reported data is not confused with independent scientific proof.</p></div>
+      <div class="banner"><h3>How to read this section</h3><p>A company survey can describe reported usage or attitudes. A programme announcement can document reach. A randomized experiment can test a defined intervention under specific conditions. These are different forms of evidence and should not be treated as interchangeable.</p></div>
+
+      <div class="grid two">
+        <article class="research-card">
+          <div class="research-meta">Google · Learning science</div><h3>Google for Education — Research and Learning Science</h3><span class="evidence-type">Research collection · Methods vary by study</span>
+          <p>Google's research portal describes its use of observational studies, randomized controlled trials, user feedback and expert evaluations. Its learning-science principles include active learning, retrieval practice, dialogic inquiry, problem-solving, managing cognitive load, curiosity and motivation.</p>
+          <p><strong>DGBP relevance:</strong> These concepts provide useful questions for examining active recall, learner explanations, cognitive load and engagement. The portal is a collection, not one single experiment or one universal effect size.</p>
+          <a class="source" href="https://edu.google.com/intl/ALL_us/impact/report/" target="_blank" rel="noopener noreferrer">Google for Education research portal ↗</a>
+        </article>
+
+        <article class="research-card">
+          <div class="research-meta">Microsoft · 2026 AI in Education Report</div><h3>AI adoption across education</h3><span class="evidence-type">Company-reported international survey</span>
+          <div class="research-stat">3,345 respondents</div>
+          <p>Microsoft says PSB Insights surveyed 3,345 respondents across K–12 and higher education in the United States, United Kingdom, Australia, Brazil, Japan and Saudi Arabia. The online survey ran from February 13 to March 9, 2026.</p>
+          <p>Microsoft reports that 92% of students and education leaders and 88% of educators had used AI for school-related purposes. It also reports that 77% of students and 53% of educators had not received formal AI training.</p>
+          <p><strong>DGBP relevance:</strong> Adoption and training are worth studying separately. The figures are survey responses reported by Microsoft; they do not prove that AI use improves learning outcomes.</p>
+          <a class="source" href="https://news.microsoft.com/source/2026/06/24/microsofts-new-ai-in-education-report-highlights-widespread-adoption-and-increasing-demand-for-support/" target="_blank" rel="noopener noreferrer">Microsoft report and survey methodology ↗</a>
+        </article>
+
+        <article class="research-card">
+          <div class="research-meta">OpenAI · Student learning study</div><h3>Understanding AI and Learning Outcomes</h3><span class="evidence-type">Randomized study · More than 300 college students</span>
+          <div class="research-stat">300+</div>
+          <p>OpenAI describes a randomized study of more than 300 college students preparing for neuroscience and microeconomics exams. Participants were assigned to traditional online resources or to one of two Study Mode variants.</p>
+          <p>OpenAI reports that microeconomics students assigned Study Mode access scored roughly 15% higher relative to the no-AI control group. Neuroscience results were directionally positive but not distinguishable from the control group.</p>
+          <p><strong>DGBP relevance:</strong> Results differed by subject. The study also highlights the need to measure whether short-term gains persist. OpenAI notes that analysis is ongoing and engagement varied.</p>
+          <a class="source" href="https://openai.com/index/understanding-ai-and-learning-outcomes/" target="_blank" rel="noopener noreferrer">OpenAI study design and findings ↗</a>
+        </article>
+
+        <article class="research-card">
+          <div class="research-meta">IBM · September 2, 2026</div><h3>AI readiness in K–12 schools</h3><span class="evidence-type">Morning Consult survey · United States</span>
+          <div class="research-stat">2,048 adults</div>
+          <p>IBM commissioned Morning Consult to survey 2,048 US adults in July 2026: 1,019 K–12 education professionals and 1,029 parents of K–12 students. IBM reports that only 20% of K–12 educators had received extensive AI training.</p>
+          <p>The survey also reports weekly classroom AI use by 76% of middle-school educators and 73% of high-school educators.</p>
+          <p><strong>DGBP relevance:</strong> The findings raise questions about educator preparation, responsible use and the gap between adoption and readiness. They describe a US survey, not Indian schools.</p>
+          <a class="source" href="https://newsroom.ibm.com/2026-09-02-new-ibm-study-finds-ai-adoption-is-outpacing-k-12-readiness" target="_blank" rel="noopener noreferrer">IBM findings and survey methodology ↗</a>
+        </article>
+
+        <article class="research-card">
+          <div class="research-meta">Amazon India · February 2025 announcement</div><h3>Technology-driven learning in government schools</h3><span class="evidence-type">Company programme report · India</span>
+          <div class="research-stat">11,000+ students</div>
+          <p>Amazon India reported that its technology-driven learning initiative across 40 government schools in Bengaluru had impacted more than 11,000 students and 200 teachers. The initiative included recognition of teachers using technology in teaching and learning.</p>
+          <p><strong>DGBP relevance:</strong> This is a useful Indian example of technology adoption and classroom practice. The reported reach is a programme impact figure, not a controlled estimate of learning gains.</p>
+          <a class="source" href="https://press.aboutamazon.com/in/news/community/2025/8/amazon-india-empowers-educators-and-students-through-technology-driven-learning-initiative" target="_blank" rel="noopener noreferrer">Amazon India announcement ↗</a>
+        </article>
+
+        <article class="research-card">
+          <div class="research-meta">Apple · iPad in Education</div><h3>Interactive technology and learning examples</h3><span class="evidence-type">Company education evidence collection</span>
+          <div class="research-stat">16.4%</div>
+          <p>Apple's education evidence PDF describes a Stanford-associated study in which students who spent 120 minutes of class time playing the Wuzzit Trouble mathematics game improved their math problem-solving skills by 16.4% in the reported comparison.</p>
+          <p>The same collection describes other educational app studies, including an early-literacy study involving 82 children across seven Head Start classrooms.</p>
+          <p><strong>DGBP relevance:</strong> Interactive learning may be worth testing, but these are selected examples in an Apple-published collection. They should not be interpreted as proof that every tablet or app improves learning.</p>
+          <a class="source" href="https://www.apple.com/in/education/k12/docs/ipad-in-education-results.pdf" target="_blank" rel="noopener noreferrer">Apple education evidence PDF ↗</a>
+        </article>
+      </div>
+
+      <div class="section-head" style="margin-top:70px"><span class="eyebrow">Independent academic evidence</span><h2>Research beyond <span class="gradient">company claims</span></h2><p>Peer-reviewed studies can test specific learning questions under defined conditions. They still have boundaries: population, subject, intervention, measurement and study design matter.</p></div>
+      <div class="grid two">
+        <article class="research-card">
+          <div class="research-meta">PLOS ONE · May 24, 2024</div><h3>ChatGPT-generated help and mathematics learning</h3><span class="evidence-type">Peer-reviewed randomized study · N = 274</span>
+          <div class="research-stat">274 participants</div>
+          <p>Pardos and Bhandari compared ChatGPT-generated help, human tutor-authored help and no-help control conditions across four mathematics areas: elementary algebra, intermediate algebra, college algebra and statistics.</p>
+          <p>The study found statistically significant learning gains for the ChatGPT-help condition compared with no help, with no statistically significant difference between ChatGPT and human tutor help. The authors also reported that 32% of generated hints failed quality checks before mitigation.</p>
+          <p><strong>DGBP relevance:</strong> Examine whether explanations and hints support learning, while checking accuracy and avoiding blind reliance on generated answers.</p>
+          <a class="source" href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0304013" target="_blank" rel="noopener noreferrer">Read the PLOS ONE paper ↗</a>
+        </article>
+
+        <article class="research-card">
+          <div class="research-meta">PNAS · Published 2025</div><h3>Generative AI without learning safeguards</h3><span class="evidence-type">High-school mathematics field experiment · Nearly 1,000 students</span>
+          <div class="research-stat">~1,000 students</div>
+          <p>Researchers studied two AI tutor designs in high-school mathematics: a GPT-4 interface resembling a standard chatbot and a tutor designed with prompts to safeguard learning.</p>
+          <p>AI access improved practice performance. On a later unassisted assessment, students in the standard GPT Base group performed 17% worse than the control group; the safeguarded GPT Tutor group did not show the same statistically significant decline.</p>
+          <p><strong>DGBP relevance:</strong> Assisted performance is not the same as independent learning. Assessments should test whether learners can solve problems after assistance is removed.</p>
+          <a class="source" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12232635/" target="_blank" rel="noopener noreferrer">Read the PNAS study ↗</a>
+        </article>
+      </div>
+
+      <div class="section-head" style="margin-top:65px"><span class="eyebrow">Evidence comparison</span><h2>What can DGBP <span class="gradient">learn from these sources?</span></h2></div>
+      <div class="table-wrap">
+        <table class="data-table"><thead><tr><th>Source</th><th>Area</th><th>Evidence type</th><th>Useful DGBP research question</th></tr></thead><tbody>
+          <tr><td>Google</td><td>Learning science</td><td>Research collection</td><td>How do active learning and retrieval practice relate to recall?</td></tr>
+          <tr><td>Microsoft</td><td>AI adoption and training</td><td>International company survey</td><td>Does technology use come with adequate training?</td></tr>
+          <tr><td>OpenAI</td><td>AI-supported exam preparation</td><td>Randomized student study</td><td>Do outcomes vary by subject and persist over time?</td></tr>
+          <tr><td>IBM</td><td>K–12 AI readiness</td><td>US national survey</td><td>How prepared are educators to guide AI use?</td></tr>
+          <tr><td>Amazon India</td><td>Digital learning in schools</td><td>Programme reach report</td><td>How are digital tools used in real classrooms?</td></tr>
+          <tr><td>Apple</td><td>Interactive educational apps</td><td>Company evidence collection</td><td>Can interactive tasks support problem-solving?</td></tr>
+          <tr><td>PLOS ONE</td><td>AI-generated mathematics help</td><td>Peer-reviewed experiment</td><td>Do explanations help, and are they accurate?</td></tr>
+          <tr><td>PNAS</td><td>AI and independent learning</td><td>Field experiment</td><td>Can learners perform without AI assistance?</td></tr>
+        </tbody></table>
+      </div>
+
+      <div class="section-head" style="margin-top:65px"><span class="eyebrow">DGBP research implications</span><h2>Turning external evidence into <span class="gradient">our own questions</span></h2></div>
+      <div class="grid">
+        <article class="card"><h3>01 · Understanding vs memorisation</h3><p>Can learners explain a concept and use it in a new situation, rather than only recognise a correct option?</p></article>
+        <article class="card"><h3>02 · Assisted vs independent</h3><p>What changes when a learner completes a task with help compared with completing it independently?</p></article>
+        <article class="card"><h3>03 · Retention over time</h3><p>Can learners recall and apply concepts after a meaningful delay?</p></article>
+        <article class="card"><h3>04 · Topic-level performance</h3><p>Which topic patterns are hidden by an overall score?</p></article>
+        <article class="card"><h3>05 · Application and reasoning</h3><p>Can learners transfer knowledge to unfamiliar questions and practical problems?</p></article>
+        <article class="card"><h3>06 · Study technique evaluation</h3><p>Which learning approaches are associated with better comprehension, recall and application under comparable conditions?</p></article>
+      </div>
+
+      <div class="research-note"><strong>Evidence limitations and responsible interpretation</strong><p>Company surveys are often commissioned or published by the company and may measure reported behaviour, not causal learning effects. Programme reach does not equal proven academic improvement. Academic experiments have specific samples, subjects and conditions; their findings may not generalise to every learner, school or country. DGBP presents these sources as external references, not as research conducted by DGBP. DGBP's personal pilot figures are separate and must not be compared directly with these studies without equivalent populations, tests and conditions.</p></div>
+      <p class="small-note">Source review date: 9 November 2026. Links point to the source publisher or journal record. Figures and summaries are limited to the information reported by those sources.</p>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">12 · Frequently Asked Questions</span><h2>Research <span class="gradient">FAQ</span></h2></div>
+      <div class="faq-item"><button class="faq-question" aria-expanded="false">Is DGBP claiming that one study method works for everyone? <span>＋</span></button><div class="faq-answer">No. DGBP aims to examine learning approaches and evidence. Learners, subjects and contexts differ. A method should be evaluated rather than assumed to work universally.</div></div>
+      <div class="faq-item"><button class="faq-question" aria-expanded="false">Are the pilot assessment results representative of all students? <span>＋</span></button><div class="faq-answer">No. The figures shown are a personal pilot record from one learner. They are not a representative sample and cannot establish population-wide conclusions.</div></div>
+      <div class="faq-item"><button class="faq-question" aria-expanded="false">Why does the page include research from technology companies? <span>＋</span></button><div class="faq-answer">Technology companies publish surveys, research collections and education programme reports that can help identify trends and research questions. Their evidence is labelled and interpreted with limitations. Independent academic research is included as a separate category.</div></div>
+      <div class="faq-item"><button class="faq-question" aria-expanded="false">Does a higher score always mean deeper learning? <span>＋</span></button><div class="faq-answer">Not necessarily. A score measures performance on a particular assessment under particular conditions. Understanding, retention, reasoning and independent application may require additional measures.</div></div>
+      <div class="faq-item"><button class="faq-question" aria-expanded="false">Does DGBP consider AI a replacement for teachers? <span>＋</span></button><div class="faq-answer">This page does not make that claim. The research focus is on understanding how tools, teaching, practice and feedback relate to learning. Human guidance and responsible use remain important considerations.</div></div>
+      <div class="faq-item"><button class="faq-question" aria-expanded="false">What does DGBP want to achieve? <span>＋</span></button><div class="faq-answer">DGBP wants to investigate where learners struggle, understand how learning happens, explore study techniques and contribute evidence-informed ideas that may support better learning outcomes.</div></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div><strong style="color:var(--text)">DevGameBlogPromo · Learning Research Initiative</strong><br><span>Research with curiosity. Interpret with care.</span></div>
+    <div><a href="https://devgameblogpromo.vercel.app/">Return to DGBP Home ↗</a><br><span>© <span id="year"></span> DevGameBlogPromo</span></div>
+  </div>
+</footer>
+
+<script>
+  const menuBtn=document.getElementById('menuBtn');
+  const navLinks=document.getElementById('navLinks');
+  menuBtn.addEventListener('click',()=>{
+    const open=navLinks.classList.toggle('show');
+    menuBtn.setAttribute('aria-expanded',String(open));
+    menuBtn.textContent=open?'✕':'☰';
+  });
+  navLinks.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
+    navLinks.classList.remove('show');
+    menuBtn.setAttribute('aria-expanded','false');
+    menuBtn.textContent='☰';
+  }));
+  document.querySelectorAll('.faq-question').forEach(button=>{
+    button.addEventListener('click',()=>{
+      const item=button.parentElement;
+      const open=item.classList.toggle('open');
+      button.setAttribute('aria-expanded',String(open));
+      button.querySelector('span').textContent=open?'−':'＋';
+    });
+  });
+  document.getElementById('year').textContent=new Date().getFullYear();
+  const sections=[...document.querySelectorAll('main section[id]')];
+  const links=[...document.querySelectorAll('.nav-links a')];
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        links.forEach(link=>link.classList.toggle('active',link.getAttribute('href')==='#'+entry.target.id));
+      }
+    });
+  },{rootMargin:'-35% 0px -55% 0px'});
+  sections.forEach(section=>observer.observe(section));
+</script>
+</body>
+</html>
