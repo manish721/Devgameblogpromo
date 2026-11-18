@@ -1536,6 +1536,15 @@ body::before{
   opacity:.09;               /* stronger = .15 · subtler = .05 */
   mix-blend-mode:multiply;   /* blends the logo into the white / yellow page */
 }
+
+/* Special Day panel: visible only while the hero section is on screen */
+.event-rail{transition:transform .28s ease,opacity .25s ease,visibility .25s}
+.event-rail.out-of-section{opacity:0;visibility:hidden;pointer-events:none}
+
+/* the panel no longer sits beside the timer/banner, so don't push them aside */
+body.rail-open .widget-row{margin-left:28px!important}
+@media (max-width:900px){body.rail-open .widget-row{margin-left:14px!important}}
+  
 </style>
 </head>
 
@@ -2182,6 +2191,29 @@ body::before{
 </footer>
 
 <script>
+
+setRail(window.innerWidth >= 1320);
+  railTab.addEventListener("click", function () { setRail(rail.classList.contains("collapsed")); });
+  railClose.addEventListener("click", function () { setRail(false); });
+
+
+  /* show the Special Day panel only while the hero section is in view */
+  var heroSection = document.querySelector(".hero");
+  if (heroSection && "IntersectionObserver" in window) {
+    rail.classList.add("out-of-section");            /* hidden before the hero */
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        rail.classList.toggle("out-of-section", !en.isIntersecting);
+      });
+    }, {
+      rootMargin: "-120px 0px -35% 0px",             /* trigger when the hero is really on screen */
+      threshold: 0
+    }).observe(heroSection);
+  }
+
+
+
+  
 /* ===== Announcement bar ===== */
 (function(){
   var banner=document.getElementById('termsBanner');
