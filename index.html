@@ -2192,24 +2192,6 @@ body.rail-open .widget-row{margin-left:28px!important}
 
 <script>
 
-setRail(window.innerWidth >= 1320);
-  railTab.addEventListener("click", function () { setRail(rail.classList.contains("collapsed")); });
-  railClose.addEventListener("click", function () { setRail(false); });
-
-
-  /* show the Special Day panel only while the hero section is in view */
-  var heroSection = document.querySelector(".hero");
-  if (heroSection && "IntersectionObserver" in window) {
-    rail.classList.add("out-of-section");            /* hidden before the hero */
-    new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        rail.classList.toggle("out-of-section", !en.isIntersecting);
-      });
-    }, {
-      rootMargin: "-120px 0px -35% 0px",             /* trigger when the hero is really on screen */
-      threshold: 0
-    }).observe(heroSection);
-  }
 
 
 
