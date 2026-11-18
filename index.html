@@ -1519,6 +1519,23 @@ img{max-width:100%;display:block}
 @media (min-width:901px){.school-banner{max-width:900px}}
 
 .event-rail.collapsed .rail-panel{box-shadow:none}
+
+/* ===================================================================
+   LOGO WATERMARK — your DevGameBlog Promo logo, fixed + centred,
+   visible on the back side of the whole website.
+   Put the image file "dgbp-logo-bg.png" in the same folder as this page.
+   Nothing above was changed; this is the only addition.
+   =================================================================== */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  z-index:1;                 /* above the opaque section backgrounds so it stays visible */
+  pointer-events:none;       /* clicks, scrolling and search still work normally */
+  background:url('dgbp-logo-bg.png') center center / min(70vw,620px) auto no-repeat;
+  opacity:.09;               /* stronger = .15 · subtler = .05 */
+  mix-blend-mode:multiply;   /* blends the logo into the white / yellow page */
+}
 </style>
 </head>
 
@@ -1536,9 +1553,9 @@ img{max-width:100%;display:block}
 <header class="site-header">
   <div class="container nav-wrap">
     <a class="brand" href="index.html" aria-label="DGBPLabZ home">
-      <div class="brand-mark">DDGBPLabZ</div>
+      <div class="brand-mark">DG</div>
       <div>
-        
+        <div class="brand-name">DGBPLabZ</div>
         <div class="brand-sub">School of Development &amp; Gaming</div>
       </div>
     </a>
