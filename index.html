@@ -1580,6 +1580,28 @@ body::before{
 body.rail-open .widget-row{margin-left:28px!important}
 @media (max-width:900px){body.rail-open .widget-row{margin-left:14px!important}}
 
+  /* ===================================================================
+   NEW · PROJECTS / CASE STUDY
+   =================================================================== */
+.case{display:grid;grid-template-columns:1.1fr .9fr;gap:0;border:var(--bw) solid var(--ink);box-shadow:var(--hard);background:#fff}
+.case-main{padding:38px 34px}
+.case-main h3{font-size:1.6rem;margin:10px 0 12px}
+.case-main p{color:var(--muted);font-size:.97rem;margin-bottom:14px}
+.proj-status{display:inline-block;font-family:var(--f-head);font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;background:var(--brand);border:var(--bw) solid var(--ink);padding:3px 10px}
+.proj-tags{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 22px}
+.proj-tags span{font-family:var(--f-head);font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--bg-soft);border:var(--bw) solid var(--ink);padding:3px 9px}
+.case-actions{display:flex;flex-wrap:wrap;gap:12px}
+.case-side{background:var(--bg-soft);border-left:var(--bw) solid var(--ink);padding:38px 30px}
+.case-side h4{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;font-family:var(--f-head)}
+.case-side li{padding:10px 0;border-top:var(--bw) dashed var(--line);font-size:.92rem;color:var(--ink-2)}
+.case-side li::before{content:'✓ ';font-weight:800;color:var(--brand-deep)}
+.case-side li b{font-family:var(--f-head);color:var(--ink)}
+
+@media(max-width:850px){
+  .case{grid-template-columns:1fr}
+  .case-side{border-left:none;border-top:var(--bw) solid var(--ink)}
+  .case-main,.case-side{padding:26px 22px}
+}
 </style>
 </head>
 
