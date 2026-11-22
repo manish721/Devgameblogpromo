@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
 <!-- ═══ SEO: TITLE & DESCRIPTION ═══ -->
-<title>DGBPLabZ — Web Development, AI & Game Dev Courses | Hyderabad, India</title>
-<meta name="description" content="Learn web development, AI, and game development through real project mentorship at DGBPLabZ, Hyderabad. Join 2,100+ students. Courses from ₹499. Enroll today."/>
+<title>DGBPLabZ — Founder-Led Web Dev, AI & Game Dev Mentorship from ₹499 | Hyderabad</title>
+<meta name="description" content="Build real projects with founder-led mentorship in web development, AI and game development. Udyam-registered, no exams, no hidden fees. Tracks from ₹499. Apply today."/>
 <link rel="canonical" href="https://devgameblogpromo.vercel.app/"/>
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
 <meta name="keywords" content="web development course Hyderabad, AI machine learning course India, game development mentorship, coding bootcamp India, frontend development course, Python AI course, DevOps cloud training, learn programming online India, DGBPLabZ, DevGameBlogPromo"/>
@@ -21,8 +21,8 @@
 <!-- ═══ OPEN GRAPH ═══ -->
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://devgameblogpromo.vercel.app/"/>
-<meta property="og:title" content="DGBPLabZ — Learn Web Dev, AI & Game Development | Real Mentorship"/>
-<meta property="og:description" content="Project-based mentorship platform in Hyderabad teaching web development, AI, and game development. 2,100+ students. Courses from ₹499. Start today."/>
+<meta property="og:title" content="DGBPLabZ — Learn Web Dev, AI & Game Development | Founder-Led Mentorship"/>
+<meta property="og:description" content="Founder-led, project-based mentorship in Hyderabad: web development, AI and game development. Udyam-registered. Tracks from ₹499. Start today."/>
 <meta property="og:image" content="https://devgameblogpromo.vercel.app/og-image.jpg"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -33,8 +33,8 @@
 <!-- ═══ TWITTER CARD ═══ -->
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:site" content="@DGBPLabZ"/>
-<meta name="twitter:title" content="DGBPLabZ — Web Dev, AI & Game Dev Courses | Hyderabad"/>
-<meta name="twitter:description" content="Real project mentorship in web development, AI, and game development. 2,100+ students. Courses from ₹499."/>
+<meta name="twitter:title" content="DGBPLabZ — Web Dev, AI & Game Dev Mentorship from ₹499 | Hyderabad"/>
+<meta name="twitter:description" content="Real project mentorship in web development, AI, and game development. Founder-led. Courses from ₹499."/>
 <meta name="twitter:image" content="https://devgameblogpromo.vercel.app/og-image.jpg"/>
 
 <!-- ═══ GEO ═══ -->
@@ -64,7 +64,7 @@
 <link rel="dns-prefetch" href="https://upload.wikimedia.org"/>
 <link rel="dns-prefetch" href="https://news.google.com"/>
 
-<!-- ═══ SCHEMA MARKUP (unchanged) ═══ -->
+<!-- ═══ SCHEMA MARKUP ═══ -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -148,12 +148,12 @@
     ]
   },
   "aggregateRating": {
-  "@type": "AggregateRating",
-  "ratingValue": "4.9",
-  "reviewCount": "18",
-  "bestRating": "5",
-  "worstRating": "1"
-}
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "18",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
 }
 </script>
 
@@ -351,12 +351,6 @@
 <style>
 /* ===================================================================
    DGBPLabZ — Company homepage  ·  neo-brutalist / blueprint
-   Same colour palette as the original.
-   NEW: side event banner (.event-rail) + widget merged into main CSS
-   NEW: DGBP company seal (.dgbp-seal) — large rubber-stamp style
-   NEW: AI Search section (#ai-search, .ais-*)
-   NEW: Credential registry section (.credential-*)
-   NEW: Windows-taskbar navbar that docks to the left on scroll
    =================================================================== */
 :root{
   --bg:#ffffff;
@@ -501,7 +495,7 @@ img{max-width:100%;display:block}
 .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:64px;align-items:center}
 .hero h1{font-size:clamp(2.8rem,6.2vw,5rem);letter-spacing:-.045em;margin-bottom:26px;line-height:1}
 .hero h1 em{font-style:normal;background:var(--brand);padding:0 10px;border:var(--bw) solid var(--ink);display:inline-block;transform:rotate(-2deg);box-shadow:5px 5px 0 var(--ink)}
-.hero .lead{font-size:1.14rem;color:var(--ink-2);max-width:560px;margin-bottom:34px}
+.hero .lead{font-size:1.14rem;color:var(--ink-2);max-width:560px;margin-bottom:26px}
 .hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:28px}
 .hero-byline{font-family:var(--f-head);font-size:.86rem;color:var(--muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
 .glance{
@@ -536,6 +530,70 @@ img{max-width:100%;display:block}
 .trust-strip .container{display:flex;flex-wrap:wrap;gap:10px 34px;justify-content:center;padding-top:16px;padding-bottom:16px}
 .trust-strip span{font-family:var(--f-head);font-size:.78rem;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:.08em}
 .trust-strip span::before{content:'■';color:var(--ink);font-size:.6rem}
+
+/* ===================================================================
+   NEW · INSTANT-CREDIBILITY HOOK (hero chips + proof bar)
+   =================================================================== */
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px}
+.hero-chips span{
+  font-family:var(--f-head);font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  background:#fff;border:var(--bw) solid var(--ink);padding:4px 10px;
+}
+.hero-chips span::before{content:'✓ ';color:var(--brand-deep);font-weight:800}
+.proofbar{background:#fff;border-bottom:var(--bw) solid var(--ink)}
+.proofbar .container{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding:0}
+.pb-item{padding:22px 24px;border-right:var(--bw) solid var(--ink)}
+.pb-item:last-child{border-right:none}
+.pb-item b{display:block;font-family:var(--f-head);font-size:1.7rem;letter-spacing:-.04em;line-height:1;overflow-wrap:anywhere}
+.pb-item b.pb-small{font-size:1.1rem;letter-spacing:-.02em;line-height:1.25;padding-top:6px}
+.pb-item span{display:block;margin-top:6px;font-family:var(--f-head);font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.pb-item a{border-bottom:3px solid var(--brand);font-weight:700;color:var(--ink)}
+.pb-item a:hover{border-color:var(--ink)}
+@media(max-width:900px){
+  .proofbar .container{grid-template-columns:1fr 1fr}
+  .pb-item:nth-child(2){border-right:none}
+  .pb-item:nth-child(-n+2){border-bottom:var(--bw) solid var(--ink)}
+}
+
+/* ===================================================================
+   NEW · A vs B HOOK
+   =================================================================== */
+.avb{display:grid;grid-template-columns:1fr 1fr;gap:0;border:var(--bw) solid var(--ink);box-shadow:var(--hard);background:#fff}
+.avb-col{padding:34px}
+.avb-col h3{font-size:1.4rem;margin-bottom:14px}
+.avb-tag{display:inline-block;font-family:var(--f-head);font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:3px 10px;border:var(--bw) solid var(--ink);margin-bottom:16px}
+.avb-a{background:var(--bg-soft);border-right:var(--bw) solid var(--ink)}
+.avb-a .avb-tag{background:#fff}
+.avb-b{background:var(--brand-tint)}
+.avb-b .avb-tag{background:var(--brand)}
+.avb-col li{display:flex;gap:12px;padding:13px 0;border-top:var(--bw) dashed var(--line);font-size:.95rem}
+.avb-a li{color:var(--muted)}
+.avb-a li::before{content:'✕';font-weight:800;flex-shrink:0;width:22px;color:var(--ink)}
+.avb-b li{color:var(--ink);font-weight:500}
+.avb-b li::before{content:'✓';font-weight:800;flex-shrink:0;width:22px}
+.avb-cta{margin-top:24px}
+@media(max-width:800px){
+  .avb{grid-template-columns:1fr}
+  .avb-a{border-right:none;border-bottom:var(--bw) solid var(--ink)}
+  .avb-col{padding:26px 22px}
+}
+
+/* ===================================================================
+   NEW · AUTHORITY HOOK
+   =================================================================== */
+.authority{display:grid;grid-template-columns:.9fr 1.1fr;gap:0;border:var(--bw) solid var(--ink);box-shadow:var(--hard);background:#fff}
+.auth-left{background:var(--ink);color:#fff;padding:40px 34px;display:flex;flex-direction:column;justify-content:center}
+.auth-left .avatar{width:72px;height:72px;font-size:1.3rem;margin-bottom:18px;background:var(--brand);color:var(--ink)}
+.auth-left h3{font-size:1.6rem;color:#fff;margin-bottom:6px}
+.auth-left small{color:var(--brand);font-family:var(--f-head);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.7rem}
+.auth-right{padding:40px 34px}
+.auth-right blockquote{font-family:var(--f-head);font-weight:700;font-size:1.25rem;line-height:1.35;border-left:6px solid var(--brand);padding-left:18px;margin-bottom:22px}
+.auth-facts li{padding:10px 0;border-top:var(--bw) dashed var(--line);font-size:.93rem;color:var(--ink-2)}
+.auth-facts li b{font-family:var(--f-head);color:var(--ink)}
+@media(max-width:800px){
+  .authority{grid-template-columns:1fr}
+  .auth-left,.auth-right{padding:28px 22px}
+}
 
 /* ---------- CARDS ---------- */
 .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px}
@@ -680,7 +738,6 @@ img{max-width:100%;display:block}
 .cred li b{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:4px}
 .sign{margin-top:22px;font-size:.92rem}
 
-/* signature + seal row */
 .sign-row{
   display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
   margin-top:26px;padding-top:22px;border-top:var(--bw) dashed var(--line);
@@ -715,8 +772,6 @@ img{max-width:100%;display:block}
 .dgbp-seal .s-id{font-size:7.6px;letter-spacing:.6px}
 .dgbp-seal .s-est{font-size:8.5px;letter-spacing:2px}
 .dgbp-seal .s-star{font-size:11px}
-
-/* seal sitting on dark footer */
 .dgbp-seal.on-dark{--seal-ink:#FFCB2E;--seal-size:210px;mix-blend-mode:normal;opacity:1;margin:8px 0 22px}
 
 /* ===================================================================
@@ -752,7 +807,7 @@ img{max-width:100%;display:block}
 .ais-wrap{max-width:860px;margin:0 auto;text-align:left}
 .ais-form{
   display:flex;background:#fff;border:var(--bw) solid var(--ink);box-shadow:var(--hard);
-  transition:box-shadow .12s ease,transform .12s ease;
+  transition:box-shadow .12s ease,transform .12s ease;position:relative;
 }
 .ais-form:focus-within{outline:3px solid var(--brand);outline-offset:3px}
 .ais-form input{
@@ -831,7 +886,6 @@ img{max-width:100%;display:block}
 .ais-evidence a{display:inline-block;margin-top:4px;font-family:var(--f-head);font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-bottom:2px solid var(--brand)}
 .ais-ev-note{margin-top:10px;font-family:var(--f-head);font-size:.68rem;letter-spacing:.06em;color:var(--muted)}
 
-/* ---- yes / no answer box ---- */
 .ais-answer{display:flex;align-items:stretch;background:#fff;border:var(--bw) solid var(--ink);box-shadow:var(--hard);margin-bottom:28px}
 .ais-verdict{
   flex:0 0 150px;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px 12px;
@@ -849,7 +903,6 @@ img{max-width:100%;display:block}
   .ais-verdict{flex-basis:auto;border-right:none;border-bottom:var(--bw) solid var(--ink);font-size:1.8rem;padding:14px}
 }
 
-/* ---- course price card inside search ---- */
 .ais-prices{background:#fff;border:var(--bw) solid var(--ink);box-shadow:var(--hard);margin-bottom:28px;position:relative}
 .ais-prices-head{
   display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
@@ -880,6 +933,22 @@ img{max-width:100%;display:block}
   .ais-ptable td:first-child{border-top:none;background:var(--brand-tint)}
   .ais-ptable td:not(:first-child)::before{content:attr(data-label);font-weight:600;color:var(--muted);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase}
 }
+
+/* suggestions dropdown + misc search bits (used by the script) */
+.ais-suggest{
+  position:absolute;left:-2px;right:-2px;top:100%;margin-top:2px;background:#fff;border:var(--bw) solid var(--ink);
+  box-shadow:var(--hard-sm);z-index:20;list-style:none;
+}
+.ais-suggest[hidden]{display:none}
+.ais-suggest li{padding:10px 16px;cursor:pointer;font-size:.92rem;border-bottom:1px dashed var(--line)}
+.ais-suggest li:last-child{border-bottom:none}
+.ais-suggest li.on,.ais-suggest li:hover{background:var(--brand-tint)}
+.ais-fix{font-size:.85rem;color:var(--muted);margin-bottom:14px}
+.ais-badge{
+  display:inline-block;background:var(--ink);color:var(--brand);font-family:var(--f-head);font-size:.62rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;padding:2px 8px;margin-bottom:8px;
+}
+.ais-top{border-left:10px solid var(--brand)}
 
 /* ---------- CTA BAND ---------- */
 .cta-band{background:var(--ink);color:#fff;padding:104px 0;text-align:center;border-top:var(--bw) solid var(--ink);position:relative;overflow:hidden}
@@ -948,7 +1017,7 @@ img{max-width:100%;display:block}
 }
 
 /* ===================================================================
-   SIDE EVENT BANNER  (fixed to the right edge; tab toggles open/closed)
+   SIDE EVENT BANNER
    =================================================================== */
 .event-rail{
   position:fixed;right:0;top:130px;z-index:90;display:flex;align-items:flex-start;
@@ -1053,12 +1122,7 @@ img{max-width:100%;display:block}
 
 /* ===================================================================
    WINDOWS-TASKBAR NAVBAR
-   - Top of page : dark acrylic taskbar bar (icons + labels + clock + Apply)
-   - After scroll: full-height taskbar docked on the LEFT edge
-                   (icons only; hover/focus expands labels)
    =================================================================== */
-
-/* ---------- TASKBAR (top / not scrolled) ---------- */
 .site-header{
   position:sticky;top:10px;z-index:200;
   width:min(1180px,calc(100% - 32px));margin:10px auto 0;
@@ -1071,13 +1135,11 @@ img{max-width:100%;display:block}
 }
 .site-header .container.nav-wrap{max-width:none;min-height:56px;padding:0 10px;gap:12px}
 
-/* brand = "start button" */
 .site-header .brand{gap:10px}
 .site-header .brand-mark{width:36px;height:36px;border-radius:9px;border:0;box-shadow:none;font-size:.9rem}
 .site-header .brand-name{color:#fff;font-size:1rem}
 .site-header .brand-sub{color:#a9a392;font-size:.58rem}
 
-/* taskbar buttons */
 .site-header .primary-nav{gap:2px}
 .site-header .primary-nav>a,
 .site-header .nav-more>button{
@@ -1090,7 +1152,6 @@ img{max-width:100%;display:block}
 .site-header .nav-more:focus-within>button{background:rgba(255,255,255,.1);color:#fff}
 .site-header .primary-nav>a.is-active{background:rgba(255,255,255,.08);color:#fff}
 
-/* little indicator pill (like the running-app mark on Windows) */
 .site-header .primary-nav>a::after,
 .site-header .nav-more>button::after{
   content:'';position:absolute;left:50%;right:auto;bottom:2px;top:auto;
@@ -1108,7 +1169,6 @@ img{max-width:100%;display:block}
   content:'⋯';display:flex;align-items:center;justify-content:center;width:22px;font-size:1.3rem;line-height:1;font-weight:700;
 }
 
-/* "More" flyout */
 .site-header .nav-more-menu{
   background:rgba(26,25,21,.97);color:#f3efe0;border:1px solid rgba(255,255,255,.16);
   border-radius:12px;box-shadow:0 16px 36px rgba(0,0,0,.4);top:calc(100% + 14px);padding:8px;
@@ -1118,7 +1178,6 @@ img{max-width:100%;display:block}
 .site-header .nav-more-menu a:hover{background:rgba(255,255,255,.1);color:#fff}
 .site-header .nav-more-menu hr{border:none;border-top:1px solid rgba(255,255,255,.14);margin:6px 4px}
 
-/* system tray clock */
 .site-header .nav-cta{gap:6px}
 .site-header .tray-clock{
   display:flex;flex-direction:column;align-items:flex-end;justify-content:center;line-height:1.15;
@@ -1132,7 +1191,7 @@ img{max-width:100%;display:block}
 .site-header .btn-sm:hover{transform:none;box-shadow:none;background:#ffd95e}
 .site-header .menu-toggle{border-radius:9px;border:0;box-shadow:none}
 
-/* ---------- DOCKED: vertical taskbar on the LEFT ---------- */
+/* ---------- DOCKED ---------- */
 .site-header.docked{
   position:fixed;top:0;left:0;bottom:0;margin:0;width:64px;height:100vh;
   border-radius:0 16px 16px 0;border-left:0;
@@ -1171,7 +1230,6 @@ img{max-width:100%;display:block}
 .site-header.docked:hover .nav-label,
 .site-header.docked:focus-within .nav-label{max-width:140px;opacity:1}
 
-/* indicator moves to the left edge, like a left-docked Windows taskbar */
 .site-header.docked .primary-nav>a::after,
 .site-header.docked .nav-more>button::after{
   left:0;right:auto;top:50%;bottom:auto;width:3px;height:0;transform:translateY(-50%);
@@ -1180,7 +1238,6 @@ img{max-width:100%;display:block}
 .site-header.docked .nav-more>button:hover::after{width:3px;height:16px;transform:translateY(-50%)}
 .site-header.docked .primary-nav>a.is-active::after{width:3px;height:22px}
 
-/* "More" in the dock */
 .site-header.docked .nav-more{width:100%}
 .site-header.docked .nav-more>button{font-size:0}
 .site-header.docked .nav-more>button::before{flex:0 0 46px;width:46px;height:44px;font-size:1.5rem}
@@ -1192,7 +1249,6 @@ img{max-width:100%;display:block}
 }
 .site-header.docked .nav-more-menu::before{left:-16px;right:auto;top:0;bottom:0;width:16px;height:auto}
 
-/* tray + Apply sit at the bottom of the dock */
 .site-header.docked .nav-cta{
   margin-top:auto;flex-direction:column;align-items:stretch;gap:6px;
   padding-top:10px;border-top:1px solid rgba(255,255,255,.12);
@@ -1212,7 +1268,6 @@ img{max-width:100%;display:block}
 .site-header.docked:focus-within .nav-cta .btn{font-size:.8rem}
 .site-header.docked .menu-toggle{display:none}
 
-/* short screens */
 @media (max-height:700px){
   .site-header.docked .container.nav-wrap{gap:3px;padding:8px 9px}
   .site-header.docked .primary-nav>a,
@@ -1223,7 +1278,6 @@ img{max-width:100%;display:block}
   .site-header.docked .tray-clock{padding:2px 0}
 }
 
-/* ---------- narrower desktop: keep the top bar tidy ---------- */
 @media (max-width:1240px){
   .site-header .tray-clock{display:none}
   .site-header .primary-nav>a,.site-header .nav-more>button{padding:8px 9px}
@@ -1233,7 +1287,6 @@ img{max-width:100%;display:block}
   .site-header .nav-ico{display:none}
 }
 
-/* ---------- MOBILE / TABLET: taskbar stays on top ---------- */
 @media (max-width:900px){
   .site-header{width:calc(100% - 20px);top:8px;margin-top:8px}
   .site-header .container.nav-wrap{padding:0 10px}
@@ -1255,9 +1308,6 @@ img{max-width:100%;display:block}
 
 /* ===================================================================
    ALL DEVICES (phone / iPad / desktop)
-   Same behaviour everywhere: taskbar on top -> docks LEFT on scroll.
-   Desktop  : full-height taskbar, expands on hover.
-   Tablet / phone : slim floating taskbar on the left, TAP the logo to expand.
    =================================================================== */
 @keyframes taskbarDockSm{
   from{transform:translateY(-50%) translateX(-120%);opacity:.4}
@@ -1271,7 +1321,6 @@ img{max-width:100%;display:block}
     transform:translateY(-50%);overflow:visible;
     animation:taskbarDockSm .35s ease both;
   }
-  /* hover is unreliable on touch: width/labels follow the .expanded class only */
   .site-header.docked:hover,
   .site-header.docked:focus-within{width:54px}
   .site-header.docked.expanded{width:210px}
@@ -1294,7 +1343,6 @@ img{max-width:100%;display:block}
   .site-header.docked .brand{padding-left:2px}
   .site-header.docked .brand-mark{cursor:pointer}
 
-  /* undo the "mobile dropdown menu" styling while docked */
   .site-header.docked .primary-nav{
     display:flex !important;position:static;flex-direction:column;align-items:stretch;
     background:none;border:0;box-shadow:none;padding:0;gap:2px;border-radius:0;
@@ -1307,7 +1355,6 @@ img{max-width:100%;display:block}
   .site-header.docked .tray-clock{display:none}
   .site-header.docked .menu-toggle{display:none}
 
-  /* "More" flyout: opens to the right of the dock, tap to open */
   .site-header.docked .nav-more-menu{
     position:absolute;left:calc(100% + 10px);right:auto;top:auto;bottom:-6px;
     width:min(250px,calc(100vw - 96px));max-height:60vh;max-height:60dvh;overflow:auto;
@@ -1321,7 +1368,6 @@ img{max-width:100%;display:block}
   .site-header.docked .nav-more-menu::before{display:none}
   .site-header.docked .nav-more-menu a{padding:10px 12px}
 }
-/* phones in landscape / very short screens */
 @media (max-height:560px){
   .site-header.docked .primary-nav>a,
   .site-header.docked .nav-more>button,
@@ -1337,7 +1383,6 @@ img{max-width:100%;display:block}
 
 /* ===================================================================
    ORIGINAL COLOURS RESTORED (white · black ink · yellow, hard shadow)
-   Layout stays the same; only the dark colours are replaced.
    =================================================================== */
 .site-header{
   background:#fff;color:var(--ink);
@@ -1370,7 +1415,6 @@ img{max-width:100%;display:block}
 .site-header .btn-sm:hover{background:var(--brand);transform:translate(4px,4px);box-shadow:0 0 0 var(--ink)}
 .site-header .menu-toggle{background:var(--brand);border:var(--bw) solid var(--ink);box-shadow:3px 3px 0 var(--ink)}
 
-/* docked */
 .site-header.docked{background:#fff;box-shadow:var(--hard);border:var(--bw) solid var(--ink)}
 .site-header.docked .brand{border-bottom:var(--bw) dashed var(--line)}
 .site-header.docked .nav-cta{border-top:var(--bw) dashed var(--line)}
@@ -1378,7 +1422,6 @@ img{max-width:100%;display:block}
 .site-header.docked .nav-more>button:hover{background:var(--brand-tint)}
 .site-header.docked .nav-cta .btn:hover{transform:none;box-shadow:var(--hard-sm)}
 
-/* tablet / phone */
 @media (max-width:900px){
   .site-header .primary-nav{background:#fff;border:var(--bw) solid var(--ink);box-shadow:var(--hard-sm)}
   .site-header .nav-more-menu{background:transparent;border:0;border-top:var(--bw) solid var(--ink);box-shadow:none}
@@ -1477,7 +1520,6 @@ img{max-width:100%;display:block}
   to{transform:translateY(-50%) translateX(0);opacity:1}
 }
 
-/* ---- navbar dock on the right (desktop) ---- */
 .site-header.docked{
   left:auto;right:0;border-radius:16px 0 0 16px;
   box-shadow:-6px 6px 0 var(--ink);animation:taskbarDockR .35s ease both;
@@ -1487,7 +1529,6 @@ img{max-width:100%;display:block}
 .site-header.docked .nav-more-menu{left:auto;right:calc(100% + 14px)}
 .site-header.docked .nav-more-menu::before{left:auto;right:-16px}
 
-/* ---- tablet / phone dock on the right ---- */
 @media (max-width:1279px){
   .site-header.docked{
     left:auto;right:max(6px,env(safe-area-inset-right));border-radius:18px;
@@ -1497,7 +1538,6 @@ img{max-width:100%;display:block}
 }
 @media (prefers-reduced-motion:reduce){.site-header.docked{animation:none}}
 
-/* ---- Special Day panel on the left ---- */
 .event-rail{right:auto;left:0;flex-direction:row-reverse}
 .event-rail.collapsed{transform:translateX(-262px)}
 .rail-tab{
@@ -1511,7 +1551,6 @@ img{max-width:100%;display:block}
   .event-rail.collapsed{transform:translateX(-232px)}
 }
 
-/* keep the timer + banner clear of the open Special Day panel */
 @media (min-width:1320px){
   .widget-row{transition:margin-left .28s ease}
   body.rail-open .widget-row{margin-left:300px}
@@ -1521,27 +1560,23 @@ img{max-width:100%;display:block}
 .event-rail.collapsed .rail-panel{box-shadow:none}
 
 /* ===================================================================
-   LOGO WATERMARK — your DevGameBlog Promo logo, fixed + centred,
-   visible on the back side of the whole website.
-   Put the image file "dgbp-logo-bg.png" in the same folder as this page.
-   Nothing above was changed; this is the only addition.
+   LOGO WATERMARK — put "dgbp-logo-bg.png" in the same folder as this page.
    =================================================================== */
 body::before{
   content:'';
   position:fixed;
   inset:0;
-  z-index:1;                 /* above the opaque section backgrounds so it stays visible */
-  pointer-events:none;       /* clicks, scrolling and search still work normally */
+  z-index:1;
+  pointer-events:none;
   background:url('dgbp-logo-bg.png') center center / min(70vw,620px) auto no-repeat;
-  opacity:.09;               /* stronger = .15 · subtler = .05 */
-  mix-blend-mode:multiply;   /* blends the logo into the white / yellow page */
+  opacity:.09;
+  mix-blend-mode:multiply;
 }
 
-  /* Special Day panel: visible only while the hero section is on screen */
+/* Special Day panel: visible only while the hero section is on screen */
 .event-rail{transition:transform .28s ease,opacity .25s ease,visibility .25s}
 .event-rail.out-of-section{opacity:0;visibility:hidden;pointer-events:none}
 
-/* the panel no longer sits beside the timer/banner, so don't push them aside */
 body.rail-open .widget-row{margin-left:28px!important}
 @media (max-width:900px){body.rail-open .widget-row{margin-left:14px!important}}
 
@@ -1558,7 +1593,7 @@ body.rail-open .widget-row{margin-left:28px!important}
   <button id="closeBanner" type="button" aria-label="Close announcement">✕</button>
 </div>
 
-<!-- ═══ HEADER (Windows-style taskbar → docks left on scroll) ═══ -->
+<!-- ═══ HEADER (Windows-style taskbar → docks on scroll) ═══ -->
 <header class="site-header">
   <div class="container nav-wrap">
     <a class="brand" href="index.html" aria-label="DGBPLabZ home">
@@ -1585,14 +1620,14 @@ body.rail-open .widget-row{margin-left:28px!important}
           <a href="FAQ.html">FAQ</a>
           <a href="Books.html">Books Store</a>
           <hr>
-          
+
           <a href="DGBP India Policy Portal.html">Policy Hub</a>
           <a href="Public Documents.html">Resources</a>
- <a href="Report.html">Reports</a>
+          <a href="Report.html">Reports</a>
           <a href="Execution.html">Execution Framework</a>
-           
-           <a href="global page.html">Global Initiatives</a>
-           <a href="Global Social Impact.html">Global Careers Network</a>
+
+          <a href="global page.html">Global Initiatives</a>
+          <a href="Global Social Impact.html">Global Careers Network</a>
           <hr>
           <a href="more.html">Admin Panel</a>
         </div>
@@ -1605,7 +1640,7 @@ body.rail-open .widget-row{margin-left:28px!important}
     </div>
   </div>
 </header>
-<ceneter>
+
 <div class="widget-row">
 <!-- ═══ MINI WIDGET (clock · special day · quotes) ═══ -->
 <div class="dgbp-mini-widget">
@@ -1649,7 +1684,7 @@ body.rail-open .widget-row{margin-left:28px!important}
     </div>
   </section>
 </div>
-</ceneter>
+
 <!-- ═══ SIDE EVENT BANNER ═══ -->
 <aside class="event-rail" id="eventRail" aria-label="DevGameBlogPromo special days">
   <button class="rail-tab" id="railTab" type="button" aria-expanded="true" aria-controls="railPanel">
@@ -1680,18 +1715,27 @@ body.rail-open .widget-row{margin-left:28px!important}
   <div class="container">
     <div class="hero-grid">
       <div>
-        <span class="eyebrow">Founder-led mentorship · Hyderabad, India</span>
+        <span class="eyebrow">Registered · Founder-led · Hyderabad, India</span>
         <h1>Learn by <em>shipping</em>, not by watching.</h1>
-        <p class="lead">DGBPLabZ is a founder-led mentorship program teaching web development, AI and game development through real projects — practical, hands-on, and connected to how things actually get built.</p>
+        <p class="lead">Build real projects in web development, AI and game development with a founder who mentors you directly. No exams. No hidden stages. Tracks start at <strong>₹499</strong>.</p>
+
+        <!-- HOOK 1 · INSTANT CREDIBILITY: proof before the first button -->
+        <div class="hero-chips" aria-label="Verified credentials">
+          <span>Govt. of India MSME (Udyam) registered</span>
+          <span>D&amp;B DUNS 772660415</span>
+          <span>Teaching since 2023</span>
+          <span>Students in 9 countries</span>
+        </div>
+
         <div class="hero-cta">
-          <span class="btn btn-dark coming-soon" aria-disabled="true">Community coming soon</span>
+          <a class="btn btn-brand" href="https://forms.gle/LNDC32NR6YsCmeZY8" target="_blank" rel="noopener">Apply now — from ₹499</a>
           <a class="btn btn-outline" href="mentorship.html">See Mentorship Tracks</a>
         </div>
-        <p class="hero-byline">— Kakarla Manish Reddy, Founder</p>
+        <p class="hero-byline">— Taught &amp; led by Kakarla Manish Reddy, Founder · <a class="link-arrow" href="Verify.html">Verify our credentials</a></p>
       </div>
 
       <aside class="glance" aria-label="At a glance">
-        <h2>Why "learn by shipping"?</h2>
+        <h2>Why students choose DGBPLabZ</h2>
         <p>You don't learn here to memorize — you learn here to build. This is real-world preparation, not exam prep, and we stay with you until you can build, apply and grow on your own.</p>
         <ul>
           <li><span>1</span><div><b>Project-first</b><small>Real software, product design and applied AI — not toy exercises.</small></div></li>
@@ -1717,6 +1761,16 @@ body.rail-open .widget-row{margin-left:28px!important}
     <span>Based in Hyderabad, Telangana</span>
   </div>
 </div>
+
+<!-- ═══ HOOK 1 · PROOF BAR (instant credibility) ═══ -->
+<section class="proofbar" aria-label="Verified facts about DGBPLabZ">
+  <div class="container">
+    <div class="pb-item"><b>4,300+</b><span>Students taught</span></div>
+    <div class="pb-item"><b>9</b><span>Countries reached</span></div>
+    <div class="pb-item"><b>2023</b><span>Operating since</span></div>
+    <div class="pb-item"><b class="pb-small">UDYAM-TS-20-0184539</b><span><a href="Verify.html">Check it yourself →</a></span></div>
+  </div>
+</section>
 
 <!-- ═══ AI SEARCH ═══ -->
 <section class="section" id="ai-search" aria-labelledby="aisTitle">
@@ -1768,7 +1822,7 @@ body.rail-open .widget-row{margin-left:28px!important}
 <section class="section soft" id="clarity">
   <div class="container center">
     <span class="eyebrow">What you actually get</span>
-    <h2 class="section-title">What will I learn — and how does it help me grow?</h2>
+    <h2 class="section-title">What you'll walk away with</h2>
     <p class="section-lead">DGBPLabZ helps students and developers learn frontend development, AI and game development through practical projects, transparent mentorship, and portfolio-ready experience.</p>
     <div class="grid-3" style="text-align:left">
       <div class="card"><div class="icon">1</div><h3>Practical projects</h3><p>Build real skills and work on projects that matter, not exercises that end in a quiz.</p></div>
@@ -1778,12 +1832,47 @@ body.rail-open .widget-row{margin-left:28px!important}
   </div>
 </section>
 
+<!-- ═══ HOOK 3 · A vs B ═══ -->
+<section class="section" id="a-vs-b" aria-labelledby="avbTitle">
+  <div class="container">
+    <span class="eyebrow">Choose your path</span>
+    <h2 class="section-title" id="avbTitle">Watch tutorials for months — or <span style="background:var(--brand);padding:0 8px;border:var(--bw) solid var(--ink);display:inline-block;transform:rotate(-1.5deg);box-shadow:4px 4px 0 var(--ink)">ship a real project?</span></h2>
+    <p class="section-lead">Same goal, two very different routes. Here's the honest side-by-side.</p>
+
+    <div class="avb">
+      <div class="avb-col avb-a">
+        <span class="avb-tag">Option A · Video-first / exam-first</span>
+        <h3>Learn alone, hope it sticks</h3>
+        <ul>
+          <li>Hours of passive video, little feedback</li>
+          <li>Quizzes and exams decide if you "passed"</li>
+          <li>A certificate with nothing behind it</li>
+          <li>Pricing stages that unlock only when you pay more</li>
+          <li>No one to ask when you get stuck</li>
+        </ul>
+      </div>
+      <div class="avb-col avb-b">
+        <span class="avb-tag">Option B · DGBPLabZ</span>
+        <h3>Build with a mentor from day one</h3>
+        <ul>
+          <li>Real projects from the first week</li>
+          <li>No exam pressure — your work is the proof</li>
+          <li>Live portfolio plus a verifiable completion certificate</li>
+          <li>Nothing locked or hidden: 3 tracks, 3 prices, 1 form</li>
+          <li>Direct mentorship from the founder and senior mentors</li>
+        </ul>
+        <div class="avb-cta"><a class="btn btn-dark" href="https://forms.gle/LNDC32NR6YsCmeZY8" target="_blank" rel="noopener">Choose Option B — Apply now →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ PROGRAMS ═══ -->
-<section class="section" id="tracks">
+<section class="section soft" id="tracks">
   <div class="container">
     <span class="eyebrow">Programs</span>
-    <h2 class="section-title">Courses &amp; mentorship tracks</h2>
-    <p class="section-lead">Three tracks, three price points, one straightforward application form — no hidden stages.</p>
+    <h2 class="section-title">Pick your track. Start shipping this week.</h2>
+    <p class="section-lead">Three tracks, three clear prices, one application form. Nothing is locked or hidden.</p>
     <div class="grid-3">
       <div class="card program">
         <div class="tag">Track 01</div>
@@ -1810,7 +1899,7 @@ body.rail-open .widget-row{margin-left:28px!important}
 </section>
 
 <!-- ═══ LABS ═══ -->
-<section class="section soft" id="labs">
+<section class="section" id="labs">
   <div class="container">
     <span class="eyebrow">Labs</span>
     <h2 class="section-title">Innovation labs &amp; growth tiers</h2>
@@ -1827,6 +1916,7 @@ body.rail-open .widget-row{margin-left:28px!important}
     </div>
   </div>
 </section>
+
 <section class="section soft" id="initiative" aria-labelledby="initTitle">
   <div class="container">
     <span class="eyebrow">Learning Research Initiative</span>
@@ -1885,8 +1975,38 @@ body.rail-open .widget-row{margin-left:28px!important}
     </div>
   </div>
 </section>
+
+<!-- ═══ HOOK 2 · AUTHORITY ═══ -->
+<section class="section" id="authority" aria-labelledby="authTitle">
+  <div class="container">
+    <span class="eyebrow">Who you'll learn from</span>
+    <h2 class="section-title" id="authTitle">Your mentor is the person who built the program.</h2>
+    <p class="section-lead">Not a hired presenter. Not a recorded lecture. The founder teaches and reviews your work.</p>
+
+    <div class="authority">
+      <div class="auth-left">
+        <div class="avatar">KM</div>
+        <h3>Kakarla Manish Reddy</h3>
+        <small>Founder &amp; Lead Mentor</small>
+      </div>
+      <div class="auth-right">
+        <blockquote>"Greatness isn't measured by what you hand someone — it's measured by what you teach them to achieve on their own."</blockquote>
+        <ul class="auth-facts">
+          <li><b>Focus areas:</b> web development, AI &amp; machine learning, game development, software engineering</li>
+          <li><b>Track record:</b> 4,300+ students taught across 9 countries since 2023</li>
+          <li><b>Languages:</b> sessions in English, Telugu and Hindi</li>
+          <li><b>Verifiable:</b> MSME Udyam &amp; D&amp;B DUNS numbers are public — <a class="link-arrow" href="Verify.html">verify them</a></li>
+          <!-- ADD YOUR REAL PROOF HERE if you have it: press mentions, speaker slots,
+               named student outcomes, awards. Only add what you can document. -->
+        </ul>
+        <p style="margin-top:20px"><a class="link-arrow" href="founder.html">Read the founder's journey →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ LEADERSHIP / PHILOSOPHY ═══ -->
-<section class="section" id="philosophy">
+<section class="section soft" id="philosophy">
   <div class="container">
     <span class="eyebrow">Mentorship philosophy</span>
     <h2 class="section-title">What we actually believe</h2>
@@ -1919,13 +2039,14 @@ body.rail-open .widget-row{margin-left:28px!important}
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
 <!-- ═══ SOCIAL PROOF ═══ -->
-<section class="section soft" id="social-proof">
+<section class="section" id="social-proof">
   <div class="container">
     <div class="proof">
       <div>
         <span class="eyebrow">Social proof</span>
-        <h2>People are building with us.</h2>
+        <h2>Featured on Product Hunt. Built in public.</h2>
         <p>We're building DGBPLabZ in public — with developers, creators, students and founders who believe in learning by actually shipping.</p>
       </div>
       <div class="proof-actions">
@@ -1946,8 +2067,9 @@ body.rail-open .widget-row{margin-left:28px!important}
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
+
 <!-- ═══ REACH ═══ -->
-<section class="section" id="map">
+<section class="section soft" id="map">
   <div class="container">
     <span class="eyebrow">Reach</span>
     <h2 class="section-title">Where our students are</h2>
@@ -1968,7 +2090,7 @@ body.rail-open .widget-row{margin-left:28px!important}
 </section>
 
 <!-- ═══ TESTIMONIALS ═══ -->
-<section class="section soft" id="testimonials" style="padding-top:0;border-top:none">
+<section class="section" id="testimonials" style="padding-top:0;border-top:none;background:var(--bg-soft)">
   <div class="container">
     <span class="eyebrow">Community</span>
     <h2 class="section-title">What students &amp; members say</h2>
@@ -2112,8 +2234,8 @@ body.rail-open .widget-row{margin-left:28px!important}
 <!-- ═══ CTA BAND ═══ -->
 <section class="cta-band" id="cta">
   <div class="container">
-    <h2>Ready to build something real?</h2>
-    <p>Pick a track, apply, and start working on real projects with founder-led mentorship.</p>
+    <h2>Your first real project starts with one form.</h2>
+    <p>Pick a track from ₹499, apply in minutes, and get founder-led mentorship. Our team replies within 24 hours.</p>
     <div class="row">
       <a class="btn btn-brand" href="https://forms.gle/LNDC32NR6YsCmeZY8" target="_blank" rel="noopener">Apply now</a>
       <span class="btn btn-outline coming-soon" aria-disabled="true">Community coming soon</span>
@@ -2131,7 +2253,6 @@ body.rail-open .widget-row{margin-left:28px!important}
         <h3>DGBPLabZ</h3>
         <p>A founder-led mentorship program teaching web development, AI and game development through real projects — not just video lessons.</p>
         <p style="font-size:.82rem">Questions? Write to <a href="mailto:m81434409@gmail.com">m81434409@gmail.com</a></p>
-
 
         <button swg-standard-button="contribution"></button>
       </div>
@@ -2184,7 +2305,6 @@ body.rail-open .widget-row{margin-left:28px!important}
   Qualys SSL A+ Certified
 </div>
 
-
       <span>© 2023–2026 DGBPLabZ / DevGameBlogPromo. Founder-led. Built with real intent.</span>
     </div>
   </div>
@@ -2192,10 +2312,6 @@ body.rail-open .widget-row{margin-left:28px!important}
 
 <script>
 
-
-
-
-  
 /* ===== Announcement bar ===== */
 (function(){
   var banner=document.getElementById('termsBanner');
@@ -2213,7 +2329,6 @@ body.rail-open .widget-row{margin-left:28px!important}
     btn.textContent=open?'✕':'☰';
     btn.setAttribute('aria-expanded',open?'true':'false');
   });
-  /* close the mobile menu after tapping an in-page link such as Search */
   nav.addEventListener('click',function(e){
     var a=e.target.closest&&e.target.closest('a[href^="#"]');
     if(a&&nav.classList.contains('mobile-open')){
@@ -2242,13 +2357,12 @@ body.rail-open .widget-row{margin-left:28px!important}
   });
 })();
 
-/* ===== Windows-taskbar navbar → docks LEFT on scroll ===== */
+/* ===== Windows-taskbar navbar → docks on scroll ===== */
 (function () {
   var header = document.querySelector('.site-header');
   var nav = document.getElementById('navMenu');
   if (!header || !nav) return;
 
-  /* 1) icon + label for every top-level link */
   var ICONS = {
     'carrer.html': '🧪',
     'mentorship.html': '🎓',
@@ -2284,7 +2398,6 @@ body.rail-open .widget-row{margin-left:28px!important}
   var moreBtn = document.getElementById('moreTrigger');
   if (moreBtn) moreBtn.setAttribute('title', 'More');
 
-  /* 2) system-tray clock (IST) */
   var cta = header.querySelector('.nav-cta');
   var clock = document.createElement('div');
   clock.className = 'tray-clock';
@@ -2312,13 +2425,10 @@ body.rail-open .widget-row{margin-left:28px!important}
   tick();
   setInterval(tick, 15000);
 
-  /* 3) spacer keeps the page from jumping when the bar leaves normal flow */
   var spacer = document.createElement('div');
   spacer.style.display = 'none';
   header.parentNode.insertBefore(spacer, header);
 
-  /* 4) dock to the left on scroll (hysteresis avoids flicker).
-        Works on every screen size (phone, iPad, desktop). */
   var docked = false, ticking = false;
   var DOCK_AT = 90, UNDOCK_AT = 20, MIN_WIDTH = 0;
 
@@ -2346,7 +2456,6 @@ body.rail-open .widget-row{margin-left:28px!important}
   window.addEventListener('resize', onScroll);
   update();
 
-  /* 5) tablet / phone: tap the logo to expand or collapse the docked taskbar */
   var brand = header.querySelector('.brand');
   function setExpanded(on) {
     header.classList.toggle('expanded', !!on);
@@ -2369,11 +2478,6 @@ body.rail-open .widget-row{margin-left:28px!important}
   document.addEventListener('click', function (e) {
     if (!header.contains(e.target)) setExpanded(false);
   });
-  window.addEventListener('scroll', function () {
-    if (header.classList.contains('expanded') && window.innerWidth < 1280) {
-      /* keep it open while scrolling only if the user is touching it */
-    }
-  }, { passive: true });
 })();
 
 /* ===== Widget + Side event banner ===== */
@@ -2432,7 +2536,6 @@ body.rail-open .widget-row{margin-left:28px!important}
   function updateEvent() {
     var t = istToday(), today = utc(t.y, t.m, t.d);
 
-    /* 3-year timeline so the Dec → Jan wrap works */
     var list = [];
     [t.y - 1, t.y, t.y + 1].forEach(function (yr) {
       EVENTS.forEach(function (e) {
@@ -2448,13 +2551,11 @@ body.rail-open .widget-row{margin-left:28px!important}
     var isToday = current.time === today;
     var daysToNext = Math.round((next.time - today) / DAY);
 
-    /* ── widget ── */
     evLabel.textContent = isToday ? "TODAY'S SPECIAL DAY" : "ONGOING SINCE " + current.d + " " + MONTHS[current.m - 1].toUpperCase();
     evEmoji.textContent = current.emoji;
     evName.textContent = current.name;
     evNext.textContent = "NEXT: " + next.emoji + " " + next.name + " · " + fmt(next) + " (" + inDays(daysToNext) + ")";
 
-    /* ── side banner ── */
     railTabEmoji.textContent = current.emoji;
     railStatus.textContent = isToday ? "Today" : "Ongoing since " + fmt(current);
     railEmoji.textContent = current.emoji;
@@ -2480,7 +2581,6 @@ body.rail-open .widget-row{margin-left:28px!important}
     }
   }
 
-  /* side banner open/close — open by default on wide screens, tab-only on small ones */
   function setRail(open) {
     rail.classList.toggle("collapsed", !open);
     document.body.classList.toggle("rail-open", !!open);
@@ -2489,20 +2589,20 @@ body.rail-open .widget-row{margin-left:28px!important}
   setRail(window.innerWidth >= 1320);
   railTab.addEventListener("click", function () { setRail(rail.classList.contains("collapsed")); });
   railClose.addEventListener("click", function () { setRail(false); });
-  /* show the Special Day panel only while the hero section is in view */
+
   var heroSection = document.querySelector(".hero");
   if (heroSection && "IntersectionObserver" in window) {
-    rail.classList.add("out-of-section");            /* hidden before the hero */
+    rail.classList.add("out-of-section");
     new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         rail.classList.toggle("out-of-section", !en.isIntersecting);
       });
     }, {
-      rootMargin: "-120px 0px -35% 0px",             /* trigger when the hero is really on screen */
+      rootMargin: "-120px 0px -35% 0px",
       threshold: 0
     }).observe(heroSection);
   }
-  
+
   function updateClock() {
     var now = new Date();
     timeEl.textContent = new Intl.DateTimeFormat("en-IN", {
@@ -2526,7 +2626,7 @@ body.rail-open .widget-row{margin-left:28px!important}
   updateClock();
   updateEvent();
   setInterval(updateClock, 1000);
-  setInterval(updateEvent, 60000);  /* flips automatically at midnight IST */
+  setInterval(updateEvent, 60000);
   setInterval(changeQuote, 5000);
 })();
 
@@ -2561,7 +2661,7 @@ body.rail-open .widget-row{margin-left:28px!important}
       u.hash = "";
       u.search = "";
       if (SKIP_EXT.test(u.pathname)) return null;
-      u.pathname = u.pathname.replace(/\.html$/i, "");          /* /Report.html and /Report are one page */
+      u.pathname = u.pathname.replace(/\.html$/i, "");
       if (u.pathname === "/index") u.pathname = "/";
       if (u.pathname !== "/" && u.pathname.slice(-1) === "/") u.pathname = u.pathname.slice(0, -1);
       return u.href;
@@ -2666,7 +2766,7 @@ body.rail-open .widget-row{margin-left:28px!important}
           var html = await fetchText(url);
           var doc = new DOMParser().parseFromString(html, "text/html");
           var pg = extractPage(doc, url);
-          return /\b404\b|page not found/i.test(pg.title) ? null : pg;   /* skip deleted pages */
+          return /\b404\b|page not found/i.test(pg.title) ? null : pg;
         } catch (e) { failures++; return null; }
       }));
       fetched.forEach(function (page) {
@@ -2941,7 +3041,7 @@ body.rail-open .widget-row{margin-left:28px!important}
     return answerHtml("maybe", "NOT SURE", "I couldn't find a clear yes/no answer for that. Any matching pages are listed below.");
   }
 
-  /* ---------- UPGRADED ENGINE: whole-word BM25-style ranking, typos, synonyms ---------- */
+  /* ---------- ENGINE: whole-word BM25-style ranking, typos, synonyms ---------- */
   var SYN = {
     cost:["price","fee","fees"], price:["cost","fee","fees","pricing"], fee:["price","cost"], fees:["price","cost"],
     pricing:["price","cost"], cheap:["price","cost"], certificate:["certification","certified"], cert:["certificate"],
@@ -3217,7 +3317,6 @@ body.rail-open .widget-row{margin-left:28px!important}
   } else { autoStart(); }
   $("aisQuery").addEventListener("focus", autoStart);
 
-  /* deep link: /?q=fees#ai-search */
   var qp = new URLSearchParams(location.search).get("q");
   if (qp) { $("aisQuery").value = qp; autoStart(); if (pages.length) search(qp); }
 })();
@@ -3261,7 +3360,6 @@ function buildTCard(t){
 function fillRow(el,items){
   if(!el) return;
   items.forEach(function(t){el.appendChild(buildTCard(t));});
-  /* duplicate set for the seamless loop; hidden from screen readers */
   items.forEach(function(t){var c=buildTCard(t);c.setAttribute('aria-hidden','true');el.appendChild(c);});
 }
 function initTestimonials(){
