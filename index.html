@@ -2245,8 +2245,8 @@ profModal.innerHTML = '<form class="dgbp-box" id="dgbpProfileForm">' +
   '<h2>Create your profile</h2><p>One last step. This is saved to your account.</p>' +
   '<label for="pfName">Full name</label><input id="pfName" required maxlength="80">' +
   '<label for="pfCity">City</label><input id="pfCity" maxlength="60">' +
-  '<label for="pfTrack">Track you\'re interested in</label>' +
-  '<select id="pfTrack"><option>Frontend (₹499)</option><option>AI / ML (₹799)</option><option>Cloud &amp; DevOps (₹999)</option><option>Game Development (₹1,699)</option></select>' +
+  '<label for="pfTagline">Your tagline</label>' +
+  '<input id="pfTagline" maxlength="80" placeholder="e.g. Building things for the web">' +
   '<button class="dgbp-gbtn" style="margin-top:20px" type="submit">Save profile</button>' +
   '<div class="dgbp-err" id="dgbpProfErr" role="alert"></div></form>';
 document.body.append(authModal, profModal);
@@ -2348,7 +2348,7 @@ async function showProfile(u) {
   $("pvName").textContent = data.name || u.displayName || "Member";
   $("pvEmail").textContent = data.email || u.email || "";
   const rows = $("pvRows"); rows.innerHTML = "";
-  rows.append(row("City", data.city), row("Interested track", data.track),
+  rows.append(row("Tagline", data.tagline), row("City", data.city),
     row("Member since", data.createdAt && data.createdAt.toDate ? data.createdAt.toDate().toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" }) : ""));
   $("pvEdit").onclick = () => { viewModal.classList.remove("open"); openProfileForm(u, data); };
   viewModal.classList.add("open");
@@ -2357,7 +2357,7 @@ async function showProfile(u) {
 function openProfileForm(u, existing) {
   $("pfName").value = (existing && existing.name) || u.displayName || "";
   $("pfCity").value = (existing && existing.city) || "";
-  if (existing && existing.track) $("pfTrack").value = existing.track;
+  $("pfTagline").value = (existing && existing.tagline) || "";
   $("dgbpProfErr").textContent = "";
   profModal.classList.add("open");
   $("dgbpProfileForm").onsubmit = async (e) => {
@@ -2365,7 +2365,7 @@ function openProfileForm(u, existing) {
     try {
       const payload = {
         name: $("pfName").value.trim(), email: u.email, photoURL: u.photoURL || "",
-        city: $("pfCity").value.trim(), track: $("pfTrack").value
+        city: $("pfCity").value.trim(), tagline: $("pfTagline").value.trim()
       };
       if (!existing) payload.createdAt = serverTimestamp();
       await setDoc(doc(db, "users", u.uid), payload, { merge: true });
