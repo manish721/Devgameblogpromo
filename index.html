@@ -2360,8 +2360,27 @@ async function ensureProfile(u) {
   if (!snap.exists()) openProfileForm(u, null);
 }
 
+/* Profile + Log out buttons inside the navbar (logged-in only) */
+function renderNavButtons(u) {
+  nav.querySelectorAll("[data-user]").forEach((n) => n.remove());
+  if (!u) return;
+  const mk = (icon, label, fn) => {
+    const a = document.createElement("a");
+    a.href = "#"; a.setAttribute("data-user", ""); a.title = label; a.setAttribute("aria-label", label);
+    a.innerHTML = '<span class="nav-ico" aria-hidden="true">' + icon + '</span><span class="nav-label">' + label + '</span>';
+    a.onclick = (e) => { e.preventDefault(); fn(); };
+    return a;
+  };
+  const moreEl = nav.querySelector(".nav-more");
+  const profileBtn = mk("👤", "Profile", () => showProfile(u));
+  const logoutBtn = mk("🚪", "Log out", () => signOut(auth));
+  nav.insertBefore(profileBtn, moreEl || null);
+  nav.insertBefore(logoutBtn, moreEl || null);
+}
+
 onAuthStateChanged(auth, (u) => {
   user = u;
+  renderNavButtons(u);
   document.body.classList.toggle("dgbp-guest", !u);
   signBtn.style.display = u ? "none" : "";
   renderUser(u);
