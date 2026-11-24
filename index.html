@@ -2285,31 +2285,79 @@ function renderUser(u) {
   userBox = document.createElement("div");
   userBox.className = "dgbp-user"; userBox.id = "dgbpUserMenu";
   userBox.innerHTML = '<button type="button"><img alt="" referrerpolicy="no-referrer" src="' + (u.photoURL || "") + '"><span></span></button>' +
-    '<div class="menu"><b></b><small></small><button type="button" id="dgbpLogout">Log out</button></div>';
+    '<div class="menu"><b></b><small></small><button type="button" id="dgbpMyProfile">My Profile</button><button type="button" id="dgbpLogout" style="background:#fff">Log out</button></div>';
   userBox.querySelector("span").textContent = (u.displayName || "Me").split(" ")[0];
   userBox.querySelector("b").textContent = u.displayName || "Member";
   userBox.querySelector("small").textContent = u.email || "";
   userBox.firstElementChild.onclick = () => userBox.classList.toggle("open");
   userBox.querySelector("#dgbpLogout").onclick = () => signOut(auth);
+  userBox.querySelector("#dgbpMyProfile").onclick = () => { userBox.classList.remove("open"); showProfile(u); };
   if (cta) cta.insertBefore(userBox, cta.querySelector(".menu-toggle"));
 }
 
-async function ensureProfile(u) {
+/* Profile view modal */
+const viewModal = document.createElement("div");
+viewModal.className = "dgbp-modal"; viewModal.id = "dgbpViewModal";
+viewModal.innerHTML = '<div class="dgbp-box">' +
+  '<button class="dgbp-x" type="button" aria-label="Close">✕</button>' +
+  '<div style="display:flex;align-items:center;gap:16px;margin-bottom:18px">' +
+  '<img id="pvPhoto" alt="" referrerpolicy="no-referrer" style="width:72px;height:72px;object-fit:cover;border:2px solid #141310;box-shadow:3px 3px 0 #141310">' +
+  '<div><h2 id="pvName" style="margin:0"></h2><div id="pvEmail" style="color:#5d5b52;font-size:.9rem;overflow-wrap:anywhere"></div></div></div>' +
+  '<div id="pvRows" style="border-top:2px dashed #e7e3d6"></div>' +
+  '<button class="dgbp-gbtn" id="pvEdit" style="margin-top:20px" type="button">Edit profile</button>' +
+  '<button class="dgbp-gbtn alt" id="pvOut" type="button">Log out</button></div>';
+document.body.appendChild(viewModal);
+viewModal.querySelector(".dgbp-x").onclick = () => viewModal.classList.remove("open");
+viewModal.addEventListener("mousedown", (e) => { if (e.target === viewModal) viewModal.classList.remove("open"); });
+$("pvOut").onclick = () => { viewModal.classList.remove("open"); signOut(auth); };
+
+function row(label, val) {
+  const d = document.createElement("div");
+  d.style.cssText = "display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:2px dashed #e7e3d6;font-size:.93rem";
+  const a = document.createElement("b"); a.style.fontFamily = "'Space Grotesk',sans-serif"; a.textContent = label;
+  const b = document.createElement("span"); b.style.textAlign = "right"; b.textContent = val || "—";
+  d.append(a, b); return d;
+}
+
+async function showProfile(u) {
   const ref = doc(db, "users", u.uid);
-  const snap = await getDoc(ref);
-  if (snap.exists()) return;
-  $("pfName").value = u.displayName || "";
+  let data = null;
+  try { const s = await getDoc(ref); if (s.exists()) data = s.data(); } catch (e) {}
+  if (!data) { openProfileForm(u, null); return; }
+  $("pvPhoto").src = data.photoURL || u.photoURL || "";
+  $("pvName").textContent = data.name || u.displayName || "Member";
+  $("pvEmail").textContent = data.email || u.email || "";
+  const rows = $("pvRows"); rows.innerHTML = "";
+  rows.append(row("City", data.city), row("Interested track", data.track),
+    row("Member since", data.createdAt && data.createdAt.toDate ? data.createdAt.toDate().toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" }) : ""));
+  $("pvEdit").onclick = () => { viewModal.classList.remove("open"); openProfileForm(u, data); };
+  viewModal.classList.add("open");
+}
+
+function openProfileForm(u, existing) {
+  $("pfName").value = (existing && existing.name) || u.displayName || "";
+  $("pfCity").value = (existing && existing.city) || "";
+  if (existing && existing.track) $("pfTrack").value = existing.track;
+  $("dgbpProfErr").textContent = "";
   profModal.classList.add("open");
   $("dgbpProfileForm").onsubmit = async (e) => {
     e.preventDefault();
     try {
-      await setDoc(ref, {
+      const payload = {
         name: $("pfName").value.trim(), email: u.email, photoURL: u.photoURL || "",
-        city: $("pfCity").value.trim(), track: $("pfTrack").value, createdAt: serverTimestamp()
-      });
+        city: $("pfCity").value.trim(), track: $("pfTrack").value
+      };
+      if (!existing) payload.createdAt = serverTimestamp();
+      await setDoc(doc(db, "users", u.uid), payload, { merge: true });
       profModal.classList.remove("open");
+      showProfile(u);
     } catch (er) { $("dgbpProfErr").textContent = "Could not save profile: " + (er.code || er.message); }
   };
+}
+
+async function ensureProfile(u) {
+  const snap = await getDoc(doc(db, "users", u.uid));
+  if (!snap.exists()) openProfileForm(u, null);
 }
 
 onAuthStateChanged(auth, (u) => {
