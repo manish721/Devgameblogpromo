@@ -937,7 +937,11 @@ body.dgbp-guest .nav-cta > a.btn-brand{display:none!important}
 .site-header.docked .dgbp-user > button span{display:none}
 
 /* ---- fit EVERYTHING inside the navbar ---- */
-.dgbp-user{display:none!important}
+.dgbp-user{display:block!important;flex-shrink:0}
+.dgbp-user > button{padding:0!important;gap:0!important;border-radius:50%;overflow:hidden;width:40px;height:40px;background:#FFCB2E}
+.dgbp-user > button span{display:none!important}
+.dgbp-user img{width:100%;height:100%;border:0;border-radius:50%}
+.dgbp-user .menu{display:none!important}
 .site-header .container.nav-wrap{gap:8px}
 .site-header .brand-name{font-size:.95rem}
 .site-header:not(.docked) .nav-ico{display:none}
@@ -2304,7 +2308,8 @@ function renderUser(u) {
   userBox.querySelector("span").textContent = (u.displayName || "Me").split(" ")[0];
   userBox.querySelector("b").textContent = u.displayName || "Member";
   userBox.querySelector("small").textContent = u.email || "";
-  userBox.firstElementChild.onclick = () => userBox.classList.toggle("open");
+  userBox.firstElementChild.title = "My Profile";
+  userBox.firstElementChild.onclick = () => showProfile(u);
   userBox.querySelector("#dgbpLogout").onclick = () => signOut(auth);
   userBox.querySelector("#dgbpMyProfile").onclick = () => { userBox.classList.remove("open"); showProfile(u); };
   if (cta) cta.insertBefore(userBox, cta.querySelector(".menu-toggle"));
