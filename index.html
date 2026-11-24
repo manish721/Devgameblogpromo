@@ -906,6 +906,35 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
 .widget-section{padding:36px 0;border-top:var(--bw) solid var(--ink);background:var(--bg-soft)}
 .widget-section .widget-row{margin:0 auto;max-width:var(--maxw);padding:0 28px}
 @media (max-width:900px){.widget-section .widget-row{padding:0 14px}}
+
+/* =====================================================================
+   GOOGLE SIGN-IN GATE  (added)
+   ===================================================================== */
+body.dgbp-guest #navMenu > a:not([data-public]),
+body.dgbp-guest #navMenu .nav-more,
+body.dgbp-guest .nav-cta > a.btn-brand{display:none!important}
+.dgbp-modal{position:fixed;inset:0;z-index:9999;background:rgba(20,19,16,.7);display:none;align-items:center;justify-content:center;padding:18px}
+.dgbp-modal.open{display:flex}
+.dgbp-box{background:#fff;border:2px solid #141310;box-shadow:8px 8px 0 #141310;max-width:440px;width:100%;padding:34px 30px;font-family:'DM Sans',system-ui,sans-serif;position:relative}
+.dgbp-box h2{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;letter-spacing:-.03em;margin-bottom:10px;line-height:1.1}
+.dgbp-box p{color:#5d5b52;font-size:.95rem;margin-bottom:20px}
+.dgbp-x{position:absolute;right:10px;top:8px;background:none;border:0;font-size:1.2rem;cursor:pointer}
+.dgbp-gbtn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;padding:14px;margin-bottom:12px;background:#FFCB2E;color:#141310;border:2px solid #141310;box-shadow:4px 4px 0 #141310;font-family:'Space Grotesk',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.03em;font-size:.88rem;cursor:pointer}
+.dgbp-gbtn:hover{transform:translate(4px,4px);box-shadow:none}
+.dgbp-gbtn.alt{background:#fff}
+.dgbp-gbtn svg{width:20px;height:20px}
+.dgbp-err{color:#b3261e;font-size:.85rem;min-height:1.2em;margin-top:6px}
+.dgbp-box label{display:block;font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin:12px 0 5px}
+.dgbp-box input,.dgbp-box select{width:100%;padding:11px 12px;border:2px solid #141310;font:inherit;background:#fff}
+.dgbp-user{position:relative}
+.dgbp-user > button{display:flex;align-items:center;gap:8px;background:#fff;border:2px solid #141310;box-shadow:3px 3px 0 #141310;padding:3px 10px 3px 3px;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.78rem}
+.dgbp-user img{width:30px;height:30px;object-fit:cover;border:2px solid #141310}
+.dgbp-user .menu{display:none;position:absolute;right:0;top:calc(100% + 10px);width:230px;background:#fff;border:2px solid #141310;box-shadow:5px 5px 0 #141310;padding:12px;z-index:300}
+.dgbp-user.open .menu{display:block}
+.dgbp-user .menu b{display:block;font-family:'Space Grotesk',sans-serif}
+.dgbp-user .menu small{display:block;color:#5d5b52;margin-bottom:10px;overflow-wrap:anywhere}
+.dgbp-user .menu button{width:100%;padding:9px;border:2px solid #141310;background:#FFCB2E;font-family:'Space Grotesk',sans-serif;font-weight:700;cursor:pointer;text-transform:uppercase;font-size:.75rem;margin-top:6px}
+.site-header.docked .dgbp-user > button span{display:none}
 </style>
 
 <script type="text/javascript">
@@ -917,7 +946,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
 </script>
 </head>
 
-<body>
+<body class="dgbp-guest">
 
 <!-- ═══ HEADER ═══ -->
 <header class="site-header">
@@ -1063,7 +1092,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
   </div>
 </section>
 
-<!-- ═══ 3 · NEW — WHY WE ARE NOT AN EDTECH + HOW TO APPLY ═══ -->
+<!-- ═══ 3 · WHY WE ARE NOT AN EDTECH + HOW TO APPLY ═══ -->
 <section class="section" id="why-mentorship" aria-labelledby="whyTitle">
   <div class="container">
     <span class="eyebrow">Why this is different</span>
@@ -1911,8 +1940,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
   setInterval(updateClock,1000); setInterval(updateEvent,60000); setInterval(changeQuote,5000);
 })();
 
-/* ===== Testimonials marquee =====
-   EDIT THIS LIST. Only keep entries that are genuine, with the person's permission. */
+/* ===== Testimonials marquee ===== */
 (function(){
   var T=[
     {n:"Sophia Bennett",r:"Business",q:"Learning under Manish Kakarla was truly a life-changing experience. His passion for technology is matched only by his care for his students. He teaches like a father — firm, yet kind — always guiding with clarity and love. From AI to programming, he simplified everything. But what stayed with me most were the values he taught — discipline, respect, and purpose."},
@@ -1932,7 +1960,7 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
   function fill(id,list){
     var el=document.getElementById(id); if(!el) return;
     var html=list.map(card).join("");
-    el.innerHTML=html+html; /* duplicated for a seamless loop */
+    el.innerHTML=html+html;
   }
   fill("tRow1",T.filter(function(_,i){return i%2===0;}));
   fill("tRow2",T.filter(function(_,i){return i%2===1;}));
@@ -2109,7 +2137,6 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
     setStatus(scanned?"Results cleared. Index is ready.":"Search index will prepare when you click the search box…",false);
   });
 
-  /* suggestions */
   var SUG=["course price","Do I get a certificate?","Is it good for beginners?","mentorship","labs","policy","founder","curriculum","refund policy","career paths"];
   var sel=-1;
   function showSug(){
@@ -2145,6 +2172,154 @@ body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;bac
     });
   }catch(e){}
 })();
+</script>
+
+<!-- =====================================================================
+     GOOGLE-ONLY SIGN-UP / LOGIN GATE  (Firebase Auth + Firestore profile)
+     ===================================================================== -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc, serverTimestamp }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+/* 1) PASTE YOUR FIREBASE WEB CONFIG HERE (Firebase console → Project settings → Your apps → Web app) */
+const firebaseConfig = {
+  apiKey: "AIzaSyDQ4PbWEk0NKT4aVeFJ8n7_epJam5kiYZs",
+  authDomain: "devgameblopromo.firebaseapp.com",
+  projectId: "devgameblopromo",
+  storageBucket: "devgameblopromo.firebasestorage.app",
+  messagingSenderId: "614616821878",
+  appId: "1:614616821878:web:5ec4ccfb5eee9abfe02f57",
+  measurementId: "G-JFMHTKX6P7"
+};
+
+/* 2) The only page guests can open from the navbar */
+const ABOUT_HREF = "founder.html";
+const ALLOW_CLICK = ["#menuToggle", "#dgbpAuthModal", "#dgbpProfileModal", "#dgbpUserMenu", "[data-public]"];
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const provider = new GoogleAuthProvider();
+provider.setCustomParameters({ prompt: "select_account" });
+
+let user = null;
+document.body.classList.add("dgbp-guest");
+
+const G = '<svg viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4 7.1-10 7.1-17.5z"/><path fill="#FBBC05" d="M10.5 28.7A14.5 14.5 0 0 1 9.5 24c0-1.6.3-3.2.8-4.7l-7.9-6.1A24 24 0 0 0 0 24c0 3.9.9 7.5 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.900-2.100 15.900-5.800l-7.500-5.800c-2.100 1.400-4.900 2.300-8.400 2.300-6.300 0-11.600-4.100-13.500-9.800l-7.900 6.100C6.500 42.600 14.600 48 24 48z"/></svg>';
+
+const authModal = document.createElement("div");
+authModal.className = "dgbp-modal"; authModal.id = "dgbpAuthModal";
+authModal.innerHTML = '<div class="dgbp-box" role="dialog" aria-modal="true" aria-labelledby="dgbpAuthT">' +
+  '<button class="dgbp-x" type="button" aria-label="Close">✕</button>' +
+  '<h2 id="dgbpAuthT">Sign up to continue</h2>' +
+  '<p>Create your DGBPLabZ profile with Google to explore courses, mentorship, labs and more. Already a member? Log in with Google.</p>' +
+  '<button class="dgbp-gbtn" id="dgbpSignup" type="button">' + G + ' Sign up with Google</button>' +
+  '<button class="dgbp-gbtn alt" id="dgbpLogin" type="button">' + G + ' Log in with Google</button>' +
+  '<div class="dgbp-err" id="dgbpAuthErr" role="alert"></div></div>';
+
+const profModal = document.createElement("div");
+profModal.className = "dgbp-modal"; profModal.id = "dgbpProfileModal";
+profModal.innerHTML = '<form class="dgbp-box" id="dgbpProfileForm">' +
+  '<h2>Create your profile</h2><p>One last step. This is saved to your account.</p>' +
+  '<label for="pfName">Full name</label><input id="pfName" required maxlength="80">' +
+  '<label for="pfCity">City</label><input id="pfCity" maxlength="60">' +
+  '<label for="pfTrack">Track you\'re interested in</label>' +
+  '<select id="pfTrack"><option>Frontend (₹499)</option><option>AI / ML (₹799)</option><option>Cloud &amp; DevOps (₹999)</option><option>Game Development (₹1,699)</option></select>' +
+  '<button class="dgbp-gbtn" style="margin-top:20px" type="submit">Save profile</button>' +
+  '<div class="dgbp-err" id="dgbpProfErr" role="alert"></div></form>';
+document.body.append(authModal, profModal);
+
+const $ = (i) => document.getElementById(i);
+const openAuth = () => { $("dgbpAuthErr").textContent = ""; authModal.classList.add("open"); };
+const closeAuth = () => authModal.classList.remove("open");
+authModal.querySelector(".dgbp-x").onclick = closeAuth;
+authModal.addEventListener("mousedown", (e) => { if (e.target === authModal) closeAuth(); });
+
+async function googleSignIn() {
+  const err = $("dgbpAuthErr");
+  try { await signInWithPopup(auth, provider); closeAuth(); }
+  catch (e) { err.textContent = e.code === "auth/popup-closed-by-user" ? "" : "Sign-in failed: " + (e.code || e.message); }
+}
+$("dgbpSignup").onclick = googleSignIn;
+$("dgbpLogin").onclick = googleSignIn;
+
+/* Gate: any click / submit needs a login (capture phase = runs before every other handler) */
+document.addEventListener("click", (e) => {
+  if (user) return;
+  const t = e.target.closest && e.target.closest("a,button,input[type=submit],input[type=button],[role=button],.intent,.ais-chip,.card");
+  if (!t) return;
+  if (ALLOW_CLICK.some((s) => e.target.closest(s))) return;
+  e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
+  openAuth();
+}, true);
+document.addEventListener("submit", (e) => {
+  if (user || e.target.closest("#dgbpAuthModal,#dgbpProfileModal")) return;
+  e.preventDefault(); e.stopPropagation(); openAuth();
+}, true);
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeAuth(); });
+
+/* Guest navbar: About only */
+const nav = $("navMenu");
+if (nav && !nav.querySelector("[data-public]")) {
+  const a = document.createElement("a");
+  a.href = ABOUT_HREF; a.setAttribute("data-public", ""); a.title = "About";
+  a.innerHTML = '<span class="nav-ico" aria-hidden="true">ℹ️</span><span class="nav-label">About</span>';
+  nav.insertBefore(a, nav.firstChild);
+}
+const cta = document.querySelector(".nav-cta");
+const signBtn = document.createElement("button");
+signBtn.type = "button"; signBtn.className = "btn btn-brand btn-sm"; signBtn.id = "dgbpNavSign";
+signBtn.textContent = "Sign up with Google"; signBtn.setAttribute("data-public", "");
+signBtn.onclick = openAuth;
+if (cta) cta.insertBefore(signBtn, cta.querySelector(".menu-toggle"));
+
+/* Logged-in UI */
+let userBox = null;
+function renderUser(u) {
+  if (userBox) userBox.remove();
+  userBox = null;
+  if (!u) return;
+  userBox = document.createElement("div");
+  userBox.className = "dgbp-user"; userBox.id = "dgbpUserMenu";
+  userBox.innerHTML = '<button type="button"><img alt="" referrerpolicy="no-referrer" src="' + (u.photoURL || "") + '"><span></span></button>' +
+    '<div class="menu"><b></b><small></small><button type="button" id="dgbpLogout">Log out</button></div>';
+  userBox.querySelector("span").textContent = (u.displayName || "Me").split(" ")[0];
+  userBox.querySelector("b").textContent = u.displayName || "Member";
+  userBox.querySelector("small").textContent = u.email || "";
+  userBox.firstElementChild.onclick = () => userBox.classList.toggle("open");
+  userBox.querySelector("#dgbpLogout").onclick = () => signOut(auth);
+  if (cta) cta.insertBefore(userBox, cta.querySelector(".menu-toggle"));
+}
+
+async function ensureProfile(u) {
+  const ref = doc(db, "users", u.uid);
+  const snap = await getDoc(ref);
+  if (snap.exists()) return;
+  $("pfName").value = u.displayName || "";
+  profModal.classList.add("open");
+  $("dgbpProfileForm").onsubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await setDoc(ref, {
+        name: $("pfName").value.trim(), email: u.email, photoURL: u.photoURL || "",
+        city: $("pfCity").value.trim(), track: $("pfTrack").value, createdAt: serverTimestamp()
+      });
+      profModal.classList.remove("open");
+    } catch (er) { $("dgbpProfErr").textContent = "Could not save profile: " + (er.code || er.message); }
+  };
+}
+
+onAuthStateChanged(auth, (u) => {
+  user = u;
+  document.body.classList.toggle("dgbp-guest", !u);
+  signBtn.style.display = u ? "none" : "";
+  renderUser(u);
+  if (u) { closeAuth(); ensureProfile(u).catch(() => {}); }
+});
+document.addEventListener("click", (e) => { if (userBox && !userBox.contains(e.target)) userBox.classList.remove("open"); });
 </script>
 
 </body>
