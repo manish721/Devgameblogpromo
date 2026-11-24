@@ -935,6 +935,21 @@ body.dgbp-guest .nav-cta > a.btn-brand{display:none!important}
 .dgbp-user .menu small{display:block;color:#5d5b52;margin-bottom:10px;overflow-wrap:anywhere}
 .dgbp-user .menu button{width:100%;padding:9px;border:2px solid #141310;background:#FFCB2E;font-family:'Space Grotesk',sans-serif;font-weight:700;cursor:pointer;text-transform:uppercase;font-size:.75rem;margin-top:6px}
 .site-header.docked .dgbp-user > button span{display:none}
+
+/* ---- fit EVERYTHING inside the navbar ---- */
+.dgbp-user{display:none!important}
+.site-header .container.nav-wrap{gap:8px}
+.site-header .brand-name{font-size:.95rem}
+.site-header:not(.docked) .nav-ico{display:none}
+.site-header:not(.docked) .nav-more>button::before{display:none}
+.site-header:not(.docked) .primary-nav{gap:0;flex:1 1 auto;min-width:0;justify-content:center}
+.site-header:not(.docked) .primary-nav>a,
+.site-header:not(.docked) .nav-more>button{padding:9px 7px;font-size:.7rem;letter-spacing:.02em}
+.site-header:not(.docked) .nav-cta .btn-brand{padding:9px 12px;font-size:.7rem}
+@media (max-width:900px){
+  .site-header:not(.docked) .nav-ico{display:flex}
+  .site-header:not(.docked) .primary-nav>a{font-size:.8rem;padding:10px 12px}
+}
 </style>
 
 <script type="text/javascript">
